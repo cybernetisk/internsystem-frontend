@@ -1,0 +1,10 @@
+build/
+dist/
+
+*.iml
+.idea/
+db.sqlite3*
+node_modules/
+siteroot/static_build/
+cyb_oko/settings_local.py
+webpack-stats.json
