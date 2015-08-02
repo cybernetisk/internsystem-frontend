@@ -11,9 +11,9 @@
 
     var module = angular.module('cyb.oko', [
         require('ui.router'),
-        require('../../varer/frontend/'),
-        require('../../z/frontend/'),
-        require('../../samlauth/frontend/'),
+        require('./modules/varer/'),
+        require('./modules/z/'),
+        require('./modules/samlauth/'),
     ]);
 
     module.config(function ($locationProvider, $urlRouterProvider, $httpProvider) {
@@ -28,10 +28,10 @@
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     });
 
-    require('./common/antall.filter');
-    require('./common/directives');
-    require('./common/loader.directive');
-    require('./common/pagination.directive');
-    require('./common/ParamsHelper');
-    require('./common/price.filter');
+    require('./angular_common/antall.filter.js');
+    require('./angular_common/directives');
+    require('./angular_common/loader.directive.js');
+    require('./angular_common/pagination.directive.js');
+    require('./angular_common/ParamsHelper');
+    require('./angular_common/price.filter.js');
 })();

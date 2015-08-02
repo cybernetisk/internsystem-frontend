@@ -1,4 +1,4 @@
-import keyMirror from 'react/lib/keyMirror'
+import keyMirror from '../../../node_modules/react/lib/keyMirror'
 
 export default keyMirror({
   RECEIVE_LIST_START: null,

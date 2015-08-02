@@ -12,6 +12,7 @@
     "babel-loader": "^5.3.2",
     "bootstrap-sass": "~3.3.1",
     "css-loader": "^0.15.5",
+    "del": "^1.2.0",
     "domready": "^1.0.8",
     "file-loader": "^0.8.4",
     "gulp": "^3.8.10",
@@ -39,7 +40,6 @@
     "style-loader": "^0.12.3",
     "url-loader": "^0.5.6",
     "webpack": "^1.10.1",
-    "webpack-bundle-tracker": "0.0.51",
     "webpack-dev-server": "^1.10.1",
     "xhr2": "^0.1.2"
   },

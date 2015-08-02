@@ -17,9 +17,9 @@ module.exports = 'cyb.varer';
 
     require('./index/VarerIndexController');
     require('./common/CompileDirective');
-    require('./common/prisdato.directive');
+    require('./common/prisdato.directive.js');
     require('./common/PrisDato');
-    require('./common/prismargin.directive');
+    require('./common/prismargin.directive.js');
     require('./common/PrisMargin');
     require('./common/VareMengde');
     require('./common/VarerHelper');

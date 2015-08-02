@@ -1,4 +1,5 @@
 var concat = require('gulp-concat'),
+    del = require('del'),
     gulp = require('gulp'),
     gutil = require("gulp-util"),
     uglify = require('gulp-uglify'),
@@ -23,7 +24,7 @@ gulp.task('scripts-library', function() {
     return gulp.src(js_files_library)
         .pipe(concat('library.js'))
         //.pipe(uglify())
-        .pipe(gulp.dest('siteroot/static_build'));
+        .pipe(gulp.dest('build'));
 });
 
 var webpackBuild = function(callback, config, name) {
@@ -49,19 +50,30 @@ gulp.task("webpack-dev-server", function(callback) {
     var webpackHost = 'localhost:' + webpackPort;
     var djangoHost = 'localhost:8000';
 
-    webpackConfigDev.output.publicPath = 'http://localhost:3000/siteroot/static_build/';
+    webpackConfigDev.output.publicPath = 'http://localhost:3000/';
 
     new WebpackDevServer(webpack(webpackConfigDev), {
+        historyApiFallback: true,
         hot: true,
         inline: true,
         publicPath: webpackConfigDev.output.publicPath,
-        contentBase: 'http://' + djangoHost
+        //contentBase: 'http://' + djangoHost
+        contentBase: 'build',
     }).listen(webpackPort, "localhost", function(err) {
         if (err) throw new gutil.PluginError("webpack-dev-server", err);
         gutil.log("[webpack-dev-server]", "Go to http://" + webpackHost + "/webpack-dev-server/index.html !");
     });
 });
 
-gulp.task('build', ['webpack:build', 'scripts-library']);
-gulp.task('build-dev', ['webpack:build-dev', 'scripts-library']);
-gulp.task('default', ['webpack-dev-server', 'scripts-library']);
+gulp.task('copy', function() {
+    gulp.src(['./src/index.html', './src/favicon.png'])
+        .pipe(gulp.dest('./build'));
+});
+
+gulp.task('clean', function() {
+    del('build');
+});
+
+gulp.task('build', ['copy', 'webpack:build', 'scripts-library']);
+gulp.task('build-dev', ['copy', 'webpack:build-dev', 'scripts-library']);
+gulp.task('default', ['copy', 'webpack-dev-server', 'scripts-library']);

@@ -1,4 +1,4 @@
-import moment from '../../../siteroot/frontend_react/moment'
+import moment from '../../../moment'
 import React from 'react'
 import { Link } from 'react-router'
 import { nuclearComponent } from 'nuclear-js-react-addons'
@@ -6,7 +6,7 @@ import { nuclearComponent } from 'nuclear-js-react-addons'
 import getters from '../getters'
 import actions from '../actions'
 
-import Loader from '../../../siteroot/frontend_react/components/Loader'
+import Loader from '../../../components/Loader'
 
 @nuclearComponent({
   list: getters.list

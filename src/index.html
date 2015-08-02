@@ -1,6 +1,3 @@
-{% load render_bundle from webpack_loader %}
-{% load staticfiles %}
-{% load jsonify %}
 <!doctype html>
 <html lang="nb">
 <head>
@@ -9,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="fragment" content="!">
     <title>CYB internsystem</title>
-    <link rel="icon" href="{% static 'favicon.png' %}">
+    <link rel="icon" href="/favicon.png">
 
-    <script src="{% static 'library.js' %}"></script>
-    {% render_bundle 'common.js' %}
-    {% render_bundle 'app_react' %}
+    <script src="/library.js"></script>
+    <script src="/common.js"></script>
+    <script src="/app.js"></script>
+    <!--<script src="/app_angular.js"></script>-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -21,9 +19,6 @@
     <![endif]-->
 </head>
 <body>
-    <div id="react_container">
-        {% block content %}
-        {% endblock %}
-    </div>
+    <div id="react_container"></div>
 </body>
 </html>

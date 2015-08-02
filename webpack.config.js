@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var BundleTracker = require('webpack-bundle-tracker');
 var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = {
@@ -16,18 +15,17 @@ module.exports = {
   entry: {
     'app': [
       'webpack/hot/only-dev-server',
-      './siteroot/frontend/app.js',
+      './src/app.js',
     ],
-    'app_react': [
-      //'webpack-dev-server/client?http://0.0.0.0:3000',
-      'webpack/hot/only-dev-server',
-      './siteroot/frontend_react/app_react.js',
+    'app_angular': [
+      //'webpack/hot/only-dev-server',
+      './src/angular.js',
     ],
   },
   output: {
-    path: __dirname + '/siteroot/static_build/',
+    path: __dirname + '/build/',
     filename: '[name].js',
-    publicPath: '/static/'
+    publicPath: '/'
   },
   module: {
     loaders: [
@@ -58,10 +56,10 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new BundleTracker({filename: './webpack-stats.json'}),
     new webpack.optimize.CommonsChunkPlugin("common.js"),
     new webpack.DefinePlugin({
       DEBUG: true,
+      API_URL: "'http://localhost:8000/api/'",
     }),
   ]
 };

@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var BundleTracker = require('webpack-bundle-tracker');
 var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = {
@@ -15,16 +14,16 @@ module.exports = {
 
   entry: {
     'app': [
-      './siteroot/frontend/app.js',
+      './src/app.js',
     ],
-    'app_react': [
-      './siteroot/frontend_react/app_react.js',
+    'app_angular': [
+      './src/angular.js',
     ],
   },
   output: {
-    path: __dirname + '/siteroot/static_build/',
+    path: __dirname + '/build/',
     filename: '[name].js',
-    publicPath: '/static/'
+    publicPath: '/'
   },
   module: {
     loaders: [
@@ -60,7 +59,6 @@ module.exports = {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({sourceMap: false}),
     new webpack.NoErrorsPlugin(),
-    new BundleTracker({filename: './webpack-stats.json'}),
 
     // keeps hashes consistent between compilations
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -75,6 +73,7 @@ module.exports = {
 
     new webpack.DefinePlugin({
       DEBUG: false,
+      API_URL: "'/api/'",
     }),
   ]
 };

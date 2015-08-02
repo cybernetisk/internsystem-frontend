@@ -1,4 +1,4 @@
-import '../frontend/app.scss';
+import './app.scss';
 
 import domready from 'domready'
 import React from 'react';
@@ -8,7 +8,7 @@ import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
 import Root from './components/Root';
 import Index from './components/Index';
 
-import Cal from '../../cal/frontend';
+import Cal from './modules/cal';
 
 let routes = (
   <Route handler={Root}>
