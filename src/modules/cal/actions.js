@@ -1,4 +1,4 @@
-import reactor from './reactor'
+import reactor from './../../reactor'
 import CalendarService from './services/CalendarService'
 
 import {

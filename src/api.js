@@ -1,3 +1,8 @@
-export default function (url) {
-  return API_URL + url; // see webpack config
+export default {
+  api: function (url) {
+    return BACKEND_URL + 'api/' + url; // see webpack config
+  },
+  saml: function (url) {
+    return BACKEND_URL + 'saml/' + url;
+  },
 }

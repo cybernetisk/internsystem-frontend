@@ -59,7 +59,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin("common.js"),
     new webpack.DefinePlugin({
       DEBUG: true,
-      API_URL: "'http://localhost:8000/api/'",
+      BACKEND_URL: "'http://localhost:8000/'",
     }),
   ]
 };

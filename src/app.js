@@ -5,13 +5,21 @@ import React from 'react';
 import Router from 'react-router';
 import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
 
+import reactor from './reactor'
+
 import Root from './components/Root';
 import Index from './components/Index';
 
 import Cal from './modules/cal';
 
+class App extends React.Component {
+  render() {
+    return <Root reactor={reactor} />;
+  }
+}
+
 let routes = (
-  <Route handler={Root}>
+  <Route handler={App}>
     <Route name="index" path="/" handler={Index} />
     {Cal}
   </Route>

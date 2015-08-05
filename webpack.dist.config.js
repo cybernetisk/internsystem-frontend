@@ -73,7 +73,7 @@ module.exports = {
 
     new webpack.DefinePlugin({
       DEBUG: false,
-      API_URL: "'/api/'",
+      BACKEND_URL: "'/'",
     }),
   ]
 };

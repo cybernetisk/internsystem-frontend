@@ -8,10 +8,11 @@ import getters from '../getters'
 
 import PageLoader from '../../../components/PageLoader'
 
+export default
 @nuclearComponent({
   event: getters.event
 })
-export default class Event extends React.Component {
+class Event extends React.Component {
   componentDidMount() {
     actions.fetchEvent(this.props.params.eventId)
   }
@@ -54,7 +55,7 @@ export default class Event extends React.Component {
           <p>Beskrivelse: {event.description}</p>
         ) : ''}
 
-        <dl>
+        <dl className='dl-horizontal'>
           <dt>I Escape?</dt>
           <dd>{event.in_escape ? 'Ja' : 'Nei'}</dd>
           <dt>Kansellert?</dt>

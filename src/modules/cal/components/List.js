@@ -8,10 +8,11 @@ import actions from '../actions'
 
 import Loader from '../../../components/Loader'
 
+export default
 @nuclearComponent({
   list: getters.list
 })
-export default class List extends React.Component {
+class List extends React.Component {
   componentDidMount() {
     actions.fetchList()
   }

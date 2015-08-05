@@ -1,5 +1,5 @@
 import reqwest from 'reqwest'
-import api from '../../../api'
+import {api} from '../../../api'
 
 class CalendarService {
 
