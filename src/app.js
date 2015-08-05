@@ -11,6 +11,7 @@ import Root from './components/Root';
 import Index from './components/Index';
 
 import Cal from './modules/cal';
+import Auth from './modules/auth';
 
 class App extends React.Component {
   render() {
@@ -22,6 +23,7 @@ let routes = (
   <Route handler={App}>
     <Route name="index" path="/" handler={Index} />
     {Cal}
+    {Auth}
   </Route>
 );
 

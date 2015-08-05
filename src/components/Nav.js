@@ -1,36 +1,60 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { nuclearComponent } from 'nuclear-js-react-addons'
 
-export default class Nav extends React.Component {
+import { authdata, userDetails, isLoggedIn } from '../modules/auth/getters'
 
-  render() {
-    let profileMenu;
-    if (false) { // TODO: check user details here!
-      profileMenu = (
+export default
+@nuclearComponent({
+  authdata,
+  userDetails,
+  isLoggedIn,
+})
+class Nav extends React.Component {
+  renderProfileMenu() {
+    if (this.props.authdata.get('isLoading')) {
+      return (
+        <ul className='nav navbar-nav navbar-right'>
+          <p className='navbar-text'>Laster data ..</p>
+        </ul>
+      )
+    } else if (this.props.authdata.get('error')) {
+      return (
+        <ul className='nav navbar-nav navbar-right'>
+          <p className='navbar-text'>Feil: {this.props.authdata.get('error')}</p>
+        </ul>
+      )
+    } else if (this.props.isLoggedIn) {
+      return (
         <ul className='nav navbar-nav navbar-right'>
           <li className='dropdown'>
-            <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>TODO:USERNAME<span className='caret'></span></a>
+            <a href className='dropdown-toggle' data-toggle='dropdown' role='button'
+              aria-expanded='false'>{this.props.userDetails.realname} <span className='caret'></span></a>
             <ul className='dropdown-menu' role='menu'>
-              <li><a href='profile'>Profile</a></li>
-              <li><a href='logout'>Log out</a></li>
+              <li><Link to='auth.profile'>Profile</Link></li>
+              <li><Link to='auth.logout'>Log out</Link></li>
             </ul>
           </li>
-          <li><a href='login'>Log in</a></li>
         </ul>
-      );
+      )
     } else {
-      profileMenu = (
+      return (
         <ul className='nav navbar-nav navbar-right'>
-          <li><a href='login'>Log in</a></li>
+          <li><Link to='auth.login'>Log in</Link></li>
         </ul>
-      );
+      )
     }
+  }
+
+  render() {
+    let profileMenu = this.renderProfileMenu()
 
     return (
       <nav className='navbar navbar-inverse navbar-fixed-top' role='navigation'>
         <div className='container'>
           <div className='navbar-header'>
-            <button type='button' className='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
+            <button type='button' className='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar'
+              aria-expanded='false' aria-controls='navbar'>
               <span className='sr-only'>Toggle navigation</span>
               <span className='icon-bar'></span>
               <span className='icon-bar'></span>
