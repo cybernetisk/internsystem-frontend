@@ -1,10 +1,12 @@
-'use strict';
+import React from 'react'
+import { Route, RouteHandler } from 'react-router'
 
-module.exports = 'cyb.z';
+import Index from './components/Index'
+import Stats from './components/Stats'
 
-angular.module('cyb.z', [
-  require('ui.router')
-]);
-
-require('./index/index.controller.js');
-require('./stats/stats.controller.js');
+module.exports = (
+  <Route>
+    <Route name="z" path="/z" handler={Index} />
+    <Route name="z/stats" path="/z/stats" handler={Stats} />
+  </Route>
+)

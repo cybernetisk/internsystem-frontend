@@ -1,21 +1,22 @@
-import './app.scss';
+import './app.scss'
 
 import domready from 'domready'
-import React from 'react';
-import Router from 'react-router';
-import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
+import React from 'react'
+import Router from 'react-router'
+import { DefaultRoute, Link, Route, RouteHandler } from 'react-router'
 
 import reactor from './reactor'
 
-import Root from './components/Root';
-import Index from './components/Index';
+import Root from './components/Root'
+import Index from './components/Index'
 
-import Cal from './modules/cal';
-import Auth from './modules/auth';
+import Cal from './modules/cal'
+import Auth from './modules/auth'
+import Z from './modules/z'
 
 class App extends React.Component {
   render() {
-    return <Root reactor={reactor} />;
+    return <Root reactor={reactor} />
   }
 }
 
@@ -24,15 +25,16 @@ let routes = (
     <Route name="index" path="/" handler={Index} />
     {Cal}
     {Auth}
+    {Z}
   </Route>
-);
+)
 
 let rootInstance;
 Router.run(routes, Router.HistoryLocation, Handler => {
   domready(() => {
     rootInstance = React.render(<Handler/>, document.getElementById('react_container'));
-  });
-});
+  })
+})
 
 if (module.hot) {
   require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({
@@ -40,5 +42,5 @@ if (module.hot) {
       // Help React Hot Loader figure out the root component instances on the page:
       return [rootInstance];
     }
-  });
+  })
 }

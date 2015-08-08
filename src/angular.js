@@ -12,8 +12,7 @@
     var module = angular.module('cyb.oko', [
         require('ui.router'),
         require('./modules/varer/'),
-        require('./modules/z/'),
-        require('./modules/samlauth/'),
+        require('./modules/auth/'),
     ]);
 
     module.config(function ($locationProvider, $urlRouterProvider, $httpProvider) {

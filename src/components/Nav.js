@@ -83,10 +83,10 @@ class Nav extends React.Component {
                 <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Z <span
                   className='caret'></span></a>
                 <ul className='dropdown-menu' role='menu'>
-                  <li><a href='z'>Oversikt</a></li>
+                  <li><Link to='z'>Oversikt</Link></li>
                   <li className='divider'></li>
                   <li className='dropdown-header'>Moduler</li>
-                  <li><a href='z/stats'>Statistikk</a></li>
+                  <li><Link to='z/stats'>Statistikk</Link></li>
                 </ul>
               </li>
               <li className='dropdown'>
