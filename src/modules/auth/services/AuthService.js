@@ -1,5 +1,8 @@
+import AuthStore from '../stores/AuthStore'
+import getters from '../getters'
 import reqwest from 'reqwest'
 import {api} from '../../../api'
+import reactor from '../../../reactor'
 
 class AuthService {
   getAuthData() {
@@ -7,6 +10,25 @@ class AuthService {
       url: api('me'),
       withCredentials: true,
       type: 'json'
+    })
+  }
+
+  isLoggedIn() {
+    return new Promise((resolve, reject) => {
+      let handleResult = (isTrue) => {
+        if (isTrue) resolve()
+        else reject()
+      }
+
+      let isLoggedIn = reactor.evaluate(getters.isLoggedIn)
+      if (isLoggedIn === null) {
+        let observer = reactor.observe(getters.isLoggedIn, (value) => {
+          handleResult(value)
+          observer()
+        })
+      } else {
+        handleResult(isLoggedIn)
+      }
     })
   }
 }

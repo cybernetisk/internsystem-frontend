@@ -1,5 +1,7 @@
 require('./app.scss');
 
+import AuthService from './modules/auth/services/AuthService'
+
 window.jQuery = window.$ = require('jquery');
 window.React = require('react');
 window.angular = require('angular');
@@ -23,6 +25,12 @@ module.config(function ($locationProvider, $urlRouterProvider, $httpProvider) {
   $httpProvider.defaults.xsrfCookieName = 'csrftoken';
   $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 });
+
+module.factory("AuthRequireResolver", function ($q) {
+  return $q(function (resolve, reject) {
+    AuthService.isLoggedIn().then(resolve, reject)
+  })
+})
 
 require('./angular_common/antall.filter.js');
 require('./angular_common/directives');

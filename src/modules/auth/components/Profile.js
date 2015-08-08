@@ -2,6 +2,8 @@ import React from 'react'
 //import { Link } from 'react-router'
 import { nuclearComponent } from 'nuclear-js-react-addons'
 
+import AuthService from '../services/AuthService'
+
 import actions from '../actions'
 import { authdata } from '../getters'
 
