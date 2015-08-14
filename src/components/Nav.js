@@ -68,15 +68,15 @@ class Nav extends React.Component {
                 <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Varer
                   <span className='caret'></span></a>
                 <ul className='dropdown-menu' role='menu'>
-                  <li><a href='varer'>Oversikt</a></li>
+                  <li><Link to='varer'>Oversikt</Link></li>
                   <li className='divider'></li>
                   <li className='dropdown-header'>Moduler</li>
-                  <li><a href='varer/råvarer'>Råvarer</a></li>
-                  <li><a href='varer/salgsvarer'>Salgsvarer</a></li>
-                  <li><a href='varer/kontoer'>Kontoliste</a></li>
-                  <li><a href='varer/leverandører'>Leverandørliste</a></li>
-                  <li><a href='varer/salgskalkyler'>Salgskalkyler</a></li>
-                  <li><a href='varer/varetellinger'>Varetellinger</a></li>
+                  <li><Link to='varer/råvarer'>Råvarer</Link></li>
+                  <li><Link to='varer/salgsvarer'>Salgsvarer</Link></li>
+                  <li><Link to='varer/kontoer'>Kontoliste</Link></li>
+                  <li><Link to='varer/leverandører'>Leverandørliste</Link></li>
+                  <li><Link to='varer/salgskalkyler'>Salgskalkyler</Link></li>
+                  <li><Link to='varer/varetellinger'>Varetellinger</Link></li>
                 </ul>
               </li>
               <li className='dropdown'>

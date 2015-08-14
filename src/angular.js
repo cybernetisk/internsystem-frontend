@@ -89,5 +89,12 @@ export default (
   <Route>
     <Route name="angular.wrapper" path="/varer" handler={AngularWrapper}/>
     <Route path="/varer/**" handler={AngularWrapper}/>
+    <Route name='varer' path='/varer' handler={AngularWrapper}/>
+    <Route name='varer/råvarer' path='/varer/råvarer' handler={AngularWrapper}/>
+    <Route name='varer/salgsvarer' path='/varer/salgsvarer' handler={AngularWrapper}/>
+    <Route name='varer/kontoer' path='/varer/kontoer' handler={AngularWrapper}/>
+    <Route name='varer/leverandører' path='/varer/leverandører' handler={AngularWrapper}/>
+    <Route name='varer/salgskalkyler' path='/varer/salgskalkyler' handler={AngularWrapper}/>
+    <Route name='varer/varetellinger' path='/varer/varetellinger' handler={AngularWrapper}/>
   </Route>
 )
