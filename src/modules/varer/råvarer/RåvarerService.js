@@ -1,10 +1,12 @@
+import {api} from '../../../api'
+
 (function() {
     'use strict';
 
     var module = angular.module('cyb.varer');
 
     module.factory('RåvarerService', function ($resource, VarerHelper) {
-        var obj = $resource('api/råvarer/:id/', {
+        var obj = $resource(api('råvarer/:id/'), {
             id: '@id'
         }, {
             query: {

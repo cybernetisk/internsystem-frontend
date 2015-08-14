@@ -11,6 +11,7 @@ import Root from './components/Root'
 import Index from './components/Index'
 
 import Admin from './admin'
+import Angular from './angular'
 import Cal from './modules/cal'
 import Auth from './modules/auth'
 import Z from './modules/z'
@@ -24,9 +25,10 @@ class App extends React.Component {
 let routes = (
   <Route handler={App}>
     <Route name="index" path="/" handler={Index} />
-    {Cal}
     {Admin}
+    {Angular}
     {Auth}
+    {Cal}
     {Z}
   </Route>
 )
