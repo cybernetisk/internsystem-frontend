@@ -39,9 +39,39 @@ require('./angular_common/pagination.directive.js');
 require('./angular_common/ParamsHelper');
 require('./angular_common/price.filter.js');
 
+let angularHasBootstrapped = false
+
+function createAngularRootElement() {
+  let root = document.createElement('div')
+
+  let subElm = document.createElement('div')
+  subElm.setAttribute('data-ui-view', '')
+  root.appendChild(subElm)
+
+  return root
+}
+
+let angularRootElement = createAngularRootElement();
+
 class AngularWrapper extends React.Component {
   componentDidMount() {
-    angular.bootstrap(this.refs.angular.getDOMNode(), ['cyb.oko'])
+    let firstRun = !angularHasBootstrapped
+    if (firstRun) {
+      angular.bootstrap(angularRootElement, ['cyb.oko'])
+      angularHasBootstrapped = true
+    }
+
+    React.findDOMNode(this.refs.angular).appendChild(angularRootElement)
+
+    if (!firstRun) {
+      // force update of new location
+      $(window).triggerHandler('popstate')
+    }
+  }
+
+  componentWillReceiveProps() {
+    // props should only change on url change, so trigger popstate to notify angular of new location
+    $(window).triggerHandler('popstate')
   }
 
   shouldComponentUpdate() {
@@ -50,9 +80,7 @@ class AngularWrapper extends React.Component {
 
   render() {
     return (
-      <div ref='angular'>
-        <div data-ui-view=''></div>
-      </div>
+      <div ref='angular'></div>
     )
   }
 }
