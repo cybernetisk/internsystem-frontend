@@ -10,6 +10,7 @@ import reactor from './reactor'
 import Root from './components/Root'
 import Index from './components/Index'
 
+import Admin from './admin'
 import Cal from './modules/cal'
 import Auth from './modules/auth'
 import Z from './modules/z'
@@ -24,6 +25,7 @@ let routes = (
   <Route handler={App}>
     <Route name="index" path="/" handler={Index} />
     {Cal}
+    {Admin}
     {Auth}
     {Z}
   </Route>
