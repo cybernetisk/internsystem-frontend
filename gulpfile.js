@@ -46,22 +46,22 @@ gulp.task("webpack:build-dev", function(callback) {
 });
 
 gulp.task("webpack-dev-server", function(callback) {
+    var realHost = '127.0.0.1'; // replace with real IP for remote connections, also modify BACKEND_URL in webpack
+    var bindHost = '127.0.0.1'; // replace with 0.0.0.0 to allow remote connections
     var webpackPort = 3000;
-    var webpackHost = 'localhost:' + webpackPort;
-    var djangoHost = 'localhost:8000';
+    var webpackHost = realHost + ':' + webpackPort;
 
-    webpackConfigDev.output.publicPath = 'http://localhost:3000/';
+    webpackConfigDev.output.publicPath = 'http://' + webpackHost + '/';
 
     new WebpackDevServer(webpack(webpackConfigDev), {
         historyApiFallback: true,
         hot: true,
         inline: true,
         publicPath: webpackConfigDev.output.publicPath,
-        //contentBase: 'http://' + djangoHost
         contentBase: 'build',
-    }).listen(webpackPort, "localhost", function(err) {
+    }).listen(webpackPort, bindHost, function(err) {
         if (err) throw new gutil.PluginError("webpack-dev-server", err);
-        gutil.log("[webpack-dev-server]", "Go to http://" + webpackHost + "/webpack-dev-server/index.html !");
+        gutil.log("[webpack-dev-server]", "Go to http://" + webpackHost + "/webpack-dev-server/");
     });
 });
 
