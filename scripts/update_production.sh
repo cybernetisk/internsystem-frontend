@@ -12,4 +12,4 @@ git pull origin master
 cd "$(dirname "$0")"/..
 
 npm install
-gulp build
+node_modules/.bin/gulp build
