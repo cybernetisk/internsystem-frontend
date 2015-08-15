@@ -4,8 +4,9 @@ import { provideReactor } from 'nuclear-js-react-addons'
 
 import Nav from './Nav';
 
+export default
 @provideReactor
-export default class Root extends React.Component {
+class Root extends React.Component {
 
   render() {
     return (
