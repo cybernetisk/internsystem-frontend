@@ -4,6 +4,20 @@ import reqwest from 'reqwest'
 import {api} from '../../../api'
 import reactor from '../../../reactor'
 
+function deferredGetter(getter) {
+  return new Promise(resolve => {
+    let res = reactor.evaluate(getter)
+    if (res !== null) {
+      resolve(res)
+    } else {
+      let destroyObserver = reactor.observe(getter, value => {
+        resolve(res)
+        destroyObserver()
+      })
+    }
+  })
+}
+
 class AuthService {
   getAuthData() {
     return reqwest({
@@ -15,20 +29,13 @@ class AuthService {
 
   isLoggedIn() {
     return new Promise((resolve, reject) => {
-      let handleResult = (isTrue) => {
-        if (isTrue) resolve()
-        else reject()
-      }
-
-      let isLoggedIn = reactor.evaluate(getters.isLoggedIn)
-      if (isLoggedIn === null) {
-        let observer = reactor.observe(getters.isLoggedIn, (value) => {
-          handleResult(value)
-          observer()
-        })
-      } else {
-        handleResult(isLoggedIn)
-      }
+      deferredGetter(getters.isLoggedIn).then(isLoggedIn => {
+        if (isLoggedIn) {
+          resolve()
+        } else {
+          reject()
+        }
+      })
     })
   }
 }
