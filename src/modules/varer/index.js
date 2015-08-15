@@ -20,10 +20,10 @@ module.exports = 'cyb.varer';
     require('./index/VarerIndexController');
     require('./common/CompileDirective');
     require('./common/prisdato.directive.js');
-    require('./common/PrisDato');
+    require('./common/components/PrisDato');
     require('./common/prismargin.directive.js');
-    require('./common/PrisMargin');
-    require('./common/VareMengde');
+    require('./common/components/PrisMargin');
+    require('./common/components/VareMengde');
     require('./common/VarerHelper');
 
     require('./kontoer/KontoerController');
