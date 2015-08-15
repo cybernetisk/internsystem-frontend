@@ -33,7 +33,6 @@ module.factory("AuthRequireResolver", function ($q) {
 })
 
 require('./angular_common/antall.filter.js');
-require('./angular_common/directives');
 require('./angular_common/loader.directive.js');
 require('./angular_common/pagination.directive.js');
 require('./angular_common/ParamsHelper');
@@ -87,8 +86,6 @@ class AngularWrapper extends React.Component {
 
 export default (
   <Route>
-    <Route name="angular.wrapper" path="/varer" handler={AngularWrapper}/>
-    <Route path="/varer/**" handler={AngularWrapper}/>
     <Route name='varer' path='/varer' handler={AngularWrapper}/>
     <Route name='varer/råvarer' path='/varer/råvarer' handler={AngularWrapper}/>
     <Route name='varer/salgsvarer' path='/varer/salgsvarer' handler={AngularWrapper}/>
@@ -96,5 +93,6 @@ export default (
     <Route name='varer/leverandører' path='/varer/leverandører' handler={AngularWrapper}/>
     <Route name='varer/salgskalkyler' path='/varer/salgskalkyler' handler={AngularWrapper}/>
     <Route name='varer/varetellinger' path='/varer/varetellinger' handler={AngularWrapper}/>
+    <Route path="/varer/**" handler={AngularWrapper}/>
   </Route>
 )

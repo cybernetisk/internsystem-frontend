@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import { nuclearComponent } from 'nuclear-js-react-addons'
 
 import { authdata, userDetails, isLoggedIn } from '../modules/auth/getters'
+import NavDropdown from './NavDropdown'
+import NavLink from './NavLink'
 
 export default
 @nuclearComponent({
@@ -27,20 +29,20 @@ class Nav extends React.Component {
     } else if (this.props.isLoggedIn) {
       return (
         <ul className='nav navbar-nav navbar-right'>
-          <li className='dropdown'>
+          <NavDropdown>
             <a href className='dropdown-toggle' data-toggle='dropdown' role='button'
               aria-expanded='false'>{this.props.userDetails.realname} <span className='caret'></span></a>
             <ul className='dropdown-menu' role='menu'>
-              <li><Link to='auth.profile'>Profile</Link></li>
-              <li><Link to='auth.logout'>Log out</Link></li>
+              <NavLink to='auth.profile'>Profile</NavLink>
+              <NavLink to='auth.logout'>Log out</NavLink>
             </ul>
-          </li>
+          </NavDropdown>
         </ul>
       )
     } else {
       return (
         <ul className='nav navbar-nav navbar-right'>
-          <li><Link to='auth.login'>Log in</Link></li>
+          <NavLink to='auth.login'>Log in</NavLink>
         </ul>
       )
     }
@@ -64,38 +66,38 @@ class Nav extends React.Component {
           </div>
           <div id='navbar' className='collapse navbar-collapse'>
             <ul className='nav navbar-nav'>
-              <li className='dropdown'>
+              <NavDropdown>
                 <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Varer
                   <span className='caret'></span></a>
                 <ul className='dropdown-menu' role='menu'>
-                  <li><Link to='varer'>Oversikt</Link></li>
+                  <NavLink to='varer'>Oversikt</NavLink>
                   <li className='divider'></li>
                   <li className='dropdown-header'>Moduler</li>
-                  <li><Link to='varer/råvarer'>Råvarer</Link></li>
-                  <li><Link to='varer/salgsvarer'>Salgsvarer</Link></li>
-                  <li><Link to='varer/kontoer'>Kontoliste</Link></li>
-                  <li><Link to='varer/leverandører'>Leverandørliste</Link></li>
-                  <li><Link to='varer/salgskalkyler'>Salgskalkyler</Link></li>
-                  <li><Link to='varer/varetellinger'>Varetellinger</Link></li>
+                  <NavLink to='varer/råvarer'>Råvarer</NavLink>
+                  <NavLink to='varer/salgsvarer'>Salgsvarer</NavLink>
+                  <NavLink to='varer/kontoer'>Kontoliste</NavLink>
+                  <NavLink to='varer/leverandører'>Leverandørliste</NavLink>
+                  <NavLink to='varer/salgskalkyler'>Salgskalkyler</NavLink>
+                  <NavLink to='varer/varetellinger'>Varetellinger</NavLink>
                 </ul>
-              </li>
-              <li className='dropdown'>
+              </NavDropdown>
+              <NavDropdown>
                 <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Z <span
                   className='caret'></span></a>
                 <ul className='dropdown-menu' role='menu'>
-                  <li><Link to='z'>Oversikt</Link></li>
+                  <NavLink to='z'>Oversikt</NavLink>
                   <li className='divider'></li>
                   <li className='dropdown-header'>Moduler</li>
-                  <li><Link to='z/stats'>Statistikk</Link></li>
+                  <NavLink to='z/stats'>Statistikk</NavLink>
                 </ul>
-              </li>
-              <li className='dropdown'>
+              </NavDropdown>
+              <NavDropdown>
                 <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Calendar
                   <span className='caret'></span></a>
                 <ul className='dropdown-menu' role='menu'>
-                  <li><Link to='cal/list'>Oversikt</Link></li>
+                  <NavLink to='cal/list'>Oversikt</NavLink>
                 </ul>
-              </li>
+              </NavDropdown>
             </ul>
             {profileMenu}
           </div>
