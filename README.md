@@ -39,9 +39,11 @@ gulp build # bygger produksjonsversjonen
 ```
 
 ### Kobling mot backend
-TODO
+Som standard vil den bruke backend på samme hostname som devserveren men på port 8000. Når man lager produksjonsversjon brukes imidlertid samme hostname og port. Dette kan evt. endres i `webpack.config.js` og `webpack.dist.config.js`. Se også `gulpfile.js` for relevante adresser.
+
+Når man tester denne frontend-delen må man husk å ha en fungere backend som tilbyr data. Ved å følge README i backend oppnår man det.
 
 ## Frontend i produksjon
 Frontend er bare statiske filer. Se `.travis.yml` og `scripts/deploy.sh` for hvordan dette blir satt i produksjon. Frontend settes i produksjon automatisk ved push til master.
 
-Se flere detaljer i http://github.com/cybrairai/internsystem
+Se flere detaljer om produksjonsmiljøet i http://github.com/cybrairai/internsystem
