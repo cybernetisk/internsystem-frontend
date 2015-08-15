@@ -1,11 +1,17 @@
+let backendUrl = BACKEND_URL
+
+if (backendUrl.indexOf('SAMEHOST') !== -1) {
+  backendUrl = backendUrl.replace('SAMEHOST', window.location.hostname)
+}
+
 export default {
   api: function (url) {
-    return BACKEND_URL + 'api/' + url // see webpack config
+    return backendUrl + 'api/' + url // see webpack config
   },
   saml: function (url) {
-    return BACKEND_URL + 'saml/' + url
+    return backendUrl + 'saml/' + url
   },
   admin: function (url) {
-    return BACKEND_URL + 'admin/' + url
+    return backendUrl + 'admin/' + url
   }
 }
