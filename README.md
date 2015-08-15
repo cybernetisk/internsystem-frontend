@@ -2,8 +2,9 @@
 Dette prosjektet er frontend-delen av https://github.com/cybrairai/internsystem. Utvidet informasjon er tilgjengelig i det prosjektet.
 
 ## Teknisk oversikt for frontend
-* AngularJS i kombinasjon med ReactJS brukes i frontend
-* Faser ut AngularJS - tester ut NuclearJS
+* [ReactJS](http://facebook.github.io/react/) i kombinasjon med [react-router](https://github.com/rackt/react-router)
+* [NuclearJS](https://optimizely.github.io/nuclear-js/) benyttes som [Flux](https://facebook.github.io/flux/)-arkitektur/rammeverk
+* [AngularJS](https://angularjs.org/) brukes i tilknytning til noen deler av siden, og bootstrappes av React-router/ReactJS
 * Kommunikasjon mellom backend og frontend er REST-basert
 * Frontend bygges med Webpack og Gulp
 
