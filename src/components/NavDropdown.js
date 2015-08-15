@@ -2,10 +2,6 @@ import React from 'react'
 
 export default class NavDropdown extends React.Component {
 
-  static contextTypes = {
-    router: React.PropTypes.func
-  }
-
   componentDidUpdate() {
     // this is really a hack to set active-class if a child is active
     // should probably not use DOM-operations like this...
