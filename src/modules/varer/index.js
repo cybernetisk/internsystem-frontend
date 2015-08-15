@@ -1,3 +1,5 @@
+import './app.scss'
+
 module.exports = 'cyb.varer';
 
 (function() {
