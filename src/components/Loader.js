@@ -10,7 +10,7 @@ export default class Loader extends React.Component {
   }
 
   renderError() {
-    let message;
+    let message
     if (this.props.error.length > 0) {
       message = `Feil ved lasting av data: ${this.props.error}`
     } else {

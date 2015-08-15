@@ -1,4 +1,4 @@
-const paginationTemplate = require('./pagination.html');
+const paginationTemplate = require('./pagination.html')
 
 angular.module('cyb.oko').directive('pagination', function () {
     return {
@@ -9,9 +9,9 @@ angular.module('cyb.oko').directive('pagination', function () {
         templateUrl: paginationTemplate,
         link: function (scope) {
             scope.changePage = function(to) {
-                if (to < 1 || to > scope.data.pages) return;
-                scope.data.page = to;
-            };
+                if (to < 1 || to > scope.data.pages) return
+                scope.data.page = to
+            }
         }
-    };
-});
+    }
+})

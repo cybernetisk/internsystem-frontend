@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
 import { nuclearComponent } from 'nuclear-js-react-addons'
 
 import { authdata, userDetails, isLoggedIn } from '../modules/auth/getters'

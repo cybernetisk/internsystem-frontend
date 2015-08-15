@@ -4,7 +4,7 @@ import {saml} from '../../../api'
 export default class Logout extends React.Component {
   componentDidMount() {
     console.log('go to logout url')
-    window.location.href = saml('?slo');
+    window.location.href = saml('?slo')
   }
 
   render() {

@@ -34,13 +34,13 @@ class List extends React.Component {
         </thead>
         <tbody>
           {this.props.list.get('items').toList().toJS().map((event) => {
-            let start, end;
+            let start, end
             if (event.is_allday) {
-              start = moment(event.start).utc().format("ddd D. MMM YYYY");
-              end = moment(event.end).utc().format("ddd D. MMM YYYY");
+              start = moment(event.start).utc().format("ddd D. MMM YYYY")
+              end = moment(event.end).utc().format("ddd D. MMM YYYY")
             } else {
-              start = moment(event.start).format("ddd D. MMM YYYY HH:mm");
-              end = moment(event.end).format("ddd D. MMM YYYY HH:mm");
+              start = moment(event.start).format("ddd D. MMM YYYY HH:mm")
+              end = moment(event.end).format("ddd D. MMM YYYY HH:mm")
             }
 
             return (

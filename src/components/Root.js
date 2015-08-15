@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link, RouteHandler } from 'react-router';
+import React from 'react'
+import { Link, RouteHandler } from 'react-router'
 import { provideReactor } from 'nuclear-js-react-addons'
 
-import Nav from './Nav';
+import Nav from './Nav'
 
 export default
 @provideReactor
@@ -16,6 +16,6 @@ class Root extends React.Component {
           <RouteHandler />
         </div>
       </div>
-    );
+    )
   }
 }

@@ -33,10 +33,10 @@ let routes = (
   </Route>
 )
 
-let rootInstance;
+let rootInstance
 Router.run(routes, Router.HistoryLocation, Handler => {
   domready(() => {
-    rootInstance = React.render(<Handler/>, document.getElementById('react_container'));
+    rootInstance = React.render(<Handler/>, document.getElementById('react_container'))
   })
 })
 
@@ -44,7 +44,7 @@ if (module.hot) {
   require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({
     getRootInstances: function () {
       // Help React Hot Loader figure out the root component instances on the page:
-      return [rootInstance];
+      return [rootInstance]
     }
   })
 }

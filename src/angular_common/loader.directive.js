@@ -1,4 +1,4 @@
-const loaderTemplate = require('./loader.html');
+const loaderTemplate = require('./loader.html')
 
 /**
  * Set loading message if variables is null
@@ -11,5 +11,5 @@ var module = angular.module('cyb.oko').directive('loader', function () {
         },
         templateUrl: loaderTemplate,
         transclude: true
-    };
-});
+    }
+})

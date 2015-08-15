@@ -4,7 +4,7 @@ import {saml} from '../../../api'
 export default class Login extends React.Component {
   componentDidMount() {
     console.log('go to login url')
-    window.location.href = saml('?sso');
+    window.location.href = saml('?sso')
   }
 
   render() {
