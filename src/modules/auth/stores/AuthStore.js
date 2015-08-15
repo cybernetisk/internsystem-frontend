@@ -36,7 +36,6 @@ function receiveAuthDataSuccess(state, data) {
 }
 
 function receiveAuthDataFailure(state, err) {
-  console.log("Receiving list failed", err)
   return state
     .set('error', toImmutable(err))
     .set('isLoading', false)
