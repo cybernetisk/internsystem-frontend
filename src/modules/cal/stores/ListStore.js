@@ -31,7 +31,7 @@ function receiveListStart(state) {
 function receiveListSuccess(state, { list }) {
   return state
     .set('items', toImmutable(list)
-      .toMap()
+      .toOrderedMap()
       .mapKeys((k, v) => v.get('id')))
     .set('loading', false)
 }
