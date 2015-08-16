@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import { nuclearComponent } from 'nuclear-js-react-addons'
 
+import {api} from '../../../api'
 import getters from '../getters'
 import actions from '../actions'
 
@@ -48,7 +49,7 @@ class List extends React.Component {
                 <td><Link to={`/cal/event/${event.id}`}>{event.title}</Link></td>
                 <td>{start}</td>
                 <td>{end}</td>
-                <td><a target="_self" href={`cal/events/${event.id}.ics`}>.ics</a></td>
+                <td><a target="_self" href={api(`cal/events/${event.id}.ics`)}>.ics</a></td>
               </tr>
             )
           })}
@@ -58,6 +59,8 @@ class List extends React.Component {
   }
 
   render() {
+    let calUrl = api('cal/events.ics')
+
     return (
       <div>
         <h1>Calendar</h1>
@@ -67,6 +70,7 @@ class List extends React.Component {
           isEmpty={this.props.list.get('items').isEmpty()}>
           Ingen kalenderoppføringer eksisterer.
         </Loader>
+        <p>Calendar-file: <a href={calUrl}>{calUrl}</a></p>
         {this.renderList()}
       </div>
     )

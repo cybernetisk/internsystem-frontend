@@ -3,6 +3,8 @@ import React from 'react'
 import { Link } from 'react-router'
 import { nuclearComponent } from 'nuclear-js-react-addons'
 
+import {api} from '../../../api'
+
 import actions from '../actions'
 import getters from '../getters'
 
@@ -70,7 +72,7 @@ class Event extends React.Component {
           <dd>{event.organizer ? event.organizer.realname : 'ingen'}</dd>
         </dl>
 
-        <p><a target="_self" href={`cal/events/${event.id}.ics`}>.ics</a></p>
+        <p><a target="_self" href={api(`cal/events/${event.id}.ics`)}>.ics</a></p>
       </div>
     )
   }
