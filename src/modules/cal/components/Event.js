@@ -38,8 +38,8 @@ class Event extends React.Component {
 
     let start, end
     if (event.is_allday) {
-      start = moment(event.start).utc().format("dddd DD. MMM YYYY")
-      end = moment(event.end).utc().format("dddd DD. MMM YYYY")
+      start = moment.utc(event.start).format("dddd DD. MMM YYYY")
+      end = moment.utc(event.end).format("dddd DD. MMM YYYY")
     } else {
       start = moment(event.start).format("dddd DD. MMM YYYY HH:mm")
       end = moment(event.end).format("dddd DD. MMM YYYY HH:mm")
