@@ -4,6 +4,11 @@ if (backendUrl.indexOf('SAMEHOST') !== -1) {
   backendUrl = backendUrl.replace('SAMEHOST', window.location.hostname)
 }
 
+if (backendUrl.indexOf('//') === -1) {
+  let seperator = backendUrl.substring(0, 1) === '/' ? '' : '/'
+  backendUrl = window.location.origin + seperator + backendUrl
+}
+
 export default {
   api: function (url) {
     return backendUrl + 'api/' + url // see webpack config
