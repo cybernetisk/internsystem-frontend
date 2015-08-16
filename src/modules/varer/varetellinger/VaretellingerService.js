@@ -6,7 +6,7 @@ import {api} from '../../../api'
     var module = angular.module('cyb.varer');
 
     module.factory('VaretellingerService', function ($resource) {
-        var obj = $resource(api('varetellinger/:id/'), {
+        var obj = $resource(api('varetellinger/:id'), {
             id: '@id'
         }, {
             query: {

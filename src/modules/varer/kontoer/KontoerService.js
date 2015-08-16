@@ -1,7 +1,7 @@
 import {api} from '../../../api'
 
 angular.module('cyb.varer').factory('KontoerService', function ($resource) {
-    return $resource(api('kontoer/:id/'), {
+    return $resource(api('kontoer/:id'), {
         id: '@id'
     }, {
         query: {

@@ -5,14 +5,14 @@ class CalendarService {
 
   getEventList() {
     return reqwest({
-      url: api('cal/events/'),
+      url: api('cal/events'),
       type: 'json'
     })
   }
 
   getEvent(eventId) {
     return reqwest({
-      url: api('cal/events/' + eventId + '/'),
+      url: api('cal/events/' + eventId),
       type: 'json'
     })
   }

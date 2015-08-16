@@ -6,7 +6,7 @@ import {api} from '../../../api'
     var module = angular.module('cyb.varer');
 
     module.factory('SalgskalkylerService', function ($resource) {
-        return $resource(api('salgskalkyler/:id/'), {
+        return $resource(api('salgskalkyler/:id'), {
             id: '@id'
         }, {
             query: {

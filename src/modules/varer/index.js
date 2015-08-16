@@ -13,10 +13,6 @@ module.exports = 'cyb.varer';
         'react'
     ]);
 
-    module.config(function ($resourceProvider) {
-        $resourceProvider.defaults.stripTrailingSlashes = false;
-    });
-
     require('./index/VarerIndexController');
     require('./common/CompileDirective');
     require('./common/prisdato.directive.js');
