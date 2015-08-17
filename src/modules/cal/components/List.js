@@ -55,7 +55,6 @@ class List extends React.Component {
           <tr>
             <th>Title</th>
             <th>Duration</th>
-            <th>.ics</th>
           </tr>
         </thead>
         <tbody>
@@ -80,7 +79,6 @@ class List extends React.Component {
                   {!event.is_public ? <Tag text='Internt' type='not-public' /> : ''}
                 </td>
                 <td>{duration}</td>
-                <td><a target="_self" href={api(`cal/events/${event.id}.ics`)}>.ics</a></td>
               </tr>
             )
           })}
