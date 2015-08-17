@@ -9,10 +9,12 @@ import List from './components/List'
 
 import EventStore from './stores/EventStore'
 import ListStore from './stores/ListStore'
+import SemestersStore from './stores/SemestersStore'
 
 reactor.registerStores({
   list: ListStore,
-  event: EventStore
+  event: EventStore,
+  semesters: SemestersStore,
 })
 
 module.exports = (

@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { Store, toImmutable } from 'nuclear-js'
 import {
   RECEIVE_LIST_START,
@@ -10,7 +11,9 @@ export default Store({
     return toImmutable({
       error: null,
       items: [],
-      loading: true
+      loading: true,
+      semester: moment().month() < 7 ? 1 : 2,
+      year: moment().year(),
     })
   },
 
@@ -21,11 +24,13 @@ export default Store({
   }
 })
 
-function receiveListStart(state) {
+function receiveListStart(state, {year, semester}) {
   return state
     .set('error', null)
     .set('items', toImmutable({}))
     .set('loading', true)
+    .set('year', year)
+    .set('semester', semester)
 }
 
 function receiveListSuccess(state, { list }) {

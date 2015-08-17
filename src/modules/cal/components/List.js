@@ -11,11 +11,36 @@ import Loader from '../../../components/Loader'
 
 export default
 @nuclearComponent({
-  list: getters.list
+  list: getters.list,
+  semesters: getters.semesters,
 })
 class List extends React.Component {
   componentDidMount() {
-    actions.fetchList()
+    actions.fetchList(this.props.list.get('year'), this.props.list.get('semester'))
+    actions.fetchSemesters()
+  }
+
+  handleSemester(semester, event) {
+    event.preventDefault()
+    actions.fetchList(semester.year, parseInt(semester.semester.substring(0, 1)))
+  }
+
+  renderSemesters() {
+    if (this.props.semesters.get('items').isEmpty()) {
+      return
+    }
+
+    return (
+      <ul>
+        {this.props.semesters.get('items').toList().toJS().map(semester => {
+          return (
+            <li key={semester.year+semester.semester}>
+              <a href onClick={event => this.handleSemester(semester, event)}>{semester.year} {semester.semester}</a>
+            </li>
+          )
+        })}
+      </ul>
+    )
   }
 
   renderList() {
@@ -64,13 +89,20 @@ class List extends React.Component {
     return (
       <div>
         <h1>Calendar</h1>
+        <p>Calendar-file: <a href={calUrl}>{calUrl}</a></p>
+        <Loader
+          isLoading={this.props.semesters.get('loading')}
+          error={this.props.semesters.get('error')}
+          isEmpty={this.props.semesters.get('items').isEmpty()}>
+          Ingen semestre inneholder kalenderoppføringer.
+        </Loader>
+        {this.renderSemesters()}
         <Loader
           isLoading={this.props.list.get('loading')}
           error={this.props.list.get('error')}
           isEmpty={this.props.list.get('items').isEmpty()}>
-          Ingen kalenderoppføringer eksisterer.
+          Ingen kalenderoppføringer eksisterer for valgt semester.
         </Loader>
-        <p>Calendar-file: <a href={calUrl}>{calUrl}</a></p>
         {this.renderList()}
       </div>
     )

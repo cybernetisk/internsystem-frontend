@@ -8,13 +8,16 @@ import {
   RECEIVE_EVENT_START,
   RECEIVE_EVENT_SUCCESS,
   RECEIVE_EVENT_FAILURE,
+  RECEIVE_SEMESTERS_START,
+  RECEIVE_SEMESTERS_SUCCESS,
+  RECEIVE_SEMESTERS_FAILURE,
 } from './actionTypes'
 
 export default {
-  fetchList() {
-    reactor.dispatch(RECEIVE_LIST_START)
+  fetchList(year, semester) {
+    reactor.dispatch(RECEIVE_LIST_START, {year, semester})
 
-    CalendarService.getEventList().then((list) => {
+    CalendarService.getEventList(year, semester).then((list) => {
       reactor.dispatch(RECEIVE_LIST_SUCCESS, {list})
     }).catch((err) => {
       reactor.dispatch(RECEIVE_LIST_FAILURE, err)
@@ -33,5 +36,15 @@ export default {
       }
       reactor.dispatch(RECEIVE_EVENT_FAILURE, msg)
     })
-  }
+  },
+
+  fetchSemesters() {
+    reactor.dispatch(RECEIVE_SEMESTERS_START)
+
+    CalendarService.getSemesters().then(list => {
+      reactor.dispatch(RECEIVE_SEMESTERS_SUCCESS, {list})
+    }).catch((err) => {
+      reactor.dispatch(RECEIVE_SEMESTERS_FAILURE, err)
+    })
+  },
 }
