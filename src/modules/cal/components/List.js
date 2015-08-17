@@ -8,6 +8,7 @@ import getters from '../getters'
 import actions from '../actions'
 
 import Loader from '../../../components/Loader'
+import Tag from './Tag'
 
 export default
 @nuclearComponent({
@@ -53,8 +54,7 @@ class List extends React.Component {
         <thead>
           <tr>
             <th>Title</th>
-            <th>Start</th>
-            <th>End</th>
+            <th>Duration</th>
             <th>.ics</th>
           </tr>
         </thead>
@@ -69,11 +69,17 @@ class List extends React.Component {
               end = moment(event.end).format("ddd D. MMM YYYY HH:mm")
             }
 
+            let duration = start === end ? start : `${start} - ${end}`
+
             return (
               <tr key={event.id}>
-                <td><Link to={`/cal/event/${event.id}`}>{event.title}</Link></td>
-                <td>{start}</td>
-                <td>{end}</td>
+                <td>
+                  <Link to={`/cal/event/${event.id}`}>{event.title}</Link>
+                  {event.is_external ? <Tag text='Utlån' /> : ''}
+                  {!event.in_escape ? <Tag text='Ikke Escape' type='not-escape' /> : ''}
+                  {!event.is_public ? <Tag text='Internt' type='not-public' /> : ''}
+                </td>
+                <td>{duration}</td>
                 <td><a target="_self" href={api(`cal/events/${event.id}.ics`)}>.ics</a></td>
               </tr>
             )
