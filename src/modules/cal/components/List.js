@@ -74,9 +74,9 @@ class List extends React.Component {
               <tr key={event.id}>
                 <td>
                   <Link to={`/cal/event/${event.id}`}>{event.title}</Link>
-                  {event.is_external ? <Tag text='Utlån' /> : ''}
+                  {event.is_external ? (event.is_public ? <Tag text='Annonsert utlån' /> : <Tag text='Utlån' />) : ''}
                   {!event.in_escape ? <Tag text='Ikke Escape' type='not-escape' /> : ''}
-                  {!event.is_public ? <Tag text='Internt' type='not-public' /> : ''}
+                  {!event.is_public && !event.is_external ? <Tag text='Internt' type='not-public' /> : ''}
                 </td>
                 <td>{duration}</td>
               </tr>
