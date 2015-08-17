@@ -66,7 +66,7 @@ gulp.task("webpack-dev-server", function(callback) {
 });
 
 gulp.task('copy', function() {
-    gulp.src(['./src/index.html', './src/favicon.png'])
+    gulp.src(['./src/index.html', './src/favicon.png', './src/robots.txt'])
         .pipe(gulp.dest('./build'));
 });
 
