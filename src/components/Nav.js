@@ -98,6 +98,17 @@ class Nav extends React.Component {
                   <NavLink to='cal/list'>Oversikt</NavLink>
                 </ul>
               </NavDropdown>
+              <NavDropdown>
+                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
+                  Other
+                  <span className='caret'></span>
+                </a>
+                <ul className='dropdown-menu' role='menu'>
+                  <li><a target='_self' href='http://heim.ifi.uio.no/cyb/tilganger/'>Access control management (Garm)</a></li>
+                  <li><a target='_self' href='https://jira.cyb.no/'>JIRA (task management)</a></li>
+                  <li><a target='_self' href='https://confluence.cyb.no/'>Wiki (Confluence)</a></li>
+                </ul>
+              </NavDropdown>
             </ul>
             {profileMenu}
           </div>
