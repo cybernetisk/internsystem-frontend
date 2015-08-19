@@ -32,7 +32,7 @@ export default {
     }).catch((err) => {
       let msg = err.statusText
       if (err.status === 404) {
-        msg = 'Data ble ikke funnet'
+        msg = 'Data not found'
       }
       reactor.dispatch(RECEIVE_EVENT_FAILURE, msg)
     })

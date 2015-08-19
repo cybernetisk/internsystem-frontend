@@ -12,9 +12,9 @@ export default class Loader extends React.Component {
   renderError() {
     let message
     if (this.props.error.length > 0) {
-      message = `Feil ved lasting av data: ${this.props.error}`
+      message = `Error loading data: ${this.props.error}`
     } else {
-      message = 'Ukjent feil ved lasting av data.'
+      message = 'Unexpected error on loading data.'
     }
 
     return (
@@ -27,7 +27,7 @@ export default class Loader extends React.Component {
   renderLoading() {
     return (
       <div className='core-loader is-loading'>
-        Henter data ...
+        Loading data ...
       </div>
     )
   }
@@ -35,7 +35,7 @@ export default class Loader extends React.Component {
   renderEmpty() {
     return (
       <div className='core-loader is-empty'>
-        {this.props.children || 'Ingen data funnet.'}
+        {this.props.children || 'No data found.'}
       </div>
     )
   }

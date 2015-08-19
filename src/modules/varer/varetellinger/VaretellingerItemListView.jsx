@@ -13,10 +13,10 @@ angular.module('cyb.varer').factory('VaretellingerItemListView', function ($filt
         <table className="table table-condensed table-striped varer-table">
           <thead>
             <tr>
-              <th>Betegnelse</th>
-              <th>Mengde</th>
-              <th>Pris eks mva</th>
-              <th>Tellinger</th>
+              <th>Raw material</th>
+              <th>Quantity</th>
+              <th>Price ex. VAT</th>
+              <th>Counts</th>
             </tr>
           </thead>
           <tbody>
@@ -30,7 +30,7 @@ angular.module('cyb.varer').factory('VaretellingerItemListView', function ($filt
                     <tr className="group-row" key={'gruppe-' + gruppe.id}>
                       <th colSpan="3">{gruppe.gruppe}: <a className="gruppe-link" href={'varer/kontoer/'+gruppe.id}>{gruppe.navn}</a></th>
                       <th>
-                        {$filter('price')(gruppe.summer.sum, 2)} + {$filter('price')(gruppe.summer.pant, 2)} i pant
+                        {$filter('price')(gruppe.summer.sum, 2)} + {$filter('price')(gruppe.summer.pant, 2)} i pant {/* TODO: translate */}
                       </th>
                     </tr>
                   ));
@@ -76,7 +76,7 @@ angular.module('cyb.varer').factory('VaretellingerItemListView', function ($filt
                                 <li key={'telling-'+telling.id}>
                                   <a href={'admin/varer/varetellingvare/' + telling.id + '/'} target="_self">
                                     {$filter('antall')(telling.antall)}{' '}
-                                    ({$filter('price')(telling.summer.sum)}{telling.summer.pant != 0 ? <span> + {$filter('price')(telling.summer.pant)} {telling.antallpant ? <span>({telling.antallpant})</span> : ''} i pant</span> : ''}){' '}
+                                    ({$filter('price')(telling.summer.sum)}{telling.summer.pant != 0 ? <span> + {$filter('price')(telling.summer.pant)} {telling.antallpant ? <span>({telling.antallpant})</span> : ''} i pant</span> : ''}){' '} {/* TODO: translate */}
                                     {telling.kommentar} ({telling.sted})
                                   </a>
                                 </li>

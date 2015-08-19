@@ -17,11 +17,11 @@
         this.raavarer = null;
 
         this.vis_options = {
-            ALT: 'Vis alle råvarer',
-            TELLING: 'Vis kun råvarer på tellingen',
-            GRUPPER: 'Vis kun grupper'
+            ALT: 'Show all raw materials',
+            TELLING: 'Show only raw materials counted',
+            GRUPPER: 'Show only groups'
         };
-        this.vis_varer = 'ALT';
+        this.vis_varer = 'ALL';
 
         this.newitem_place = null;
         this.newitems = {};

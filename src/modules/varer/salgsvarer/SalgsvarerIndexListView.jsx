@@ -9,11 +9,11 @@ angular.module('cyb.varer').factory('SalgsvarerIndexListView', function ($compil
                 <table className="table table-striped table-condensed varer-table">
                     <thead>
                         <tr>
-                            <th>Navn</th>
-                            <th>Kasse#</th>
-                            <th>Intern</th>
-                            <th>Ekstern</th>
-                            <th>Råvarer (priser eks mva)</th>
+                            <th>Name</th>
+                            <th>Register#</th>
+                            <th>Internal price</th>
+                            <th>Normal price</th>
+                            <th>Raw materials (ex. VAT)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@ angular.module('cyb.varer').factory('SalgsvarerIndexListView', function ($compil
                                                         <br/>
                                                         <PrisMargin innPris={item.innpris} utPris={item.salgspris.pris_intern} utMva={item.salgspris.mva} />
                                                     </span> : ''}
-                                            </span> : 'Se ekstern'}
+                                            </span> : 'See normal'}
                                     </td>
                                     <td>
                                         {item.salgspris && item.salgspris.pris_ekstern ?
@@ -58,7 +58,7 @@ angular.module('cyb.varer').factory('SalgsvarerIndexListView', function ($compil
                                                         <br/>
                                                         <PrisMargin innPris={item.innpris} utPris={item.salgspris.pris_ekstern} utMva={item.salgspris.mva} />
                                                     </span> : ''}
-                                            </span> : 'Ikke salg'}
+                                            </span> : 'No sales'}
                                     </td>
                                     <td>
                                         <ul>

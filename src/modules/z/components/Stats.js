@@ -5,9 +5,9 @@ export default class Stats extends React.Component {
   render() {
     return (
       <div>
-        <h1>Z-statistikk</h1>
+        <h1>Z-staticstics</h1>
 
-        <p>Her skal det komme litt diverse statistikk.</p>
+        <p>This is currently not implemented.</p>
       </div>
     )
   }

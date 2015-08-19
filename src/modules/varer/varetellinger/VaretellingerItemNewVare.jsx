@@ -21,20 +21,20 @@ angular.module('cyb.varer').factory('VaretellingerItemNewVare', function () {
                 <form className="form-inline" onSubmit={this.saveMe}>
                     <p>
                         <div className="form-group">
-                            <input className="form-control" type="text" placeholder="Antall" ref="antall" required autoFocus />
+                            <input className="form-control" type="text" placeholder="Quantity" ref="antall" required autoFocus />
                         </div>
                         {' '}
                         <div className="form-group">
-                            <input className="form-control" type="text" placeholder="Antall hele" ref="antallpant" />
+                            <input className="form-control" type="text" placeholder="Quantity (pant)" ref="antallpant" /> {/* TODO: translate */}
                         </div>
                         {' '}
                         <div className="form-group">
-                            <input className="form-control telling-sted" type="text" placeholder="Sted" defaultValue={this.props.ctrl.newitem_place} ref="sted" required />
+                            <input className="form-control telling-sted" type="text" placeholder="Location" defaultValue={this.props.ctrl.newitem_place} ref="sted" required />
                         </div>
                     </p>
                     <p>
                         <div className="form-group">
-                            <input className="form-control telling-kommentar" type="text" placeholder="Kommentar" ref="kommentar" />
+                            <input className="form-control telling-kommentar" type="text" placeholder="Comment" ref="kommentar" />
                         </div>
                         {' '}
                         <div className="form-group">

@@ -58,14 +58,14 @@ class Event extends React.Component {
         ) : ''}
 
         <dl className='dl-horizontal'>
-          <dt>I Escape?</dt>
-          <dd>{event.in_escape ? 'Ja' : 'Nei'}</dd>
-          <dt>Kansellert?</dt>
-          <dd>{event.is_cancelled ? 'Ja' : 'Nei'}</dd>
-          <dt>Eksternt arr?</dt>
-          <dd>{event.is_external ? 'Ja' : 'Nei'}</dd>
+          <dt>In Escape?</dt>
+          <dd>{event.in_escape ? 'Yes' : 'No'}</dd>
+          <dt>Cancelled?</dt>
+          <dd>{event.is_cancelled ? 'Yes' : 'No'}</dd>
+          <dt>External event?</dt>
+          <dd>{event.is_external ? 'Yes' : 'No'}</dd>
           <dt>Public?</dt>
-          <dd>{event.is_published ? 'Ja' : 'Nei'}</dd>
+          <dd>{event.is_published ? 'Yes' : 'No'}</dd>
           <dt>Link</dt>
           <dd>{event.link !== '' ? event.link : 'ingen'}</dd>
           <dt>Organizer</dt>

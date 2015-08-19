@@ -25,7 +25,7 @@ angular.module('cyb.varer').factory('VarerHelper', function ($filter) {
                         compare: 'gruppe',
                         compareValue: cur.gruppe,
                         gruppe: cur.gruppe,
-                        navn: cur.gruppe + ' (alt)'
+                        navn: cur.gruppe + ' (all)'
                     });
                 }
                 prev.push({

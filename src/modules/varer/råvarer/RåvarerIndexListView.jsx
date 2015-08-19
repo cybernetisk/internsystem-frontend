@@ -9,11 +9,11 @@ angular.module('cyb.varer').factory('RåvarerIndexListView', function ($compile,
                 <table className="table table-condensed table-striped varer-table">
                     <thead>
                         <tr>
-                            <th>Betegnelse</th>
-                            <th>Mengde</th>
-                            <th>Pris eks mva</th>
-                            <th>Internpris</th>
-                            <th>Eksternpris</th>
+                            <th>Raw material</th>
+                            <th>Quantity</th>
+                            <th>Price ex. VAT</th>
+                            <th>Internal price</th>
+                            <th>Normal price</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,10 +39,10 @@ angular.module('cyb.varer').factory('RåvarerIndexListView', function ($compile,
                                     <td>
                                         <VareMengde verdi={item.mengde} enhet={item.enhet} />
                                         {item.antall != 1 ? <span className="vare-antall"><br />
-                                            ({item.antall} stk)
+                                            ({item.antall} pcs)
                                         </span> : ''}
                                         {item.mengde_svinn ? <span className="svinn-info"><br/>
-                                            ca. <VareMengde verdi={item.mengde_svinn} enhet={item.enhet} /> = svinn
+                                            ca. <VareMengde verdi={item.mengde_svinn} enhet={item.enhet} /> = spoilage
                                         </span> : ''}
                                     </td>
                                     <td>
@@ -50,7 +50,7 @@ angular.module('cyb.varer').factory('RåvarerIndexListView', function ($compile,
                                             <span>
                                                 {$filter('price')(item.innpris.pris)}
                                                 {item.innpris.pant ? <span className="pris-pant"><br/>
-                                                    + {$filter('price')(item.innpris.pant)} i pant
+                                                    + {$filter('price')(item.innpris.pant)} i pant {/* TODO: translate */}
                                                 </span> : ''}<br />
                                                 <PrisDato dato={item.innpris.dato} />
                                             </span> : ''}
@@ -65,7 +65,7 @@ angular.module('cyb.varer').factory('RåvarerIndexListView', function ($compile,
                                                             <br/>
                                                             <PrisMargin innPris={item.innpris.pris} utPris={item.salgspris.pris_intern} utMva={item.salgspris.mva} />
                                                         </span> : ''}
-                                                </span> : 'Se ekstern')
+                                                </span> : 'See normal')
                                             : ''}
                                     </td>
                                     <td>
@@ -78,7 +78,7 @@ angular.module('cyb.varer').factory('RåvarerIndexListView', function ($compile,
                                                             <br/>
                                                             <PrisMargin innPris={item.innpris.pris} utPris={item.salgspris.pris_ekstern} utMva={item.salgspris.mva} />
                                                         </span> : ''}
-                                                </span> : 'Ikke salg')
+                                                </span> : 'No sales')
                                             : ''}
                                     </td>
                                 </tr>));

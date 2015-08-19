@@ -74,9 +74,9 @@ class List extends React.Component {
               <tr key={event.id}>
                 <td>
                   <Link to={`/cal/event/${event.id}`}>{event.title}</Link>
-                  {event.is_external ? (event.is_public ? <Tag text='Annonsert utlån' /> : <Tag text='Utlån' />) : ''}
-                  {!event.in_escape ? <Tag text='Ikke Escape' type='not-escape' /> : ''}
-                  {!event.is_public && !event.is_external ? <Tag text='Internt' type='not-public' /> : ''}
+                  {event.is_external ? (event.is_public ? <Tag text='Announced utlån' /> : <Tag text='Utlån' />) : ''}
+                  {!event.in_escape ? <Tag text='Not Escape' type='not-escape' /> : ''}
+                  {!event.is_public && !event.is_external ? <Tag text='Internal' type='not-public' /> : ''}
                 </td>
                 <td>{duration}</td>
               </tr>
@@ -98,14 +98,14 @@ class List extends React.Component {
           isLoading={this.props.semesters.get('loading')}
           error={this.props.semesters.get('error')}
           isEmpty={this.props.semesters.get('items').isEmpty()}>
-          Ingen semestre inneholder kalenderoppføringer.
+          No semesters have event information.
         </Loader>
         {this.renderSemesters()}
         <Loader
           isLoading={this.props.list.get('loading')}
           error={this.props.list.get('error')}
           isEmpty={this.props.list.get('items').isEmpty()}>
-          Ingen kalenderoppføringer eksisterer for valgt semester.
+          No events exists for selected semester.
         </Loader>
         {this.renderList()}
       </div>

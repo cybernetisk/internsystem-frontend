@@ -17,13 +17,13 @@ class Nav extends React.Component {
     if (this.props.authdata.get('isLoading')) {
       return (
         <ul className='nav navbar-nav navbar-right'>
-          <p className='navbar-text'>Laster data ..</p>
+          <p className='navbar-text'>Loading data ..</p>
         </ul>
       )
     } else if (this.props.authdata.get('error')) {
       return (
         <ul className='nav navbar-nav navbar-right'>
-          <p className='navbar-text'>Feil: {this.props.authdata.get('error')}</p>
+          <p className='navbar-text'>Error: {this.props.authdata.get('error')}</p>
         </ul>
       )
     } else if (this.props.isLoggedIn) {
@@ -67,35 +67,41 @@ class Nav extends React.Component {
           <div id='navbar' className='collapse navbar-collapse'>
             <ul className='nav navbar-nav'>
               <NavDropdown>
-                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Varer
-                  <span className='caret'></span></a>
+                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
+                  Products
+                  <span className='caret'></span>
+                </a>
                 <ul className='dropdown-menu' role='menu'>
-                  <NavLink to='varer'>Oversikt</NavLink>
+                  <NavLink to='varer'>Overview</NavLink>
                   <li className='divider'></li>
-                  <li className='dropdown-header'>Moduler</li>
-                  <NavLink to='varer/råvarer'>Råvarer</NavLink>
-                  <NavLink to='varer/salgsvarer'>Salgsvarer</NavLink>
-                  <NavLink to='varer/kontoer'>Kontoliste</NavLink>
-                  <NavLink to='varer/leverandører'>Leverandørliste</NavLink>
-                  <NavLink to='varer/salgskalkyler'>Salgskalkyler</NavLink>
-                  <NavLink to='varer/varetellinger'>Varetellinger</NavLink>
+                  <li className='dropdown-header'>Modules</li>
+                  <NavLink to='varer/råvarer'>Raw materials</NavLink>
+                  <NavLink to='varer/salgsvarer'>Sales items</NavLink>
+                  <NavLink to='varer/kontoer'>Account list</NavLink>
+                  <NavLink to='varer/leverandører'>Vendor list</NavLink>
+                  <NavLink to='varer/salgskalkyler'>Sales estimates</NavLink>
+                  <NavLink to='varer/varetellinger'>Inventory counts</NavLink>
                 </ul>
               </NavDropdown>
               <NavDropdown>
-                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Z <span
-                  className='caret'></span></a>
+                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
+                  Z
+                  <span className='caret'></span>
+                </a>
                 <ul className='dropdown-menu' role='menu'>
-                  <NavLink to='z'>Oversikt</NavLink>
+                  <NavLink to='z'>Overview</NavLink>
                   <li className='divider'></li>
-                  <li className='dropdown-header'>Moduler</li>
-                  <NavLink to='z/stats'>Statistikk</NavLink>
+                  <li className='dropdown-header'>Modules</li>
+                  <NavLink to='z/stats'>Statistics</NavLink>
                 </ul>
               </NavDropdown>
               <NavDropdown>
-                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Calendar
-                  <span className='caret'></span></a>
+                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
+                  Calendar
+                  <span className='caret'></span>
+                </a>
                 <ul className='dropdown-menu' role='menu'>
-                  <NavLink to='cal/list'>Oversikt</NavLink>
+                  <NavLink to='cal/list'>Overview</NavLink>
                 </ul>
               </NavDropdown>
               <NavDropdown>
