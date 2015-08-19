@@ -1,4 +1,8 @@
-angular.module('cyb.varer').factory('VaretellingerItemListView', function ($filter, PrisDato, VareMengde, VaretellingerItemNewVare) {
+import PrisDato from '../common/components/PrisDato'
+import VareMengde from '../common/components/VareMengde'
+import {price, antall} from '../../../services/FormatService'
+
+angular.module('cyb.varer').factory('VaretellingerItemListView', function (VaretellingerItemNewVare) {
   return React.createClass({
     propTypes: {
       raavarerfiltered: React.PropTypes.array.isRequired,
@@ -30,7 +34,7 @@ angular.module('cyb.varer').factory('VaretellingerItemListView', function ($filt
                     <tr className="group-row" key={'gruppe-' + gruppe.id}>
                       <th colSpan="3">{gruppe.gruppe}: <a className="gruppe-link" href={'varer/kontoer/'+gruppe.id}>{gruppe.navn}</a></th>
                       <th>
-                        {$filter('price')(gruppe.summer.sum, 2)} + {$filter('price')(gruppe.summer.pant, 2)} i pant {/* TODO: translate */}
+                        {price(gruppe.summer.sum, 2)} + {price(gruppe.summer.pant, 2)} i pant {/* TODO: translate */}
                       </th>
                     </tr>
                   ));
@@ -61,9 +65,9 @@ angular.module('cyb.varer').factory('VaretellingerItemListView', function ($filt
                       <td>
                         {raavare.innpris ?
                         <span>
-                          {$filter('price')(raavare.innpris.pris)}
+                          {price(raavare.innpris.pris)}
                           {raavare.innpris.pant ? <span className="pris-pant"><br/>
-                            + {$filter('price')(raavare.innpris.pant)} i pant
+                            + {price(raavare.innpris.pant)} i pant
                           </span> : ''}<br />
                           <PrisDato dato={raavare.innpris.dato} />
                         </span> : ''}
@@ -75,8 +79,8 @@ angular.module('cyb.varer').factory('VaretellingerItemListView', function ($filt
                               return (
                                 <li key={'telling-'+telling.id}>
                                   <a href={'admin/varer/varetellingvare/' + telling.id + '/'} target="_self">
-                                    {$filter('antall')(telling.antall)}{' '}
-                                    ({$filter('price')(telling.summer.sum)}{telling.summer.pant != 0 ? <span> + {$filter('price')(telling.summer.pant)} {telling.antallpant ? <span>({telling.antallpant})</span> : ''} i pant</span> : ''}){' '} {/* TODO: translate */}
+                                    {antall(telling.antall)}{' '}
+                                    ({price(telling.summer.sum)}{telling.summer.pant != 0 ? <span> + {price(telling.summer.pant)} {telling.antallpant ? <span>({telling.antallpant})</span> : ''} i pant</span> : ''}){' '} {/* TODO: translate */}
                                     {telling.kommentar} ({telling.sted})
                                   </a>
                                 </li>
