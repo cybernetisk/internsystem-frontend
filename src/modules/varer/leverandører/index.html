@@ -1,24 +1,25 @@
 <h1>Vendor list</h1>
 
 <loader var="leverandorer.items">
-    <p>No vendors exist.</p>
+  <p>No vendors exist.</p>
 </loader>
 
 <div ng-if="leverandorer.items.length > 0">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Vendor name</th>
-                <th>Comment</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="item in leverandorer.items">
-                <td>{{::item.id}}</td>
-                <td><a ng-href="admin/varer/leverandør/{{::item.id}}/" target="_self">{{::item.navn}}</a></td>
-                <td>{{::item.kommentar}}</td> <!-- TODO: formattere med markdown? -->
-            </tr>
-        </tbody>
-    </table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Vendor name</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in leverandorer.items">
+        <td>{{::item.id}}</td>
+        <td><a ng-href="admin/varer/leverandør/{{::item.id}}/" target="_self">{{::item.navn}}</a></td>
+        <td>{{::item.kommentar}}</td>
+        <!-- TODO: formattere med markdown? -->
+      </tr>
+    </tbody>
+  </table>
 </div>

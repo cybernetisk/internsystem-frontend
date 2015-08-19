@@ -1,30 +1,30 @@
 <h1>Account list</h1>
 
 <loader var="kontoer.items">
-    <p>No accounts exist.</p>
+  <p>No accounts exist.</p>
 </loader>
 
 <table class="table table-striped" ng-if="kontoer.items.length > 0">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Group</th>
-            <th>Purchase account</th>
-            <th>Inventory account</th>
-            <th>Inventory change account</th>
-            <th>Sales account</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="item in kontoer.items">
-            <td><a ng-href="admin/varer/konto/{{::item.id}}/" target="_self">{{::item.id}}</a></td>
-            <td><a ui-sref="konto({id:item.id})">{{::item.navn}}</a></td>
-            <td>{{::item.gruppe}}</td>
-            <td>{{::item.innkjopskonto}}</td>
-            <td>{{::item.varelagerkonto}}</td>
-            <td>{{::item.beholdningsendringskonto}}</td>
-            <td>{{::item.salgskonto}}</td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Group</th>
+      <th>Purchase account</th>
+      <th>Inventory account</th>
+      <th>Inventory change account</th>
+      <th>Sales account</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="item in kontoer.items">
+      <td><a ng-href="admin/varer/konto/{{::item.id}}/" target="_self">{{::item.id}}</a></td>
+      <td><a ui-sref="konto({id:item.id})">{{::item.navn}}</a></td>
+      <td>{{::item.gruppe}}</td>
+      <td>{{::item.innkjopskonto}}</td>
+      <td>{{::item.varelagerkonto}}</td>
+      <td>{{::item.beholdningsendringskonto}}</td>
+      <td>{{::item.salgskonto}}</td>
+    </tr>
+  </tbody>
 </table>

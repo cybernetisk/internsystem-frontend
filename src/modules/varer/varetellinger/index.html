@@ -1,28 +1,28 @@
 <h1>Inventory counts</h1>
 
 <loader var="varetellinger.items">
-    <p>No inventory counts exist.</p>
+  <p>No inventory counts exist.</p>
 </loader>
 
 <div ng-if="varetellinger.items.length > 0">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Time</th>
-                <th>Comment</th>
-                <th>Responsible</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="item in varetellinger.items">
-                <td><a ui-sref="varetelling({id:item.id})">{{::item.tittel}}</a></td>
-                <td>{{::item.tid|date:'yyyy-MM-dd HH:mm'}}</td>
-                <td>{{::item.kommentar}}</td>
-                <td>{{::item.ansvarlig}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Time</th>
+        <th>Comment</th>
+        <th>Responsible</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in varetellinger.items">
+        <td><a ui-sref="varetelling({id:item.id})">{{::item.tittel}}</a></td>
+        <td>{{::item.tid|date:'yyyy-MM-dd HH:mm'}}</td>
+        <td>{{::item.kommentar}}</td>
+        <td>{{::item.ansvarlig}}</td>
+      </tr>
+    </tbody>
+  </table>
 
-    <pagination data="varetellinger.pagination"></pagination>
+  <pagination data="varetellinger.pagination"></pagination>
 </div>

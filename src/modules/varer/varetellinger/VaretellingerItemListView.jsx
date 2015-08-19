@@ -32,7 +32,8 @@ angular.module('cyb.varer').factory('VaretellingerItemListView', function (Varet
                 if (showGroupLabel) {
                   prev.push((
                     <tr className="group-row" key={'gruppe-' + gruppe.id}>
-                      <th colSpan="3">{gruppe.gruppe}: <a className="gruppe-link" href={'varer/kontoer/'+gruppe.id}>{gruppe.navn}</a></th>
+                      <th colSpan="3">{gruppe.gruppe}: <a className="gruppe-link"
+                        href={'varer/kontoer/'+gruppe.id}>{gruppe.navn}</a></th>
                       <th>
                         {price(gruppe.summer.sum, 2)} + {price(gruppe.summer.pant, 2)} i pant {/* TODO: translate */}
                       </th>
@@ -47,57 +48,60 @@ angular.module('cyb.varer').factory('VaretellingerItemListView', function (Varet
                 var newItemEvent = self.props.newItem.bind(null, raavare);
 
                 prev.push((
-                    <tr key={'raavare-' + raavare.id}>
-                      <td>
-                        {raavare.kategori ? raavare.kategori + ': ' : ''}
-                        <a href={'varer/råvarer/'+raavare.id}>{raavare.navn}</a>
-                        {raavare.status != 'OK' ? <span> <span className="status-text">{raavare.status}</span></span> : ''}
-                      </td>
-                      <td>
-                        <VareMengde verdi={raavare.mengde} enhet={raavare.enhet} />
-                        {raavare.antall != 1 ? <span className="vare-antall"><br />
+                  <tr key={'raavare-' + raavare.id}>
+                    <td>
+                      {raavare.kategori ? raavare.kategori + ': ' : ''}
+                      <a href={'varer/råvarer/'+raavare.id}>{raavare.navn}</a>
+                      {raavare.status != 'OK' ?
+                        <span> <span className="status-text">{raavare.status}</span></span> : ''}
+                    </td>
+                    <td>
+                      <VareMengde verdi={raavare.mengde} enhet={raavare.enhet}/>
+                      {raavare.antall != 1 ? <span className="vare-antall"><br />
                           ({raavare.antall} stk)
                         </span> : ''}
-                        {raavare.mengde_svinn ? <span className="svinn-info"><br/>
-                          ca. <VareMengde verdi={raavare.mengde_svinn} enhet={raavare.enhet} /> = svinn
+                      {raavare.mengde_svinn ? <span className="svinn-info"><br/>
+                          ca. <VareMengde verdi={raavare.mengde_svinn} enhet={raavare.enhet}/> = svinn
                         </span> : ''}
-                      </td>
-                      <td>
-                        {raavare.innpris ?
+                    </td>
+                    <td>
+                      {raavare.innpris ?
                         <span>
                           {price(raavare.innpris.pris)}
                           {raavare.innpris.pant ? <span className="pris-pant"><br/>
                             + {price(raavare.innpris.pant)} i pant
                           </span> : ''}<br />
-                          <PrisDato dato={raavare.innpris.dato} />
+                          <PrisDato dato={raavare.innpris.dato}/>
                         </span> : ''}
-                      </td>
-                      <td>
-                        <div className="tellinger">
-                          <ul>
-                            {raavare.tellinger.map(function (telling) {
-                              return (
-                                <li key={'telling-'+telling.id}>
-                                  <a href={'admin/varer/varetellingvare/' + telling.id + '/'} target="_self">
-                                    {antall(telling.antall)}{' '}
-                                    ({price(telling.summer.sum)}{telling.summer.pant != 0 ? <span> + {price(telling.summer.pant)} {telling.antallpant ? <span>({telling.antallpant})</span> : ''} i pant</span> : ''}){' '} {/* TODO: translate */}
-                                    {telling.kommentar} ({telling.sted})
-                                  </a>
-                                </li>
-                              );
-                            })}
-                            {(self.props.newitems[raavare.id]||[]).map(function (item) {
-                              return (
-                                  <li>
-                                    <VaretellingerItemNewVare item={item} ctrl={self.props} />
-                                  </li>
-                              );
-                            })}
-                          </ul>
-                          <span className="nytelling"><a onClick={newItemEvent}><i className="glyphicon glyphicon-plus" /></a></span>
-                        </div>
-                      </td>
-                    </tr>));
+                    </td>
+                    <td>
+                      <div className="tellinger">
+                        <ul>
+                          {raavare.tellinger.map(function (telling) {
+                            return (
+                              <li key={'telling-'+telling.id}>
+                                <a href={'admin/varer/varetellingvare/' + telling.id + '/'} target="_self">
+                                  {antall(telling.antall)}{' '}
+                                  ({price(telling.summer.sum)}{telling.summer.pant != 0 ?
+                                  <span> + {price(telling.summer.pant)} {telling.antallpant ?
+                                    <span>({telling.antallpant})</span> : ''} i pant</span> : ''}){' '} {/* TODO: translate */}
+                                  {telling.kommentar} ({telling.sted})
+                                </a>
+                              </li>
+                            );
+                          })}
+                          {(self.props.newitems[raavare.id] || []).map(function (item) {
+                            return (
+                              <li>
+                                <VaretellingerItemNewVare item={item} ctrl={self.props}/>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                        <span className="nytelling"><a onClick={newItemEvent}><i className="glyphicon glyphicon-plus"/></a></span>
+                      </div>
+                    </td>
+                  </tr>));
               }
 
               return prev;
