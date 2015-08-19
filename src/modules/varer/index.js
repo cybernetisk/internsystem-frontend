@@ -42,11 +42,10 @@ module.exports = 'cyb.varer';
   require('./salgsvarer/SalgsvarerIndexListView');
   require('./salgsvarer/SalgsvarerService');
 
-  require('./varetellinger/VaretellingerController');
-  require('./varetellinger/VaretellingerItemController');
-  require('./varetellinger/VaretellingerItemListView');
-  require('./varetellinger/VaretellingerItemNewVare');
+  require('./varetellinger/index/VaretellingerController');
+  require('./varetellinger/item/VaretellingerItemController');
+  require('./varetellinger/item/VaretellingerItemListView');
   require('./varetellinger/VaretellingerService');
-  require('./varetellinger/VaretellingVareService');
+  require('./varetellinger/item/VaretellingVareService');
 
 })();
