@@ -77,7 +77,7 @@ class Nav extends React.Component {
                   <li className='dropdown-header'>Modules</li>
                   <NavLink to='varer/råvarer'>Raw materials</NavLink>
                   <NavLink to='varer/salgsvarer'>Sales items</NavLink>
-                  <NavLink to='varer/kontoer'>Account list</NavLink>
+                  <NavLink to='varer/accounts'>Account list</NavLink>
                   <NavLink to='varer/vendors'>Vendor list</NavLink>
                   <NavLink to='varer/salesestimates'>Sales estimates</NavLink>
                   <NavLink to='varer/varetellinger'>Inventory counts</NavLink>

@@ -8,8 +8,6 @@ import './common/components/PrisDato'
 import './common/components/PrisMargin'
 import './common/components/VareMengde'
 
-import './kontoer/KontoerController'
-
 import './råvarer/RåvarerController'
 import './råvarer/RåvarerEditController'
 import './råvarer/RåvarerIndexListView'
@@ -21,6 +19,7 @@ import './salgsvarer/SalgsvarerIndexListView'
 import './varetellinger'
 
 import AngularWrapper from '../../AngularWrapper'
+import Accounts from './accounts'
 import Index from './index/index'
 import SalesEstimates from './salesEstimates'
 import Vendors from './vendors'
@@ -29,8 +28,8 @@ export default (
   <Route>
     <Route name='varer/råvarer' path='/varer/råvarer' handler={AngularWrapper}/>
     <Route name='varer/salgsvarer' path='/varer/salgsvarer' handler={AngularWrapper}/>
-    <Route name='varer/kontoer' path='/varer/kontoer' handler={AngularWrapper}/>
     <Route name='varer/varetellinger' path='/varer/varetellinger' handler={AngularWrapper}/>
+    {Accounts}
     {Index}
     {SalesEstimates}
     {Vendors}
