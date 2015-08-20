@@ -79,7 +79,7 @@ class Nav extends React.Component {
                   <NavLink to='varer/salgsvarer'>Sales items</NavLink>
                   <NavLink to='varer/kontoer'>Account list</NavLink>
                   <NavLink to='varer/leverandører'>Vendor list</NavLink>
-                  <NavLink to='varer/salgskalkyler'>Sales estimates</NavLink>
+                  <NavLink to='varer/salesestimates'>Sales estimates</NavLink>
                   <NavLink to='varer/varetellinger'>Inventory counts</NavLink>
                 </ul>
               </NavDropdown>
