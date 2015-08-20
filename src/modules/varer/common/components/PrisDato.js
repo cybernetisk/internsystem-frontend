@@ -1,4 +1,5 @@
 import React from 'react'
+import angularModule from '../../angularModule'
 
 export default class PrisDato extends React.Component {
   static propTypes = {
@@ -6,34 +7,32 @@ export default class PrisDato extends React.Component {
   }
 
   render() {
-    var days = ((new Date) - (new Date(this.props.dato))) / 86400000;
-    var theClass;
+    let days = ((new Date) - (new Date(this.props.dato))) / 86400000
+    let theClass
 
     if (days < 0)
-      theClass = 'prisdato-error';
+      theClass = 'prisdato-error'
     //else if (this.dato == '2000-01-01')
-    //    theClass = 'prisdato-static';
+    //    theClass = 'prisdato-static'
     else if (days < 30)
-      theClass = 'prisdato-age1';
+      theClass = 'prisdato-age1'
     else if (days < 100)
-      theClass = 'prisdato-age2';
+      theClass = 'prisdato-age2'
     else if (days < 180)
-      theClass = 'prisdato-age3';
+      theClass = 'prisdato-age3'
     else if (days < 300)
-      theClass = 'prisdato-age4';
+      theClass = 'prisdato-age4'
     else if (days < 400)
-      theClass = 'prisdato-age5';
+      theClass = 'prisdato-age5'
     else
-      theClass = 'prisdato-age6';
+      theClass = 'prisdato-age6'
 
     return (
       <span className={'prisdato ' + theClass}>
         {this.props.dato}
       </span>
-    );
+    )
   }
 }
 
-angular.module('cyb.varer').factory('PrisDato', function () {
-  return PrisDato
-})
+angularModule.value('PrisDato', PrisDato)

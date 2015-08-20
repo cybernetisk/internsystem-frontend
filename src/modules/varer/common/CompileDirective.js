@@ -1,3 +1,5 @@
+import angularModule from '../angularModule'
+
 /**
  * Check for directives in a React-element
  *
@@ -6,22 +8,22 @@
  *
  * NB: Currently bound to rootScope
  */
-angular.module('cyb.varer').factory('CompileDirective', function ($compile, $rootScope) {
+angularModule.factory('CompileDirective', function ($compile, $rootScope) {
   return React.createClass({
     propTypes: {
       elm: React.PropTypes.node.isRequired
     },
 
     render: function () {
-      return this.props.elm;
+      return this.props.elm
     },
 
     componentDidMount: function () {
-      $compile(this.getDOMNode())($rootScope);
+      $compile(this.getDOMNode())($rootScope)
     },
 
     componentDidUpdate: function () {
-      $compile(this.getDOMNode())($rootScope);
+      $compile(this.getDOMNode())($rootScope)
     }
-  });
-});
+  })
+})

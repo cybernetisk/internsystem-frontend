@@ -1,4 +1,5 @@
 import React from 'react'
+import angularModule from '../../../../angularModule'
 
 import PrisDato from '../../common/components/PrisDato'
 import VareMengde from '../../common/components/VareMengde'
@@ -116,4 +117,4 @@ export default class VaretellingerItemListView extends React.Component {
   }
 }
 
-angular.module('cyb.varer').value('VaretellingerItemListView', VaretellingerItemListView)
+angularModule.value('VaretellingerItemListView', VaretellingerItemListView)

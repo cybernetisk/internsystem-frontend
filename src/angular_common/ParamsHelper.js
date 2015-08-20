@@ -1,8 +1,10 @@
+import angularModule from '../angularModule'
+
 /**
  * This factory assists in updating params in the url
  * and running a function when it changes
  */
-angular.module('cyb.oko').factory('ParamsHelper', function ($location, $stateParams) {
+angularModule.factory('ParamsHelper', function ($location, $stateParams) {
     return {
         track: function (scope, variables, watchers, callback) {
             if (arguments.length == 3) {

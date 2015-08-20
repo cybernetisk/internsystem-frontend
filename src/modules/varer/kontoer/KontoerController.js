@@ -1,21 +1,17 @@
-(function () {
-  'use strict';
+import angularModule from '../angularModule'
+import {getService as KontoerService} from './KontoerService'
 
-  var module = angular.module('cyb.varer');
+angularModule.config(function ($stateProvider) {
+  $stateProvider.state('kontoer', {
+    url: '/varer/kontoer',
+    templateUrl: require('./index.html'),
+    controller: 'KontoerController as kontoer'
+  })
+})
 
-  module.config(function ($stateProvider) {
-    $stateProvider.state('kontoer', {
-      url: '/varer/kontoer',
-      templateUrl: require('./index.html'),
-      controller: 'KontoerController as kontoer'
-    })
-  });
-
-  module.controller('KontoerController', function (KontoerService) {
-    var self = this;
-
-    KontoerService.query(function (res) {
-      self.items = res;
-    });
-  });
-})();
+angularModule.controller('KontoerController', function ($scope) {
+  KontoerService().query(res => {
+    this.items = res
+    $scope.$apply()
+  })
+})

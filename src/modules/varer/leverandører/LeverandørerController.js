@@ -1,20 +1,18 @@
-(function () {
-  'use strict';
+import angularModule from '../angularModule'
+import {getService as LeverandørerService} from './LeverandørerService'
 
-  var module = angular.module('cyb.varer');
+angularModule.config(function ($stateProvider) {
+  $stateProvider.state('leverandører', {
+    url: '/varer/leverandører',
+    templateUrl: require('./index.html'),
+    controller: 'LeverandørerController as leverandorer'
+  })
+})
 
-  module.config(function ($stateProvider) {
-    $stateProvider.state('leverandører', {
-      url: '/varer/leverandører',
-      templateUrl: require('./index.html'),
-      controller: 'LeverandørerController as leverandorer'
-    })
-  });
-
-  module.controller('LeverandørerController', function (LeverandørerService) {
-    var self = this;
-    LeverandørerService.query(function (res) {
-      self.items = res;
-    });
-  });
-})();
+angularModule.controller('LeverandørerController', function ($scope) {
+  var self = this
+  LeverandørerService().query(function (res) {
+    self.items = res
+    $scope.$apply()
+  })
+})

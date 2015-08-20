@@ -1,22 +1,26 @@
+import angularModule from '../../angularModule'
 import {api} from '../../../../api'
+import {getResource} from '../../AngularResource'
 
-(function () {
-  'use strict';
+function createService() {
+  const $resource = getResource()
 
-  var module = angular.module('cyb.varer');
-
-  module.factory('VaretellingVareService', function ($resource) {
-    var obj = $resource(api('varetellingvarer/:id'), {
-      id: '@id'
-    }, {
-      query: {
-        isArray: false,
-        params: {
-          limit: 30
-        }
+  return $resource(api('varetellingvarer/:id'), {
+    id: '@id'
+  }, {
+    query: {
+      isArray: false,
+      params: {
+        limit: 30
       }
-    });
+    }
+  })
+}
 
-    return obj;
-  });
-})();
+let instance;
+export function getService() {
+  if (!instance) {
+    instance = createService()
+  }
+  return instance
+}

@@ -1,6 +1,11 @@
 import {api} from '../../../api'
+import angularModule from '../angularModule'
 
-angular.module('cyb.varer').factory('KontoerService', function ($resource) {
+import {getResource} from '../AngularResource'
+
+function createService() {
+  const $resource = getResource()
+
   return $resource(api('kontoer/:id'), {
     id: '@id'
   }, {
@@ -8,5 +13,13 @@ angular.module('cyb.varer').factory('KontoerService', function ($resource) {
       // no pagination
       isArray: true
     }
-  });
-});
+  })
+}
+
+let instance;
+export function getService() {
+  if (!instance) {
+    instance = createService()
+  }
+  return instance
+}

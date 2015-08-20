@@ -1,38 +1,45 @@
+import angularModule from '../angularModule'
+
 import {api} from '../../../api'
+import {getResource} from '../AngularResource'
 
-(function () {
-  'use strict';
+function createService() {
+  const $resource = getResource()
 
-  var module = angular.module('cyb.varer');
-
-  module.factory('VaretellingerService', function ($resource) {
-    var obj = $resource(api('varetellinger/:id'), {
-      id: '@id'
-    }, {
-      query: {
-        isArray: false,
-        params: {
-          limit: 30
-        }
+  let VaretellingerService = $resource(api('varetellinger/:id'), {
+    id: '@id'
+  }, {
+    query: {
+      isArray: false,
+      params: {
+        limit: 30
       }
-    });
+    }
+  })
 
-    obj.makeSummer = function (parent) {
-      this.count = 0;
-      this.sum = 0;
-      this.pant = 0;
-      this.parent = parent;
-      this.add = function (count, sum, pant) {
-        this.count += count;
-        this.sum += Math.round(sum * 100) / 100;
-        this.pant += Math.round(pant * 100) / 100;
-        if (this.parent) this.parent.add(count, sum, pant);
-      };
-      this.new = function () {
-        return new obj.makeSummer(this);
-      };
-    };
+  VaretellingerService.makeSummer = function (parent) {
+    this.count = 0
+    this.sum = 0
+    this.pant = 0
+    this.parent = parent
+    this.add = function (count, sum, pant) {
+      this.count += count
+      this.sum += Math.round(sum * 100) / 100
+      this.pant += Math.round(pant * 100) / 100
+      if (this.parent) this.parent.add(count, sum, pant)
+    }
+    this.new = function () {
+      return new VaretellingerService.makeSummer(this)
+    }
+  }
 
-    return obj;
-  });
-})();
+  return VaretellingerService
+}
+
+let instance;
+export function getService() {
+  if (!instance) {
+    instance = createService()
+  }
+  return instance
+}

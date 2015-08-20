@@ -1,6 +1,7 @@
+import angularModule from '../angularModule'
 const paginationTemplate = require('./pagination.html')
 
-angular.module('cyb.oko').directive('pagination', function () {
+angularModule.directive('pagination', function () {
     return {
         restrict: 'E',
         scope: {

@@ -1,9 +1,10 @@
+import angularModule from '../angularModule'
 const loaderTemplate = require('./loader.html')
 
 /**
  * Set loading message if variables is null
  */
-var module = angular.module('cyb.oko').directive('loader', function () {
+var module = angularModule.directive('loader', function () {
     return {
         restrict: 'E',
         scope: {

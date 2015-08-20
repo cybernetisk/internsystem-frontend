@@ -1,26 +1,24 @@
-(function () {
-  'use strict';
+import angularModule from '../angularModule'
 
-  var module = angular.module('cyb.varer');
+import {getService as RåvarerService} from './RåvarerService'
 
-  module.config(function ($stateProvider) {
-    $stateProvider.state('råvare', {
-      url: '/varer/råvarer/:id',
-      templateUrl: require('./item.html'),
-      controller: 'RåvarerItemController as item'
-    });
-  });
+angularModule.config(function ($stateProvider) {
+  $stateProvider.state('råvare', {
+    url: '/varer/råvarer/:id',
+    templateUrl: require('./item.html'),
+    controller: 'RåvarerItemController as item'
+  })
+})
 
-  module.controller('RåvarerItemController', function ($scope, $stateParams, $window, RåvarerService) {
-    $window.location.href = '/admin/varer/råvare/' + parseInt($stateParams['id']) + '/';
-    return;
+angularModule.controller('RåvarerItemController', function ($scope, $stateParams, $window) {
+  $window.location.href = '/admin/varer/råvare/' + parseInt($stateParams['id']) + '/'
+  return
 
-    console.log("RåvarerItemController", $stateParams);
-    var self = this;
+  console.log("RåvarerItemController", $stateParams)
 
-    RåvarerService.get({id: $stateParams['id']}, function (res) {
-      console.log(res);
-      self.data = res;
-    });
-  });
-})();
+  RåvarerService().get({id: $stateParams['id']}, res => {
+    console.log(res)
+    this.data = res
+    $scope.$apply()
+  })
+})

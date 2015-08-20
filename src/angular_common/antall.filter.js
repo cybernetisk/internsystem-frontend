@@ -1,5 +1,6 @@
+import angularModule from '../angularModule'
 import {antall} from '../services/FormatService'
 
-angular.module('cyb.oko').filter('antall', function () {
+angularModule.filter('antall', function () {
   return antall
 })

@@ -1,4 +1,5 @@
 import React from 'react'
+import angularModule from '../../angularModule'
 import {antall} from '../../../../services/FormatService'
 
 export default class VareMengde extends React.Component {
@@ -19,6 +20,4 @@ export default class VareMengde extends React.Component {
   }
 }
 
-angular.module('cyb.varer').factory('VareMengde', () => {
-  return VareMengde
-})
+angularModule.value('VareMengde', VareMengde)

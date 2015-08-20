@@ -1,4 +1,5 @@
 import React from 'react'
+import angularModule from '../../angularModule'
 import {price} from '../../../../services/FormatService'
 
 export default class PrisMargin extends React.Component {
@@ -9,9 +10,9 @@ export default class PrisMargin extends React.Component {
   }
 
   render() {
-    var eksmva = this.props.utPris / (1 + this.props.utMva / 100);
-    var margin = (((eksmva - this.props.innPris) / eksmva) * 100);
-    var theClass;
+    let eksmva = this.props.utPris / (1 + this.props.utMva / 100);
+    let margin = (((eksmva - this.props.innPris) / eksmva) * 100);
+    let theClass;
 
     if (margin > 150)
       theClass = 'prismargin-veryhigh';
@@ -38,6 +39,4 @@ export default class PrisMargin extends React.Component {
   }
 }
 
-angular.module('cyb.varer').factory('PrisMargin', () => {
-  return PrisMargin
-})
+angularModule.value('PrisMargin', PrisMargin)

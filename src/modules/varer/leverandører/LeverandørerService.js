@@ -1,18 +1,25 @@
+import angular from 'angular'
 import {api} from '../../../api'
 
-(function () {
-  'use strict';
+import {getResource} from '../AngularResource'
 
-  var module = angular.module('cyb.varer');
+function createService() {
+  const $resource = getResource()
 
-  module.factory('LeverandørerService', function ($resource) {
-    return $resource(api('leverandører/:id'), {
-      id: '@id'
-    }, {
-      query: {
-        // no pagination
-        isArray: true
-      }
-    });
-  });
-})();
+  return $resource(api('leverandører/:id'), {
+    id: '@id'
+  }, {
+    query: {
+      // no pagination
+      isArray: true
+    }
+  })
+}
+
+let instance;
+export function getService() {
+  if (!instance) {
+    instance = createService()
+  }
+  return instance
+}

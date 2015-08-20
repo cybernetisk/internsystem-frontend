@@ -1,17 +1,19 @@
-var module = angular.module('cyb.varer');
+import angularModule from '../angularModule'
+import {getService as KontoerService} from './KontoerService'
 
-module.config(function ($stateProvider) {
+angularModule.config(function ($stateProvider) {
   $stateProvider.state('konto', {
     url: '/varer/kontoer/:id',
     templateUrl: require('./item.html'),
     controller: 'KontoerItemController as item'
-  });
-});
+  })
+})
 
-module.controller('KontoerItemController', function ($scope, $stateParams, KontoerService) {
-  var self = this;
+angularModule.controller('KontoerItemController', function ($scope, $stateParams) {
+  var self = this
 
-  KontoerService.get({id: $stateParams['id']}, function (res) {
-    self.data = res;
-  });
-});
+  KontoerService().get({id: $stateParams['id']}, function (res) {
+    self.data = res
+    $scope.$apply()
+  })
+})

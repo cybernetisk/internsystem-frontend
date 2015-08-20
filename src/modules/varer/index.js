@@ -1,51 +1,32 @@
 import './app.scss'
 
-module.exports = 'cyb.varer';
+export default 'cyb.varer'
 
-(function () {
-  'use strict';
+import 'ngReact'
 
-  require('ngReact');
+import './angularModule'
 
-  var module = angular.module('cyb.varer', [
-    require('ui.router'),
-    require('angular-resource'),
-    'react'
-  ]);
+import './index/VarerIndexController'
+import './common/CompileDirective'
+import './common/prisdato.directive.js'
+import './common/components/PrisDato'
+import './common/prismargin.directive.js'
+import './common/components/PrisMargin'
+import './common/components/VareMengde'
 
-  require('./index/VarerIndexController');
-  require('./common/CompileDirective');
-  require('./common/prisdato.directive.js');
-  require('./common/components/PrisDato');
-  require('./common/prismargin.directive.js');
-  require('./common/components/PrisMargin');
-  require('./common/components/VareMengde');
-  require('./common/VarerHelper');
+import './kontoer/KontoerController'
+import './kontoer/KontoerItemController'
 
-  require('./kontoer/KontoerController');
-  require('./kontoer/KontoerItemController');
-  require('./kontoer/KontoerService');
+import './leverandører/LeverandørerController'
 
-  require('./leverandører/LeverandørerController');
-  require('./leverandører/LeverandørerService');
+import './råvarer/RåvarerController'
+import './råvarer/RåvarerEditController'
+import './råvarer/RåvarerIndexListView'
+import './råvarer/RåvarerItemController'
 
-  require('./råvarer/RåvarerController');
-  require('./råvarer/RåvarerEditController');
-  require('./råvarer/RåvarerIndexListView');
-  require('./råvarer/RåvarerItemController');
-  require('./råvarer/RåvarerService');
+import './salgskalkyler/SalgskalkylerController'
 
-  require('./salgskalkyler/SalgskalkylerController');
-  require('./salgskalkyler/SalgskalkylerService');
+import './salgsvarer/SalgsvarerController'
+import './salgsvarer/SalgsvarerIndexListView'
 
-  require('./salgsvarer/SalgsvarerController');
-  require('./salgsvarer/SalgsvarerIndexListView');
-  require('./salgsvarer/SalgsvarerService');
-
-  require('./varetellinger/index/VaretellingerController');
-  require('./varetellinger/item/VaretellingerItemController');
-  require('./varetellinger/item/VaretellingerItemListView');
-  require('./varetellinger/VaretellingerService');
-  require('./varetellinger/item/VaretellingVareService');
-
-})();
+import './varetellinger'

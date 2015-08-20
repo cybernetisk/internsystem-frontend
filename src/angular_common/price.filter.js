@@ -1,5 +1,6 @@
+import angularModule from '../angularModule'
 import {price} from '../services/FormatService'
 
-angular.module('cyb.oko').filter('price', function () {
+angularModule.filter('price', function () {
   return price
 })
