@@ -2,8 +2,6 @@ import './app.scss'
 
 export default 'cyb.varer'
 
-import 'ngReact'
-
 import './angularModule'
 
 import './index/VarerIndexController'
