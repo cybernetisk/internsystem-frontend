@@ -1,8 +1,6 @@
 import './app.scss'
 import 'bootstrap-sass'
 
-import AuthService from './modules/auth/services/AuthService'
-import React from 'react'
 import {Route} from 'react-router'
 
 import './angularModule'
