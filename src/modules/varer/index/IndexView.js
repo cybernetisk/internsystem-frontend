@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router'
 
 export default class extends React.Component {
 
@@ -7,12 +8,12 @@ export default class extends React.Component {
       <div>
         <h1>Products</h1>
         <ul>
-          <li><a href ui-sref="råvarer">Raw materials</a></li>
-          <li><a href ui-sref="salgsvarer">Sales items</a></li>
-          <li><a href ui-sref="kontoer">Account list</a></li>
-          <li><a href ui-sref="leverandører">Vendor list</a></li>
-          <li><a href ui-sref="salgskalkyler">Sales estimates</a></li>
-          <li><a href ui-sref="varetellinger">Inventory counts</a></li>
+          <li><Link to="varer/råvarer">Raw materials</Link></li>
+          <li><Link to="varer/salgsvarer">Sales items</Link></li>
+          <li><Link to="varer/kontoer">Account list</Link></li>
+          <li><Link to="varer/leverandører">Vendor list</Link></li>
+          <li><Link to="varer/salgskalkyler">Sales estimates</Link></li>
+          <li><Link to="varer/varetellinger">Inventory counts</Link></li>
         </ul>
       </div>
     )
