@@ -5,6 +5,7 @@ import './VaretellingerItemListView' // used by List.js
 
 angularModule
   .config(function ($stateProvider) {
+    "ngInject"
     $stateProvider.state('varetelling', {
       url: '/varer/varetellinger/:id',
       templateUrl: require('./item.html'),

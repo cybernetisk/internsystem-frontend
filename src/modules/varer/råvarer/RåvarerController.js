@@ -4,6 +4,7 @@ import * as VarerHelper from '../common/VarerHelper'
 import {getService as RåvarerService} from './RåvarerService'
 
 angularModule.config(function ($stateProvider) {
+  "ngInject"
   $stateProvider.state('råvarer', {
     url: '/varer/råvarer?q&group',
     templateUrl: require('./index.html'),
@@ -13,6 +14,7 @@ angularModule.config(function ($stateProvider) {
 })
 
 angularModule.controller('RåvarerController', function ($filter, $location, $scope, $stateParams, ParamsHelper) {
+  "ngInject"
   var self = this
 
   this.varefilter = {

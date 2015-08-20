@@ -3,6 +3,7 @@ import VaretellingerController from './VaretellingerController'
 
 angularModule
   .config(function ($stateProvider) {
+    "ngInject"
     $stateProvider.state('varetellinger', {
       url: '/varer/varetellinger',
       templateUrl: require('./index.html'),

@@ -5,6 +5,7 @@ import {getService as VaretellingVareService} from '../item/VaretellingVareServi
 import * as VarerHelper from '../../common/VarerHelper'
 
 export default function ($rootScope, $filter, $scope, $stateParams) {
+  "ngInject"
   var self = this
 
   this.raavarer = null

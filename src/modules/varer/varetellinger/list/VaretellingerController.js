@@ -2,6 +2,7 @@ import '../../../../angular_common/ParamsHelper'
 import {getService as VaretellingerService} from '../VaretellingerService'
 
 export default function ($scope, ParamsHelper) {
+  "ngInject"
   let helper = ParamsHelper.track($scope,
     ['page'],
     {'salgskalkyler.pagination.page': 'page'},

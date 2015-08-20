@@ -3,6 +3,7 @@ import angularModule from '../angularModule'
 import {getService as RåvarerService} from './RåvarerService'
 
 angularModule.config(function ($stateProvider) {
+  "ngInject"
   $stateProvider.state('råvare', {
     url: '/varer/råvarer/:id',
     templateUrl: require('./item.html'),
@@ -11,6 +12,7 @@ angularModule.config(function ($stateProvider) {
 })
 
 angularModule.controller('RåvarerItemController', function ($scope, $stateParams, $window) {
+  "ngInject"
   $window.location.href = '/admin/varer/råvare/' + parseInt($stateParams['id']) + '/'
   return
 

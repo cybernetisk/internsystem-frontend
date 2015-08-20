@@ -5,6 +5,7 @@ import angularModule from '../angularModule'
  * and running a function when it changes
  */
 angularModule.factory('ParamsHelper', function ($location, $stateParams) {
+    "ngInject"
     return {
         track: function (scope, variables, watchers, callback) {
             if (arguments.length == 3) {

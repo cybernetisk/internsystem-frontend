@@ -1,6 +1,5 @@
 var path = require('path');
 var webpack = require('webpack');
-var ngAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 module.exports = {
   cache: false,
@@ -24,7 +23,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel?stage=0']},
+      {test: /\.jsx?$/, exclude: /node_modules/, loaders: ['ng-annotate', 'babel?stage=0']},
       {test: /\.css$/, loader: 'style!css'},
       {test: /\.scss$/, loader: 'style!css!sass'},
       {test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff"},
@@ -48,10 +47,6 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
   },
   plugins: [
-    new ngAnnotatePlugin({
-      add: true,
-      // other ng-annotate options here
-    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({sourceMap: false}),
     new webpack.NoErrorsPlugin(),
