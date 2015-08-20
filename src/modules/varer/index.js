@@ -5,7 +5,6 @@ export default 'cyb.varer'
 import './angularModule'
 
 import './index/VarerIndexController'
-import './common/CompileDirective'
 import './common/components/PrisDato'
 import './common/components/PrisMargin'
 import './common/components/VareMengde'
