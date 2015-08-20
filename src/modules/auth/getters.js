@@ -14,4 +14,11 @@ const userDetails = [
   }
 ]
 
-export default { authdata, isLoggedIn, userDetails }
+const csrfToken = [
+  ['authdata'],
+  (authdata) => {
+    return authdata.get('data') && authdata.get('data').get('csrfToken') ? authdata.get('data').get('csrfToken') : null
+  }
+]
+
+export default { authdata, isLoggedIn, userDetails, csrfToken }
