@@ -2,7 +2,7 @@ import React from 'react'
 import angularModule from '../../angularModule'
 import {antall} from '../../../../services/FormatService'
 
-export default class VareMengde extends React.Component {
+export default class extends React.Component {
   static propTypes = {
     verdi: React.PropTypes.number.isRequired,
     enhet: React.PropTypes.string
@@ -19,5 +19,3 @@ export default class VareMengde extends React.Component {
     )
   }
 }
-
-angularModule.value('VareMengde', VareMengde)

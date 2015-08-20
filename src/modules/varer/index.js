@@ -4,10 +4,6 @@ import {Route} from 'react-router'
 
 import './angularModule'
 
-import './common/components/PrisDato'
-import './common/components/PrisMargin'
-import './common/components/VareMengde'
-
 import './råvarer/RåvarerController'
 import './råvarer/RåvarerEditController'
 import './råvarer/RåvarerIndexListView'

@@ -2,7 +2,7 @@ import React from 'react'
 import angularModule from '../../angularModule'
 import {price} from '../../../../services/FormatService'
 
-export default class PrisMargin extends React.Component {
+export default class extends React.Component {
   static propTypes = {
     innPris: React.PropTypes.number.isRequired,
     utPris: React.PropTypes.number.isRequired,
@@ -38,5 +38,3 @@ export default class PrisMargin extends React.Component {
       </span>)
   }
 }
-
-angularModule.value('PrisMargin', PrisMargin)

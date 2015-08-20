@@ -1,7 +1,7 @@
 import React from 'react'
 import angularModule from '../../angularModule'
 
-export default class PrisDato extends React.Component {
+export default class extends React.Component {
   static propTypes = {
     dato: React.PropTypes.string.isRequired
   }
@@ -34,5 +34,3 @@ export default class PrisDato extends React.Component {
     )
   }
 }
-
-angularModule.value('PrisDato', PrisDato)
