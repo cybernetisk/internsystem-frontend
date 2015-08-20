@@ -1,9 +1,5 @@
 import { Store, toImmutable } from 'nuclear-js'
-import {
-  RECEIVE_ACCOUNTS_START,
-  RECEIVE_ACCOUNTS_SUCCESS,
-  RECEIVE_ACCOUNTS_FAILURE
-} from './actionTypes'
+import actionTypes from './actionTypes'
 
 export default Store({
   getInitialState() {
@@ -15,9 +11,9 @@ export default Store({
   },
 
   initialize() {
-    this.on(RECEIVE_ACCOUNTS_START, receiveAccountsStart)
-    this.on(RECEIVE_ACCOUNTS_SUCCESS, receiveAccountsSuccess)
-    this.on(RECEIVE_ACCOUNTS_FAILURE, receiveAccountsFailure)
+    this.on(actionTypes.RECEIVE_ACCOUNTS_START, receiveAccountsStart)
+    this.on(actionTypes.RECEIVE_ACCOUNTS_SUCCESS, receiveAccountsSuccess)
+    this.on(actionTypes.RECEIVE_ACCOUNTS_FAILURE, receiveAccountsFailure)
   }
 })
 
@@ -28,15 +24,15 @@ function receiveAccountsStart(state) {
     .set('isLoading', true)
 }
 
-function receiveAccountsSuccess(state, {items}) {
+function receiveAccountsSuccess(state, {response}) {
   return state
-    .set('items', toImmutable(items))
+    .set('items', toImmutable(response))
     .set('isLoading', false)
 }
 
-function receiveAccountsFailure(state, err) {
-  console.log("Receiving list failed", err)
+function receiveAccountsFailure(state, {error}) {
+  console.log("Receiving list failed", error)
   return state
-    .set('error', toImmutable(err))
+    .set('error', toImmutable(error))
     .set('isLoading', false)
 }

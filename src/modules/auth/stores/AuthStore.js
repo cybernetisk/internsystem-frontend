@@ -1,9 +1,5 @@
 import { Store, toImmutable } from 'nuclear-js'
-import {
-  RECEIVE_AUTHDATA_START,
-  RECEIVE_AUTHDATA_SUCCESS,
-  RECEIVE_AUTHDATA_FAILURE
-} from '../actionTypes'
+import actionTypes from '../actionTypes'
 
 export default Store({
   getInitialState() {
@@ -15,9 +11,9 @@ export default Store({
   },
 
   initialize() {
-    this.on(RECEIVE_AUTHDATA_START, receiveAuthDataStart)
-    this.on(RECEIVE_AUTHDATA_SUCCESS, receiveAuthDataSuccess)
-    this.on(RECEIVE_AUTHDATA_FAILURE, receiveAuthDataFailure)
+    this.on(actionTypes.RECEIVE_AUTHDATA_START, receiveAuthDataStart)
+    this.on(actionTypes.RECEIVE_AUTHDATA_SUCCESS, receiveAuthDataSuccess)
+    this.on(actionTypes.RECEIVE_AUTHDATA_FAILURE, receiveAuthDataFailure)
   }
 })
 
@@ -28,15 +24,15 @@ function receiveAuthDataStart(state) {
     .set('isLoading', true)
 }
 
-function receiveAuthDataSuccess(state, data) {
+function receiveAuthDataSuccess(state, {response}) {
   return state
-    .set('data', toImmutable(data))
+    .set('data', toImmutable(response))
     .set('error', null)
     .set('isLoading', false)
 }
 
-function receiveAuthDataFailure(state, err) {
+function receiveAuthDataFailure(state, {error}) {
   return state
-    .set('error', toImmutable(err))
+    .set('error', toImmutable(error))
     .set('isLoading', false)
 }

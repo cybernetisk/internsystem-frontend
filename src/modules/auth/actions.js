@@ -1,20 +1,14 @@
 import reactor from '../../reactor'
+import {dispatchAsync} from '../../utils/FluxUtils'
+
 import AuthService from './services/AuthService'
 
-import {
-  RECEIVE_AUTHDATA_START,
-  RECEIVE_AUTHDATA_SUCCESS,
-  RECEIVE_AUTHDATA_FAILURE,
-} from './actionTypes'
+import actionTypes from './actionTypes'
 
-export default {
-  fetchAuthData() {
-    reactor.dispatch(RECEIVE_AUTHDATA_START)
-
-    AuthService.getAuthData().then((data) => {
-      reactor.dispatch(RECEIVE_AUTHDATA_SUCCESS, data)
-    }).catch((err) => {
-      reactor.dispatch(RECEIVE_AUTHDATA_FAILURE, err)
-    })
-  }
+export function fetchAuthData() {
+  dispatchAsync(AuthService.getAuthData(), {
+    request: actionTypes.RECEIVE_AUTHDATA_START,
+    success: actionTypes.RECEIVE_AUTHDATA_SUCCESS,
+    failure: actionTypes.RECEIVE_AUTHDATA_FAILURE
+  })
 }

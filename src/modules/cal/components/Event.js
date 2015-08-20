@@ -5,7 +5,7 @@ import { nuclearComponent } from 'nuclear-js-react-addons'
 
 import {api} from '../../../api'
 
-import actions from '../actions'
+import * as actions from '../actions'
 import getters from '../getters'
 
 import PageLoader from '../../../components/PageLoader'

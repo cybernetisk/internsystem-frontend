@@ -1,50 +1,30 @@
 import reactor from './../../reactor'
+import {dispatchAsync} from '../../utils/FluxUtils'
+
 import CalendarService from './services/CalendarService'
 
-import {
-  RECEIVE_LIST_START,
-  RECEIVE_LIST_SUCCESS,
-  RECEIVE_LIST_FAILURE,
-  RECEIVE_EVENT_START,
-  RECEIVE_EVENT_SUCCESS,
-  RECEIVE_EVENT_FAILURE,
-  RECEIVE_SEMESTERS_START,
-  RECEIVE_SEMESTERS_SUCCESS,
-  RECEIVE_SEMESTERS_FAILURE,
-} from './actionTypes'
+import actionTypes from './actionTypes'
 
-export default {
-  fetchList(year, semester) {
-    reactor.dispatch(RECEIVE_LIST_START, {year, semester})
+export function fetchList(year, semester) {
+  dispatchAsync(CalendarService.getEventList(year, semester), {
+    request: actionTypes.RECEIVE_LIST_START,
+    success: actionTypes.RECEIVE_LIST_SUCCESS,
+    failure: actionTypes.RECEIVE_LIST_FAILURE
+  }, {year, semester})
+}
 
-    CalendarService.getEventList(year, semester).then((list) => {
-      reactor.dispatch(RECEIVE_LIST_SUCCESS, {list})
-    }).catch((err) => {
-      reactor.dispatch(RECEIVE_LIST_FAILURE, err)
-    })
-  },
+export function fetchEvent(eventId) {
+  dispatchAsync(CalendarService.getEvent(eventId), {
+    request: actionTypes.RECEIVE_EVENT_START,
+    success: actionTypes.RECEIVE_EVENT_SUCCESS,
+    failure: actionTypes.RECEIVE_EVENT_FAILURE
+  }, {eventId})
+}
 
-  fetchEvent(eventId) {
-    reactor.dispatch(RECEIVE_EVENT_START)
-
-    CalendarService.getEvent(eventId).then((event) => {
-      reactor.dispatch(RECEIVE_EVENT_SUCCESS, {event})
-    }).catch((err) => {
-      let msg = err.statusText
-      if (err.status === 404) {
-        msg = 'Data not found'
-      }
-      reactor.dispatch(RECEIVE_EVENT_FAILURE, msg)
-    })
-  },
-
-  fetchSemesters() {
-    reactor.dispatch(RECEIVE_SEMESTERS_START)
-
-    CalendarService.getSemesters().then(list => {
-      reactor.dispatch(RECEIVE_SEMESTERS_SUCCESS, {list})
-    }).catch((err) => {
-      reactor.dispatch(RECEIVE_SEMESTERS_FAILURE, err)
-    })
-  },
+export function fetchSemesters() {
+  dispatchAsync(CalendarService.getSemesters(), {
+    request: actionTypes.RECEIVE_SEMESTERS_START,
+    success: actionTypes.RECEIVE_SEMESTERS_SUCCESS,
+    failure: actionTypes.RECEIVE_SEMESTERS_FAILURE
+  })
 }

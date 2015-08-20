@@ -1,18 +1,14 @@
 import reactor from './../../../reactor'
+import {dispatchAsync} from '../../../utils/FluxUtils'
+
 import {getVendors} from './service'
 
-import {
-  RECEIVE_VENDORS_START,
-  RECEIVE_VENDORS_SUCCESS,
-  RECEIVE_VENDORS_FAILURE,
-} from './actionTypes'
+import actionTypes from './actionTypes'
 
 export function fetchVendors() {
-  reactor.dispatch(RECEIVE_VENDORS_START)
-
-  getVendors().then(items => {
-    reactor.dispatch(RECEIVE_VENDORS_SUCCESS, {items})
-  }).catch((err) => {
-    reactor.dispatch(RECEIVE_VENDORS_FAILURE, err)
+  dispatchAsync(getVendors(), {
+    request: actionTypes.RECEIVE_VENDORS_START,
+    success: actionTypes.RECEIVE_VENDORS_SUCCESS,
+    failure: actionTypes.RECEIVE_VENDORS_FAILURE
   })
 }

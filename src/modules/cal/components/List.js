@@ -5,7 +5,7 @@ import { nuclearComponent } from 'nuclear-js-react-addons'
 
 import {api} from '../../../api'
 import getters from '../getters'
-import actions from '../actions'
+import * as actions from '../actions'
 
 import Loader from '../../../components/Loader'
 import Tag from './Tag'

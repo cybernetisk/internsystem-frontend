@@ -3,7 +3,7 @@ import { Route, RouteHandler } from 'react-router'
 import { provideReactor } from 'nuclear-js-react-addons'
 
 import reactor from '../../reactor'
-import actions from './actions'
+import * as actions from './actions'
 
 import Profile from './components/Profile'
 import Login from './components/Login'

@@ -1,9 +1,5 @@
 import { Store, toImmutable } from 'nuclear-js'
-import {
-  RECEIVE_SEMESTERS_START,
-  RECEIVE_SEMESTERS_SUCCESS,
-  RECEIVE_SEMESTERS_FAILURE
-} from '../actionTypes'
+import actionTypes from '../actionTypes'
 
 export default Store({
   getInitialState() {
@@ -15,28 +11,28 @@ export default Store({
   },
 
   initialize() {
-    this.on(RECEIVE_SEMESTERS_START, receiveSemestersStart)
-    this.on(RECEIVE_SEMESTERS_SUCCESS, receiveSemestersSuccess)
-    this.on(RECEIVE_SEMESTERS_FAILURE, receiveSemestersFailure)
+    this.on(actionTypes.RECEIVE_SEMESTERS_START, receiveSemestersStart)
+    this.on(actionTypes.RECEIVE_SEMESTERS_SUCCESS, receiveSemestersSuccess)
+    this.on(actionTypes.RECEIVE_SEMESTERS_FAILURE, receiveSemestersFailure)
   }
 })
 
 function receiveSemestersStart(state) {
   return state
     .set('error', null)
-    .set('items', toImmutable({}))
+    .set('items', toImmutable([]))
     .set('loading', true)
 }
 
-function receiveSemestersSuccess(state, { list }) {
+function receiveSemestersSuccess(state, {response}) {
   return state
-    .set('items', toImmutable(list))
+    .set('items', toImmutable(response))
     .set('loading', false)
 }
 
-function receiveSemestersFailure(state, err) {
-  console.log("Receiving list failed", err)
+function receiveSemestersFailure(state, {error}) {
+  console.log("Receiving list failed", error)
   return state
-    .set('error', toImmutable(err))
+    .set('error', toImmutable(error))
     .set('loading', false)
 }

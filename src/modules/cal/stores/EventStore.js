@@ -1,9 +1,5 @@
 import { Store, toImmutable } from 'nuclear-js'
-import {
-  RECEIVE_EVENT_START,
-  RECEIVE_EVENT_SUCCESS,
-  RECEIVE_EVENT_FAILURE
-} from '../actionTypes'
+import actionTypes from '../actionTypes'
 
 export default Store({
   getInitialState() {
@@ -15,9 +11,9 @@ export default Store({
   },
 
   initialize() {
-    this.on(RECEIVE_EVENT_START, receiveEventStart)
-    this.on(RECEIVE_EVENT_SUCCESS, receiveEventSuccess)
-    this.on(RECEIVE_EVENT_FAILURE, receiveEventFailure)
+    this.on(actionTypes.RECEIVE_EVENT_START, receiveEventStart)
+    this.on(actionTypes.RECEIVE_EVENT_SUCCESS, receiveEventSuccess)
+    this.on(actionTypes.RECEIVE_EVENT_FAILURE, receiveEventFailure)
   }
 })
 
@@ -28,15 +24,20 @@ function receiveEventStart(state) {
     .set('isLoading', true)
 }
 
-function receiveEventSuccess(state, { event }) {
+function receiveEventSuccess(state, {response}) {
   return state
-    .set('data', toImmutable(event))
+    .set('data', toImmutable(response))
     .set('isLoading', false)
 }
 
-function receiveEventFailure(state, err) {
-  console.log("Receiving list failed", err)
+function receiveEventFailure(state, {error}) {
+  let msg = error.statusText
+  if (error.status === 404) {
+    msg = 'Data not found'
+  }
+
+  console.log("Receiving list failed", msg)
   return state
-    .set('error', toImmutable(err))
+    .set('error', toImmutable(msg))
     .set('isLoading', false)
 }

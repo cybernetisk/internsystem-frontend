@@ -1,18 +1,14 @@
 import reactor from './../../../reactor'
+import {dispatchAsync} from '../../../utils/FluxUtils'
+
 import {getAccounts} from './service'
 
-import {
-  RECEIVE_ACCOUNTS_START,
-  RECEIVE_ACCOUNTS_SUCCESS,
-  RECEIVE_ACCOUNTS_FAILURE,
-} from './actionTypes'
+import actionTypes from './actionTypes'
 
 export function fetchAccounts() {
-  reactor.dispatch(RECEIVE_ACCOUNTS_START)
-
-  getAccounts().then(items => {
-    reactor.dispatch(RECEIVE_ACCOUNTS_SUCCESS, {items})
-  }).catch((err) => {
-    reactor.dispatch(RECEIVE_ACCOUNTS_FAILURE, err)
+  dispatchAsync(getAccounts(), {
+    request: actionTypes.RECEIVE_ACCOUNTS_START,
+    success: actionTypes.RECEIVE_ACCOUNTS_SUCCESS,
+    failure: actionTypes.RECEIVE_ACCOUNTS_FAILURE
   })
 }

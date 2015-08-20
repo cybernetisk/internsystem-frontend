@@ -1,18 +1,14 @@
 import reactor from './../../../reactor'
+import {dispatchAsync} from '../../../utils/FluxUtils'
+
 import {getSalesEstimates} from './service'
 
-import {
-  RECEIVE_SALESESTIMATES_START,
-  RECEIVE_SALESESTIMATES_SUCCESS,
-  RECEIVE_SALESESTIMATES_FAILURE,
-} from './actionTypes'
+import actionTypes from './actionTypes'
 
 export function fetchSalesEstimates() {
-  reactor.dispatch(RECEIVE_SALESESTIMATES_START)
-
-  getSalesEstimates().then(items => {
-    reactor.dispatch(RECEIVE_SALESESTIMATES_SUCCESS, {items})
-  }).catch((err) => {
-    reactor.dispatch(RECEIVE_SALESESTIMATES_FAILURE, err)
+  dispatchAsync(getSalesEstimates(), {
+    request: actionTypes.RECEIVE_SALESESTIMATES_START,
+    success: actionTypes.RECEIVE_SALESESTIMATES_SUCCESS,
+    failure: actionTypes.RECEIVE_SALESESTIMATES_FAILURE
   })
 }

@@ -1,10 +1,6 @@
 import moment from 'moment'
 import { Store, toImmutable } from 'nuclear-js'
-import {
-  RECEIVE_LIST_START,
-  RECEIVE_LIST_SUCCESS,
-  RECEIVE_LIST_FAILURE
-} from '../actionTypes'
+import actionTypes from '../actionTypes'
 
 export default Store({
   getInitialState() {
@@ -18,9 +14,9 @@ export default Store({
   },
 
   initialize() {
-    this.on(RECEIVE_LIST_START, receiveListStart)
-    this.on(RECEIVE_LIST_SUCCESS, receiveListSuccess)
-    this.on(RECEIVE_LIST_FAILURE, receiveListFailure)
+    this.on(actionTypes.RECEIVE_LIST_START, receiveListStart)
+    this.on(actionTypes.RECEIVE_LIST_SUCCESS, receiveListSuccess)
+    this.on(actionTypes.RECEIVE_LIST_FAILURE, receiveListFailure)
   }
 })
 
@@ -33,17 +29,17 @@ function receiveListStart(state, {year, semester}) {
     .set('semester', semester)
 }
 
-function receiveListSuccess(state, { list }) {
+function receiveListSuccess(state, {response}) {
   return state
-    .set('items', toImmutable(list)
+    .set('items', toImmutable(response)
       .toOrderedMap()
       .mapKeys((k, v) => v.get('id')))
     .set('loading', false)
 }
 
-function receiveListFailure(state, err) {
-  console.log("Receiving list failed", err)
+function receiveListFailure(state, {error}) {
+  console.log("Receiving list failed", error)
   return state
-    .set('error', toImmutable(err))
+    .set('error', toImmutable(error))
     .set('loading', false)
 }
