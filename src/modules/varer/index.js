@@ -1,6 +1,6 @@
 import './app.scss'
 
-export default 'cyb.varer'
+import {Route} from 'react-router'
 
 import './angularModule'
 
@@ -25,3 +25,18 @@ import './salgsvarer/SalgsvarerController'
 import './salgsvarer/SalgsvarerIndexListView'
 
 import './varetellinger'
+
+import AngularWrapper from '../../AngularWrapper'
+
+export default (
+  <Route>
+    <Route name='varer' path='/varer' handler={AngularWrapper}/>
+    <Route name='varer/råvarer' path='/varer/råvarer' handler={AngularWrapper}/>
+    <Route name='varer/salgsvarer' path='/varer/salgsvarer' handler={AngularWrapper}/>
+    <Route name='varer/kontoer' path='/varer/kontoer' handler={AngularWrapper}/>
+    <Route name='varer/leverandører' path='/varer/leverandører' handler={AngularWrapper}/>
+    <Route name='varer/salgskalkyler' path='/varer/salgskalkyler' handler={AngularWrapper}/>
+    <Route name='varer/varetellinger' path='/varer/varetellinger' handler={AngularWrapper}/>
+    <Route path="/varer/**" handler={AngularWrapper}/>
+  </Route>
+)

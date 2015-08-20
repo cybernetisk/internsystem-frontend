@@ -16,9 +16,6 @@ module.exports = {
     'app': [
       './src/app.js',
     ],
-    'app_angular': [
-      './src/angular.js',
-    ],
   },
   output: {
     path: __dirname + '/build/',

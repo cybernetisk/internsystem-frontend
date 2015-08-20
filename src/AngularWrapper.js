@@ -2,6 +2,11 @@ import React from 'react'
 import './angularModule'
 import jquery from 'jquery'
 
+import './angular_common/antall.filter.js'
+import './angular_common/loader.directive.js'
+import './angular_common/pagination.directive.js'
+import './angular_common/price.filter.js'
+
 function createAngularRootElement() {
   let root = document.createElement('div')
 

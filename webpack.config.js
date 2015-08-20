@@ -17,10 +17,6 @@ module.exports = {
       'webpack/hot/only-dev-server',
       './src/app.js',
     ],
-    'app_angular': [
-      //'webpack/hot/only-dev-server',
-      './src/angular.js',
-    ],
   },
   output: {
     path: __dirname + '/build/',
