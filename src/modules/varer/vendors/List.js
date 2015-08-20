@@ -1,5 +1,8 @@
 import React from 'react'
+import Markdown from 'react-remarkable'
 import { nuclearComponent } from 'nuclear-js-react-addons'
+
+import './List.scss'
 
 import {fetchVendors} from './actions'
 import {vendors} from './getters'
@@ -18,7 +21,7 @@ class List extends React.Component {
 
   renderVendorList(vendors) {
     return (
-      <table className="table table-striped">
+      <table className="table table-striped varerVendorsList">
         <thead>
           <tr>
             <th>ID</th>
@@ -31,7 +34,7 @@ class List extends React.Component {
             <tr>
               <td>{vendor.id}</td>
               <td><a href={`admin/varer/leverandør/${vendor.id}/`} target="_self">{vendor.navn}</a></td>
-              <td>{vendor.kommentar}</td> {/* TODO: formattere med markdown? */}
+              <td><Markdown source={vendor.kommentar}/></td>
             </tr>
           ))}
         </tbody>
