@@ -50,7 +50,6 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin("common.js"),
     new webpack.DefinePlugin({
       DEBUG: true,
       BACKEND_URL: "'http://SAMEHOST:8000/'",
