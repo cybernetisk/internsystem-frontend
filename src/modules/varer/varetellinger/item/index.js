@@ -1,7 +1,7 @@
 import angularModule from '../../angularModule'
 import VaretellingerItemController from './VaretellingerItemController'
 
-import './VaretellingerItemListView' // used by index.html
+import './VaretellingerItemListView' // used by List.js
 
 angularModule
   .config(function ($stateProvider) {

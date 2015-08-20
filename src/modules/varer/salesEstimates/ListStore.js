@@ -1,8 +1,8 @@
 import { Store, toImmutable } from 'nuclear-js'
 import {
-  RECEIVE_VENDORS_START,
-  RECEIVE_VENDORS_SUCCESS,
-  RECEIVE_VENDORS_FAILURE
+  RECEIVE_SALESESTIMATES_START,
+  RECEIVE_SALESESTIMATES_SUCCESS,
+  RECEIVE_SALESESTIMATES_FAILURE
 } from './actionTypes'
 
 export default Store({
@@ -15,26 +15,26 @@ export default Store({
   },
 
   initialize() {
-    this.on(RECEIVE_VENDORS_START, receiveVendorsStart)
-    this.on(RECEIVE_VENDORS_SUCCESS, receiveVendorsSuccess)
-    this.on(RECEIVE_VENDORS_FAILURE, receiveVendorsFailure)
+    this.on(RECEIVE_SALESESTIMATES_START, receiveSalesEstimatesStart)
+    this.on(RECEIVE_SALESESTIMATES_SUCCESS, receiveSalesEstimatesSuccess)
+    this.on(RECEIVE_SALESESTIMATES_FAILURE, receiveSalesEstimatesFailure)
   }
 })
 
-function receiveVendorsStart(state) {
+function receiveSalesEstimatesStart(state) {
   return state
     .set('items', toImmutable([]))
     .set('error', null)
     .set('isLoading', true)
 }
 
-function receiveVendorsSuccess(state, {items}) {
+function receiveSalesEstimatesSuccess(state, {items}) {
   return state
     .set('items', toImmutable(items))
     .set('isLoading', false)
 }
 
-function receiveVendorsFailure(state, err) {
+function receiveSalesEstimatesFailure(state, err) {
   console.log("Receiving list failed", err)
   return state
     .set('error', toImmutable(err))
