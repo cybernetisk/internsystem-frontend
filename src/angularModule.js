@@ -1,3 +1,6 @@
+import deferredGetter from './utils/deferredGetter'
+import {csrfToken} from './modules/auth/getters'
+
 export default angular.module('cyb.oko', [
   require('ui.router'),
   'cyb.varer',
@@ -11,8 +14,23 @@ export default angular.module('cyb.oko', [
         console.log("unknown route")
       })
 
-    $httpProvider.defaults.xsrfCookieName = 'csrftoken'
-    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken'
+    $httpProvider.interceptors.push(function () {
+      return {
+        request: function(config) {
+          // make sure the request contains the CSRF-token
+          // which is acquired by the /api/me-request
+          return new Promise((resolve, reject) => {
+            deferredGetter(csrfToken).then(csrfToken => {
+              if (csrfToken) {
+                config.headers['X-CSRFToken'] = csrfToken
+              }
+
+              resolve(config)
+            })
+          })
+        }
+      }
+    })
   })
 
   .factory("AuthRequireResolver", function ($q) {

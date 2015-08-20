@@ -2,21 +2,7 @@ import AuthStore from '../stores/AuthStore'
 import getters from '../getters'
 import reqwest from 'reqwest'
 import {api} from '../../../api'
-import reactor from '../../../reactor'
-
-function deferredGetter(getter) {
-  return new Promise(resolve => {
-    let res = reactor.evaluate(getter)
-    if (res !== null) {
-      resolve(res)
-    } else {
-      let destroyObserver = reactor.observe(getter, value => {
-        resolve(res)
-        destroyObserver()
-      })
-    }
-  })
-}
+import deferredGetter from '../../../utils/deferredGetter'
 
 class AuthService {
   getAuthData() {
