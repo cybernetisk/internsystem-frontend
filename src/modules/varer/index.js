@@ -4,7 +4,8 @@ import {Route} from 'react-router'
 
 import './angularModule'
 
-import './index/VarerIndexController'
+import Index from './index/Index'
+
 import './common/components/PrisDato'
 import './common/components/PrisMargin'
 import './common/components/VareMengde'
@@ -30,7 +31,7 @@ import AngularWrapper from '../../AngularWrapper'
 
 export default (
   <Route>
-    <Route name='varer' path='/varer' handler={AngularWrapper}/>
+    <Route name='varer' path='/varer' handler={Index}/>
     <Route name='varer/råvarer' path='/varer/råvarer' handler={AngularWrapper}/>
     <Route name='varer/salgsvarer' path='/varer/salgsvarer' handler={AngularWrapper}/>
     <Route name='varer/kontoer' path='/varer/kontoer' handler={AngularWrapper}/>
