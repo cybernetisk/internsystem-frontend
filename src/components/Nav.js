@@ -72,9 +72,6 @@ class Nav extends React.Component {
                   <span className='caret'></span>
                 </a>
                 <ul className='dropdown-menu' role='menu'>
-                  <NavLink to='varer'>Overview</NavLink>
-                  <li className='divider'></li>
-                  <li className='dropdown-header'>Modules</li>
                   <NavLink to='varer/accounts'>Account list</NavLink>
                   <NavLink to='varer/varetellinger'>Inventory counts</NavLink>
                   <NavLink to='varer/råvarer'>Inventory items</NavLink>
