@@ -38,7 +38,6 @@ module.exports = {
     'bootstrap-sass': '"bootstrap-sass"',
     'ui.router': '"ui.router"',
     'angular-resource': '"ngResource"',
-    'angular-animate': '"ngAnimate"',
     jquery: 'jQuery',
     mathjs: 'mathjs',
     ngReact: 'ngReact',

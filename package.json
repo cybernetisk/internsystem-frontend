@@ -4,7 +4,6 @@
   "description": "CYB varer",
   "devDependencies": {
     "angular": "~1.3.8",
-    "angular-animate": "~1.3.8",
     "angular-resource": "~1.3.8",
     "angular-ui-router": "~0.2.13",
     "babel": "^5.6.23",
