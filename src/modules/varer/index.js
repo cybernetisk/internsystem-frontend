@@ -9,7 +9,6 @@ import './common/components/PrisMargin'
 import './common/components/VareMengde'
 
 import './kontoer/KontoerController'
-import './kontoer/KontoerItemController'
 
 import './råvarer/RåvarerController'
 import './råvarer/RåvarerEditController'
