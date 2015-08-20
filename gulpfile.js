@@ -45,12 +45,9 @@ gulp.task("webpack:build-dev", function(callback) {
 });
 
 gulp.task("webpack-dev-server", function(callback) {
-    var realHost = '127.0.0.1'; // replace with real IP for remote connections, also modify BACKEND_URL in webpack
-    var bindHost = '127.0.0.1'; // replace with 0.0.0.0 to allow remote connections
+    var bindHost = '0.0.0.0'; // replace with 0.0.0.0 to allow remote connections
     var webpackPort = 3000;
-    var webpackHost = realHost + ':' + webpackPort;
-
-    webpackConfigDev.output.publicPath = 'http://' + webpackHost + '/';
+    var webpackHost = 'localhost' + ':' + webpackPort;
 
     new WebpackDevServer(webpack(webpackConfigDev), {
         historyApiFallback: true,

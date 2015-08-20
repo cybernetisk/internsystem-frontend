@@ -52,7 +52,7 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       DEBUG: true,
-      BACKEND_URL: "'http://SAMEHOST:8000/'",
+      BACKEND_URL: "'/'", // if using webpack-dev-server, it will use port 8000 of same hostname, see api.js
     }),
   ]
 };
