@@ -8,9 +8,7 @@ import './angularModule'
 
 import './index/VarerIndexController'
 import './common/CompileDirective'
-import './common/prisdato.directive.js'
 import './common/components/PrisDato'
-import './common/prismargin.directive.js'
 import './common/components/PrisMargin'
 import './common/components/VareMengde'
 
