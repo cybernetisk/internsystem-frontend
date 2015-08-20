@@ -3,9 +3,7 @@ import './app.scss'
 import {Route} from 'react-router'
 
 import './råvarer/RåvarerController'
-import './råvarer/RåvarerEditController'
 import './råvarer/RåvarerIndexListView'
-import './råvarer/RåvarerItemController'
 
 import './salgsvarer/SalgsvarerController'
 import './salgsvarer/SalgsvarerIndexListView'

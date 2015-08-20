@@ -1,4 +1,5 @@
 import React from 'react'
+import {admin} from '../../../api'
 
 import angularModule from '../angularModule'
 
@@ -42,11 +43,11 @@ export default class RåvarerIndexListView extends React.Component {
               <tr key={item.id}>
                 <td>
                   {item.kategori ? item.kategori + ': ' : ''}
-                  <a href={'varer/råvarer/'+item.id}>{item.navn}</a>
+                  <a href={admin(`varer/råvare/${item.id}/`)} target="_self">{item.navn}</a>
                   {item.status != 'OK' ? <span> <span className="status-text">{item.status}</span></span> : ''}
                   <br/>
-                  <a className="gruppe-link"
-                    href={'varer/kontoer/'+item.innkjopskonto.id}>{item.innkjopskonto.navn}</a>
+                  <a className="gruppe-link" target="_self"
+                    href={admin(`varer/konto/${item.innkjopskonto.id}/`)}>{item.innkjopskonto.navn}</a>
                 </td>
                 <td>
                   <VareMengde verdi={item.mengde} enhet={item.enhet}/>
@@ -75,7 +76,7 @@ export default class RåvarerIndexListView extends React.Component {
                   {item.salgspris ?
                     (item.salgspris.pris_intern ?
                       <span>
-                        <a href={'admin/varer/salgsvare/'+item.salgspris.id+'/'}
+                        <a href={admin(`varer/salgsvare/${item.salgspris.id}/`)}
                           target="_self">{price(item.salgspris.pris_intern, 0)}</a>
                         {item.innpris ?
                           <span>
@@ -90,7 +91,7 @@ export default class RåvarerIndexListView extends React.Component {
                   {item.salgspris ?
                     (item.salgspris.pris_ekstern ?
                       <span>
-                        <a href={'admin/varer/salgsvare/'+item.salgspris.id+'/'}
+                        <a href={admin(`varer/salgsvare/${item.salgspris.id}/`)}
                           target="_self">{price(item.salgspris.pris_ekstern, 0)}</a>
                         {item.innpris ?
                           <span>
