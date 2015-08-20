@@ -2,8 +2,6 @@ import './app.scss'
 
 import {Route} from 'react-router'
 
-import './angularModule'
-
 import './råvarer/RåvarerController'
 import './råvarer/RåvarerEditController'
 import './råvarer/RåvarerIndexListView'
