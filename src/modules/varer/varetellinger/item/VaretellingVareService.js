@@ -17,7 +17,7 @@ function createService() {
   })
 }
 
-let instance;
+let instance
 export function getService() {
   if (!instance) {
     instance = createService()

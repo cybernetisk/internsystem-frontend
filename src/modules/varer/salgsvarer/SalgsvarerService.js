@@ -54,7 +54,7 @@ function createService() {
   return SalgsvarerService
 }
 
-let instance;
+let instance
 export function getService() {
   if (!instance) {
     instance = createService()

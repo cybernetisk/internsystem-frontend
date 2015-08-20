@@ -36,7 +36,7 @@ function createService() {
   return VaretellingerService
 }
 
-let instance;
+let instance
 export function getService() {
   if (!instance) {
     instance = createService()

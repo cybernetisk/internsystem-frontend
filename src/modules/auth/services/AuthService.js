@@ -33,33 +33,33 @@ export default new AuthService()
 TODO: port to react/nuclear
 
 module.factory("AuthService", function($location) {
-  var roles = ['all']; // TODO: combine this in django somehow
+  var roles = ['all'] // TODO: combine this in django somehow
 
   return {
     isLoggedIn: function () {
-      return logged_in;
+      return logged_in
     },
 
     hasRole: function (role) {
-      return roles.indexOf('all') != -1;
+      return roles.indexOf('all') != -1
       // FIXME
-      //return roles.indexOf(role) != -1;
+      //return roles.indexOf(role) != -1
     },
 
     getUser: function () {
-      return user;
+      return user
     },
 
     getMetadata: function () {
-      return metadata;
+      return metadata
     },
 
     requireUser: function () {
       if (!logged_in) {
-        window.location.href = '/saml/?sso&url=' + encodeURIComponent($location.path());
-        return false;
+        window.location.href = '/saml/?sso&url=' + encodeURIComponent($location.path())
+        return false
       }
-      return true;
+      return true
     }
 
 */

@@ -10,32 +10,32 @@ export default class PrisMargin extends React.Component {
   }
 
   render() {
-    let eksmva = this.props.utPris / (1 + this.props.utMva / 100);
-    let margin = (((eksmva - this.props.innPris) / eksmva) * 100);
-    let theClass;
+    let eksmva = this.props.utPris / (1 + this.props.utMva / 100)
+    let margin = (((eksmva - this.props.innPris) / eksmva) * 100)
+    let theClass
 
     if (margin > 150)
-      theClass = 'prismargin-veryhigh';
+      theClass = 'prismargin-veryhigh'
     else if (margin > 100)
-      theClass = 'prismargin-higher';
+      theClass = 'prismargin-higher'
     else if (margin > 50)
-      theClass = 'prismargin-high';
+      theClass = 'prismargin-high'
     else if (margin > 20)
-      theClass = 'prismargin-ok';
+      theClass = 'prismargin-ok'
     else if (margin > 10)
-      theClass = 'prismargin-low';
+      theClass = 'prismargin-low'
     else if (margin < 0)
-      theClass = 'prismargin-subzero';
+      theClass = 'prismargin-subzero'
     else
-      theClass = 'prismargin-verylow';
+      theClass = 'prismargin-verylow'
 
-    margin = margin.toFixed(1).toString().replace('.', ',');
+    margin = margin.toFixed(1).toString().replace('.', ',')
 
     return (
       <span className={'prismargin ' + theClass}>
         {margin} %
         <span className="prismargin-kr"> ({price(eksmva - this.props.innPris, 2)})</span>
-      </span>);
+      </span>)
   }
 }
 

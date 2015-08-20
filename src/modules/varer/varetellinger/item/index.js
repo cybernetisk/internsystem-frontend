@@ -9,6 +9,6 @@ angularModule
       url: '/varer/varetellinger/:id',
       templateUrl: require('./item.html'),
       controller: 'VaretellingerItemController as ctrl'
-    });
+    })
   })
   .controller('VaretellingerItemController', VaretellingerItemController)
