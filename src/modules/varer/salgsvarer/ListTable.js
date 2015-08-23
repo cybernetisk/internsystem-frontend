@@ -1,17 +1,15 @@
 import React from 'react'
 
-import angularModule from '../angularModule'
-
 import PrisDato from '../common/components/PrisDato'
 import PrisMargin from '../common/components/PrisMargin'
 import VareMengde from '../common/components/VareMengde'
 
 import {price} from '../../../services/FormatService'
 
-export default class SalgsvarerIndexListView extends React.Component {
+export default class extends React.Component {
 
   static propTypes = {
-    itemsfiltered: React.PropTypes.array.isRequired
+    salesProducts: React.PropTypes.array.isRequired
   }
 
   render() {
@@ -28,7 +26,7 @@ export default class SalgsvarerIndexListView extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.itemsfiltered.reduce(function (prev, item) {
+          {this.props.salesProducts.reduce(function (prev, item) {
             if (lastGroup != item.salgskonto.gruppe) {
               lastGroup = item.salgskonto.gruppe
               prev.push((
@@ -104,5 +102,3 @@ export default class SalgsvarerIndexListView extends React.Component {
     )
   }
 }
-
-angularModule.value('SalgsvarerIndexListView', SalgsvarerIndexListView)
