@@ -63,6 +63,10 @@ class List extends React.Component {
         group: parseInt(newProps.query.group) || null
       })
     }
+
+    if (newProps.query.page != this.props.query.page) {
+      fetchSalesProducts(newProps.query.page || 1)
+    }
   }
 
   handleSearch(e) {
