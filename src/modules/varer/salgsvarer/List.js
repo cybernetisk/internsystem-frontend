@@ -15,6 +15,7 @@ import {
 
 import Loader from '../../../components/Loader'
 import Pagination from '../../../components/Pagination'
+import ListInputQ from './ListInputQ'
 import ListTable from './ListTable'
 
 export default
@@ -103,8 +104,7 @@ class List extends React.Component {
         <div className="row">
           <div className="form-group col-md-8">
             <label>Search</label>
-            <input className="form-control" type="textbox" value={this.props.filters.get('text')}
-              onChange={this.handleSearch}/>
+            <ListInputQ autofocus={true} onChange={this.handleSearch} value={this.props.filters.get('text')}/>
           </div>
 
           <div className="form-group col-md-4">
