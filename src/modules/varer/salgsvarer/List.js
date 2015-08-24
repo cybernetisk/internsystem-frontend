@@ -158,7 +158,7 @@ class List extends React.Component {
           </div>
         </div>
 
-        {salesProducts.length
+        {salesProducts.count()
           ? <ListTable salesProducts={salesProducts}/>
           : <p>No products matched search criteria.</p>}
 
@@ -170,15 +170,13 @@ class List extends React.Component {
   }
 
   render() {
-    let salesProducts = this.props.salesProducts.toJS()
-
     return (
       <div className="salgsvarer-index">
         <h1>Sales products</h1>
 
         <Loader {...this.props.salesProductsLoader}>No sales products exist.</Loader>
 
-        {!this.props.salesProductsLoader.isEmpty ? this.renderSalesProducts(salesProducts) : ''}
+        {!this.props.salesProductsLoader.isEmpty ? this.renderSalesProducts(this.props.salesProducts) : ''}
       </div>
     )
   }

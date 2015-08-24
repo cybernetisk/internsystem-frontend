@@ -1,10 +1,11 @@
 import React from 'react'
+import {admin} from '../../../api'
 
 import PrisDato from '../common/components/PrisDato'
-import PrisMargin from '../common/components/PrisMargin'
 import VareMengde from '../common/components/VareMengde'
 
 import {price} from '../../../services/FormatService'
+import * as renders from '../common/renders'
 
 export default class extends React.Component {
 
@@ -12,8 +13,63 @@ export default class extends React.Component {
     salesProducts: React.PropTypes.array.isRequired
   }
 
+  renderName(item) {
+    let category
+    if (item.get('kategori')) {
+      category = item.get('kategori') + ': '
+    }
+
+    let tag
+    if (item.get('status') != 'OK') {
+      tag = <span> <span className="status-text">{item.get('status')}</span></span>
+    }
+
+    return (
+      <div>
+        {category}
+        <a href={admin(`varer/salgsvare/${item.get('id')}/`)} target="_self">{item.get('navn')}</a>
+        {tag}
+        <br/>
+        <a className="gruppe-link" href={admin(`kontoer/${item.get('salgskonto').get('id')}`)}>
+          {item.get('salgskonto').get('navn')}
+        </a>
+      </div>
+    )
+  }
+
+  renderInventoryItems(item) {
+    if (!item.get('raavarer').count()) {
+      return
+    }
+
+    return (
+      <ul>
+        {item.get('raavarer').map(meta => {
+          let quantity
+          if (meta.get('mengde') != meta.get('raavare').get('mengde')) {
+            quantity = [<VareMengde verdi={meta.get('mengde')} enhet={meta.get('raavare').get('enhet')}/>, ' ']
+          }
+
+          let buyprice
+          if (meta.get('innpris')) {
+            buyprice = [' ', price(meta.get('innpris_accurate')), ' ',
+              <PrisDato dato={meta.get('innpris').get('dato')}/>]
+          }
+
+          return (
+            <li key={meta.get('id')}>
+              {quantity}
+              <a href={admin(`råvarer/${meta.get('raavare').get('id')}/`)}>{meta.get('raavare').get('navn')}</a>
+              {buyprice}
+            </li>)
+        })}
+      </ul>
+    )
+  }
+
   render() {
-    var lastGroup = null
+    let lastGroup
+
     return (
       <table className="table table-striped table-condensed varer-table">
         <thead>
@@ -26,73 +82,23 @@ export default class extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.salesProducts.reduce(function (prev, item) {
-            if (lastGroup != item.salgskonto.gruppe) {
-              lastGroup = item.salgskonto.gruppe
+          {this.props.salesProducts.reduce((prev, item) => {
+            if (lastGroup != item.get('salgskonto').get('gruppe')) {
+              lastGroup = item.get('salgskonto').get('gruppe')
               prev.push((
-                <tr className="group-row" key={item.salgskonto.gruppe}>
-                  <th colSpan="5">{item.salgskonto.gruppe}</th>
+                <tr className="group-row" key={item.get('salgskonto').get('gruppe')}>
+                  <th colSpan="5">{item.get('salgskonto').get('gruppe')}</th>
                 </tr>
               ))
             }
 
             prev.push((
-              <tr key={item.id}>
-                <td>
-                  {item.kategori ? item.kategori + ': ' : ''}
-                  {/*<a ui-sref="salgsvare({id:item.id})">{item.navn}</a>*/}
-                  <a href={'admin/varer/salgsvare/' + item.id + '/'} target="_self">{item.navn}</a>
-                  {item.status != 'OK' ? <span> <span className="status-text">{item.status}</span></span> : ''}
-                  <br/>
-                  <a className="gruppe-link" href={'admin/kontoer/'+item.salgskonto.id}
-                    title={item.salgskonto.navn}>{item.salgskonto.navn}</a>
-                </td>
+              <tr key={item.get('id')}>
+                <td>{this.renderName(item)}</td>
                 <td>{item.kassenr}</td>
-                <td>
-                  {item.salgspris && item.salgspris.pris_intern ?
-                    <span>
-                      {price(item.salgspris.pris_intern, 0)}
-                      {item.innpris ?
-                        <span>
-                          <br/>
-                          <PrisMargin innPris={item.innpris}
-                            utPris={item.salgspris.pris_intern}
-                            utMva={item.salgspris.mva}/>
-                       </span> : ''}
-                    </span> : 'See normal'}
-                </td>
-                <td>
-                  {item.salgspris && item.salgspris.pris_ekstern ?
-                    <span>
-                      {price(item.salgspris.pris_ekstern, 0)}
-                      {item.innpris ?
-                        <span>
-                          <br/>
-                          <PrisMargin innPris={item.innpris}
-                            utPris={item.salgspris.pris_ekstern}
-                            utMva={item.salgspris.mva}/>
-                        </span> : ''}
-                    </span> : 'No sales'}
-                </td>
-                <td>
-                  <ul>
-                    {item.raavarer.map(function (meta) {
-                      return (
-                        <li key={meta.id}>
-                          {/*<span ng-show="::meta.raavare.kategori">{meta.raavare.kategori}: </span>*/}
-                          {/*<span ng-if="meta.mengde == meta.raavare.mengde">1 stk</span>*/}
-                          {meta.mengde != meta.raavare.mengde ?
-                            <span><VareMengde verdi={meta.mengde} enhet={meta.raavare.enhet}/> </span> : ''}
-                          <a href={'varer/råvarer/'+meta.raavare.id}>{meta.raavare.navn}</a>
-
-                          {meta.innpris ?
-                            <span>
-                              &nbsp;({price(meta.innpris_accurate)} <PrisDato dato={meta.innpris.dato}/>)
-                            </span> : ''}
-                        </li>)
-                    })}
-                  </ul>
-                </td>
+                <td>{renders.renderInternalPrice(item)}</td>
+                <td>{renders.renderNormalPrice(item)}</td>
+                <td>{this.renderInventoryItems(item)}</td>
               </tr>))
 
             return prev
