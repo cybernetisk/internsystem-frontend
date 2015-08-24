@@ -3,6 +3,8 @@ import './List.scss'
 import React from 'react'
 import { nuclearComponent } from 'nuclear-js-react-addons'
 
+import {updateQuery} from '../common/functions'
+
 import {fetchSalesProducts, updateFilters} from './actions'
 import {
   activePage,
@@ -40,6 +42,7 @@ class List extends React.Component {
 
   constructor(props) {
     super(props)
+    this.updateQuery = updateQuery.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleGroupChange = this.handleGroupChange.bind(this)
     this.handleOutdatedChange = this.handleOutdatedChange.bind(this)
@@ -106,21 +109,6 @@ class List extends React.Component {
 
     let page = newPage !== 1 ? newPage : undefined
     this.updateQuery('page', page)
-  }
-
-  updateQuery(name, value) {
-    if (value === null) {
-      value = undefined
-    }
-
-    let query = this.context.router.getCurrentQuery()
-    query[name] = value
-
-    this.context.router.transitionTo(
-      this.context.router.getCurrentPathname(),
-      this.context.router.getCurrentParams(),
-      query
-    )
   }
 
   renderSalesProducts(salesProducts) {
