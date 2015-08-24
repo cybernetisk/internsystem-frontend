@@ -1,4 +1,6 @@
-import {getService as RåvarerService} from '../../råvarer/RåvarerService'
+import Immutable from 'immutable'
+
+import {getInventoryItems, fillBuyPrice, fillSellPrice} from '../../råvarer/service'
 import {getService as VaretellingerService} from '../VaretellingerService'
 import {getService as VaretellingVareService} from '../item/VaretellingVareService'
 
@@ -127,8 +129,13 @@ export default function ($rootScope, $filter, $scope, $stateParams) {
 
     console.log(raw_tellinger)
 
-    RåvarerService().getList(null, self.data.tid).then(function (res) {
-      raw_raavarer = res.results.sort(VarerHelper.getSorter('innkjopskonto', true))
+    // TODO: should not do any pagination here, it might corrupt the result
+    getInventoryItems(1).then(res => {
+      let date = self.data.tid ? new Date(self.data.tid) : null
+      raw_raavarer = Immutable.fromJS(res.results)
+        .map(item => fillBuyPrice(item, date))
+        .map(item => fillSellPrice(item, date))
+        .sort(VarerHelper.getSorterImmutable('innkjopskonto', true)).toJS()
       parseData()
       $scope.$apply()
     })

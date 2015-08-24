@@ -74,7 +74,7 @@ class Nav extends React.Component {
                 <ul className='dropdown-menu' role='menu'>
                   <NavLink to='varer/accounts'>Account list</NavLink>
                   <NavLink to='varer/varetellinger'>Inventory counts</NavLink>
-                  <NavLink to='varer/råvarer'>Inventory items</NavLink>
+                  <NavLink to='varer/inventory'>Inventory items</NavLink>
                   <NavLink to='varer/salesestimates'>Sales estimates</NavLink>
                   <NavLink to='varer/products'>Sales products</NavLink>
                   <NavLink to='varer/vendors'>Vendor list</NavLink>

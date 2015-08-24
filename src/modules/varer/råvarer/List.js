@@ -3,16 +3,16 @@ import './List.scss'
 import React from 'react'
 import { nuclearComponent } from 'nuclear-js-react-addons'
 
-import {fetchSalesProducts, updateFilters} from './actions'
+import {fetchInventoryItems, updateFilters} from './actions'
 import {
   activePage,
   filters,
   pages,
-  salesProductsLoader,
+  inventoryItemsLoader,
   selectGroups,
-  filteredSalesProducts,
+  filteredInventoryItems,
 } from './getters'
-import * as consts from './../consts'
+import * as consts from '../consts'
 
 import Loader from '../../../components/Loader'
 import Pagination from '../../../components/Pagination'
@@ -25,8 +25,8 @@ export default
   selectGroups,
   filters,
   pages,
-  salesProducts: filteredSalesProducts,
-  salesProductsLoader
+  inventoryItems: filteredInventoryItems,
+  inventoryItemsLoader
 })
 class List extends React.Component {
 
@@ -46,7 +46,7 @@ class List extends React.Component {
   }
 
   componentDidMount() {
-    fetchSalesProducts(this.props.query.page || 1)
+    fetchInventoryItems(this.props.query.page || 1)
 
     // timeout is needed because this is done after getting initial state but before adding observer
     // the timeout causes the observer to be added first
@@ -75,7 +75,7 @@ class List extends React.Component {
     }
 
     if (newProps.query.page != this.props.query.page) {
-      fetchSalesProducts(newProps.query.page || 1)
+      fetchIventoryItems(newProps.query.page || 1)
     }
   }
 
@@ -102,7 +102,7 @@ class List extends React.Component {
   }
 
   handlePageChange(newPage) {
-    fetchSalesProducts(newPage)
+    fetchIventoryItems(newPage)
 
     let page = newPage !== 1 ? newPage : undefined
     this.updateQuery('page', page)
@@ -123,7 +123,7 @@ class List extends React.Component {
     )
   }
 
-  renderSalesProducts(salesProducts) {
+  renderInventoryItems() {
     return (
       <div>
         <div className="row">
@@ -158,9 +158,9 @@ class List extends React.Component {
           </div>
         </div>
 
-        {salesProducts.length
-          ? <ListTable salesProducts={salesProducts}/>
-          : <p>No products matched search criteria.</p>}
+        {this.props.inventoryItems.count()
+          ? <ListTable inventoryItems={this.props.inventoryItems}/>
+          : <p>No items matched search criteria.</p>}
 
         {this.props.pages > 1
           ? <Pagination pages={this.props.pages} active={this.props.activePage} onChange={this.handlePageChange}/>
@@ -170,15 +170,13 @@ class List extends React.Component {
   }
 
   render() {
-    let salesProducts = this.props.salesProducts.toJS()
-
     return (
-      <div className="salgsvarer-index">
-        <h1>Sales products</h1>
+      <div className="råvarer-index">
+        <h1>Inventory items</h1>
 
-        <Loader {...this.props.salesProductsLoader}>No sales products exist.</Loader>
+        <Loader {...this.props.inventoryItemsLoader}>No inventory items exist.</Loader>
 
-        {!this.props.salesProductsLoader.isEmpty ? this.renderSalesProducts(salesProducts) : ''}
+        {!this.props.inventoryItemsLoader.isEmpty ? this.renderInventoryItems() : ''}
       </div>
     )
   }

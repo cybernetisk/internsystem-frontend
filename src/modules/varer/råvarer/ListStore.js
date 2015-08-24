@@ -1,6 +1,6 @@
 import { Store, toImmutable } from 'nuclear-js'
 import actionTypes from './actionTypes'
-import * as consts from './../consts'
+import * as consts from '../consts'
 
 const initialFilters = {
   text: '',
@@ -21,11 +21,11 @@ export default Store({
   },
 
   initialize() {
-    this.on(actionTypes.SALESPRODUCTS_FILTERS, updateFilters)
-    this.on(actionTypes.SALESPRODUCTS_FILTERS_CLEAR, clearFilters)
-    this.on(actionTypes.RECEIVE_SALESPRODUCTS_START, receiveSalesProductsStart)
-    this.on(actionTypes.RECEIVE_SALESPRODUCTS_SUCCESS, receiveSalesProductsSuccess)
-    this.on(actionTypes.RECEIVE_SALESPRODUCTS_FAILURE, receiveSalesProductsFailure)
+    this.on(actionTypes.INVENTORYITEMS_FILTERS, updateFilters)
+    this.on(actionTypes.INVENTORYITEMS_FILTERS_CLEAR, clearFilters)
+    this.on(actionTypes.RECEIVE_INVENTORYITEMS_START, receiveInventoryItemsStart)
+    this.on(actionTypes.RECEIVE_INVENTORYITEMS_SUCCESS, receiveInventoryItemsSuccess)
+    this.on(actionTypes.RECEIVE_INVENTORYITEMS_FAILURE, receiveInventoryItemsFailure)
   }
 })
 
@@ -39,7 +39,7 @@ function clearFilters(state) {
     .set('filters', toImmutable(initialFilters))
 }
 
-function receiveSalesProductsStart(state, {page}) {
+function receiveInventoryItemsStart(state, {page}) {
   return state
     .set('activePage', page)
     .set('items', toImmutable([]))
@@ -47,14 +47,14 @@ function receiveSalesProductsStart(state, {page}) {
     .set('isLoading', true)
 }
 
-function receiveSalesProductsSuccess(state, {response}) {
+function receiveInventoryItemsSuccess(state, {response}) {
   return state
     .set('count', toImmutable(response.count))
     .set('items', toImmutable(response.results))
     .set('isLoading', false)
 }
 
-function receiveSalesProductsFailure(state, {error}) {
+function receiveInventoryItemsFailure(state, {error}) {
   console.log("Receiving list failed", error)
   return state
     .set('error', toImmutable(error))

@@ -1,27 +1,25 @@
 import React from 'react'
 import {admin} from '../../../api'
 
-import angularModule from '../angularModule'
-
 import PrisDato from '../common/components/PrisDato'
 import PrisMargin from '../common/components/PrisMargin'
 import VareMengde from '../common/components/VareMengde'
 
 import {price} from '../../../services/FormatService'
 
-export default class RåvarerIndexListView extends React.Component {
+export default class extends React.Component {
 
   static propTypes = {
-    itemsfiltered: React.PropTypes.array.isRequired
+    inventoryItems: React.PropTypes.array.isRequired
   }
 
   render() {
     var lastGroup = null
     return (
-      <table className="table table-condensed table-striped varer-table">
+      <table className="table table-striped table-condensed varer-table">
         <thead>
           <tr>
-            <th>Raw material</th>
+            <th>Name</th>
             <th>Quantity</th>
             <th>Price ex. VAT</th>
             <th>Internal price</th>
@@ -29,7 +27,9 @@ export default class RåvarerIndexListView extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.itemsfiltered.reduce(function (prev, item) {
+          {this.props.inventoryItems.reduce(function (prev, item) {
+            item = item.toJS()
+
             if (lastGroup != item.innkjopskonto.gruppe) {
               lastGroup = item.innkjopskonto.gruppe
               prev.push((
@@ -106,8 +106,7 @@ export default class RåvarerIndexListView extends React.Component {
             return prev
           }, [])}
         </tbody>
-      </table>)
+      </table>
+    )
   }
 }
-
-angularModule.value('RåvarerIndexListView', RåvarerIndexListView)

@@ -2,7 +2,7 @@ import {toImmutable} from 'nuclear-js'
 import {pageLimit} from './service'
 import {extractGroupsImmutable, getFilter, getSorterImmutable} from '../common/VarerHelper'
 
-import * as consts from './consts'
+import * as consts from './../consts'
 
 export const listStore = ['varerSalesProducts']
 
