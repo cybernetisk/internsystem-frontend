@@ -78,7 +78,7 @@ export default class extends React.Component {
             <th>Register#</th>
             <th>Internal price</th>
             <th>Normal price</th>
-            <th>Raw materials (ex. VAT)</th>
+            <th>Inventory items (ex. VAT)</th>
           </tr>
         </thead>
         <tbody>
