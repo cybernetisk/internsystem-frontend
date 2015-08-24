@@ -12,6 +12,7 @@ import {
   selectGroups,
   filteredSalesProducts,
 } from './getters'
+import * as consts from './consts'
 
 import Loader from '../../../components/Loader'
 import Pagination from '../../../components/Pagination'
@@ -41,6 +42,7 @@ class List extends React.Component {
     super(props)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleGroupChange = this.handleGroupChange.bind(this)
+    this.handleOutdatedChange = this.handleOutdatedChange.bind(this)
   }
 
   componentDidMount() {
@@ -57,10 +59,18 @@ class List extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.query.q != this.props.query.q || newProps.query.group != this.props.query.group) {
+    if (newProps.query.q != this.props.query.q
+      || newProps.query.group != this.props.query.group
+      || newProps.query.outdated != this.props.query.outdated) {
+      let outdated = newProps.query.outdated
+      if (typeof outdated === 'undefined' || !consts.outdatedOptions.has(newProps.query.outdated)) {
+        outdated = consts.outdatedOptionsDefault
+      }
+
       updateFilters({
         text: newProps.query.q || '',
-        group: parseInt(newProps.query.group) || null
+        group: parseInt(newProps.query.group) || null,
+        outdated
       })
     }
 
@@ -78,6 +88,17 @@ class List extends React.Component {
     let group = parseInt(e.target.value) || null
     updateFilters({group})
     this.updateQuery('group', group)
+  }
+
+  handleOutdatedChange(e) {
+    let outdated = e.target.value
+    updateFilters({outdated})
+
+    if (outdated === consts.outdatedOptionsDefault) {
+      outdated = undefined
+    }
+
+    this.updateQuery('outdated', outdated)
   }
 
   handlePageChange(newPage) {
@@ -106,12 +127,12 @@ class List extends React.Component {
     return (
       <div>
         <div className="row">
-          <div className="form-group col-md-8">
+          <div className="form-group col-md-6">
             <label>Search</label>
             <ListInputQ autofocus={true} onChange={this.handleSearch} value={this.props.filters.get('text')}/>
           </div>
 
-          <div className="form-group col-md-4">
+          <div className="form-group col-md-3">
             <label>Group</label>
             <select className="form-control" onChange={this.handleGroupChange}
               value={this.props.filters.get('group', '')}>
@@ -122,6 +143,16 @@ class List extends React.Component {
                     <option value={group.get('id')}>{group.get('navn')}</option>
                   ))}
                 </optgroup>
+              ))}
+            </select>
+          </div>
+
+          <div className="form-group col-md-3">
+            <label>Outdated products</label>
+            <select className="form-control" onChange={this.handleOutdatedChange}
+              value={this.props.filters.get('outdated', '')}>
+              {consts.outdatedOptions.map((option, key) => (
+                <option value={key}>{option.get('text')}</option>
               ))}
             </select>
           </div>

@@ -1,9 +1,11 @@
 import { Store, toImmutable } from 'nuclear-js'
 import actionTypes from './actionTypes'
+import * as consts from './consts'
 
 const initialFilters = {
   text: '',
-  group: null
+  group: null,
+  outdated: consts.outdatedOptionsDefault
 }
 
 export default Store({

@@ -2,6 +2,8 @@ import {toImmutable} from 'nuclear-js'
 import {pageLimit} from './service'
 import {extractGroupsImmutable, getFilter, getSorterImmutable} from '../common/VarerHelper'
 
+import * as consts from './consts'
+
 export const listStore = ['varerSalesProducts']
 
 export const activePage = [
@@ -66,6 +68,8 @@ export const filteredSalesProducts = [
   filters,
   groups,
   (salesProducts, filters, groups) => {
+    salesProducts = salesProducts.filter(consts.outdatedOptions.get(filters.get('outdated')).get('filter'))
+
     if (filters.get('text', '') !== '') {
       salesProducts = toImmutable(getFilter()(salesProducts.toJS(), filters.get('text')))
     }
