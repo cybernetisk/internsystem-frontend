@@ -11,10 +11,8 @@ export default class extends React.Component {
     item: React.PropTypes.object.isRequired
   }
 
-  getDefaultProps() {
-    return {
-      isInternal: false
-    }
+  static defaultProps = {
+    isInternal: false
   }
 
   getNoPriceText() {
@@ -49,7 +47,7 @@ export default class extends React.Component {
     let pricePropertyName = this.getPricePropertyName()
 
     if (!this.props.item.get('salgspris') || !this.props.item.get('salgspris').get(pricePropertyName)) {
-      return this.getNoPriceText()
+      return <span>{this.getNoPriceText()}</span>
     }
 
     return (
