@@ -6,9 +6,9 @@ import './varetellinger'
 
 import AngularWrapper from '../../AngularWrapper'
 import Accounts from './accounts'
-import InventoryItems from './råvarer'
+import InventoryItems from './inventoryItems'
 import SalesEstimates from './salesEstimates'
-import SalesProducts from './salgsvarer'
+import SalesProducts from './salesProducts'
 import Vendors from './vendors'
 
 export default (

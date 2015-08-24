@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 
-import {getInventoryItems, fillBuyPrice, fillSellPrice} from '../../råvarer/service'
+import {getInventoryItems, fillBuyPrice, fillSellPrice} from '../../inventoryItems/service'
 import {getService as VaretellingerService} from '../VaretellingerService'
 import {getService as VaretellingVareService} from '../item/VaretellingVareService'
 
