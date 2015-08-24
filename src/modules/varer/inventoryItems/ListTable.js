@@ -82,13 +82,13 @@ export default class extends React.Component {
 
   renderInternalPrice(item) {
     if (item.get('salgspris')) {
-      return renders.renderInternalPrice(item)
+      return <SellPrice item={item} isInternal={true}/>
     }
   }
 
   renderNormalPrice(item) {
     if (item.get('salgspris')) {
-      return renders.renderNormalPrice(item)
+      return <SellPrice item={item} isInternal={false}/>
     }
   }
 
@@ -123,8 +123,8 @@ export default class extends React.Component {
                 <td>{this.renderName(immutableItem)}</td>
                 <td>{this.renderQuantity(immutableItem)}</td>
                 <td>{this.renderBuyPrice(immutableItem)}</td>
-                <td><SellPrice item={immutableItem} isInternal={true}/></td>
-                <td><SellPrice item={immutableItem} isInternal={false}/></td>
+                <td>{this.renderInternalPrice(immutableItem)}</td>
+                <td>{this.renderNormalPrice(immutableItem)}</td>
               </tr>))
             return prev
           }, [])}
