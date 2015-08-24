@@ -52,8 +52,16 @@ export default class extends React.Component {
 
           let buyprice
           if (meta.get('innpris')) {
-            buyprice = [' ', price(meta.get('innpris_accurate')), ' ',
-              <PrisDato dato={meta.get('innpris').get('dato')}/>]
+            buyprice = (
+              <span>
+                {' '}
+                (
+                {price(meta.get('innpris_accurate'))}
+                {' '}
+                <PrisDato dato={meta.get('innpris').get('dato')}/>
+                )
+              </span>
+            )
           }
 
           return (
