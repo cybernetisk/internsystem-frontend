@@ -106,25 +106,23 @@ export default class extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.inventoryItems.reduce((prev, immutableItem) => {
-            let item = immutableItem.toJS()
-
-            if (lastGroup != item.innkjopskonto.gruppe) {
-              lastGroup = item.innkjopskonto.gruppe
+          {this.props.inventoryItems.reduce((prev, item) => {
+            if (lastGroup !== item.get('innkjopskonto').get('gruppe')) {
+              lastGroup = item.get('innkjopskonto').get('gruppe')
               prev.push((
-                <tr className="group-row" key={item.innkjopskonto.gruppe}>
-                  <th colSpan="5">{item.innkjopskonto.gruppe}</th>
+                <tr className="group-row" key={item.get('innkjopskonto').get('gruppe')}>
+                  <th colSpan="5">{item.get('innkjopskonto').get('gruppe')}</th>
                 </tr>
               ))
             }
 
             prev.push((
-              <tr key={item.id}>
-                <td>{this.renderName(immutableItem)}</td>
-                <td>{this.renderQuantity(immutableItem)}</td>
-                <td>{this.renderBuyPrice(immutableItem)}</td>
-                <td>{this.renderInternalPrice(immutableItem)}</td>
-                <td>{this.renderNormalPrice(immutableItem)}</td>
+              <tr key={item.get('id')}>
+                <td>{this.renderName(item)}</td>
+                <td>{this.renderQuantity(item)}</td>
+                <td>{this.renderBuyPrice(item)}</td>
+                <td>{this.renderInternalPrice(item)}</td>
+                <td>{this.renderNormalPrice(item)}</td>
               </tr>))
             return prev
           }, [])}
