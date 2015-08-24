@@ -16,7 +16,7 @@ import * as consts from './../consts'
 
 import Loader from '../../../components/Loader'
 import Pagination from '../../../components/Pagination'
-import ListInputQ from './ListInputQ'
+import ListInputQ from './../common/components/TextInput'
 import ListTable from './ListTable'
 
 export default

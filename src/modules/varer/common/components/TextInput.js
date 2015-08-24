@@ -10,13 +10,13 @@ export default class extends React.Component {
 
   componentDidMount() {
     if (this.props.autofocus) {
-      React.findDOMNode(this.refs.q).focus()
+      React.findDOMNode(this.refs.input).focus()
     }
   }
 
   render() {
     return (
-      <input className="form-control" type="text" value={this.props.value} onChange={this.props.onChange} ref="q"/>
+      <input className="form-control" type="text" value={this.props.value} onChange={this.props.onChange} ref="input"/>
     )
   }
 }
