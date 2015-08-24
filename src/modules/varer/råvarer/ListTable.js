@@ -4,9 +4,9 @@ import {admin} from '../../../api'
 import PrisDato from '../common/components/PrisDato'
 import PrisMargin from '../common/components/PrisMargin'
 import VareMengde from '../common/components/VareMengde'
+import SellPrice from '../common/components/SellPrice'
 
 import {price} from '../../../services/FormatService'
-import * as renders from '../common/renders'
 
 export default class extends React.Component {
 
@@ -123,8 +123,8 @@ export default class extends React.Component {
                 <td>{this.renderName(immutableItem)}</td>
                 <td>{this.renderQuantity(immutableItem)}</td>
                 <td>{this.renderBuyPrice(immutableItem)}</td>
-                <td>{this.renderInternalPrice(immutableItem)}</td>
-                <td>{this.renderNormalPrice(immutableItem)}</td>
+                <td><SellPrice item={immutableItem} isInternal={true}/></td>
+                <td><SellPrice item={immutableItem} isInternal={false}/></td>
               </tr>))
             return prev
           }, [])}

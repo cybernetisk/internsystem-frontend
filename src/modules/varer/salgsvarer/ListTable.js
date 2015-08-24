@@ -3,9 +3,9 @@ import {admin} from '../../../api'
 
 import PrisDato from '../common/components/PrisDato'
 import VareMengde from '../common/components/VareMengde'
+import SellPrice from '../common/components/SellPrice'
 
 import {price} from '../../../services/FormatService'
-import * as renders from '../common/renders'
 
 export default class extends React.Component {
 
@@ -104,8 +104,8 @@ export default class extends React.Component {
               <tr key={item.get('id')}>
                 <td>{this.renderName(item)}</td>
                 <td>{item.get('kassenr')}</td>
-                <td>{renders.renderInternalPrice(item)}</td>
-                <td>{renders.renderNormalPrice(item)}</td>
+                <td><SellPrice item={item} isInternal={true}/></td>
+                <td><SellPrice item={item} isInternal={false}/></td>
                 <td>{this.renderInventoryItems(item)}</td>
               </tr>))
 
