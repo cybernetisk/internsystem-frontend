@@ -95,7 +95,7 @@ export default class extends React.Component {
             prev.push((
               <tr key={item.get('id')}>
                 <td>{this.renderName(item)}</td>
-                <td>{item.kassenr}</td>
+                <td>{item.get('kassenr')}</td>
                 <td>{renders.renderInternalPrice(item)}</td>
                 <td>{renders.renderNormalPrice(item)}</td>
                 <td>{this.renderInventoryItems(item)}</td>
