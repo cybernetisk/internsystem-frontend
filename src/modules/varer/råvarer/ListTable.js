@@ -6,11 +6,90 @@ import PrisMargin from '../common/components/PrisMargin'
 import VareMengde from '../common/components/VareMengde'
 
 import {price} from '../../../services/FormatService'
+import * as renders from '../common/renders'
 
 export default class extends React.Component {
 
   static propTypes = {
     inventoryItems: React.PropTypes.array.isRequired
+  }
+
+  renderName(item) {
+    let category
+    if (item.get('kategori')) {
+      category = item.get('kategori') + ': '
+    }
+
+    let tag
+    if (item.get('status') != 'OK') {
+      tag = <span> <span className="status-text">{item.get('status')}</span></span>
+    }
+
+    return (
+      <div>
+        {category}
+        <a href={admin(`varer/råvare/${item.get('id')}/`)} target="_self">{item.get('navn')}</a>
+        {tag}
+        <br/>
+        <a className="gruppe-link" href={admin(`konto/${item.get('innkjopskonto').get('id')}`)}>
+          {item.get('innkjopskonto').get('navn')}
+        </a>
+      </div>
+    )
+  }
+
+  renderQuantity(item) {
+    let pieces
+    if (item.get('antall') !== 1) {
+      pieces = <span className="vare-antall"><br />({item.get('antall')} pcs)</span>
+    }
+
+    let spoilage
+    if (item.get('mengde_svinn')) {
+      spoilage = (
+        <span className="svinn-info">
+          <br/>
+          ca. <VareMengde verdi={item.get('mengde_svinn')} enhet={item.get('enhet')}/> = spoilage
+        </span>
+      )
+    }
+
+    return [
+      <VareMengde verdi={item.get('mengde')} enhet={item.get('enhet')}/>,
+      pieces,
+      spoilage
+    ]
+  }
+
+  renderBuyPrice(item) {
+    if (item.get('innpris')) {
+      let pant
+      if (item.get('innpris').get('pant')) {
+        // TODO: translate to english
+        pant = <span className="pris-pant"><br/>+ {price(item.get('innpris').get('pant'))} i pant</span>
+      }
+
+      return (
+        <span>
+          {price(item.get('innpris').get('pris'))}
+          {pant}
+          <br />
+          <PrisDato dato={item.get('innpris').get('dato')}/>
+        </span>
+      )
+    }
+  }
+
+  renderInternalPrice(item) {
+    if (item.get('salgspris')) {
+      return renders.renderInternalPrice(item)
+    }
+  }
+
+  renderNormalPrice(item) {
+    if (item.get('salgspris')) {
+      return renders.renderNormalPrice(item)
+    }
   }
 
   render() {
@@ -27,8 +106,8 @@ export default class extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.inventoryItems.reduce(function (prev, item) {
-            item = item.toJS()
+          {this.props.inventoryItems.reduce((prev, immutableItem) => {
+            let item = immutableItem.toJS()
 
             if (lastGroup != item.innkjopskonto.gruppe) {
               lastGroup = item.innkjopskonto.gruppe
@@ -41,67 +120,11 @@ export default class extends React.Component {
 
             prev.push((
               <tr key={item.id}>
-                <td>
-                  {item.kategori ? item.kategori + ': ' : ''}
-                  <a href={admin(`varer/råvare/${item.id}/`)} target="_self">{item.navn}</a>
-                  {item.status != 'OK' ? <span> <span className="status-text">{item.status}</span></span> : ''}
-                  <br/>
-                  <a className="gruppe-link" target="_self"
-                    href={admin(`varer/konto/${item.innkjopskonto.id}/`)}>{item.innkjopskonto.navn}</a>
-                </td>
-                <td>
-                  <VareMengde verdi={item.mengde} enhet={item.enhet}/>
-                  {item.antall != 1 ?
-                    <span className="vare-antall"><br />
-                      ({item.antall} pcs)
-                    </span> : ''}
-                  {item.mengde_svinn ?
-                    <span className="svinn-info"><br/>
-                        ca. <VareMengde verdi={item.mengde_svinn} enhet={item.enhet}/> = spoilage
-                    </span> : ''}
-                </td>
-                <td>
-                  {item.innpris ?
-                    <span>
-                      {price(item.innpris.pris)}
-                      {item.innpris.pant ?
-                        <span className="pris-pant"><br/>
-                          + {price(item.innpris.pant)} i pant {/* TODO: translate */}
-                        </span> : ''}
-                      <br />
-                      <PrisDato dato={item.innpris.dato}/>
-                    </span> : ''}
-                </td>
-                <td>
-                  {item.salgspris ?
-                    (item.salgspris.pris_intern ?
-                      <span>
-                        <a href={admin(`varer/salgsvare/${item.salgspris.id}/`)}
-                          target="_self">{price(item.salgspris.pris_intern, 0)}</a>
-                        {item.innpris ?
-                          <span>
-                            <br/>
-                            <PrisMargin innPris={item.innpris.pris}
-                              utPris={item.salgspris.pris_intern}
-                              utMva={item.salgspris.mva}/>
-                          </span> : ''}
-                      </span> : 'See normal') : ''}
-                </td>
-                <td>
-                  {item.salgspris ?
-                    (item.salgspris.pris_ekstern ?
-                      <span>
-                        <a href={admin(`varer/salgsvare/${item.salgspris.id}/`)}
-                          target="_self">{price(item.salgspris.pris_ekstern, 0)}</a>
-                        {item.innpris ?
-                          <span>
-                            <br/>
-                            <PrisMargin innPris={item.innpris.pris}
-                              utPris={item.salgspris.pris_ekstern}
-                              utMva={item.salgspris.mva}/>
-                          </span> : ''}
-                      </span> : 'No sales') : ''}
-                </td>
+                <td>{this.renderName(immutableItem)}</td>
+                <td>{this.renderQuantity(immutableItem)}</td>
+                <td>{this.renderBuyPrice(immutableItem)}</td>
+                <td>{this.renderInternalPrice(immutableItem)}</td>
+                <td>{this.renderNormalPrice(immutableItem)}</td>
               </tr>))
             return prev
           }, [])}

@@ -25,9 +25,14 @@ function renderPrice(item, pricePropertyName, noPriceText) {
 
 function renderMargin(item, price) {
   if (item.get('innpris')) {
+    let inPrice = item.get('innpris')
+    if (typeof inPrice === 'object') {
+      inPrice = inPrice.get('pris')
+    }
+
     return [
       <br/>,
-      <PrisMargin innPris={item.get('innpris')}
+      <PrisMargin innPris={inPrice}
         utPris={price}
         utMva={item.get('salgspris').get('mva')}/>
     ]
