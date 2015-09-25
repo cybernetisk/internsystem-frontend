@@ -57,7 +57,7 @@ export default class VaretellingerItemListView extends React.Component {
                 <tr key={'raavare-' + raavare.id}>
                   <td>
                     {raavare.kategori ? raavare.kategori + ': ' : ''}
-                    <a href={'varer/råvarer/'+raavare.id}>{raavare.navn}</a>
+                    <a href={'admin/varer/råvare/'+raavare.id+'/'}>{raavare.navn}</a>
                     {raavare.status != 'OK' ?
                       <span> <span className="status-text">{raavare.status}</span></span> : ''}
                   </td>
