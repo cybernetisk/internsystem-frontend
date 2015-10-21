@@ -37,6 +37,12 @@ gulp build-dev # samme som over, men kompilerer ikke på nytt, og kjører ikke s
 ```bash
 # eller:
 gulp build # bygger produksjonsversjonen
+
+```
+
+API-adressen til backend kan overstyres via environment variabel slik:
+```bash
+BACKEND_URL="https://internt.cyb.no/" gulp
 ```
 
 ### Kobling mot backend
