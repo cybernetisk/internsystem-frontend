@@ -37,7 +37,7 @@ export function fillSellPrice(inventoryItem, priceDate = null) {
 
 function getLastPossible(list, date = null) {
   if (date !== null) {
-    return list.findLast(item => date <= new Date(item.get('dato'))) || list.last()
+    return list.findLast(item => date >= new Date(item.get('dato'))) || list.last()
   } else {
     return list.last()
   }
