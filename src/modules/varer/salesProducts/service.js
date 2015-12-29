@@ -1,7 +1,7 @@
 import reqwest from 'reqwest'
 import {api} from '../../../api'
 
-export const pageLimit = 300
+export const pageLimit = 500
 
 export function getSalesProducts(page) {
   return reqwest({
