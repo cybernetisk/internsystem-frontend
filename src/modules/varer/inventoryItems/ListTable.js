@@ -28,10 +28,10 @@ export default class extends React.Component {
     return (
       <div>
         {category}
-        <a href={admin(`varer/råvare/${item.get('id')}/`)} target="_self">{item.get('navn')}</a>
+        <a href={admin(`varer/råvare/${item.get('id')}/`)}>{item.get('navn')}</a>
         {tag}
         <br/>
-        <a className="gruppe-link" href={admin(`konto/${item.get('innkjopskonto').get('id')}`)}>
+        <a className="gruppe-link" href={admin(`varer/konto/${item.get('innkjopskonto').get('id')}/`)}>
           {item.get('innkjopskonto').get('navn')}
         </a>
       </div>

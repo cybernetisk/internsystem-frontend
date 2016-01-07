@@ -30,7 +30,7 @@ export default class extends React.Component {
         <a href={admin(`varer/salgsvare/${item.get('id')}/`)} target="_self">{item.get('navn')}</a>
         {tag}
         <br/>
-        <a className="gruppe-link" href={admin(`kontoer/${item.get('salgskonto').get('id')}`)}>
+        <a className="gruppe-link" href={admin(`varer/konto/${item.get('salgskonto').get('id')}/`)}>
           {item.get('salgskonto').get('navn')}
         </a>
       </div>
@@ -73,7 +73,7 @@ export default class extends React.Component {
           return (
             <li key={meta.get('id')}>
               {quantity}
-              <a href={admin(`råvarer/${meta.get('raavare').get('id')}/`)}>{meta.get('raavare').get('navn')}</a>
+              <a href={admin(`varer/råvare/${meta.get('raavare').get('id')}/`)}>{meta.get('raavare').get('navn')}</a>
               {tag}
               {buyprice}
             </li>)
