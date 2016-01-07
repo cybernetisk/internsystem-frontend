@@ -66,8 +66,8 @@ export default class extends React.Component {
 
 
           let tag
-          if (item.get('raavare').get('status') != 'OK') {
-            tag = <span> <span className="status-text">{item.get('raavare').get('status')}</span></span>
+          if (meta.get('raavare').get('status') != 'OK') {
+            tag = <span> <span className="status-text">{meta.get('raavare').get('status')}</span></span>
           }
 
           return (
