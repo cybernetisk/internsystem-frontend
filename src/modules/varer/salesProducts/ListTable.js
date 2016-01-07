@@ -64,10 +64,17 @@ export default class extends React.Component {
             )
           }
 
+
+          let tag
+          if (item.get('raavare').get('status') != 'OK') {
+            tag = <span> <span className="status-text">{item.get('raavare').get('status')}</span></span>
+          }
+
           return (
             <li key={meta.get('id')}>
               {quantity}
               <a href={admin(`råvarer/${meta.get('raavare').get('id')}/`)}>{meta.get('raavare').get('navn')}</a>
+              {tag}
               {buyprice}
             </li>)
         })}
