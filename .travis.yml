@@ -8,3 +8,6 @@ deploy:
   script: scripts/deploy.sh
   on:
     branch: master
+cache:
+  directories:
+    - node_modules
