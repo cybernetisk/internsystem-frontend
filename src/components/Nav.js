@@ -42,7 +42,7 @@ class Nav extends React.Component {
     } else {
       return (
         <ul className='nav navbar-nav navbar-right'>
-          <NavLink to='auth.login'>Log in</NavLink>
+          <NavLink to='auth.login'>Log in with UiO-account</NavLink>
         </ul>
       )
     }
