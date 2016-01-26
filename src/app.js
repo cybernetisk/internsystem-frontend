@@ -15,6 +15,7 @@ import Admin from './admin'
 import Auth from './modules/auth'
 import Cal from './modules/cal'
 import Varer from './modules/varer'
+import Voucher from './modules/voucher'
 import Z from './modules/z'
 
 class App extends React.Component {
@@ -30,6 +31,7 @@ let routes = (
     {Auth}
     {Cal}
     {Varer}
+    {Voucher}
     {Z}
   </Route>
 )

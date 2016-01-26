@@ -103,6 +103,17 @@ class Nav extends React.Component {
               </NavDropdown>
               <NavDropdown>
                 <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
+                  Vouchers
+                  <span className='caret'></span>
+                </a>
+                <ul className='dropdown-menu' role='menu'>
+                  <NavLink to='voucher/stats'>Overview</NavLink>
+                  <NavLink to='voucher/uselogs'>Use logs</NavLink>
+                  <NavLink to='voucher/worklogs'>Work logs</NavLink>
+                </ul>
+              </NavDropdown>
+              <NavDropdown>
+                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
                   Other
                   <span className='caret'></span>
                 </a>
