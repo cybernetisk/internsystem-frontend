@@ -95,14 +95,14 @@ class List extends React.Component {
         <h1>Calendar</h1>
         <p>Calendar-file: <a href={calUrl}>{calUrl}</a></p>
         <Loader
-          isLoading={this.props.semesters.get('loading')}
+          isLoading={this.props.semesters.get('isLoading')}
           error={this.props.semesters.get('error')}
           isEmpty={this.props.semesters.get('items').isEmpty()}>
           No semesters have event information.
         </Loader>
         {this.renderSemesters()}
         <Loader
-          isLoading={this.props.list.get('loading')}
+          isLoading={this.props.list.get('isLoading')}
           error={this.props.list.get('error')}
           isEmpty={this.props.list.get('items').isEmpty()}>
           No events exists for selected semester.

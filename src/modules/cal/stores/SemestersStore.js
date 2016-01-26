@@ -6,7 +6,7 @@ export default Store({
     return toImmutable({
       error: null,
       items: [],
-      loading: true
+      isLoading: true
     })
   },
 
@@ -21,18 +21,18 @@ function receiveSemestersStart(state) {
   return state
     .set('error', null)
     .set('items', toImmutable([]))
-    .set('loading', true)
+    .set('isLoading', true)
 }
 
 function receiveSemestersSuccess(state, {response}) {
   return state
     .set('items', toImmutable(response))
-    .set('loading', false)
+    .set('isLoading', false)
 }
 
 function receiveSemestersFailure(state, {error}) {
   console.log("Receiving list failed", error)
   return state
     .set('error', toImmutable(error))
-    .set('loading', false)
+    .set('isLoading', false)
 }
