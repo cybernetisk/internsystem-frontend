@@ -22,9 +22,15 @@ export default class List extends React.Component {
 
     return (
       <div>
-        <p>This is currently an experimental feature - see <a
-          href="http://bong.cyb.no/">bong.cyb.no</a> for the real list
+        <p>
+          If you have any problems go
+          to <a href="https://cybernetisk.slack.com/messages/webgruppa/details/">#webgruppa</a> on Slack
         </p>
+        <div className="pull-right">
+          <Link to="voucher/worklogs" className="btn btn-success">Register work</Link>
+          {' '}
+          <Link to="voucher/uselogs" className="btn btn-primary">Use vouchers</Link>
+        </div>
         <RouteHandler />
         <h2>Semester list</h2>
         <table className="table table-striped">

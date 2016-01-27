@@ -106,7 +106,7 @@ export default class UseVouchers extends React.Component {
                   onChange={this.handleChange('comment')}/>
               </div>
               <div className="col-sm-2">
-                <input type="submit" className="form-control btn-warning" value="Use vouchers"/>
+                <input type="submit" className="form-control btn-primary" value="Use vouchers"/>
               </div>
             </div>
           </form>

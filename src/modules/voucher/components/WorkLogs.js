@@ -57,8 +57,8 @@ export default class List extends React.Component {
       <div>
         <h1>Vouchers - work logs</h1>
         <p>
-          This is currently an experimental feature -
-          see <a href="http://bong.cyb.no/">bong.cyb.no</a> for the real list
+          If you have any problems go
+          to <a href="https://cybernetisk.slack.com/messages/webgruppa/details/">#webgruppa</a> on Slack
         </p>
         <NewWorkLog />
         <Loader
