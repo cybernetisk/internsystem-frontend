@@ -21,10 +21,22 @@ export function fetchUseLogs(page = 1) {
   })
 }
 
+export function fetchWallets(data = {}) {
+  dispatchAsync(VoucherService.getWallets(data), {
+    request: actionTypes.RECEIVE_WALLETS_START,
+    success: actionTypes.RECEIVE_WALLETS_SUCCESS,
+    failure: actionTypes.RECEIVE_WALLETS_FAILURE
+  })
+}
+
 export function fetchWorkLogs(page = 1) {
   dispatchAsync(VoucherService.getWorkLogs(page), {
     request: actionTypes.RECEIVE_WORKLOGS_START,
     success: actionTypes.RECEIVE_WORKLOGS_SUCCESS,
     failure: actionTypes.RECEIVE_WORKLOGS_FAILURE
   })
+}
+
+export function setActiveSemester(semester) {
+  reactor.dispatch(actionTypes.SET_ACTIVE_SEMESTER, {semester})
 }

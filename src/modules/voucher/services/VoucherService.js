@@ -10,14 +10,10 @@ class VoucherService {
     })
   }
 
-  getWallets(username = null, cardnum = null, semester = null) {
+  getWallets(data = {}) {
     return reqwest({
       url: api('voucher/wallets'),
-      data: {
-        username,
-        cardnum,
-        semester
-      },
+      data,
       type: 'json'
     })
   }

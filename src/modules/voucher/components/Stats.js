@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, RouteHandler } from 'react-router'
 import { nuclearComponent } from 'nuclear-js-react-addons'
 
 import getters from '../getters'
@@ -23,6 +23,8 @@ class List extends React.Component {
 
     return [
       <p>This is currently an experimental feature - see <a href="http://bong.cyb.no/">bong.cyb.no</a> for the real list</p>,
+      <RouteHandler />,
+      <h2>Semester list</h2>,
       <table className="table table-striped">
         <thead>
           <tr>
@@ -36,7 +38,7 @@ class List extends React.Component {
         <tbody>
           {this.props.stats.get('data').toList().toJS().map((wallet) => (
             <tr key={wallet.semester.id}>
-              <td>{wallet.semester.year} {wallet.semester.semester}</td>
+              <td><Link to="voucher/semester" params={{semesterId: wallet.semester.id}}>{wallet.semester.year} {wallet.semester.semester}</Link></td>
               <td>{wallet.sum_balance}</td>
               <td>{wallet.sum_vouchers}</td>
               <td>{wallet.sum_vouchers_used}</td>
@@ -44,7 +46,7 @@ class List extends React.Component {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table>,
     ]
   }
 
