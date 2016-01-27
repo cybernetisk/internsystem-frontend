@@ -20,7 +20,7 @@ reactor.registerStores({
 
 module.exports = (
   <Route>
-    <Route name="voucher/stats" path="/voucher/stats" handler={Stats}>
+    <Route name="voucher/stats" path="/voucher" handler={Stats}>
       <Route name="voucher/semester" path="/voucher/semester/:semesterId" handler={Semester} />
     </Route>
     <Route name="voucher/uselogs" path="/voucher/uselogs" handler={UseLogs} />
