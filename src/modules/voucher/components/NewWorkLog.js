@@ -75,7 +75,7 @@ export default class NewWorkLog extends React.Component {
               </div>
               <div className="col-sm-2">
                 <input type="number" className="form-control" placeholder="Hours" value={this.state.hours}
-                  onChange={this.handleChange('hours')}/>
+                  onChange={this.handleChange('hours')} step="0.01" min="0"/>
               </div>
               <div className="col-sm-2">
                 <input type="text" className="form-control" placeholder="Optional comment" value={this.state.comment}
