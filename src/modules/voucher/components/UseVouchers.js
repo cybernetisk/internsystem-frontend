@@ -16,11 +16,15 @@ export default class UseVouchers extends React.Component {
     this.updateAvailable = this.updateAvailable.bind(this)
 
     this.state = {
-      username: '',
+      username: this.props.default_username,
       vouchers: '',
       vouchers_available: 'unknown',
       comment: '',
       isSending: false
+    }
+
+    if (this.state.username !== '') {
+      this.updateAvailable(this.state.username)
     }
   }
 

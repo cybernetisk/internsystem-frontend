@@ -9,11 +9,11 @@ import * as actions from '../actions'
 import Loader from '../../../components/Loader'
 import UseVouchers from './UseVouchers'
 
-import { isLoggedIn } from '../../auth/getters'
+import { userDetails } from '../../auth/getters'
 
 @connect(props => ({
   uselogs: getters.uselogs,
-  isLoggedIn,
+  userDetails,
 }))
 export default class List extends React.Component {
   componentDidMount() {
@@ -70,9 +70,9 @@ export default class List extends React.Component {
   }
 
   renderNew() {
-    if (this.props.isLoggedIn) {
+    if (this.props.userDetails) {
       return (
-        <UseVouchers />
+        <UseVouchers default_username={this.props.userDetails.username} />
       )
     }
 
