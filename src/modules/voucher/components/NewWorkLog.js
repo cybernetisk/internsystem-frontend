@@ -82,7 +82,7 @@ export default class NewWorkLog extends React.Component {
                   onChange={this.handleChange('comment')}/>
               </div>
               <div className="col-sm-2">
-                <input type="submit" className="form-control btn-success" value="Register"/>
+                <input type="submit" className="form-control btn-success" value="Register work"/>
               </div>
             </div>
           </form>
