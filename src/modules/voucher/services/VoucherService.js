@@ -61,17 +61,36 @@ class VoucherService {
     })
   }
 
-  registerWork(user, date_worked, work_group, hours, comment) {
+  registerWork(username, date_worked, work_group, hours, comment) {
     return new Promise((resolve, reject) => {
       deferredGetter(csrfToken).then(csrfToken => {
         reqwest({
           url: api('voucher/worklogs'),
           method: 'post',
           data: {
-            user,
+            user: username,
             date_worked,
             work_group,
             hours,
+            comment
+          },
+          headers: {
+            'X-CSRFToken': csrfToken
+          },
+          type: 'json'
+        }).then(resolve, reject)
+      })
+    })
+  }
+
+  useVouchers(username, vouchers, comment) {
+    return new Promise((resolve, reject) => {
+      deferredGetter(csrfToken).then(csrfToken => {
+        reqwest({
+          url: api(`voucher/users/${username}/use_vouchers`),
+          method: 'post',
+          data: {
+            vouchers,
             comment
           },
           headers: {

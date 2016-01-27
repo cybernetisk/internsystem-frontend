@@ -27,7 +27,6 @@ export default class NewWorkLog extends React.Component {
 
   handleChange(field) {
     return event => {
-      console.log('the event', event)
       this.setState({[field]: event.target ? event.target.value : event})
     }
   }

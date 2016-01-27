@@ -7,6 +7,7 @@ import getters from '../getters'
 import * as actions from '../actions'
 
 import Loader from '../../../components/Loader'
+import UseVouchers from './UseVouchers'
 
 @connect(props => ({
   uselogs: getters.uselogs,
@@ -27,10 +28,6 @@ export default class List extends React.Component {
 
     return (
       <div>
-        <p>
-          This is currently an experimental feature -
-          see <a href="http://bong.cyb.no/">bong.cyb.no</a> for the real list
-        </p>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -62,6 +59,11 @@ export default class List extends React.Component {
     return (
       <div>
         <h1>Vouchers - use logs</h1>
+        <p>
+          This is currently an experimental feature -
+          see <a href="http://bong.cyb.no/">bong.cyb.no</a> for the real list
+        </p>
+        <UseVouchers />
         <Loader
           isLoading={this.props.uselogs.get('isLoading')}
           error={this.props.uselogs.get('error')}
