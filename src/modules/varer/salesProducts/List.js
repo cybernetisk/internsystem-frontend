@@ -1,7 +1,7 @@
 import './List.scss'
 
 import React from 'react'
-import { nuclearComponent } from 'nuclear-js-react-addons'
+import {connect} from 'nuclear-js-react-addons'
 
 import {updateQuery} from '../common/functions'
 
@@ -21,16 +21,15 @@ import Pagination from '../../../components/Pagination'
 import ListInputQ from './../common/components/TextInput'
 import ListTable from './ListTable'
 
-export default
-@nuclearComponent({
+@connect(props => ({
   activePage,
   selectGroups,
   filters,
   pages,
   salesProducts: filteredSalesProducts,
   salesProductsLoader
-})
-class List extends React.Component {
+}))
+export default class List extends React.Component {
 
   static propTypes = {
     query: React.PropTypes.object.isRequired

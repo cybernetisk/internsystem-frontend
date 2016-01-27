@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router'
-import {nuclearComponent} from 'nuclear-js-react-addons'
+import {connect} from 'nuclear-js-react-addons'
 
 import {updateQuery} from '../../common/functions'
 import moment from '../../../../moment'
@@ -17,14 +17,13 @@ import {
   numPages
 } from './getters'
 
-export default
-@nuclearComponent({
+@connect(props => ({
   list,
   listLoader,
   activePage,
   numPages,
-})
-class List extends React.Component {
+}))
+export default class List extends React.Component {
 
   constructor(props) {
     super(props)

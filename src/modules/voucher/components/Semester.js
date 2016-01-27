@@ -1,17 +1,16 @@
 import React from 'react'
-import { nuclearComponent } from 'nuclear-js-react-addons'
+import {connect} from 'nuclear-js-react-addons'
 
 import getters from '../getters'
 import * as actions from '../actions'
 
 import Loader from '../../../components/Loader'
 
-export default
-@nuclearComponent({
+@connect(props => ({
   wallets: getters.wallets,
   semester: getters.current_semester,
-})
-class Semester extends React.Component {
+}))
+export default class Semester extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       actions.fetchWallets({semester: this.props.params.semesterId})
@@ -31,7 +30,7 @@ class Semester extends React.Component {
       return
     }
 
-    return [
+    return (
       <table className="table table-striped">
         <thead>
           <tr>
@@ -54,7 +53,7 @@ class Semester extends React.Component {
           ))}
         </tbody>
       </table>
-    ]
+    )
   }
 
   render() {

@@ -1,17 +1,16 @@
 import React from 'react'
 import { Link, RouteHandler } from 'react-router'
-import { nuclearComponent } from 'nuclear-js-react-addons'
+import { connect } from 'nuclear-js-react-addons'
 
 import getters from '../getters'
 import * as actions from '../actions'
 
 import Loader from '../../../components/Loader'
 
-export default
-@nuclearComponent({
+@connect(props => ({
   stats: getters.stats,
-})
-class List extends React.Component {
+}))
+export default class List extends React.Component {
   componentDidMount() {
     actions.fetchStats()
   }
@@ -21,37 +20,42 @@ class List extends React.Component {
       return
     }
 
-    return [
-      <p>This is currently an experimental feature - see <a href="http://bong.cyb.no/">bong.cyb.no</a> for the real list</p>,
-      <RouteHandler />,
-      <h2>Semester list</h2>,
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Semester</th>
-            <th>Balance</th>
-            <th>In</th>
-            <th>Used</th>
-            <th>Users</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.stats.get('data').toList().toJS().map((wallet) => (
-            <tr key={wallet.semester.id}>
-              <td><Link to="voucher/semester" params={{semesterId: wallet.semester.id}}>{wallet.semester.year} {wallet.semester.semester}</Link></td>
-              <td>{wallet.sum_balance}</td>
-              <td>{wallet.sum_vouchers}</td>
-              <td>{wallet.sum_vouchers_used}</td>
-              <td>{wallet.count_users}</td>
+    return (
+      <div>
+        <p>This is currently an experimental feature - see <a
+          href="http://bong.cyb.no/">bong.cyb.no</a> for the real list
+        </p>
+        <RouteHandler />
+        <h2>Semester list</h2>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Semester</th>
+              <th>Balance</th>
+              <th>In</th>
+              <th>Used</th>
+              <th>Users</th>
             </tr>
-          ))}
-        </tbody>
-      </table>,
-    ]
+          </thead>
+          <tbody>
+            {this.props.stats.get('data').toList().toJS().map((wallet) => (
+              <tr key={wallet.semester.id}>
+                <td><Link to="voucher/semester"
+                  params={{semesterId: wallet.semester.id}}>{wallet.semester.year} {wallet.semester.semester}</Link>
+                </td>
+                <td>{wallet.sum_balance}</td>
+                <td>{wallet.sum_vouchers}</td>
+                <td>{wallet.sum_vouchers_used}</td>
+                <td>{wallet.count_users}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )
   }
 
   render() {
-    console.log(this.props.stats.get('data'))
     return (
       <div>
         <h1>Vouchers</h1>

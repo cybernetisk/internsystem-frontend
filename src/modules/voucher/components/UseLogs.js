@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { nuclearComponent } from 'nuclear-js-react-addons'
+import { connect } from 'nuclear-js-react-addons'
 import moment from '../../../moment'
 
 import getters from '../getters'
@@ -8,11 +8,10 @@ import * as actions from '../actions'
 
 import Loader from '../../../components/Loader'
 
-export default
-@nuclearComponent({
+@connect(props => ({
   uselogs: getters.uselogs,
-})
-class List extends React.Component {
+}))
+export default class List extends React.Component {
   componentDidMount() {
     actions.fetchUseLogs(1)
   }
@@ -26,35 +25,37 @@ class List extends React.Component {
       return
     }
 
-    return [
-      <p>
-        This is currently an experimental feature -
-        see <a href="http://bong.cyb.no/">bong.cyb.no</a> for the real list
-      </p>,
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Time used</th>
-            <th>Person</th>
-            <th>Vouchers used</th>
-            <th>Current balance</th>
-            <th>Comment</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.uselogs.get('data').get('results').toJS().map((uselog) => (
-            <tr key={uselog.id}>
-              <td>{this.renderDateSpent(uselog.date_spent)}</td>
-              <td>{uselog.wallet.user.username} ({uselog.wallet.user.realname})</td>
-              <td>{uselog.vouchers}</td>
-              <td>{uselog.wallet.cached_balance}</td>
-              <td>{uselog.comment}</td>
+    return (
+      <div>
+        <p>
+          This is currently an experimental feature -
+          see <a href="http://bong.cyb.no/">bong.cyb.no</a> for the real list
+        </p>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Time used</th>
+              <th>Person</th>
+              <th>Vouchers used</th>
+              <th>Current balance</th>
+              <th>Comment</th>
             </tr>
-          ))}
-        </tbody>
-      </table>,
-      <p>TODO: pagination (currently limited to 50 items)!</p>
-    ]
+          </thead>
+          <tbody>
+            {this.props.uselogs.get('data').get('results').toJS().map((uselog) => (
+              <tr key={uselog.id}>
+                <td>{this.renderDateSpent(uselog.date_spent)}</td>
+                <td>{uselog.wallet.user.username} ({uselog.wallet.user.realname})</td>
+                <td>{uselog.vouchers}</td>
+                <td>{uselog.wallet.cached_balance}</td>
+                <td>{uselog.comment}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p>TODO: pagination (currently limited to 50 items)!</p>
+      </div>
+    )
   }
 
   render() {

@@ -1,7 +1,7 @@
 import moment from '../../../moment'
 import React from 'react'
 import { Link } from 'react-router'
-import { nuclearComponent } from 'nuclear-js-react-addons'
+import { connect } from 'nuclear-js-react-addons'
 
 import {api} from '../../../api'
 import getters from '../getters'
@@ -10,12 +10,11 @@ import * as actions from '../actions'
 import Loader from '../../../components/Loader'
 import Tag from './Tag'
 
-export default
-@nuclearComponent({
+@connect(props => ({
   list: getters.list,
   semesters: getters.semesters,
-})
-class List extends React.Component {
+}))
+export default class List extends React.Component {
   componentDidMount() {
     actions.fetchList(this.props.list.get('year'), this.props.list.get('semester'))
     actions.fetchSemesters()

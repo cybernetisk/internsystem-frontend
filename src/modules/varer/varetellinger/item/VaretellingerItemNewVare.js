@@ -21,10 +21,10 @@ export default class extends React.Component {
   saveMe(e) {
     e.preventDefault()
     this.props.item.store({
-      antall: math.eval(this.refs.antall.getDOMNode().value.replace(",", ".")),
-      antallpant: math.eval(this.refs.antallpant.getDOMNode().value.replace(",", ".")),
-      kommentar: this.refs.kommentar.getDOMNode().value,
-      sted: this.refs.sted.getDOMNode().value
+      antall: math.eval(this.refs.antall.value.replace(",", ".")),
+      antallpant: math.eval(this.refs.antallpant.value.replace(",", ".")),
+      kommentar: this.refs.kommentar.value,
+      sted: this.refs.sted.value
     })
   }
 

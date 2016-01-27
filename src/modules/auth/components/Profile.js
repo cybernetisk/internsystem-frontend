@@ -1,6 +1,6 @@
 import React from 'react'
 //import { Link } from 'react-router'
-import { nuclearComponent } from 'nuclear-js-react-addons'
+import { connect } from 'nuclear-js-react-addons'
 
 import AuthService from '../services/AuthService'
 
@@ -9,11 +9,10 @@ import { authdata } from '../getters'
 
 import PageLoader from '../../../components/PageLoader'
 
-export default
-@nuclearComponent({
+@connect(props => ({
   authdata
-})
-class Profile extends React.Component {
+}))
+export default class Profile extends React.Component {
   renderIncomplete() {
     return (
       <PageLoader

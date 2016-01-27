@@ -1,17 +1,16 @@
 import React from 'react'
-import { nuclearComponent } from 'nuclear-js-react-addons'
+import { connect } from 'nuclear-js-react-addons'
 
 import {fetchAccounts} from './actions'
 import {accounts, accountsLoader} from './getters'
 
 import Loader from '../../../components/Loader'
 
-export default
-@nuclearComponent({
+@connect(props => ({
   accounts,
   accountsLoader
-})
-class List extends React.Component {
+}))
+export default class List extends React.Component {
 
   componentDidMount() {
     fetchAccounts()

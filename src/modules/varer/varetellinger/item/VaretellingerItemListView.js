@@ -7,16 +7,18 @@ import VaretellingerItemNewVare from './VaretellingerItemNewVare'
 
 import {price, antall} from '../../../../services/FormatService'
 
-export default class VaretellingerItemListView extends React.Component {
+//export default class VaretellingerItemListView extends React.Component {
 
-  static propTypes = {
+var VaretellingerItemListView = React.createClass({
+
+  propTypes: {
     raavarerfiltered: React.PropTypes.array.isRequired,
     vis_varer: React.PropTypes.string.isRequired,
     newItem: React.PropTypes.func.isRequired,
     newitems: React.PropTypes.object.isRequired
-  }
+  },
 
-  render() {
+  render: function() {
     var self = this
     var gruppe = null
     return (
@@ -115,6 +117,6 @@ export default class VaretellingerItemListView extends React.Component {
         </tbody>
       </table>)
   }
-}
+})
 
 angularModule.value('VaretellingerItemListView', VaretellingerItemListView)

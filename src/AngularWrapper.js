@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import './angularModule'
 import jquery from 'jquery'
 
@@ -29,7 +30,7 @@ export default class AngularWrapper extends React.Component {
       angularHasBootstrapped = true
     }
 
-    React.findDOMNode(this.refs.angular).appendChild(angularRootElement)
+    ReactDOM.findDOMNode(this.refs.angular).appendChild(angularRootElement)
 
     if (!firstRun) {
       // force update of new location

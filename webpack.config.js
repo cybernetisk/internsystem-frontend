@@ -42,6 +42,7 @@ module.exports = {
     mathjs: 'mathjs',
     ngReact: 'ngReact',
     react: 'React',
+    'react-dom': 'ReactDOM',
   },
   resolve: {
     modulesDirectories: ['node_modules'],

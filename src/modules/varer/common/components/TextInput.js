@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 export default class extends React.Component {
 
@@ -10,7 +11,7 @@ export default class extends React.Component {
 
   componentDidMount() {
     if (this.props.autofocus) {
-      React.findDOMNode(this.refs.input).focus()
+      ReactDOM.findDOMNode(this.refs.input).focus()
     }
   }
 

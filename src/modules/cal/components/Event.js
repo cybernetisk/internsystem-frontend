@@ -1,7 +1,7 @@
 import moment from '../../../moment'
 import React from 'react'
 import { Link } from 'react-router'
-import { nuclearComponent } from 'nuclear-js-react-addons'
+import { connect } from 'nuclear-js-react-addons'
 
 import {api} from '../../../api'
 
@@ -10,11 +10,10 @@ import getters from '../getters'
 
 import PageLoader from '../../../components/PageLoader'
 
-export default
-@nuclearComponent({
+@connect(props => ({
   event: getters.event
-})
-class Event extends React.Component {
+}))
+export default class Event extends React.Component {
   componentDidMount() {
     actions.fetchEvent(this.props.params.eventId)
   }

@@ -3,6 +3,7 @@ import 'bootstrap-sass'
 
 import domready from 'domready'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import Router from 'react-router'
 import { DefaultRoute, Link, Route, RouteHandler } from 'react-router'
 
@@ -39,7 +40,7 @@ let routes = (
 let rootInstance
 Router.run(routes, Router.HistoryLocation, Handler => {
   domready(() => {
-    rootInstance = React.render(<Handler/>, document.getElementById('react_container'))
+    rootInstance = ReactDOM.render(<Handler/>, document.getElementById('react_container'))
   })
 })
 

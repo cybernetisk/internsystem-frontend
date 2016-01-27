@@ -1,16 +1,15 @@
 import React from 'react'
-import { nuclearComponent } from 'nuclear-js-react-addons'
+import {connect} from 'nuclear-js-react-addons'
 
 import {fetchSalesEstimates} from './actions'
 import {salesEstimates} from './getters'
 
 import Loader from '../../../components/Loader'
 
-export default
-@nuclearComponent({
+@connect(props => ({
   salesEstimates
-})
-class List extends React.Component {
+}))
+export default class List extends React.Component {
 
   componentDidMount() {
     fetchSalesEstimates()

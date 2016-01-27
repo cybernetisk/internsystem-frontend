@@ -1,21 +1,22 @@
 import React from 'react'
 import { Link, RouteHandler } from 'react-router'
-import { provideReactor } from 'nuclear-js-react-addons'
+import { Provider } from 'nuclear-js-react-addons'
+import reactor from '../reactor'
 
 import Nav from './Nav'
 
-export default
-@provideReactor
-class Root extends React.Component {
+export default class Root extends React.Component {
 
   render() {
     return (
-      <div>
-        <Nav />
-        <div className='container'>
-          <RouteHandler />
+      <Provider reactor={reactor}>
+        <div>
+          <Nav />
+          <div className='container'>
+            <RouteHandler />
+          </div>
         </div>
-      </div>
+      </Provider>
     )
   }
 }

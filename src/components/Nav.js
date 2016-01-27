@@ -1,18 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { nuclearComponent } from 'nuclear-js-react-addons'
+import { connect } from 'nuclear-js-react-addons'
 
 import { authdata, userDetails, isLoggedIn } from '../modules/auth/getters'
 import NavDropdown from './NavDropdown'
 import NavLink from './NavLink'
 
-export default
-@nuclearComponent({
+@connect(props => ({
   authdata,
   userDetails,
   isLoggedIn,
-})
-class Nav extends React.Component {
+}))
+export default class Nav extends React.Component {
   renderProfileMenu() {
     if (this.props.authdata.get('isLoading')) {
       return (
