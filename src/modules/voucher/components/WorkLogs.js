@@ -6,6 +6,7 @@ import getters from '../getters'
 import * as actions from '../actions'
 
 import Loader from '../../../components/Loader'
+import NewWorkLog from './NewWorkLog'
 
 @connect(props => ({
   worklogs: getters.worklogs,
@@ -22,10 +23,6 @@ export default class List extends React.Component {
 
     return (
       <div>
-        <p>
-          This is currently an experimental feature -
-          see <a href="http://bong.cyb.no/">bong.cyb.no</a> for the real list
-        </p>
         <table className="table table-striped">
           <thead>
             <tr>
@@ -59,6 +56,11 @@ export default class List extends React.Component {
     return (
       <div>
         <h1>Vouchers - work logs</h1>
+        <p>
+          This is currently an experimental feature -
+          see <a href="http://bong.cyb.no/">bong.cyb.no</a> for the real list
+        </p>
+        <NewWorkLog />
         <Loader
           isLoading={this.props.worklogs.get('isLoading')}
           error={this.props.worklogs.get('error')}
