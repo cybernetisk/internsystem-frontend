@@ -9,8 +9,11 @@ import * as actions from '../actions'
 import Loader from '../../../components/Loader'
 import UseVouchers from './UseVouchers'
 
+import { isLoggedIn } from '../../auth/getters'
+
 @connect(props => ({
   uselogs: getters.uselogs,
+  isLoggedIn,
 }))
 export default class List extends React.Component {
   componentDidMount() {
@@ -39,19 +42,43 @@ export default class List extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.uselogs.get('data').get('results').toJS().map((uselog) => (
-              <tr key={uselog.id}>
-                <td>{this.renderDateSpent(uselog.date_spent)}</td>
-                <td>{uselog.wallet.user.username} ({uselog.wallet.user.realname})</td>
-                <td>{uselog.vouchers}</td>
-                <td>{uselog.wallet.cached_balance}</td>
-                <td>{uselog.comment}</td>
-              </tr>
-            ))}
+            {this.props.uselogs.get('data').get('results').toJS().map((uselog) => {
+              let who = uselog.wallet.user.username
+              if (uselog.wallet.user.realname) {
+                who += ` (${uselog.wallet.user.realname})`
+              }
+              return (
+                <tr key={uselog.id}>
+                  <td>{this.renderDateSpent(uselog.date_spent)}</td>
+                  <td>{who}</td>
+                  <td>{uselog.vouchers}</td>
+                  <td>{uselog.wallet.cached_balance}</td>
+                  <td>
+                    {uselog.comment}
+                    {uselog.issuing_user.username == uselog.wallet.user.username
+                      ? ''
+                      : <div className="small text-muted">Registered by {uselog.issuing_user.username}</div>}
+                  </td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
         <p>TODO: pagination (currently limited to 50 items)!</p>
       </div>
+    )
+  }
+
+  renderNew() {
+    if (this.props.isLoggedIn) {
+      return (
+        <UseVouchers />
+      )
+    }
+
+    return (
+      <div className="alert alert-warning">You have to <Link to='auth.login'>log in</Link> to register
+        vouchers usage.</div>
     )
   }
 
@@ -63,7 +90,7 @@ export default class List extends React.Component {
           If you have any problems go
           to <a href="https://cybernetisk.slack.com/messages/webgruppa/details/">#webgruppa</a> on Slack
         </p>
-        <UseVouchers />
+        {this.renderNew()}
         <Loader
           isLoading={this.props.uselogs.get('isLoading')}
           error={this.props.uselogs.get('error')}

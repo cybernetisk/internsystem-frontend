@@ -60,7 +60,7 @@ export default class UseVouchers extends React.Component {
     // TODO: validation
 
     event.preventDefault()
-    if (this.state.isSending) {
+    if (this.state.isSending || this.state.username === '') {
       return
     }
 
