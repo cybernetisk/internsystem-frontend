@@ -11,12 +11,12 @@ var concat = require('gulp-concat'),
 var js_files_library = [
     'node_modules/jquery/dist/jquery.min.js',
     'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
-    'node_modules/angular/angular.js',
+    'node_modules/angular/angular.min.js',
     'node_modules/angular-ui-router/release/angular-ui-router.min.js',
     'node_modules/angular-resource/angular-resource.min.js',
-    'node_modules/react/dist/react.js',
-    'node_modules/react-dom/dist/react-dom.js',
-    'node_modules/ngreact/ngReact.js',
+    'node_modules/react/dist/react.min.js',
+    'node_modules/react-dom/dist/react-dom.min.js',
+    'node_modules/ngreact/ngReact.min.js',
     'node_modules/mathjs/dist/math.min.js'
 ];
 
