@@ -6,6 +6,7 @@ import moment from '../../../moment'
 import getters from '../getters'
 import * as actions from '../actions'
 
+import Pagination from '../../../components/Pagination'
 import Loader from '../../../components/Loader'
 import UseVouchers from './UseVouchers'
 
@@ -18,6 +19,10 @@ import { userDetails } from '../../auth/getters'
 export default class List extends React.Component {
   componentDidMount() {
     actions.fetchUseLogs(1)
+  }
+
+  handlePageChange(newPage) {
+    actions.fetchWorkLogs(newPage)
   }
 
   renderDateSpent(val) {
@@ -64,7 +69,10 @@ export default class List extends React.Component {
             })}
           </tbody>
         </table>
-        <p>TODO: pagination (currently limited to 50 items)!</p>
+        <Pagination
+          active={this.props.uselogs.get('data').get('page')}
+          pages={this.props.uselogs.get('data').get('pages')}
+          onChange={this.handlePageChange} />
       </div>
     )
   }

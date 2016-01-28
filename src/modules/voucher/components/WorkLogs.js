@@ -6,6 +6,7 @@ import moment from '../../../moment'
 import getters from '../getters'
 import * as actions from '../actions'
 
+import Pagination from '../../../components/Pagination'
 import Loader from '../../../components/Loader'
 import NewWorkLog from './NewWorkLog'
 import WorkLogItem from './WorkLogItem'
@@ -19,6 +20,10 @@ import { isLoggedIn } from '../../auth/getters'
 export default class List extends React.Component {
   componentDidMount() {
     actions.fetchWorkLogs(1)
+  }
+
+  handlePageChange(newPage) {
+    actions.fetchWorkLogs(newPage)
   }
 
   renderWorkLogs() {
@@ -50,7 +55,10 @@ export default class List extends React.Component {
             ))}
           </tbody>
         </table>
-        <p>TODO: pagination (currently limited to 50 items)!</p>
+        <Pagination
+          active={this.props.worklogs.get('data').get('page')}
+          pages={this.props.worklogs.get('data').get('pages')}
+          onChange={this.handlePageChange} />
       </div>
     )
   }
