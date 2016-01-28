@@ -6,7 +6,7 @@ import {getResource} from '../AngularResource'
 function createService() {
   const $resource = getResource()
 
-  let VaretellingerService = $resource(api('varetellinger/:id'), {
+  let VaretellingerService = $resource(api('varer/varetellinger/:id'), {
     id: '@id'
   }, {
     query: {
