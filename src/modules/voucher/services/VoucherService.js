@@ -70,9 +70,6 @@ class VoucherService {
         hours,
         comment
       },
-      headers: {
-        'X-CSRFToken': csrfToken
-      },
       type: 'json'
     })
   }
