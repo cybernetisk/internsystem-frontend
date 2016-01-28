@@ -3,7 +3,7 @@ import {api} from '../../../api'
 
 export function getSalesEstimates() {
   return reqwest({
-    url: api('salgskalkyler'),
+    url: api('varer/salgskalkyler'),
     type: 'json'
   })
 }

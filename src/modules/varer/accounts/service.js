@@ -3,7 +3,7 @@ import {api} from '../../../api'
 
 export function getAccounts() {
   return reqwest({
-    url: api('kontoer'),
+    url: api('varer/kontoer'),
     type: 'json'
   })
 }

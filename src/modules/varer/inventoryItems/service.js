@@ -5,7 +5,7 @@ export const pageLimit = 500
 
 export function getInventoryItems(page) {
   return reqwest({
-    url: api(`råvarer`),
+    url: api(`varer/råvarer`),
     data: {limit: pageLimit, page},
     type: 'json'
   })
