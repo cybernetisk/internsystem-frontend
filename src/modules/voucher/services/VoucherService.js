@@ -1,8 +1,6 @@
 import reqwest from 'reqwest'
+import reqwestWithCsrf from '../../../utils/reqwestWithCsrf'
 import {api} from '../../../api'
-
-import deferredGetter from '../../../utils/deferredGetter'
-import {csrfToken} from '../../../modules/auth/getters'
 
 class VoucherService {
 
@@ -62,43 +60,32 @@ class VoucherService {
   }
 
   registerWork(username, date_worked, work_group, hours, comment) {
-    return new Promise((resolve, reject) => {
-      deferredGetter(csrfToken).then(csrfToken => {
-        reqwest({
-          url: api('voucher/worklogs'),
-          method: 'post',
-          data: {
-            user: username,
-            date_worked,
-            work_group,
-            hours,
-            comment
-          },
-          headers: {
-            'X-CSRFToken': csrfToken
-          },
-          type: 'json'
-        }).then(resolve, reject)
-      })
+    return reqwestWithCsrf({
+      url: api('voucher/worklogs'),
+      method: 'post',
+      data: {
+        user: username,
+        date_worked,
+        work_group,
+        hours,
+        comment
+      },
+      headers: {
+        'X-CSRFToken': csrfToken
+      },
+      type: 'json'
     })
   }
 
   useVouchers(username, vouchers, comment) {
-    return new Promise((resolve, reject) => {
-      deferredGetter(csrfToken).then(csrfToken => {
-        reqwest({
-          url: api(`voucher/users/${username}/use_vouchers`),
-          method: 'post',
-          data: {
-            vouchers,
-            comment
-          },
-          headers: {
-            'X-CSRFToken': csrfToken
-          },
-          type: 'json'
-        }).then(resolve, reject)
-      })
+    return reqwestWithCsrf({
+      url: api(`voucher/users/${username}/use_vouchers`),
+      method: 'post',
+      data: {
+        vouchers,
+        comment
+      },
+      type: 'json'
     })
   }
 }
