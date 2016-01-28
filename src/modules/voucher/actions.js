@@ -40,3 +40,11 @@ export function fetchWorkLogs(page = 1) {
 export function setActiveSemester(semester) {
   reactor.dispatch(actionTypes.SET_ACTIVE_SEMESTER, {semester})
 }
+
+export function workLogUpdated(worklog) {
+  reactor.dispatch(actionTypes.WORKLOG_UPDATED, {worklog})
+}
+
+export function workLogDeleted(id) {
+  reactor.dispatch(actionTypes.WORKLOG_DELETED, {id})
+}

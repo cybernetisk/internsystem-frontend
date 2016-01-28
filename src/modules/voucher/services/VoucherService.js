@@ -88,6 +88,23 @@ class VoucherService {
       type: 'json'
     })
   }
+
+  updateWorkLog(id, data) {
+    return reqwestWithCsrf({
+      url: api(`voucher/worklogs/${id}`),
+      method: 'patch',
+      data,
+      type: 'json'
+    })
+  }
+
+  deleteWorkLog(id) {
+    return reqwestWithCsrf({
+      url: api(`voucher/worklogs/${id}`),
+      method: 'delete',
+      type: 'json'
+    })
+  }
 }
 
 export default new VoucherService()

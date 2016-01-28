@@ -14,4 +14,6 @@ export default keyMirror({
   RECEIVE_WORKLOGS_SUCCESS: null,
   RECEIVE_WORKLOGS_FAILURE: null,
   SET_ACTIVE_SEMESTER: null,
+  WORKLOG_UPDATED: null,
+  WORKLOG_DELETED: null,
 })

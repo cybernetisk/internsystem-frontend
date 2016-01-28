@@ -8,6 +8,7 @@ import * as actions from '../actions'
 
 import Loader from '../../../components/Loader'
 import NewWorkLog from './NewWorkLog'
+import WorkLogItem from './WorkLogItem'
 
 import { isLoggedIn } from '../../auth/getters'
 
@@ -25,6 +26,10 @@ export default class List extends React.Component {
       return
     }
 
+    const shouldShowLastCol = this.props.worklogs.getIn(['data', 'results']).find(worklog => (
+      worklog.get('can_edit') || worklog.get('can_delete')))
+    let lastCol = shouldShowLastCol ? <th>&nbsp;</th> : ''
+
     return (
       <div>
         <table className="table table-striped">
@@ -36,32 +41,13 @@ export default class List extends React.Component {
               <th>Hours</th>
               <th>Current balance</th>
               <th>Comment</th>
+              {lastCol}
             </tr>
           </thead>
           <tbody>
-            {this.props.worklogs.get('data').get('results').toJS().map((worklog) => {
-              let who = worklog.wallet.user.username
-              if (worklog.wallet.user.realname) {
-                who += ` (${worklog.wallet.user.realname})`
-              }
-              let time = moment(worklog.date_issued).format('YYYY-MM-DD HH:mm')
-              let reg_by = worklog.issuing_user.username == worklog.wallet.user.username
-                ? ''
-                : `by ${worklog.issuing_user.username}`
-              return (
-                <tr key={worklog.id}>
-                  <td>{worklog.date_worked}</td>
-                  <td>{who}</td>
-                  <td>{worklog.work_group}</td>
-                  <td>{worklog.hours}</td>
-                  <td>{worklog.wallet.cached_balance}</td>
-                  <td>
-                    {worklog.comment}
-                    <div className="small text-muted">Registered {reg_by} {time}</div>
-                  </td>
-                </tr>
-              )
-            })}
+            {this.props.worklogs.get('data').get('results').toJS().map((worklog) => (
+              <WorkLogItem worklog={worklog} showLastCol={shouldShowLastCol} />
+            ))}
           </tbody>
         </table>
         <p>TODO: pagination (currently limited to 50 items)!</p>

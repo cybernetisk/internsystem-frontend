@@ -53,11 +53,9 @@ export default class UserInput extends React.Component {
   }
 
   render() {
-    const inputProps = {
-      placeholder: 'Work group',
-      value: this.props.value,
-      onChange: (event, {newValue}) => this.props.onChange(newValue)
-    }
+    let { onChange, ...inputProps } = this.props
+    inputProps.placeholder = 'Work group'
+    inputProps.onChange = (event, {newValue}) => onChange(newValue)
 
     return (
       <Autosuggest suggestions={this.state.suggestions}
