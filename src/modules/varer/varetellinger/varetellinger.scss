@@ -1,10 +1,12 @@
 .varetellinger-item {
-  table {
+  table.varer-table-items {
     font-size: 95%;
     thead tr > :nth-child(2),
     tr > td:nth-child(2),
     thead tr > :nth-child(3),
-    tr > td:nth-child(3) {
+    tr > td:nth-child(3)
+    thead tr > :nth-child(5),
+    tr > td:nth-child(5) {
       white-space: nowrap;
       text-align: center;
     }
@@ -14,23 +16,11 @@
     .group-row > th:nth-child(2) {
       font-size: 95%;
     }
+  }
 
-    .nytelling {
-      display: none;
-      position: absolute;
-      right: -10px;
-      top: 50%;
-      a {
-        display: block;
-        cursor: pointer;
-        padding: 3px;
-        position: relative;
-        top: -10px;
-      }
-    }
-
-    tr:hover .nytelling {
-      display: block;
+  table.varer-table-groups {
+    td:nth-child(n+2), th:nth-child(n+2) {
+      text-align: right;
     }
   }
 

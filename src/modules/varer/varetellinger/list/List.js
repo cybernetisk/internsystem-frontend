@@ -61,7 +61,7 @@ export default class List extends React.Component {
 
               return (
                 <tr>
-                  <td><Link to="varer/varetellinger" params={{id: item.get('id')}}>{item.get('tittel')}</Link></td>
+                  <td><Link to="varer/inventorycount" params={{id: item.get('id')}}>{item.get('tittel')}</Link></td>
                   <td>{time}</td>
                   <td>{item.get('kommentar')}</td>
                   <td>{item.get('ansvarlig')}</td>

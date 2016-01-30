@@ -14,7 +14,7 @@ export default class extends React.Component {
     inventoryItems: React.PropTypes.array.isRequired
   }
 
-  renderName(item) {
+  renderName(item, showAccount = true) {
     let category
     if (item.get('kategori')) {
       category = item.get('kategori') + ': '
@@ -25,15 +25,24 @@ export default class extends React.Component {
       tag = <span> <span className="status-text">{item.get('status')}</span></span>
     }
 
+    let account
+    if (showAccount) {
+      account = (
+        <span>
+          <br/>
+          <a className="gruppe-link" href={admin(`varer/konto/${item.get('innkjopskonto').get('id')}/`)}>
+            {item.get('innkjopskonto').get('navn')}
+          </a>
+        </span>
+      )
+    }
+
     return (
       <div>
         {category}
         <a href={admin(`varer/råvare/${item.get('id')}/`)}>{item.get('navn')}</a>
         {tag}
-        <br/>
-        <a className="gruppe-link" href={admin(`varer/konto/${item.get('innkjopskonto').get('id')}/`)}>
-          {item.get('innkjopskonto').get('navn')}
-        </a>
+        {account}
       </div>
     )
   }

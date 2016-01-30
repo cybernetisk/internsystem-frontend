@@ -19,6 +19,8 @@ import Varer from './modules/varer'
 import Voucher from './modules/voucher'
 import Z from './modules/z'
 
+import './angularModule'
+
 class App extends React.Component {
   render() {
     return <Root reactor={reactor} />

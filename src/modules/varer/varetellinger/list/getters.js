@@ -1,4 +1,4 @@
-import {pageLimit} from './service'
+import {pageLimit} from '../service'
 
 export const listStore = ['varerInventoryCounts']
 
