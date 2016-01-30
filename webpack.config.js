@@ -32,6 +32,9 @@ module.exports = {
       {test: /\.json$/, loader: 'json'},
     ]
   },
+  externals: {
+    mathjs: 'mathjs',
+  },
   resolve: {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.js', '.jsx'],
