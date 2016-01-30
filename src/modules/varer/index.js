@@ -4,7 +4,7 @@ import React from 'react'
 import {Route} from 'react-router'
 
 import Accounts from './accounts'
-import InventoryCounts from './varetellinger'
+import InventoryCounts from './inventoryCounts'
 import InventoryItems from './inventoryItems'
 import SalesEstimates from './salesEstimates'
 import SalesProducts from './salesProducts'
