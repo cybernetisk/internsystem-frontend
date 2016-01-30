@@ -12,9 +12,9 @@ import ListStore from './stores/ListStore'
 import SemestersStore from './stores/SemestersStore'
 
 reactor.registerStores({
-  list: ListStore,
-  event: EventStore,
-  semesters: SemestersStore,
+  calList: ListStore,
+  calEvent: EventStore,
+  calSemesters: SemestersStore,
 })
 
 module.exports = (

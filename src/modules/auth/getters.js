@@ -1,24 +1,16 @@
-const authdata = ['authdata']
+const authdataStore = 'authdata'
+const authdata = [authdataStore]
+const data = [authdataStore, 'data']
 
-const isLoggedIn = [
-  ['authdata'],
-  (authdata) => {
-    return authdata.get('data') && authdata.get('data').get('loggedIn')
-  }
-]
+const isLoggedIn = [authdataStore, 'data', 'loggedIn']
 
 const userDetails = [
-  ['authdata'],
-  (authdata) => {
-    return authdata.get('data') && authdata.get('data').get('details') ? authdata.get('data').get('details').toJS() : null
+  [authdataStore, 'data', 'details'],
+  data => {
+    return data ? data.toJS() : null
   }
 ]
 
-const csrfToken = [
-  ['authdata'],
-  (authdata) => {
-    return authdata.get('data') && authdata.get('data').get('csrfToken') ? authdata.get('data').get('csrfToken') : null
-  }
-]
+const csrfToken = [authdataStore, 'data', 'csrfToken']
 
-export default { authdata, isLoggedIn, userDetails, csrfToken }
+export default {authdata, isLoggedIn, userDetails, csrfToken}

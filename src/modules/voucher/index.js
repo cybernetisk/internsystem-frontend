@@ -12,10 +12,10 @@ import WalletStore from './stores/WalletStore'
 import WorkLogsStore from './stores/WorkLogsStore'
 
 reactor.registerStores({
-  stats: StatsStore,
-  uselogs: UseLogsStore,
-  wallets: WalletStore,
-  worklogs: WorkLogsStore,
+  voucherStats: StatsStore,
+  voucherUselogs: UseLogsStore,
+  voucherWallets: WalletStore,
+  voucherWorklogs: WorkLogsStore,
 })
 
 module.exports = (

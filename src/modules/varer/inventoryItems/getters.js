@@ -6,40 +6,33 @@ import * as consts from '../consts'
 
 export const listStore = ['varerInventoryItems']
 
-export const activePage = [
-  listStore,
-  (store) => store.get('activePage')
-]
+export const activePage = ['varerInventoryItems', 'activePage']
 
 export const pages = [
-  listStore,
-  (store) => Math.ceil(store.get('count') / pageLimit)
+  ['varerInventoryItems', 'count'],
+  (count) => Math.ceil(count / pageLimit)
 ]
 
-export const filters = [
-  listStore,
-  (store) => store.get('filters')
-]
+export const filters = ['varerInventoryItems', 'filters']
 
-export const items = [
-  listStore,
-  (store) => store.get('items')
-]
+export const items = ['varerInventoryItems', 'items']
 
 export const inventoryItemsLoader = [
-  listStore,
-  (store) => {
+  ['varerInventoryItems', 'isLoading'],
+  ['varerInventoryItems', 'error'],
+  ['varerInventoryItems', 'items'],
+  (isLoading, error, items) => {
     return {
-      isLoading: store.get('isLoading'),
-      error: store.get('error'),
-      isEmpty: store.get('items').isEmpty()
+      isLoading,
+      error,
+      isEmpty: items.isEmpty()
     }
   }
 ]
 
 export const inventoryItemsTransformed = [
   items,
-  (items) => items
+  items => items
     .map(item => fillBuyPrice(item))
     .map(item => fillSellPrice(item))
     .sort(getSorterImmutable('innkjopskonto'))
@@ -47,12 +40,12 @@ export const inventoryItemsTransformed = [
 
 export const groups = [
   inventoryItemsTransformed,
-  (inventoryItems) => extractGroupsImmutable(inventoryItems, 'innkjopskonto')
+  inventoryItems => extractGroupsImmutable(inventoryItems, 'innkjopskonto')
 ]
 
 export const selectGroups = [
   groups,
-  (groups) => groups.groupBy(group => group.get('gruppe'))
+  groups => groups.groupBy(group => group.get('gruppe'))
 ]
 
 export const filteredInventoryItems = [

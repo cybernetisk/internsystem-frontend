@@ -1,5 +1,5 @@
-const list = ['list']
-const event = ['event']
-const semesters = ['semesters']
+const list = ['calList']
+const event = ['calEvent']
+const semesters = ['calSemesters']
 
 export default { list, event, semesters }

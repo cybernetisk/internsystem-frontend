@@ -1,17 +1,17 @@
-const stats = ['stats']
-const uselogs = ['uselogs']
-const wallets = ['wallets']
-const worklogs = ['worklogs']
+const stats = ['voucherStats']
+const uselogs = ['voucherUselogs']
+const wallets = ['voucherWallets']
+const worklogs = ['voucherWorklogs']
 
 const current_semester = [
   wallets,
-  stats,
+  ['voucherStats', 'data'],
   (wallets, stats) => {
-    if (!stats.get('data') || !wallets.get('semester')) {
+    if (!stats || !wallets.get('semester')) {
       return null
     }
 
-    return stats.get('data').find(semester => {
+    return stats.find(semester => {
       return semester.get('semester').get('id') == wallets.get('semester')
     }).get('semester')
   }
