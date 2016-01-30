@@ -18,9 +18,15 @@ var js_files_library = [
 
 gulp.task('scripts-library', function() {
     return gulp.src(js_files_library)
-        .pipe(concat('library.js'))
-        //.pipe(uglify())
-        .pipe(gulp.dest('build'));
+      .pipe(concat('library.js'))
+      //.pipe(uglify())
+      .pipe(gulp.dest('build'));
+});
+
+gulp.task('scripts-library-dev', function() {
+    return gulp.src(['src/library-dev.js'])
+      .pipe(concat('library.js'))
+      .pipe(gulp.dest('build'));
 });
 
 var webpackBuild = function(callback, config, name) {
@@ -68,5 +74,5 @@ gulp.task('clean', function() {
 });
 
 gulp.task('build', ['copy', 'webpack:build', 'scripts-library']);
-gulp.task('build-dev', ['copy', 'webpack:build-dev', 'scripts-library']);
-gulp.task('default', ['copy', 'webpack-dev-server', 'scripts-library']);
+gulp.task('build-dev', ['copy', 'webpack:build-dev', 'scripts-library-dev']);
+gulp.task('default', ['copy', 'webpack-dev-server', 'scripts-library-dev']);

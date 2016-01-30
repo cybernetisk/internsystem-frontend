@@ -32,14 +32,6 @@ module.exports = {
       {test: /\.json$/, loader: 'json'},
     ]
   },
-  externals: {
-    'bootstrap-sass': '"bootstrap-sass"',
-    'ui.router': '"ui.router"',
-    jquery: 'jQuery',
-    mathjs: 'mathjs',
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
   resolve: {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.js', '.jsx'],

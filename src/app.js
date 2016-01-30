@@ -1,5 +1,4 @@
 import './app.scss'
-import 'bootstrap-sass'
 
 import domready from 'domready'
 import React from 'react'

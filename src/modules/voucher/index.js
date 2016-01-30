@@ -1,3 +1,4 @@
+import React from 'react'
 import { Route } from 'react-router'
 import reactor from '../../reactor'
 

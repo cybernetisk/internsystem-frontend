@@ -1,5 +1,6 @@
 import './app.scss'
 
+import React from 'react'
 import {Route} from 'react-router'
 
 import Accounts from './accounts'

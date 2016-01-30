@@ -29,7 +29,7 @@ export default class Nav extends React.Component {
       return (
         <ul className='nav navbar-nav navbar-right'>
           <NavDropdown>
-            <a href className='dropdown-toggle' data-toggle='dropdown' role='button'
+            <a className='dropdown-toggle' data-toggle='dropdown' role='button'
               aria-expanded='false'>{this.props.userDetails.realname} <span className='caret'></span></a>
             <ul className='dropdown-menu' role='menu'>
               <NavLink to='auth.profile'>Profile</NavLink>
@@ -66,7 +66,7 @@ export default class Nav extends React.Component {
           <div id='navbar' className='collapse navbar-collapse'>
             <ul className='nav navbar-nav'>
               <NavDropdown>
-                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
+                <a className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
                   Products
                   <span className='caret'></span>
                 </a>
@@ -80,7 +80,7 @@ export default class Nav extends React.Component {
                 </ul>
               </NavDropdown>
               <NavDropdown>
-                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
+                <a className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
                   Z
                   <span className='caret'></span>
                 </a>
@@ -92,7 +92,7 @@ export default class Nav extends React.Component {
                 </ul>
               </NavDropdown>
               <NavDropdown>
-                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
+                <a className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
                   Calendar
                   <span className='caret'></span>
                 </a>
@@ -101,7 +101,7 @@ export default class Nav extends React.Component {
                 </ul>
               </NavDropdown>
               <NavDropdown>
-                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
+                <a className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
                   Vouchers
                   <span className='caret'></span>
                 </a>
@@ -112,7 +112,7 @@ export default class Nav extends React.Component {
                 </ul>
               </NavDropdown>
               <NavDropdown>
-                <a href className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
+                <a className='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>
                   Other
                   <span className='caret'></span>
                 </a>
