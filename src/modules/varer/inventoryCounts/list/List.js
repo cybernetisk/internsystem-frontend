@@ -60,7 +60,7 @@ export default class List extends React.Component {
               let time = moment(item.get('tid')).format('YYYY-MM-DD HH:mm')
 
               return (
-                <tr>
+                <tr key={item.get('id')}>
                   <td><Link to="varer/inventorycount" params={{id: item.get('id')}}>{item.get('tittel')}</Link></td>
                   <td>{time}</td>
                   <td>{item.get('kommentar')}</td>

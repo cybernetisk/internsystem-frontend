@@ -125,9 +125,9 @@ export default class List extends React.Component {
               value={this.props.filters.get('group', '')}>
               <option value={null}>-- not selected --</option>
               {this.props.selectGroups.map(parentGroup => (
-                <optgroup label={parentGroup.first().get('gruppe')}>
+                <optgroup label={parentGroup.first().get('gruppe')} key={parentGroup.first().get('gruppe')}>
                   {parentGroup.map(group => (
-                    <option value={group.get('id')}>{group.get('navn')}</option>
+                    <option value={group.get('id')} key={group.get('id')}>{group.get('navn')}</option>
                   ))}
                 </optgroup>
               ))}
@@ -139,7 +139,7 @@ export default class List extends React.Component {
             <select className="form-control" onChange={this.handleOutdatedChange}
               value={this.props.filters.get('outdated', '')}>
               {consts.outdatedOptions.map((option, key) => (
-                <option value={key}>{option.get('text')}</option>
+                <option value={key} key={key}>{option.get('text')}</option>
               ))}
             </select>
           </div>

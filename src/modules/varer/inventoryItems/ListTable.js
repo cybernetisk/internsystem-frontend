@@ -11,7 +11,7 @@ import {price} from '../../../services/FormatService'
 export default class extends React.Component {
 
   static propTypes = {
-    inventoryItems: React.PropTypes.array.isRequired
+    inventoryItems: React.PropTypes.object.isRequired
   }
 
   renderName(item, showAccount = true) {

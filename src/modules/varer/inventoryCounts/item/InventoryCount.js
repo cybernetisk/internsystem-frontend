@@ -217,9 +217,11 @@ export default class InventoryCount extends React.Component {
               value={this.props.filters.get('group', '')}>
               <option value="0">-- not selected --</option>
               {this.props.accountsForSelectElement.map(parentGroup => (
-                <optgroup label={parentGroup.first().get('gruppe')}>
+                <optgroup label={parentGroup.first().get('gruppe')} key={parentGroup.first().get('gruppe')}>
                   {parentGroup.map(group => (
-                    <option value={group.get('compareValue')}>{group.get('navn')}</option>
+                    <option value={group.get('compareValue')} key={group.get('compareValue')}>
+                      {group.get('navn')}
+                    </option>
                   ))}
                 </optgroup>
               ))}
@@ -230,7 +232,7 @@ export default class InventoryCount extends React.Component {
             <select className="form-control" onChange={this.handleVisibleChange}
               value={this.props.filters.get('f', '')}>
               {consts.inventoryCountOptions.map((option, key) => (
-                <option value={key}>{option.get('text')}</option>
+                <option value={key} key={key}>{option.get('text')}</option>
               ))}
             </select>
           </div>

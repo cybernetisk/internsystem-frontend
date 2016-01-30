@@ -65,7 +65,7 @@ export default class ItemListView extends React.Component {
     window.addEventListener('keydown', this.handleKeyDown)
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown)
   }
 

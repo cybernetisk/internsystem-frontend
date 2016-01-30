@@ -10,7 +10,7 @@ import {price} from '../../../services/FormatService'
 export default class extends React.Component {
 
   static propTypes = {
-    salesProducts: React.PropTypes.array.isRequired
+    salesProducts: React.PropTypes.object.isRequired
   }
 
   renderName(item) {

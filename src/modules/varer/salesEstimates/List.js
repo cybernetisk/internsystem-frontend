@@ -20,7 +20,7 @@ export default class List extends React.Component {
       <div>
         <ul>
           {estimates.map((estimate) => (
-            <li>
+            <li key={estimate.id}>
               <a href={`admin/varer/salgskalkyle/${estimate.id}/`} target="_self">
                 {estimate.navn}
               </a> ({estimate.dato})
