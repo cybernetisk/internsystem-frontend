@@ -1,4 +1,5 @@
 import React from 'react'
+import math from 'mathjs'
 
 export default class ItemNewVare extends React.Component {
 
