@@ -72,14 +72,20 @@ export const filteredSalesProducts = [
   (salesProducts, filters, groups) => {
     salesProducts = salesProducts.filter(consts.outdatedOptions.get(filters.get('outdated')).get('filter'))
 
-    if (filters.get('text', '') !== '') {
-      salesProducts = salesProducts.filter(deepSearchPredicate(filters.get('text')))
-    }
-
     if (filters.get('group') !== null) {
       let compareGroup = groups.find(g => g.get('id') === filters.get('group'))
       salesProducts = salesProducts
         .filter(item => item.get('salgskonto').get(compareGroup.get('compare')) === compareGroup.get('compareValue'))
+    }
+
+    if (filters.get('text', '') !== '') {
+      // match each word individually
+      let words = filters.get('text').match(/\S+\s*/g)
+      if (words) {
+        words.forEach(word => {
+          salesProducts = salesProducts.filter(deepSearchPredicate(word.trim()))
+        })
+      }
     }
 
     return salesProducts
