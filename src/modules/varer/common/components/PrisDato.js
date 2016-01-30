@@ -1,5 +1,4 @@
 import React from 'react'
-import angularModule from '../../angularModule'
 
 export default class extends React.Component {
   static propTypes = {

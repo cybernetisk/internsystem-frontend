@@ -1,4 +1,3 @@
-import angular from 'angular'
 import Immutable from 'immutable'
 
 /**
@@ -78,37 +77,6 @@ export function extractGroupsImmutable(items, groupKey) {
     }, Immutable.OrderedSet())
 }
 
-
-/**
- * Filtrering av varer
- */
-export function createFilter(scope, filters, filtergroup, kontonavn, input, output) {
-  var run = function () {
-    var items = input()
-    if (!items) return
-    var g = extractGroups(items, kontonavn)
-
-    var res = angular.injector(['cyb.oko']).get('$filter')('filter')(items, filters.text)
-    if (filters.group) {
-      var group = g.filter(function (test) {
-        return test.id == filters.group
-      })[0]
-      res = res.filter(function (obj) {
-        return obj[kontonavn][group.compare] == group.compareValue
-      })
-    }
-
-    output(res)
-  }
-
-  scope.$watchCollection(filtergroup, run)
-
-  return run
-}
-
-export function getFilter() {
-  return angular.injector(['cyb.oko']).get('$filter')('filter')
-}
 
 /**
  * Sortering av råvarer/salgsvarer

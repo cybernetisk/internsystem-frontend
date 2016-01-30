@@ -1,5 +1,4 @@
 import React from 'react'
-import angularModule from '../../angularModule'
 import {price} from '../../../../services/FormatService'
 
 export default class extends React.Component {

@@ -3,6 +3,7 @@ import { toImmutable } from 'nuclear-js'
 import {fillBuyPrice, fillSellPrice} from '../../inventoryItems/service'
 
 import cacheGetter from '../../../../utils/cacheGetter'
+import deepSearchPredicate from '../../../../utils/deepSearchPredicate'
 
 import * as inventoryItemGetters from '../../inventoryItems/getters'
 import * as VarerHelper from '../../common/VarerHelper'
@@ -95,13 +96,9 @@ export const filteredList = [
       // match each word individually
       let words = filters.get('text').match(/\S+\s*/g)
       if (words) {
-        let jsrepr = allRaavarerWithCounts.toJS()
-
         words.forEach(word => {
-          jsrepr = VarerHelper.getFilter()(jsrepr, word.trim())
+          allRaavarerWithCounts = allRaavarerWithCounts.filter(deepSearchPredicate(word.trim()))
         })
-
-        allRaavarerWithCounts = Immutable.fromJS(jsrepr)
       }
     }
 

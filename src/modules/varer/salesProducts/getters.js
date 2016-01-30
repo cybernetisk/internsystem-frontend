@@ -1,6 +1,8 @@
 import {toImmutable} from 'nuclear-js'
 import {pageLimit} from './service'
-import {extractGroupsImmutable, getFilter, getSorterImmutable} from '../common/VarerHelper'
+import {extractGroupsImmutable, getSorterImmutable} from '../common/VarerHelper'
+
+import deepSearchPredicate from '../../../utils/deepSearchPredicate'
 
 import * as consts from './../consts'
 
@@ -71,7 +73,7 @@ export const filteredSalesProducts = [
     salesProducts = salesProducts.filter(consts.outdatedOptions.get(filters.get('outdated')).get('filter'))
 
     if (filters.get('text', '') !== '') {
-      salesProducts = toImmutable(getFilter()(salesProducts.toJS(), filters.get('text')))
+      salesProducts = salesProducts.filter(deepSearchPredicate(filters.get('text')))
     }
 
     if (filters.get('group') !== null) {
