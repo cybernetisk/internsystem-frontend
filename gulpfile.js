@@ -9,7 +9,6 @@ var concat = require('gulp-concat'),
     webpackConfigDist = require('./webpack.dist.config.js');
 
 var js_files_library = [
-    'node_modules/jquery/dist/jquery.min.js',
     'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
     'node_modules/react/dist/react.min.js',
     'node_modules/react-dom/dist/react-dom.min.js',

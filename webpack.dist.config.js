@@ -34,7 +34,6 @@ module.exports = {
   externals: {
     'bootstrap-sass': '"bootstrap-sass"',
     'ui.router': '"ui.router"',
-    jquery: 'jQuery',
     mathjs: 'mathjs',
     react: 'React',
     'react-dom': 'ReactDOM',
