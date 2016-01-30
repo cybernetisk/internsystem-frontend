@@ -15,6 +15,7 @@ import * as actions from '../actions'
 import * as inventoryItemsActions from '../../inventoryItems/actions'
 
 import Loader from '../../../../components/Loader'
+import AccountFilter from '../../common/components/AccountFilter'
 import ListInputQ from '../../common/components/TextInput'
 import ItemListView from './ItemListView'
 import GroupsList from './GroupsList'
@@ -213,19 +214,8 @@ export default class InventoryCount extends React.Component {
           </div>
           <div className="form-group col-md-3">
             <label>Group</label>
-            <select className="form-control" onChange={this.handleGroupChange}
-              value={this.props.filters.get('group', '')}>
-              <option value="0">-- not selected --</option>
-              {this.props.accountsForSelectElement.map(parentGroup => (
-                <optgroup label={parentGroup.first().get('gruppe')} key={parentGroup.first().get('gruppe')}>
-                  {parentGroup.map(group => (
-                    <option value={group.get('compareValue')} key={group.get('compareValue')}>
-                      {group.get('navn')}
-                    </option>
-                  ))}
-                </optgroup>
-              ))}
-            </select>
+            <AccountFilter onChange={this.handleGroupChange} value={this.props.filters.get('group', '')}
+              accounts={this.props.accountsForSelectElement} />
           </div>
           <div className="form-group col-md-3">
             <label>Filtering</label>
