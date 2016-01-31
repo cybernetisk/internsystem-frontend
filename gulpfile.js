@@ -14,6 +14,11 @@ var js_files_library = [
     'node_modules/mathjs/dist/math.min.js'
 ];
 
+var js_files_library_dev = [
+    'src/library-dev.js',
+    'node_modules/mathjs/dist/math.min.js'
+];
+
 gulp.task('scripts-library', function() {
     return gulp.src(js_files_library)
       .pipe(concat('library.js'))
@@ -22,7 +27,7 @@ gulp.task('scripts-library', function() {
 });
 
 gulp.task('scripts-library-dev', function() {
-    return gulp.src(['src/library-dev.js'])
+    return gulp.src(js_files_library_dev)
       .pipe(concat('library.js'))
       .pipe(gulp.dest('build'));
 });
