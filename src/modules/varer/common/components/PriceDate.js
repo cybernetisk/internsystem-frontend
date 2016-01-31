@@ -1,4 +1,5 @@
 import React from 'react'
+import './PriceDate.scss'
 
 export default class extends React.Component {
   static propTypes = {
