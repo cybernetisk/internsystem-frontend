@@ -1,10 +1,14 @@
+import {toImmutable} from 'nuclear-js'
 import React from 'react'
 
 import {price} from '../../../../services/FormatService'
+import {getInPrices} from '../../inventoryItems/service'
 
 import PriceDate from './PriceDate'
 
 import './Price.scss'
+
+const debounceTime = 100
 
 export default class extends React.Component {
   static propTypes = {
@@ -12,6 +16,77 @@ export default class extends React.Component {
     priceDate: React.PropTypes.string,
     priceDateRelativeTo: React.PropTypes.string,
     pant: React.PropTypes.number,
+    raavareId: React.PropTypes.number,
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      showHistory: false,
+      history: null,
+      isHistoryLoading: false,
+    }
+    this.debounceTimer = null
+
+    this.handleMouseEnter = this.handleMouseEnter.bind(this)
+    this.handleMouseLeave = this.handleMouseLeave.bind(this)
+  }
+
+  loadHistory() {
+    this.setState({
+      isHistoryLoading: true
+    })
+
+    getInPrices(this.props.raavareId).then(response => {
+      this.setState({
+        history: toImmutable(response),
+        isHistoryLoading: false,
+      })
+    })
+  }
+
+  handleMouseEnter(event) {
+    if (this.props.raavareId) {
+      this.debounceTimer = setTimeout(() => {
+        this.setState({
+          showHistory: true,
+        })
+
+        if (this.state.history === null && !this.state.isHistoryLoading) {
+          this.loadHistory()
+        }
+      }, this.state.history !== null ? 0 : debounceTime)
+    }
+  }
+
+  handleMouseLeave(event) {
+    if (this.props.raavareId) {
+      clearTimeout(this.debounceTimer)
+      this.setState({
+        showHistory: false
+      })
+    }
+  }
+
+  renderHistory() {
+    if (this.state.showHistory && this.state.history && this.state.history.size > 0) {
+      return (
+        <div className="varer-price-history">
+          {this.state.history.map(item => {
+            return (
+              <div key={item.get('id')} className="varer-price-history-item">
+                <span>{item.get('aktiv') ? '' : 'Invalid'}</span>
+                <span>{item.get('dato')}</span>
+                <span>{price(item.get('pris'))}</span>
+                <span>{price(item.get('pant'))}</span>
+                <span>{item.getIn(['leverandor', 'navn'])}</span>
+                <span>{item.get('type')}</span>
+              </div>
+            )
+          })}
+        </div>
+      )
+    }
   }
 
   render() {
@@ -36,10 +111,11 @@ export default class extends React.Component {
     }
 
     return (
-      <span className='varer-price-buyPrice'>
+      <span className='varer-price-buyPrice' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         {price(this.props.price)}
         {pant}
         {priceDate}
+        {this.renderHistory()}
       </span>
     )
   }

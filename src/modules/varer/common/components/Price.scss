@@ -3,4 +3,25 @@
   display: inline-block;
   text-align: center;
   vertical-align: middle;
+  position: relative;
+}
+
+.varer-price-history {
+  position: absolute;
+  z-index: 100;
+  left: 20px;
+  top: 20px;
+  background: white;
+  border: 1px solid #888888;
+  display: table;
+  border-spacing: 5px;
+  border-collapse: separate;
+}
+
+.varer-price-history-item {
+  display: table-row;
+
+  span {
+    display: table-cell;
+  }
 }

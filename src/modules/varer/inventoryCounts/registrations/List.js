@@ -86,7 +86,8 @@ export default class List extends React.Component {
                   price={count.getIn(['summer', 'sum'])}
                   priceDate={count.getIn(['raavare', 'innpris', 'dato'])}
                   priceDateRelativeTo={count.get('time_price') || this.props.time}
-                  pant={count.getIn(['summer', 'pant'])}/>
+                  pant={count.getIn(['summer', 'pant'])}
+                  raavareId={count.getIn(['raavare', 'id'])}/>
               </td>
               <td>
                 <div>{count.get('kommentar')}</div>
