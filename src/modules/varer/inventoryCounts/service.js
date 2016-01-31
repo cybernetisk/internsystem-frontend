@@ -11,9 +11,11 @@ export function getInventoryCounts(page) {
   })
 }
 
-export function getInventoryCount(id) {
+export function getInventoryCount(id, expanded = false) {
+  let data = expanded ? {expand: true} : {}
   return reqwest({
     url: api(`varer/varetellinger/${id}`),
+    data,
     type: 'json'
   })
 }

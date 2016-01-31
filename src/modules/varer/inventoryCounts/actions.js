@@ -22,6 +22,14 @@ export function fetchInventoryCount(id) {
   }, {id})
 }
 
+export function fetchInventoryCountSimple(id) {
+  dispatchAsync(getInventoryCount(id, true), {
+    request: actionTypes.RECEIVE_INVENTORYCOUNTREGS_START,
+    success: actionTypes.RECEIVE_INVENTORYCOUNTREGS_SUCCESS,
+    failure: actionTypes.RECEIVE_INVENTORYCOUNTREGS_FAILURE
+  }, {id})
+}
+
 export function vareAdded(countId, vare) {
   reactor.dispatch(actionTypes.VARE_ADDED, {countId, vare})
 }

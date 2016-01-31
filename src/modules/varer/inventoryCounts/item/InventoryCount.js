@@ -178,8 +178,16 @@ export default class InventoryCount extends React.Component {
 
     return (
       <div className="varetellinger-item">
+        <div className="pull-right hidden-print">
+          <a className="btn btn-default" href={`admin/varer/varetelling/${item.id}/`} target="_self">Edit</a>
+          {' '}
+          <Link to='varer/inventorycount/registrations' params={{id: this.props.data.get('id')}}
+            className="btn btn-default">
+            Show registrations view
+          </Link>
+        </div>
+
         <h1>Inventory count</h1>
-        <a className="hidden-print" href={`admin/varer/varetelling/${item.id}/`} target="_self">Edit</a>
 
         <dl className="dl-horizontal">
           <dt>Title</dt>
