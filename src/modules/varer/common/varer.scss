@@ -95,4 +95,17 @@
     font-size: 80%;
     color: $gray-light;
   }
+
+  .varer-regBy {
+    font-size: 80%;
+    color: $text-muted;
+  }
+
+  .varer-buyPrice {
+    white-space: nowrap;
+  }
+
+  .varer-productName {
+    white-space: nowrap;
+  }
 }

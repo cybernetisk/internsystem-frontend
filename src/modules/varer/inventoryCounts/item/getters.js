@@ -1,6 +1,7 @@
 import Immutable from 'immutable'
 import { toImmutable } from 'nuclear-js'
 import {fillBuyPrice, fillSellPrice} from '../../inventoryItems/service'
+import {fillCountSummer} from '../../common/functions'
 
 import cacheGetter from '../../../../utils/cacheGetter'
 import deepSearchPredicate from '../../../../utils/deepSearchPredicate'
@@ -43,21 +44,7 @@ const allRaavarerWithCounts = [
     return allRaavarerWithData.map(raavare => {
       raavare = raavare
         .set('tellinger', raavarerCounted.get(raavare.get('id'), Immutable.List())
-          .map(telling => {
-            let sum = 0
-            let pant = 0
-            if (raavare.get('innpris')) {
-              sum = Math.round(raavare.get('innpris').get('pris') * telling.get('antall') * 100) / 100
-              pant = Math.round(raavare.get('innpris').get('pant')
-                  * (telling.get('antallpant') || Math.ceil(telling.get('antall'))) * 100) / 100
-            }
-
-            return telling.set('summer', Immutable.Map({
-              count: telling.get('antall'),
-              sum: sum,
-              pant: pant
-            }))
-          }))
+          .map(telling => fillCountSummer(telling, raavare)))
 
       raavare = raavare
         .set('summer', Immutable.Map(raavare.get('tellinger').reduce((prev, telling) => {

@@ -1,6 +1,7 @@
 import React from 'react'
 import {admin} from '../../../api'
 
+import ProductName from '../common/components/ProductName'
 import PrisDato from '../common/components/PrisDato'
 import VareMengde from '../common/components/VareMengde'
 import SellPrice from '../common/components/SellPrice'
@@ -11,30 +12,6 @@ export default class extends React.Component {
 
   static propTypes = {
     salesProducts: React.PropTypes.object.isRequired
-  }
-
-  renderName(item) {
-    let category
-    if (item.get('kategori')) {
-      category = item.get('kategori') + ': '
-    }
-
-    let tag
-    if (item.get('status') != 'OK') {
-      tag = <span> <span className="status-text">{item.get('status')}</span></span>
-    }
-
-    return (
-      <div>
-        {category}
-        <a href={admin(`varer/salgsvare/${item.get('id')}/`)} target="_self">{item.get('navn')}</a>
-        {tag}
-        <br/>
-        <a className="gruppe-link" href={admin(`varer/konto/${item.get('salgskonto').get('id')}/`)}>
-          {item.get('salgskonto').get('navn')}
-        </a>
-      </div>
-    )
   }
 
   renderInventoryItems(item) {
@@ -109,7 +86,7 @@ export default class extends React.Component {
 
             prev.push((
               <tr key={item.get('id')}>
-                <td>{this.renderName(item)}</td>
+                <td><ProductName product={item} isInventory={false}/></td>
                 <td>{item.get('kassenr')}</td>
                 <td><SellPrice item={item} isInternal={true}/></td>
                 <td><SellPrice item={item} isInternal={false}/></td>

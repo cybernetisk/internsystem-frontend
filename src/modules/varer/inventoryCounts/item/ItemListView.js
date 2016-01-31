@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'nuclear-js-react-addons'
 
-import PrisDato from '../../common/components/PrisDato'
-import VareMengde from '../../common/components/VareMengde'
+import ProductName from '../../common/components/ProductName'
+import BuyPrice from '../../common/components/BuyPrice'
+import Quantity from '../../common/components/Quantity'
 import VaretellingerItemNewVare from './ItemNewVare'
 
 import inventoryProductsListTable from '../../inventoryItems/ListTable'
@@ -151,9 +152,9 @@ export default class ItemListView extends React.Component {
 
             prev.push((
               <tr key={`raavare-${raavare.get('id')}`}>
-                <td>{inventoryProductsListTable.prototype.renderName(raavare, false)}</td>
-                <td>{inventoryProductsListTable.prototype.renderQuantity(raavare)}</td>
-                <td>{inventoryProductsListTable.prototype.renderBuyPrice(raavare)}</td>
+                <td><ProductName product={raavare} showAccount={false}/></td>
+                <td><Quantity product={raavare}/></td>
+                <td><BuyPrice product={raavare}/></td>
                 <td>{this.renderCounts(raavare)}</td>
                 <td>
                   <button type="button" className={"hidden-print btn btn-primary" + btnClass}

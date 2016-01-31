@@ -1,92 +1,14 @@
 import React from 'react'
-import {admin} from '../../../api'
 
-import PrisDato from '../common/components/PrisDato'
-import PrisMargin from '../common/components/PrisMargin'
-import VareMengde from '../common/components/VareMengde'
+import ProductName from '../common/components/ProductName'
+import BuyPrice from '../common/components/BuyPrice'
+import Quantity from '../common/components/Quantity'
 import SellPrice from '../common/components/SellPrice'
-
-import {price} from '../../../services/FormatService'
 
 export default class extends React.Component {
 
   static propTypes = {
     inventoryItems: React.PropTypes.object.isRequired
-  }
-
-  renderName(item, showAccount = true) {
-    let category
-    if (item.get('kategori')) {
-      category = item.get('kategori') + ': '
-    }
-
-    let tag
-    if (item.get('status') != 'OK') {
-      tag = <span> <span className="status-text">{item.get('status')}</span></span>
-    }
-
-    let account
-    if (showAccount) {
-      account = (
-        <span>
-          <br/>
-          <a className="gruppe-link" href={admin(`varer/konto/${item.get('innkjopskonto').get('id')}/`)}>
-            {item.get('innkjopskonto').get('navn')}
-          </a>
-        </span>
-      )
-    }
-
-    return (
-      <div>
-        {category}
-        <a href={admin(`varer/råvare/${item.get('id')}/`)}>{item.get('navn')}</a>
-        {tag}
-        {account}
-      </div>
-    )
-  }
-
-  renderQuantity(item) {
-    let pieces
-    if (item.get('antall') !== 1) {
-      pieces = <span className="vare-antall"><br />({item.get('antall')} pcs)</span>
-    }
-
-    let spoilage
-    if (item.get('mengde_svinn')) {
-      spoilage = (
-        <span className="svinn-info">
-          <br/>
-          ca. <VareMengde verdi={item.get('mengde_svinn')} enhet={item.get('enhet')}/> = spoilage
-        </span>
-      )
-    }
-
-    return [
-      <VareMengde verdi={item.get('mengde')} enhet={item.get('enhet')}/>,
-      pieces,
-      spoilage
-    ]
-  }
-
-  renderBuyPrice(item) {
-    if (item.get('innpris')) {
-      let pant
-      if (item.get('innpris').get('pant')) {
-        // TODO: translate to english
-        pant = <span className="pris-pant"><br/>+ {price(item.get('innpris').get('pant'))} i pant</span>
-      }
-
-      return (
-        <span>
-          {price(item.get('innpris').get('pris'))}
-          {pant}
-          <br />
-          <PrisDato dato={item.get('innpris').get('dato')}/>
-        </span>
-      )
-    }
   }
 
   renderInternalPrice(item) {
@@ -103,6 +25,7 @@ export default class extends React.Component {
 
   render() {
     var lastGroup = null
+
     return (
       <table className="table table-striped table-condensed varer-table">
         <thead>
@@ -127,9 +50,9 @@ export default class extends React.Component {
 
             prev.push((
               <tr key={item.get('id')}>
-                <td>{this.renderName(item)}</td>
-                <td>{this.renderQuantity(item)}</td>
-                <td>{this.renderBuyPrice(item)}</td>
+                <td><ProductName product={item}/></td>
+                <td><Quantity product={item}/></td>
+                <td><BuyPrice product={item}/></td>
                 <td>{this.renderInternalPrice(item)}</td>
                 <td>{this.renderNormalPrice(item)}</td>
               </tr>))
