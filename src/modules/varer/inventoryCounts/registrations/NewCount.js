@@ -1,12 +1,15 @@
 import Immutable from 'immutable'
 import React from 'react'
+import moment from '../../../../moment'
 import * as actions from '../actions'
 import {addVare} from '../service'
 import {fillCountSummer} from '../../common/functions'
+import {fillBuyPrice} from '../../inventoryItems/service'
 
 import InventoryItemSearch from '../../common/components/InventoryItemSearch'
 import VareMengde from '../../common/components/VareMengde'
 import Price from '../../common/components/Price'
+import Quantity from '../../common/components/Quantity'
 
 const getInitialState = () => ({
   antall: '',
@@ -14,8 +17,11 @@ const getInitialState = () => ({
   comment: '',
   place: '',
   raavare: null,
+  time_price: moment().format('YYYY-MM-DD'), // TODO: don't have default if not "svinn"
   isSending: false,
 })
+
+import './NewCount.scss'
 
 export default class NewCount extends React.Component {
 
@@ -36,7 +42,14 @@ export default class NewCount extends React.Component {
 
   handleChange(field) {
     return event => {
-      this.setState({[field]: event.target ? event.target.value : event})
+      const newValue = event.target ? event.target.value : event
+      let newState = {[field]: newValue}
+
+      if (field === 'time_price' && this.state.raavare) {
+        newState.raavare = fillBuyPrice(this.state.raavare, newValue)
+      }
+
+      this.setState(newState)
     }
   }
 
@@ -66,7 +79,8 @@ export default class NewCount extends React.Component {
       antall: this.getNumber(this.state.antall),
       antallpant: this.getNumber(this.state.antallpant),
       kommentar: this.state.comment,
-      sted: this.state.place
+      sted: this.state.place,
+      time_price: this.state.time_price
     }
 
     addVare(data).then(res => {
@@ -82,7 +96,7 @@ export default class NewCount extends React.Component {
 
   handleInventoryItemSelect(raavare) {
     this.setState({
-      raavare
+      raavare: raavare ? fillBuyPrice(raavare, this.state.time_price) : null
     })
   }
 
@@ -100,22 +114,23 @@ export default class NewCount extends React.Component {
 
   renderValue() {
     if (this.state.antall && this.state.raavare) {
-      let time_price = null // TODO: support individual timestamps
-
       let count = Immutable.Map({
         antall: this.getNumber(this.state.antall),
         antallpant: this.getNumber(this.state.antallpant),
+        time_price: this.state.time_price,
       })
       count = fillCountSummer(count, this.state.raavare)
 
-      console.log(this.state.raavare)
-
       return (
-        <Price
-          price={count.getIn(['summer', 'sum'])}
-          priceDate={this.state.raavare.getIn(['innpris', 'dato'])}
-          priceDateRelativeTo={time_price || this.props.time}
-          pant={count.getIn(['summer', 'pant'])}/>
+        <span>
+          <Quantity product={this.state.raavare} count={count} />
+          {' = '}
+          <Price
+            price={count.getIn(['summer', 'sum'])}
+            priceDate={this.state.raavare.getIn(['innpris', 'dato'])}
+            priceDateRelativeTo={this.state.time_price || this.props.time}
+            pant={count.getIn(['summer', 'pant'])}/>
+        </span>
       )
     }
 
@@ -124,37 +139,43 @@ export default class NewCount extends React.Component {
 
   render() {
     return (
-      <div className="panel panel-default">
+      <div className="panel panel-default varer-inventoryCountNewCount">
         <div className="panel-heading">
           Register inventory item
         </div>
         <div className="panel-body">
           <form onSubmit={this.handleSave}>
             <div className="row">
-              <div className="col-sm-3">
+              <div className="col-sm-4">
                 <InventoryItemSearch onSelect={this.handleInventoryItemSelect} ref="inventoryItemSearch" />
               </div>
               <div className="col-sm-2">
-                <input type="text" className="form-control" placeholder="Quantity" value={this.state.antall}
+                <input type="text" className="form-control" placeholder="Quantity, e.g. 6*3+1" value={this.state.antall}
                   onChange={this.handleChange('antall')}/>
               </div>
-              <div className="col-sm-2 form-control-static">
+              <div className="col-sm-3 form-control-static">
                 {this.renderMengde()}
               </div>
               {/*<div className="col-sm-2">
                 <input type="text" className="form-control" placeholder="Pant (quantity) (optional)" value={this.state.antallpant}
                   onChange={this.handleChange('antallpant')}/>
-              </div>
-              <div className="col-sm-2">
-                <input type="text" className="form-control" placeholder="Location (optional)" value={this.state.place}
-                  onChange={this.handleChange('place')}/>
               </div>*/}
-              <div className="col-sm-3">
+              <div className="col-sm-2">
+                <input type="submit" className="form-control btn-success" value="Register"/>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-8">
                 <input type="text" className="form-control" placeholder="Comment (optional)" value={this.state.comment}
                   onChange={this.handleChange('comment')}/>
               </div>
               <div className="col-sm-2">
-                <input type="submit" className="form-control btn-success" value="Register"/>
+                <input type="text" className="form-control" placeholder="Location (optional)" value={this.state.place}
+                  onChange={this.handleChange('place')}/>
+              </div>
+              <div className="col-sm-2">
+                <input type="date" className="form-control" placeholder="date of work" value={this.state.time_price}
+                  onChange={this.handleChange('time_price')}/>
               </div>
             </div>
           </form>

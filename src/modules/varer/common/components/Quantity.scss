@@ -1,0 +1,13 @@
+@import '../../../../bootstrap';
+
+.varer-quantity {
+  white-space: nowrap;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.varer-quantity-svinnInfo {
+  font-size: 80%;
+  color: $gray-light;
+}

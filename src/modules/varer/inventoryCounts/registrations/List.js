@@ -72,9 +72,11 @@ export default class List extends React.Component {
           {this.props.counts.map(count => (
             <tr key={count.get('id')}>
               <td><ProductName product={count.get('raavare')}/></td>
-              <td><Quantity product={count.get('raavare')}/></td>
               <td>
-                {antall(count.get('antall'))}
+                {antall(count.get('antall'))} x <Quantity product={count.get('raavare')} showSpoilage={false}/>
+              </td>
+              <td>
+                <Quantity product={count.get('raavare')} count={count} />
                 {count.get('sted') ? <div>({count.get('sted')})</div> : ''}
               </td>
               <td>
