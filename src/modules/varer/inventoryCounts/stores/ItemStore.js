@@ -38,7 +38,8 @@ export default Store({
         return state
       }
 
-      return state.updateIn(['data', 'varer'], varer => varer.push(toImmutable(vare)))
+      vare = toImmutable(vare).set('raavare', vare.raavare.id)
+      return state.updateIn(['data', 'varer'], varer => varer.push(vare))
     })
   }
 })
