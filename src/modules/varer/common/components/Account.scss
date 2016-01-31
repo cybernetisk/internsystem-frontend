@@ -1,0 +1,13 @@
+@import '../../../../bootstrap';
+
+.varer-account {
+  font-size: 90%;
+  color: $gray-light;
+}
+
+.varer-accountLink {
+  color: $gray-light;
+  &:hover {
+    color: $link-color;
+  }
+}

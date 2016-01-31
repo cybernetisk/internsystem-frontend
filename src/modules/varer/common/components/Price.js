@@ -4,6 +4,8 @@ import {price} from '../../../../services/FormatService'
 
 import PrisDato from './PrisDato'
 
+import './Price.scss'
+
 export default class extends React.Component {
   static propTypes = {
     price: React.PropTypes.number.isRequired,

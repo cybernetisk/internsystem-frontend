@@ -2,6 +2,7 @@ import React from 'react'
 import {admin} from '../../../api'
 
 import ProductName from '../common/components/ProductName'
+import ProductStatus from '../common/components/ProductStatus'
 import PrisDato from '../common/components/PrisDato'
 import VareMengde from '../common/components/VareMengde'
 import SellPrice from '../common/components/SellPrice'
@@ -44,7 +45,7 @@ export default class extends React.Component {
 
           let tag
           if (meta.get('raavare').get('status') != 'OK') {
-            tag = <span> <span className="status-text">{meta.get('raavare').get('status')}</span></span>
+            tag = <span> <ProductStatus text={meta.get('raavare').get('status')}/></span>
           }
 
           return (

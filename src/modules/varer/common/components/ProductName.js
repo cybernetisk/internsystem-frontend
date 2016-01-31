@@ -1,16 +1,23 @@
 import React from 'react'
 import {admin} from '../../../../api'
 
+import Account from './Account'
+import ProductStatus from './ProductStatus'
+
 export default class extends React.Component {
   static propTypes = {
     product: React.PropTypes.object.isRequired,
     showAccount: React.PropTypes.bool,
+    showAccountGroup: React.PropTypes.bool,
     isInventory: React.PropTypes.bool,
+    showLinks: React.PropTypes.bool,
   }
 
   static defaultProps = {
     showAccount: true,
     isInventory: true,
+    showLinks: true,
+    showAccountGroup: false,
   }
 
   render() {
@@ -25,7 +32,7 @@ export default class extends React.Component {
 
     let tag
     if (product.get('status') != 'OK') {
-      tag = <span> <span className="status-text">{product.get('status')}</span></span>
+      tag = <span> <ProductStatus text={product.get('status')}/></span>
     }
 
     let account
@@ -33,9 +40,10 @@ export default class extends React.Component {
       account = (
         <span>
           <br/>
-          <a className="gruppe-link" href={admin(`varer/konto/${product.get(accountKey).get('id')}/`)}>
-            {product.get(accountKey).get('navn')}
-          </a>
+          <Account
+            account={product.get(accountKey)}
+            showLinks={this.props.showLinks}
+            showGroup={this.props.showAccountGroup}/>
         </span>
       )
     }
@@ -43,7 +51,11 @@ export default class extends React.Component {
     return (
       <div className="varer-productName">
         {category}
-        <a href={admin(`varer/${adminModule}/${product.get('id')}/`)} target="_self">{product.get('navn')}</a>
+        {this.props.showLinks ? (
+          <a href={admin(`varer/${adminModule}/${product.get('id')}/`)} target="_self">
+            {product.get('navn')}
+          </a>
+        ) : product.get('navn')}
         {tag}
         {account}
       </div>

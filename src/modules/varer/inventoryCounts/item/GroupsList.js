@@ -4,6 +4,7 @@ import {connect} from 'nuclear-js-react-addons'
 import PrisDato from '../../common/components/PrisDato'
 import VareMengde from '../../common/components/VareMengde'
 import VaretellingerItemNewVare from './NewVare'
+import Account from '../../common/components/Account'
 
 import {price, antall} from '../../../../services/FormatService'
 
@@ -48,7 +49,7 @@ export default class GroupsList extends React.Component {
               let summer = account.get('summer')
               prev.push((
                 <tr key={'account-' + data.get('id')}>
-                  <td><a className="gruppe-link" href={`varer/kontoer/${data.get('id')}`}>{data.get('navn')}</a></td>
+                  <td><Account account={data}/></td>
                   <td>{price(summer.get('sum'), 2)}</td>
                   <td>{price(summer.get('pant'), 2)}</td>
                   <td>{price(summer.get('sum') + summer.get('pant'), 2)}</td>

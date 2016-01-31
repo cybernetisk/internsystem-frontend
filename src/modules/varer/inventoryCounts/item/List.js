@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'nuclear-js-react-addons'
 
+import Account from '../../common/components/Account'
 import ProductName from '../../common/components/ProductName'
 import BuyPrice from '../../common/components/BuyPrice'
 import Quantity from '../../common/components/Quantity'
@@ -137,8 +138,7 @@ export default class List extends React.Component {
 
               prev.push((
                 <tr className="group-row" key={'gruppe-' + gruppe.get('id')}>
-                  <th colSpan="3">{gruppe.get('gruppe')}: <a className="gruppe-link"
-                    href={'varer/kontoer/'+gruppe.get('id')}>{gruppe.get('navn')}</a></th>
+                  <th colSpan="3"><Account account={gruppe} showGroup={true} /></th>
                   <th colSpan="2">
                     {this.renderAmount(summer)}
                   </th>
