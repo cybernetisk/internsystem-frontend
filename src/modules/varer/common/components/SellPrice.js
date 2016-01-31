@@ -2,7 +2,7 @@ import React from 'react'
 
 import {price} from '../../../../services/FormatService'
 
-import PrisMargin from './PrisMargin'
+import PriceMargin from './PriceMargin'
 
 export default class extends React.Component {
 
@@ -36,7 +36,7 @@ export default class extends React.Component {
 
       return [
         <br/>,
-        <PrisMargin innPris={inPrice}
+        <PriceMargin innPris={inPrice}
           utPris={this.props.item.get('salgspris').get(this.getPricePropertyName())}
           utMva={this.props.item.get('salgspris').get('mva')}/>
       ]

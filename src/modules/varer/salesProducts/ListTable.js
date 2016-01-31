@@ -3,7 +3,7 @@ import {admin} from '../../../api'
 
 import ProductName from '../common/components/ProductName'
 import ProductStatus from '../common/components/ProductStatus'
-import PrisDato from '../common/components/PrisDato'
+import PriceDate from '../common/components/PriceDate'
 import VareMengde from '../common/components/VareMengde'
 import SellPrice from '../common/components/SellPrice'
 
@@ -36,7 +36,7 @@ export default class extends React.Component {
                 (
                 {price(meta.get('innpris_accurate'))}
                 {' '}
-                <PrisDato dato={meta.get('innpris').get('dato')}/>
+                <PriceDate dato={meta.get('innpris').get('dato')}/>
                 )
               </span>
             )

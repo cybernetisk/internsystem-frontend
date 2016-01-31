@@ -2,7 +2,7 @@ import React from 'react'
 
 import {price} from '../../../../services/FormatService'
 
-import PrisDato from './PrisDato'
+import PriceDate from './PriceDate'
 
 import './Price.scss'
 
@@ -18,7 +18,7 @@ export default class extends React.Component {
     let pant
     if (this.props.pant) {
       pant = (
-        <span className="pris-pant">
+        <span className="varer-price-pant">
           <br/>
           + {price(this.props.pant)} i pant
         </span>
@@ -30,13 +30,13 @@ export default class extends React.Component {
       priceDate = (
         <span>
           <br />
-          <PrisDato dato={this.props.priceDate} relativeTo={this.props.priceDateRelativeTo}/>
+          <PriceDate dato={this.props.priceDate} relativeTo={this.props.priceDateRelativeTo}/>
         </span>
       )
     }
 
     return (
-      <span className='varer-buyPrice'>
+      <span className='varer-price-buyPrice'>
         {price(this.props.price)}
         {pant}
         {priceDate}

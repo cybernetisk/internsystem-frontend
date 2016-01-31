@@ -17,24 +17,24 @@ export default class extends React.Component {
     let theClass
 
     if (days < 0)
-      theClass = 'prisdato-error'
+      theClass = 'varer-priceDate-error'
     //else if (this.dato == '2000-01-01')
-    //    theClass = 'prisdato-static'
+    //    theClass = 'varer-priceDate-static'
     else if (days < 30)
-      theClass = 'prisdato-age1'
+      theClass = 'varer-priceDate-age1'
     else if (days < 100)
-      theClass = 'prisdato-age2'
+      theClass = 'varer-priceDate-age2'
     else if (days < 180)
-      theClass = 'prisdato-age3'
+      theClass = 'varer-priceDate-age3'
     else if (days < 300)
-      theClass = 'prisdato-age4'
+      theClass = 'varer-priceDate-age4'
     else if (days < 400)
-      theClass = 'prisdato-age5'
+      theClass = 'varer-priceDate-age5'
     else
-      theClass = 'prisdato-age6'
+      theClass = 'varer-priceDate-age6'
 
     return (
-      <span className={'prisdato ' + theClass}>
+      <span className={'varer-priceDate ' + theClass}>
         {this.props.dato}
       </span>
     )

@@ -8,12 +8,10 @@ import './List.scss'
 import ProductName from '../../common/components/ProductName'
 import Price from '../../common/components/Price'
 import Quantity from '../../common/components/Quantity'
-import PrisDato from '../../common/components/PrisDato'
-import VareMengde from '../../common/components/VareMengde'
 
 import inventoryProductsListTable from '../../inventoryItems/ListTable'
 
-import {price, antall} from '../../../../services/FormatService'
+import {antall} from '../../../../services/FormatService'
 
 import {
   counts,

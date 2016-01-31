@@ -1,0 +1,27 @@
+@import '../../../../bootstrap';
+
+.varer-priceDate {
+  font-size: 90%;
+
+  &.varer-priceDate-age1,
+  &.varer-priceDate-static {
+    color: #93c47d;
+  }
+  &.varer-priceDate-age2 {
+    color: $gray-light;
+  }
+  &.varer-priceDate-age3 {
+    color: #cda869;
+  }
+  &.varer-priceDate-age4 {
+    color: orange;
+  }
+  &.varer-priceDate-age5 {
+    color: red;
+  }
+  &.varer-priceDate-age6,
+  &.varer-priceDate-error {
+    background-color: red;
+    color: white;
+  }
+}

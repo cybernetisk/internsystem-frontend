@@ -1,0 +1,36 @@
+.varer-priceMargin {
+  font-size: 90%;
+  padding: 1px 3px;
+
+  &.varer-priceMargin-veryhigh {
+    background-color: #008000;
+  }
+  &.varer-priceMargin-higher {
+    background-color: #8dbc77;
+  }
+  &.varer-priceMargin-high {
+    background-color: #ade793;
+  }
+  &.varer-priceMargin-ok {
+    background-color: #d9ead3;
+  }
+  &.varer-priceMargin-low {
+    background-color: #ffd966;
+  }
+  &.varer-priceMargin-verylow {
+    background-color: #ea9999;
+  }
+  &.varer-priceMargin-subzero {
+    background-color: red;
+    color: white;
+
+    .varer-priceMargin-kr {
+      color: white;
+    }
+  }
+}
+
+.varer-priceMargin-kr {
+  font-size: 80%;
+  color: #555;
+}
