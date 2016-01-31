@@ -77,7 +77,7 @@ export default class Item extends React.Component {
       || newProps.query.f != this.props.query.f) {
       let f = newProps.query.f
       if (typeof f === 'undefined' || !consts.inventoryCountOptions.has(newProps.query.f)) {
-        f = consts.outdatedOptionsDefault
+        f = consts.inventoryCountOptionsDefault
       }
 
       actions.updateFilters({
@@ -109,7 +109,7 @@ export default class Item extends React.Component {
     let f = e.target.value
     actions.updateFilters({f})
 
-    if (f === consts.outdatedOptionsDefault) {
+    if (f === consts.inventoryCountOptionsDefault) {
       f = undefined
     }
 
