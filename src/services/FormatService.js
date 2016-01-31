@@ -2,6 +2,9 @@ export default {
   antall(number, decimals) {
     if (typeof decimals == 'number') {
       number = number.toFixed(decimals)
+    } else {
+      // never show more than 4 decimals
+      number = Math.round(number * 10000) / 10000
     }
 
     let x = (number + '').split('.')
