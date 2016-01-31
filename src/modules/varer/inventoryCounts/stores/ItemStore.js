@@ -34,7 +34,7 @@ export default Store({
     })
 
     this.on(actionTypes.VARE_ADDED, (state, {countId, vare}) => {
-      if (state.get('id') != countId) {
+      if (state.get('id') != countId || !state.getIn(['data', 'varer'])) {
         return state
       }
 

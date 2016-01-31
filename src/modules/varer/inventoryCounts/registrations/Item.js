@@ -7,6 +7,7 @@ import {addVare} from '../service'
 import * as actions from '../actions'
 
 import Loader from '../../../../components/Loader'
+import NewCount from './NewCount'
 import List from './List'
 
 import {
@@ -65,6 +66,7 @@ export default class Item extends React.Component {
         {this.renderComment(this.props.data)}
 
         <h2>Registrations</h2>
+        <NewCount inventoryCountId={this.props.data.get('id')}/>
         <List />
       </div>
     )
