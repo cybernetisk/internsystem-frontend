@@ -59,8 +59,7 @@ export default class List extends React.Component {
         <thead>
           <tr>
             <th>Raw material</th>
-            <th>&nbsp;</th>
-            <th>Qty</th>
+            <th colSpan="2">Quantity</th>
             <th>Value ex. VAT</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
