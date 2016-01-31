@@ -1,22 +1,7 @@
-@import '../../../vars';
-
 .varer-table {
   tr.group-row th {
     padding-top: 20px;
     background-color: #FFF;
     font-size: 120%;
-  }
-
-  ul {
-    margin: 0;
-  }
-
-  .varer-price-pant {
-    font-size: 80%;
-    color: $gray-light;
-  }
-
-  .varer-productName {
-    white-space: nowrap;
   }
 }

@@ -1,9 +1,16 @@
+@import '../../../../vars';
+
 .varer-price-buyPrice {
   white-space: nowrap;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
   position: relative;
+}
+
+.varer-price-pant {
+  font-size: 80%;
+  color: $gray-light;
 }
 
 .varer-price-history {

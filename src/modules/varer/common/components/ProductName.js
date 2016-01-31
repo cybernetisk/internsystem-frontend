@@ -4,6 +4,8 @@ import {admin} from '../../../../api'
 import Account from './Account'
 import ProductStatus from './ProductStatus'
 
+import './ProductName.scss'
+
 export default class extends React.Component {
   static propTypes = {
     product: React.PropTypes.object.isRequired,

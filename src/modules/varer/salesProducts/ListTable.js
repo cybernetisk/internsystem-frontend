@@ -9,6 +9,8 @@ import SellPrice from '../common/components/SellPrice'
 
 import {price} from '../../../services/FormatService'
 
+import './ListTable.scss'
+
 export default class extends React.Component {
 
   static propTypes = {
@@ -64,7 +66,7 @@ export default class extends React.Component {
     let lastGroup
 
     return (
-      <table className="table table-striped table-condensed varer-table">
+      <table className="table table-striped table-condensed varer-table varer-salesProducts-listTable">
         <thead>
           <tr>
             <th>Name</th>
