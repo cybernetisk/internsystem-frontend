@@ -20,6 +20,18 @@ export function getInventoryCount(id, expanded = false) {
   })
 }
 
+export function getInventoryCountCounts(inventoryCountId) {
+  return reqwest({
+    url: api('varer/varetellingvarer'),
+    data: {
+      varetelling: inventoryCountId,
+      expand: 1,
+      ordering: '-time_added'
+    },
+    type: 'json'
+  })
+}
+
 export function addVare(data) {
   return reqwest({
     url: api(`varer/varetellingvarer`),

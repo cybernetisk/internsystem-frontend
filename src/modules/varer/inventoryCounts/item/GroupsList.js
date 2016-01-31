@@ -3,7 +3,7 @@ import {connect} from 'nuclear-js-react-addons'
 
 import PrisDato from '../../common/components/PrisDato'
 import VareMengde from '../../common/components/VareMengde'
-import VaretellingerItemNewVare from './ItemNewVare'
+import VaretellingerItemNewVare from './NewVare'
 
 import {price, antall} from '../../../../services/FormatService'
 

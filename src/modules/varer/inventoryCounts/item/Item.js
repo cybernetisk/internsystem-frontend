@@ -17,7 +17,7 @@ import * as inventoryItemsActions from '../../inventoryItems/actions'
 import Loader from '../../../../components/Loader'
 import AccountFilter from '../../common/components/AccountFilter'
 import ListInputQ from '../../common/components/TextInput'
-import ItemListView from './ItemListView'
+import ItemListView from './List'
 import GroupsList from './GroupsList'
 
 import {
@@ -35,7 +35,7 @@ import {
   totalSummer,
   totalSummerFiltered,
 }))
-export default class InventoryCount extends React.Component {
+export default class Item extends React.Component {
 
   static contextTypes = {
     router: React.PropTypes.func.isRequired

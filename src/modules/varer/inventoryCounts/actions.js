@@ -2,7 +2,7 @@ import reactor from './../../../reactor'
 import {dispatchAsync} from '../../../utils/FluxUtils'
 
 import {getInventoryItems} from '../inventoryItems/service'
-import {getInventoryCounts, getInventoryCount} from './service'
+import {getInventoryCounts, getInventoryCount, getInventoryCountCounts} from './service'
 
 import actionTypes from './actionTypes'
 
@@ -15,7 +15,7 @@ export function fetchInventoryCounts(page) {
 }
 
 export function fetchInventoryCount(id) {
-  dispatchAsync(getInventoryCount(id), {
+  dispatchAsync(getInventoryCount(id, true), {
     request: actionTypes.RECEIVE_INVENTORYCOUNT_START,
     success: actionTypes.RECEIVE_INVENTORYCOUNT_SUCCESS,
     failure: actionTypes.RECEIVE_INVENTORYCOUNT_FAILURE
@@ -23,11 +23,19 @@ export function fetchInventoryCount(id) {
 }
 
 export function fetchInventoryCountSimple(id) {
-  dispatchAsync(getInventoryCount(id, true), {
-    request: actionTypes.RECEIVE_INVENTORYCOUNTREGS_START,
-    success: actionTypes.RECEIVE_INVENTORYCOUNTREGS_SUCCESS,
-    failure: actionTypes.RECEIVE_INVENTORYCOUNTREGS_FAILURE
+  dispatchAsync(getInventoryCount(id), {
+    request: actionTypes.RECEIVE_INVENTORYCOUNT_START,
+    success: actionTypes.RECEIVE_INVENTORYCOUNT_SUCCESS,
+    failure: actionTypes.RECEIVE_INVENTORYCOUNT_FAILURE
   }, {id})
+}
+
+export function fetchInventoryCountCounts(inventoryCountId) {
+  dispatchAsync(getInventoryCountCounts(inventoryCountId), {
+    request: actionTypes.RECEIVE_INVENTORYCOUNTCOUNTS_START,
+    success: actionTypes.RECEIVE_INVENTORYCOUNTCOUNTS_SUCCESS,
+    failure: actionTypes.RECEIVE_INVENTORYCOUNTCOUNTS_FAILURE
+  }, {inventoryCountId})
 }
 
 export function vareAdded(countId, vare) {

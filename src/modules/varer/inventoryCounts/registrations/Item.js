@@ -20,7 +20,7 @@ import {
   isLoading,
   error,
 }))
-export default class Main extends React.Component {
+export default class Item extends React.Component {
 
   static contextTypes = {
     router: React.PropTypes.func.isRequired
@@ -32,6 +32,7 @@ export default class Main extends React.Component {
 
   componentDidMount() {
     actions.fetchInventoryCountSimple(this.props.params.id)
+    actions.fetchInventoryCountCounts(this.props.params.id)
   }
 
   renderComment(data) {

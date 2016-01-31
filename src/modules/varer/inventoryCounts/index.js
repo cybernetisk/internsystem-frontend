@@ -2,19 +2,20 @@ import React from 'react'
 import {Route} from 'react-router'
 import reactor from '../../../reactor'
 
-import ListStore from './list/ListStore'
-import InventoryCountStore from './item/InventoryCountStore'
-import FilterStore from './item/FilterStore'
-import List from './list/List'
-import InventoryCount from './item/InventoryCount'
-import Registrations from './registrations/Main'
+import ListStore from './stores/ListStore'
+import ItemStore from './stores/ItemStore'
+import ItemCountsStore from './stores/ItemCountsStore'
+import FilterStore from './stores/FilterStore'
 
-import './registrations'
+import List from './list/List'
+import InventoryCount from './item/Item'
+import Registrations from './registrations/Item'
 
 reactor.registerStores({
   varerInventoryCounts: ListStore,
-  varerInventoryCount: InventoryCountStore,
+  varerInventoryCount: ItemStore,
   varerInventoryCountFilter: FilterStore,
+  varerInventoryCountCounts: ItemCountsStore,
 })
 
 export default (

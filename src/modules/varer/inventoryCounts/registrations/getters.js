@@ -2,17 +2,30 @@ import {fillBuyPrice, fillSellPrice} from '../../inventoryItems/service'
 import {fillCountSummer} from '../../common/functions'
 import cacheGetter from '../../../../utils/cacheGetter'
 
-const storeKey = 'varerInventoryCountRegistrations'
+const itemStoreKey = 'varerInventoryCount'
+const countsStoreKey = 'varerInventoryCountCounts'
 
-export const isLoading = [storeKey, 'isLoading']
+export const isLoading = [
+  [itemStoreKey, 'isLoading'],
+  [countsStoreKey, 'isLoading'],
+  (itemLoading, countsLoading) => {
+    return itemLoading || countsLoading
+  }
+]
 
-export const error = [storeKey, 'error']
+export const error = [
+  [itemStoreKey, 'error'],
+  [countsStoreKey, 'error'],
+  (itemError, countsError) => {
+    return itemError || countsError
+  }
+]
 
-export const data = [storeKey, 'data']
+export const data = [itemStoreKey, 'data']
 
 export const counts = [
-  [storeKey, 'data', 'varer'],
-  [storeKey, 'data', 'tid'],
+  [countsStoreKey, 'data'],
+  [itemStoreKey, 'data', 'tid'],
   cacheGetter((counts, time) => {
     time = time ? new Date(time) : null
 
@@ -26,4 +39,4 @@ export const counts = [
   })
 ]
 
-export const time = [storeKey, 'data', 'tid']
+export const time = [itemStoreKey, 'data', 'tid']

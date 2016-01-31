@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class ItemNewVare extends React.Component {
+export default class NewVare extends React.Component {
 
   static propTypes = {}
 

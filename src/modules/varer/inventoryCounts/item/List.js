@@ -4,7 +4,7 @@ import {connect} from 'nuclear-js-react-addons'
 import ProductName from '../../common/components/ProductName'
 import BuyPrice from '../../common/components/BuyPrice'
 import Quantity from '../../common/components/Quantity'
-import VaretellingerItemNewVare from './ItemNewVare'
+import VaretellingerItemNewVare from './NewVare'
 
 import inventoryProductsListTable from '../../inventoryItems/ListTable'
 
@@ -21,7 +21,7 @@ import {
   accountsSummerFiltered,
   filteredList,
 }))
-export default class ItemListView extends React.Component {
+export default class List extends React.Component {
 
   static propTypes = {
     newItem: React.PropTypes.func.isRequired,
