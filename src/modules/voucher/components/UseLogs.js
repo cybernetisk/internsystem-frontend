@@ -13,6 +13,8 @@ import UseVouchers from './UseVouchers'
 
 import { userDetails } from '../../auth/getters'
 
+import './UseLogs.scss'
+
 @connect(props => ({
   uselogs: getters.uselogs,
   userDetails,
@@ -37,7 +39,7 @@ export default class List extends React.Component {
 
     return (
       <div>
-        <table className="table table-striped">
+        <table className="table table-striped voucher-useLogsTable">
           <thead>
             <tr>
               <th>Time used</th>

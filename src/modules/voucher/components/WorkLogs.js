@@ -13,6 +13,8 @@ import WorkLogItem from './WorkLogItem'
 
 import { isLoggedIn } from '../../auth/getters'
 
+import './WorkLogs.scss'
+
 @connect(props => ({
   worklogs: getters.worklogs,
   isLoggedIn,
@@ -37,7 +39,7 @@ export default class List extends React.Component {
 
     return (
       <div>
-        <table className="table table-striped">
+        <table className="table table-striped voucher-workLogsTable">
           <thead>
             <tr>
               <th>Date worked</th>
