@@ -46,6 +46,14 @@ export default class Item extends React.Component {
     }
   }
 
+  renderNewCountForm() {
+    if (!this.props.data.get('is_locked')) {
+      return (
+        <NewCount inventoryCountId={this.props.data.get('id')}/>
+      )
+    }
+  }
+
   render() {
     if (this.props.isLoading || this.props.error) {
       return (
@@ -66,7 +74,7 @@ export default class Item extends React.Component {
         {this.renderComment(this.props.data)}
 
         <h2>Registrations</h2>
-        <NewCount inventoryCountId={this.props.data.get('id')}/>
+        {this.renderNewCountForm()}
         <List />
       </div>
     )

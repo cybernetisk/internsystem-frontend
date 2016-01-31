@@ -1,14 +1,18 @@
+import Immutable from 'immutable'
 import React from 'react'
 import * as actions from '../actions'
 import {addVare} from '../service'
+import {fillCountSummer} from '../../common/functions'
 
 import InventoryItemSearch from '../../common/components/InventoryItemSearch'
+import VareMengde from '../../common/components/VareMengde'
+import Price from '../../common/components/Price'
 
 const getInitialState = () => ({
   antall: '',
   antallpant: '',
-  kommentar: '',
-  sted: '',
+  comment: '',
+  place: '',
   raavare: null,
   isSending: false,
 })
@@ -36,6 +40,14 @@ export default class NewCount extends React.Component {
     }
   }
 
+  getNumber(value) {
+    try {
+      return math.eval(value.replace(",", "."))
+    } catch (e) {
+      return NaN
+    }
+  }
+
   handleSave(event) {
     // TODO: validation
 
@@ -49,17 +61,19 @@ export default class NewCount extends React.Component {
     // TODO: price_date
 
     let data = {
-      raavare: this.state.raavare,
+      raavare: this.state.raavare.get('id'),
       varetelling: this.props.inventoryCountId,
-      antall: math.eval(this.state.antall.replace(",", ".")),
-      antallpant: math.eval(this.state.antallpant.replace(",", ".")),
-      kommentar: this.state.kommentar,
-      sted: this.state.sted
+      antall: this.getNumber(this.state.antall),
+      antallpant: this.getNumber(this.state.antallpant),
+      kommentar: this.state.comment,
+      sted: this.state.place
     }
 
     addVare(data).then(res => {
       actions.vareAdded(this.props.inventoryCountId, res)
       this.setState(getInitialState())
+      this.refs.inventoryItemSearch.clear()
+      this.refs.inventoryItemSearch.refs.autosuggest.input.focus()
     }, err => {
       alert(err.responseText)
       this.setState({isSending: false})
@@ -68,8 +82,44 @@ export default class NewCount extends React.Component {
 
   handleInventoryItemSelect(raavare) {
     this.setState({
-      raavare: raavare ? raavare.get('id') : null
+      raavare
     })
+  }
+
+  renderMengde() {
+    if (this.state.raavare) {
+      const mengde = <VareMengde verdi={this.state.raavare.get('mengde')} enhet={this.state.raavare.get('enhet')}/>
+
+      return (
+        <span>x {mengde} = {this.renderValue()}</span>
+      )
+    }
+
+    return 'Select product'
+  }
+
+  renderValue() {
+    if (this.state.antall && this.state.raavare) {
+      let time_price = null // TODO: support individual timestamps
+
+      let count = Immutable.Map({
+        antall: this.getNumber(this.state.antall),
+        antallpant: this.getNumber(this.state.antallpant),
+      })
+      count = fillCountSummer(count, this.state.raavare)
+
+      console.log(this.state.raavare)
+
+      return (
+        <Price
+          price={count.getIn(['summer', 'sum'])}
+          priceDate={this.state.raavare.getIn(['innpris', 'dato'])}
+          priceDateRelativeTo={time_price || this.props.time}
+          pant={count.getIn(['summer', 'pant'])}/>
+      )
+    }
+
+    return '?'
   }
 
   render() {
@@ -81,22 +131,25 @@ export default class NewCount extends React.Component {
         <div className="panel-body">
           <form onSubmit={this.handleSave}>
             <div className="row">
-              <div className="col-sm-4">
-                <InventoryItemSearch onSelect={this.handleInventoryItemSelect}/>
+              <div className="col-sm-3">
+                <InventoryItemSearch onSelect={this.handleInventoryItemSelect} ref="inventoryItemSearch" />
               </div>
               <div className="col-sm-2">
                 <input type="text" className="form-control" placeholder="Quantity" value={this.state.antall}
                   onChange={this.handleChange('antall')}/>
               </div>
+              <div className="col-sm-2 form-control-static">
+                {this.renderMengde()}
+              </div>
               {/*<div className="col-sm-2">
                 <input type="text" className="form-control" placeholder="Pant (quantity) (optional)" value={this.state.antallpant}
                   onChange={this.handleChange('antallpant')}/>
-              </div>*/}
-              <div className="col-sm-2">
-                <input type="text" className="form-control" placeholder="Location (optional)" value={this.state.sted}
-                  onChange={this.handleChange('sted')}/>
               </div>
               <div className="col-sm-2">
+                <input type="text" className="form-control" placeholder="Location (optional)" value={this.state.place}
+                  onChange={this.handleChange('place')}/>
+              </div>*/}
+              <div className="col-sm-3">
                 <input type="text" className="form-control" placeholder="Comment (optional)" value={this.state.comment}
                   onChange={this.handleChange('comment')}/>
               </div>

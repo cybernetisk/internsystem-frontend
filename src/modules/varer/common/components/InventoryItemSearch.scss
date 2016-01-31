@@ -1,31 +1,27 @@
+.varer-inventoryItemSearch {
+  .varer-buyPrice {
+    text-align: center
+  }
 
-.container {
-  position: relative;
+  white-space: nowrap;
 }
 
-.containerOpen {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
+.varer-inventoryItemSearch--suggestion {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 
-.suggestionsContainer {
-  position: absolute;
-  top: 34px;
-  width: auto;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  border: 1px solid #aaa;
-  background-color: #fff;
-  border-radius: 4px;
-  z-index: 2;
-}
+  > * {
+    align-self: center;
+    margin-left: 10px;
 
-.suggestion {
-  cursor: pointer;
-  padding: 10px 20px;
-}
+    &:first-child {
+      margin-left: 0;
+      margin-right: auto;
+    }
 
-.suggestionFocused {
-  background-color: #ddd;
+    &:nth-child(2) {
+      text-align: center;
+    }
+  }
 }
