@@ -71,6 +71,23 @@ export default class InventoryCount extends React.Component {
     })
   }
 
+  componentWillReceiveProps(newProps) {
+    if (newProps.query.q != this.props.query.q
+      || newProps.query.group != this.props.query.group
+      || newProps.query.f != this.props.query.f) {
+      let f = newProps.query.f
+      if (typeof f === 'undefined' || !consts.inventoryCountOptions.has(newProps.query.f)) {
+        f = consts.outdatedOptionsDefault
+      }
+
+      actions.updateFilters({
+        text: newProps.query.q || '',
+        group: parseInt(newProps.query.group) || null,
+        f
+      })
+    }
+  }
+
   handleSearch(e) {
     actions.updateFilters({text: e.target.value})
     this.updateQuery('q', e.target.value !== '' ? e.target.value : undefined)
