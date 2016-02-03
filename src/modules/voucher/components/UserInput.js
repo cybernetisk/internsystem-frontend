@@ -1,5 +1,5 @@
 import React from 'react'
-import Autosuggest from 'react-autosuggest'
+  import Autosuggest from 'react-autosuggest'
 import VoucherService from '../services/VoucherService'
 
 import theme from '!style-loader!css-loader?modules!./autosuggest.scss'

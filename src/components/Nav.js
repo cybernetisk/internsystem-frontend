@@ -79,6 +79,11 @@ export default class Nav extends React.Component {
               <NavLink to='voucher/uselogs'>Use logs</NavLink>
               <NavLink to='voucher/worklogs'>Work logs</NavLink>
             </NavDropdown>
+            <NavDropdown title="Member" id="nav-voucher-dropdown">
+              <NavLink to='member'>Overview</NavLink>
+              <NavLink to='member/add'>Add member</NavLink>
+              <NavLink to='member/list'>Member List</NavLink>
+            </NavDropdown>
             <NavDropdown title="Other" id="nav-other-dropdown">
               <li>
                 <a target="_self" href='http://heim.ifi.uio.no/cyb/tilganger/'>Access control management (Garm)</a>
