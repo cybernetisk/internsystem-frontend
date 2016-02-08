@@ -3,11 +3,13 @@ import {admin} from '../../../api'
 
 import ProductName from '../common/components/ProductName'
 import ProductStatus from '../common/components/ProductStatus'
-import PrisDato from '../common/components/PrisDato'
+import PriceDate from '../common/components/PriceDate'
 import VareMengde from '../common/components/VareMengde'
 import SellPrice from '../common/components/SellPrice'
 
 import {price} from '../../../services/FormatService'
+
+import './ListTable.scss'
 
 export default class extends React.Component {
 
@@ -36,7 +38,7 @@ export default class extends React.Component {
                 (
                 {price(meta.get('innpris_accurate'))}
                 {' '}
-                <PrisDato dato={meta.get('innpris').get('dato')}/>
+                <PriceDate dato={meta.get('innpris').get('dato')}/>
                 )
               </span>
             )
@@ -64,7 +66,7 @@ export default class extends React.Component {
     let lastGroup
 
     return (
-      <table className="table table-striped table-condensed varer-table">
+      <table className="table table-striped table-condensed varer-table varer-salesProducts-listTable">
         <thead>
           <tr>
             <th>Name</th>

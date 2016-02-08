@@ -1,8 +1,7 @@
-//$icon-font-path: "fonts/bootstrap/";
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import './vars';
 
 // Core variables and mixins
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/_variables";
+//@import "~bootstrap-sass/assets/stylesheets/bootstrap/_variables";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/_mixins";
 
 // Reset and dependencies

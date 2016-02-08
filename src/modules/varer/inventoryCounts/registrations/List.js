@@ -8,12 +8,10 @@ import './List.scss'
 import ProductName from '../../common/components/ProductName'
 import Price from '../../common/components/Price'
 import Quantity from '../../common/components/Quantity'
-import PrisDato from '../../common/components/PrisDato'
-import VareMengde from '../../common/components/VareMengde'
 
 import inventoryProductsListTable from '../../inventoryItems/ListTable'
 
-import {price, antall} from '../../../../services/FormatService'
+import {antall} from '../../../../services/FormatService'
 
 import {
   counts,
@@ -37,18 +35,23 @@ export default class List extends React.Component {
       regBy = `by ${count.getIn(['added_by', 'username'])}`
     }
 
-    let priceTime = null
-    if (count.get('time_price')) {
-      priceTime
-    }
-
     if (!addedTime && !regBy) return null
 
     return (
-      <span className="varer-regBy">
+      <div className="varer-regBy">
         Registered {addedTime} {regBy}
-      </span>
+      </div>
     )
+  }
+
+  renderPriceDate(count) {
+    if (count.get('time_price')) {
+      return (
+        <div className="varer-timePrice">
+          Prices relates to {moment(count.get('time_price')).format('YYYY-MM-DD')}
+        </div>
+      )
+    }
   }
 
   render() {
@@ -61,8 +64,7 @@ export default class List extends React.Component {
         <thead>
           <tr>
             <th>Raw material</th>
-            <th>&nbsp;</th>
-            <th>Qty</th>
+            <th colSpan="2">Quantity</th>
             <th>Value ex. VAT</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
@@ -72,9 +74,11 @@ export default class List extends React.Component {
           {this.props.counts.map(count => (
             <tr key={count.get('id')}>
               <td><ProductName product={count.get('raavare')}/></td>
-              <td><Quantity product={count.get('raavare')}/></td>
               <td>
-                {antall(count.get('antall'))}
+                {antall(count.get('antall'))} x <Quantity product={count.get('raavare')} showSpoilage={false}/>
+              </td>
+              <td>
+                <Quantity product={count.get('raavare')} count={count} />
                 {count.get('sted') ? <div>({count.get('sted')})</div> : ''}
               </td>
               <td>
@@ -82,11 +86,13 @@ export default class List extends React.Component {
                   price={count.getIn(['summer', 'sum'])}
                   priceDate={count.getIn(['raavare', 'innpris', 'dato'])}
                   priceDateRelativeTo={count.get('time_price') || this.props.time}
-                  pant={count.getIn(['summer', 'pant'])}/>
+                  pant={count.getIn(['summer', 'pant'])}
+                  raavareId={count.getIn(['raavare', 'id'])}/>
               </td>
               <td>
                 <div>{count.get('kommentar')}</div>
-                <div>{this.renderRegDate(count)}</div>
+                {this.renderRegDate(count)}
+                {this.renderPriceDate(count)}
               </td>
               <td>
                 <a href={admin(`varer/varetellingvare/${count.get('id')}/`)} target="_self">

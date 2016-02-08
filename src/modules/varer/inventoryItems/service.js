@@ -17,7 +17,7 @@ export function fillBuyPrice(inventoryItem, priceDate = null) {
     .sortBy(price => new Date(price.get('dato')))
 
   return inventoryItem
-    .set('innpris', getLastPossible(prices, priceDate))
+    .set('innpris', getLastPossible(prices, priceDate ? new Date(priceDate) : null))
 }
 
 export function fillSellPrice(inventoryItem, priceDate = null) {
@@ -32,7 +32,7 @@ export function fillSellPrice(inventoryItem, priceDate = null) {
     .sortBy(price => getDateMidnight(price.get('dato')))
 
   return inventoryItem
-    .set('salgspris', getLastPossible(prices, priceDate))
+    .set('salgspris', getLastPossible(prices, priceDate ? new Date(priceDate) : null))
 }
 
 function getLastPossible(list, date = null) {
@@ -47,4 +47,14 @@ function getDateMidnight(date) {
   let d = new Date(date)
   d.setUTCHours(0, 0, 0)
   return d
+}
+
+export function getInPrices(inventoryItemId) {
+  return reqwest({
+    url: api(`varer/inprices`),
+    data: {
+      raavare: inventoryItemId
+    },
+    type: 'json'
+  })
 }

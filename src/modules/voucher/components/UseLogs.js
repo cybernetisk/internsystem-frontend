@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'nuclear-js-react-addons'
 import moment from '../../../moment'
+import {antall} from '../../../services/FormatService'
 
 import getters from '../getters'
 import * as actions from '../actions'
@@ -11,6 +12,8 @@ import Loader from '../../../components/Loader'
 import UseVouchers from './UseVouchers'
 
 import { userDetails } from '../../auth/getters'
+
+import './UseLogs.scss'
 
 @connect(props => ({
   uselogs: getters.uselogs,
@@ -36,7 +39,7 @@ export default class List extends React.Component {
 
     return (
       <div>
-        <table className="table table-striped">
+        <table className="table table-striped voucher-useLogsTable">
           <thead>
             <tr>
               <th>Time used</th>
@@ -57,7 +60,7 @@ export default class List extends React.Component {
                   <td>{this.renderDateSpent(uselog.date_spent)}</td>
                   <td>{who}</td>
                   <td>{uselog.vouchers}</td>
-                  <td>{uselog.wallet.cached_balance}</td>
+                  <td>{antall(parseFloat(uselog.wallet.cached_balance))}</td>
                   <td>
                     {uselog.comment}
                     {uselog.issuing_user.username == uselog.wallet.user.username

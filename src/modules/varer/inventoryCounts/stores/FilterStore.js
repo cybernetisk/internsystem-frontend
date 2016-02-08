@@ -5,7 +5,7 @@ import * as consts from '../../consts'
 const initialFilters = {
   text: '',
   group: null,
-  f: consts.outdatedOptionsDefault
+  f: consts.inventoryCountOptionsDefault
 }
 
 export default Store({

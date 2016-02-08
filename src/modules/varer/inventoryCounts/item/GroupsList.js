@@ -1,12 +1,9 @@
 import React from 'react'
 import {connect} from 'nuclear-js-react-addons'
 
-import PrisDato from '../../common/components/PrisDato'
-import VareMengde from '../../common/components/VareMengde'
-import VaretellingerItemNewVare from './NewVare'
 import Account from '../../common/components/Account'
 
-import {price, antall} from '../../../../services/FormatService'
+import {price} from '../../../../services/FormatService'
 
 import {
   groupsViewData,

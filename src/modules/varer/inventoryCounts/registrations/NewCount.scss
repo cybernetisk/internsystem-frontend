@@ -1,0 +1,10 @@
+.varer-inventoryCountNewCount {
+  .row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .row:last-child {
+    margin-bottom: 0;
+  }
+}

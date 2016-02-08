@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from '../../../moment'
+import {antall} from '../../../services/FormatService'
 
 import * as actions from '../actions'
 
@@ -173,8 +174,8 @@ export default class WorkLogItem extends React.Component {
         <td>{worklog.date_worked}</td>
         <td>{this.getWho(worklog)}</td>
         <td>{worklog.work_group}</td>
-        <td>{worklog.hours}</td>
-        <td>{worklog.wallet.cached_balance}</td>
+        <td>{antall(parseFloat(worklog.hours))}</td>
+        <td>{antall(parseFloat(worklog.wallet.cached_balance))}</td>
         <td>
           {worklog.comment}
           <div className="small text-muted">Registered {reg_by} {time}</div>

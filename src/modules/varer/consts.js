@@ -31,3 +31,5 @@ export const inventoryCountOptions = outdatedOptions.merge(Immutable.fromJS({
     filter: product => product.get('tellinger').size > 0
   }
 }))
+
+export const inventoryCountOptionsDefault = 'counted'

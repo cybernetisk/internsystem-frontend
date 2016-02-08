@@ -1,6 +1,8 @@
 import React from 'react'
 import {price} from '../../../../services/FormatService'
 
+import './PriceMargin.scss'
+
 export default class extends React.Component {
   static propTypes = {
     innPris: React.PropTypes.number.isRequired,
@@ -14,26 +16,26 @@ export default class extends React.Component {
     let theClass
 
     if (margin > 150)
-      theClass = 'prismargin-veryhigh'
+      theClass = 'varer-priceMargin-veryhigh'
     else if (margin > 100)
-      theClass = 'prismargin-higher'
+      theClass = 'varer-priceMargin-higher'
     else if (margin > 50)
-      theClass = 'prismargin-high'
+      theClass = 'varer-priceMargin-high'
     else if (margin > 20)
-      theClass = 'prismargin-ok'
+      theClass = 'varer-priceMargin-ok'
     else if (margin > 10)
-      theClass = 'prismargin-low'
+      theClass = 'varer-priceMargin-low'
     else if (margin < 0)
-      theClass = 'prismargin-subzero'
+      theClass = 'varer-priceMargin-subzero'
     else
-      theClass = 'prismargin-verylow'
+      theClass = 'varer-priceMargin-verylow'
 
     margin = margin.toFixed(1).toString().replace('.', ',')
 
     return (
-      <span className={'prismargin ' + theClass}>
+      <span className={'varer-priceMargin ' + theClass}>
         {margin} %
-        <span className="prismargin-kr"> ({price(eksmva - this.props.innPris, 2)})</span>
+        <span className="varer-priceMargin-kr"> ({price(eksmva - this.props.innPris, 2)})</span>
       </span>)
   }
 }

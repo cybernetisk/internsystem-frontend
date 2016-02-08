@@ -10,16 +10,23 @@ import Loader from '../../../../components/Loader'
 import NewCount from './NewCount'
 import List from './List'
 
+import './Item.scss'
+
 import {
   data,
   isLoading,
   error,
 } from './getters'
 
+import {
+  isLoggedIn,
+} from '../../../auth/getters'
+
 @connect(props => ({
   data,
   isLoading,
   error,
+  isLoggedIn,
 }))
 export default class Item extends React.Component {
 
@@ -39,7 +46,7 @@ export default class Item extends React.Component {
   renderComment(data) {
     if (data.get('kommentar')) {
       return (
-        <div>
+        <div className="varer-inventoryCountReg-item-comment">
           {data.get('kommentar')}
         </div>
       )
@@ -48,8 +55,14 @@ export default class Item extends React.Component {
 
   renderNewCountForm() {
     if (!this.props.data.get('is_locked')) {
+      if (this.props.isLoggedIn) {
+        return (
+          <NewCount inventoryCountId={this.props.data.get('id')}/>
+        )
+      }
+
       return (
-        <NewCount inventoryCountId={this.props.data.get('id')}/>
+        <p className="alert alert-warning">You have to <Link to='auth.login'>log in</Link> to register items.</p>
       )
     }
   }
@@ -64,7 +77,9 @@ export default class Item extends React.Component {
     return (
       <div>
         <div className="pull-right hidden-print">
-          <Link to='varer/inventorycount' params={{id: this.props.data.get('id')}} query={{f: 'counted'}}
+          <a className="btn btn-default" href={`admin/varer/varetelling/${this.props.data.get('id')}/`} target="_self">Edit</a>
+          {' '}
+          <Link to='varer/inventorycount' params={{id: this.props.data.get('id')}}
             className="btn btn-default">
             Show detailed view
           </Link>
@@ -73,7 +88,6 @@ export default class Item extends React.Component {
         <h1>{this.props.data.get('tittel')}</h1>
         {this.renderComment(this.props.data)}
 
-        <h2>Registrations</h2>
         {this.renderNewCountForm()}
         <List />
       </div>
