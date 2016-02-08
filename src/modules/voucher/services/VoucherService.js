@@ -1,5 +1,4 @@
-import reqwest from 'reqwest'
-import reqwestWithCsrf from '../../../utils/reqwestWithCsrf'
+import reqwest from '../../../utils/reqwest'
 import {api} from '../../../api'
 
 class VoucherService {
@@ -60,7 +59,7 @@ class VoucherService {
   }
 
   registerWork(username, date_worked, work_group, hours, comment) {
-    return reqwestWithCsrf({
+    return reqwest({
       url: api('voucher/worklogs'),
       method: 'post',
       data: {
@@ -75,7 +74,7 @@ class VoucherService {
   }
 
   useVouchers(username, vouchers, comment) {
-    return reqwestWithCsrf({
+    return reqwest({
       url: api(`voucher/users/${username}/use_vouchers`),
       method: 'post',
       data: {
@@ -87,7 +86,7 @@ class VoucherService {
   }
 
   updateWorkLog(id, data) {
-    return reqwestWithCsrf({
+    return reqwest({
       url: api(`voucher/worklogs/${id}`),
       method: 'patch',
       data,
@@ -96,7 +95,7 @@ class VoucherService {
   }
 
   deleteWorkLog(id) {
-    return reqwestWithCsrf({
+    return reqwest({
       url: api(`voucher/worklogs/${id}`),
       method: 'delete',
       type: 'json'

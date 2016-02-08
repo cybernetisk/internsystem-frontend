@@ -1,4 +1,4 @@
-import reqwest from 'reqwest'
+import reqwest from '../../../utils/reqwest'
 import {api} from '../../../api'
 
 export function getVendors() {
