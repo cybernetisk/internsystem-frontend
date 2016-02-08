@@ -1,4 +1,4 @@
-import reqwest from '../../../utils/reqwestWithCsrf'
+import reqwest from '../../../utils/reqwest'
 import {api} from '../../../api'
 
 export const pageLimit = 30

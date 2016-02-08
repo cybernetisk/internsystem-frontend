@@ -1,12 +1,12 @@
 import AuthStore from '../stores/AuthStore'
 import getters from '../getters'
-import reqwest from 'reqwest'
+import reqwestWithoutCsrf from 'reqwest'
 import {api} from '../../../api'
 import deferredGetter from '../../../utils/deferredGetter'
 
 class AuthService {
   getAuthData() {
-    return reqwest({
+    return reqwestWithoutCsrf({
       url: api('me'),
       withCredentials: true,
       type: 'json'

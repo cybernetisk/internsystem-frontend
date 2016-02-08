@@ -1,5 +1,5 @@
 import {toImmutable} from 'nuclear-js'
-import reqwest from 'reqwest'
+import reqwest from '../../../../utils/reqwest'
 import React from 'react'
 import Autosuggest from 'react-autosuggest'
 import {api} from '../../../../api'

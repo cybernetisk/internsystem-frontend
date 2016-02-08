@@ -9,6 +9,7 @@ export default function reqwestWithCsrf(...args) {
         args[0].headers = {}
       }
       args[0].headers['X-CSRFToken'] = csrfToken
+      args[0].withCredentials = true
       console.log('args to reqwest', args)
       reqwest(...args).then(resolve, reject)
     })
