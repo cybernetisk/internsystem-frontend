@@ -24,12 +24,16 @@ export default class List extends React.Component{
     }
 
 
+    renderDate(date) {
+        return moment(date).format("dddd DD. MMM YYYY HH:mm")
+    }
+
     render() {
         if(!this.props.members.get('data')) {
             return (<div><h1>CRAP!</h1></div>)
         }
         return (<div>
-            <table className="table table-striped">
+            <table className="table table-striped" >
                 <thead>
                     <th>Name</th>
                     <th>Date sold</th>
@@ -41,7 +45,7 @@ export default class List extends React.Component{
                     return(
                         <tr key={member.id}>
                             <td>{member.name}</td>
-                            <td>{member.date_joined}</td>
+                            <td>{this.renderDate(member.date_joined)}</td>
                             <td>{member.email}</td>
                             <td>{member.liftetime}</td>
                         </tr>)
