@@ -1,9 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-import List from './List'
+import NewMemberList from './NewMemberList'
 
 import MemberService from '../services/MemberService'
+
+import { connect } from 'nuclear-js-react-addons'
+import moment from '../../../moment'
+import getters from '../getters'
+import * as actions from '../actions'
+
+import Pagination from '../../../components/Pagination'
+import Loader from '../../../components/Loader'
+
+import { userDetails } from '../../auth/getters'
+
+@connect(props => ({
+    members: getters.members,
+    userDetails
+}))
 
 export default class Add extends React.Component{
     constructor(props) {
@@ -28,41 +43,35 @@ export default class Add extends React.Component{
     initState() {
         this.state = {name: '', email: '', lifetime: false}
     }
+
     handleSubmit(e){
         e.preventDefault()
         var name = this.state.name
         var email = this.state.email
         var lifetime = this.state.lifetime
-        MemberService.registerMember(name, email, lifetime)
-        this.initState()
-
-
+        MemberService.registerMember(name, email, lifetime).then(result => {
+            actions.getMemberList(1, 10, '-date_joined')
+            this.setState({
+                isSending: false,
+                name: '',
+                email: '',
+                lifetime: false
+            })
+        }, error => {
+            this.setState({
+                name: '',
+                emaik: '',
+                lifetime: false
+            })
+        })
     }
 
-    renderNewMembers(
-    return (
-            <div>
-                <table className="table table-striped" >
-                    <thead>
-                        <th>Name</th>
-                        <th>Date sold</th>
-                        <th>Email</th>
-                        <th>Lifetime</th>
-                    </thead>
-                    <tbody>
-                        {this.props.members.get('data').get('results').toJS().map((member) => {
-                        return(
-                            <tr key={member.id}>
-                                <td>{member.name}</td>
-                                <td>{this.renderDate(member.date_joined)}</td>
-                                <td>{member.email}</td>
-                                <td>{member.liftetime}</td>
-                            </tr>)
-                        })}
-                    </tbody>
-                </table>
-            </div>)
-    )
+
+
+
+
+
+
 
     renderAddForm() {
         return (
@@ -88,9 +97,10 @@ export default class Add extends React.Component{
 
     renderNewlyMembers() {
         return (
-            <List />
+            <NewMemberList />
         )
     }
+
 
 
 

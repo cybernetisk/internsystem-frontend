@@ -15,9 +15,9 @@ import { userDetails } from '../../auth/getters'
     userDetails
 }))
 
-export default class List extends React.Component{
+export default class NewMemberList extends React.Component{
     componentDidMount(){
-        actions.getMemberList(1, 50, 'date_joined')
+        actions.getMemberList(1, 10, '-date_joined')
     }
     handlePageChange(newPage) {
         actions.getMemberList(newPage)
