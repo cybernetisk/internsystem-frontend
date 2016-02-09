@@ -1,12 +1,16 @@
 import reqwest from 'reqwest'
 import {api} from '../../../api'
-import reqwestWithCsrf from '../../../utils/reqwestWithCsrf'
+import reqwestWithCsrf from '../../../utils/reqwest'
 
 class MemberService {
-    getMemberList() {
-        return reqwest({
+    getMemberList(page = 1, limit = 50) {
+        return reqwestWithCsrf({
             url: api('member/member'),
-            type: 'json'
+            type: 'json',
+            data:{
+                page,
+                limit
+            }
         })
     }
 
@@ -25,6 +29,17 @@ class MemberService {
                 email,
                 lifetime
             },
+            type: 'json'
+        })
+    }
+    searchMember(search) {
+        return reqwestWithCsrf({
+            url: api('member/member'),
+            method: 'get',
+            data: {
+                search,
+                limit: 10
+            }
             type: 'json'
         })
     }

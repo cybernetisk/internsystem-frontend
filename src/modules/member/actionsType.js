@@ -7,4 +7,7 @@ export default keyMirror({
     RECIVE_MEMBER_START: null,
     RECIVE_MEMBER_SUCCESS: null,
     RECIVE_MEMBER_FAILURE: null,
+    RECIVE_STATS_START: null,
+    RECIVE_STATS_SUCCESS: null,
+    RECIVE_STATS_FAILURE: null,
 })

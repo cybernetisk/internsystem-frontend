@@ -1,8 +1,14 @@
 import React from 'react'
 import {Route} from 'react-router'
+import reactor from '../../reactor'
 import Add from './components/Add'
 import List from './components/List'
 import Stats from './components/Stats'
+import MemberStore from './stores/MemberStore'
+
+reactor.registerStores({
+    members: MemberStore
+})
 
 module.exports = (
     <Route>

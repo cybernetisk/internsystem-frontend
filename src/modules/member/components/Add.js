@@ -21,7 +21,7 @@ export default class Add extends React.Component{
         this.setState({email: e.target.value});
     }
     handleLifetimeChange(e) {
-        this.setState({lifetime: e.target.value})
+        this.setState({lifetime: e.target.checked})
     }
     handleSubmit(e){
         e.preventDefault()
@@ -34,24 +34,25 @@ export default class Add extends React.Component{
 
     render() {
        return (
+           <div><h1>Add member</h1>
            <form onSubmit={this.handleSubmit}>
                <div class="form-group">
                     <label for="name">Name</label>
                     <input type="'text" name="'name" value={this.state.name} placeholder="John Doe"
                            onChange={this.handleNameChange}/>
-               </div>
-               <div class="form-group">
+
                     <label for="email">Email:</label>
                     <input type="text" name='email' value={this.state.email} placeholder="user@example.com"
                            onChange={this.handleEmailChange}/>
-               </div>
-               <div class="form-group">
+
                     <label for="lifetime">Lifetime</label>
                     <input type="checkbox" name="lifetime" value={this.state.lifetime}
                            onChange={this.handleLifetimeChange}/>
+                    <input type="submit" value="Add member"/>
                </div>
-               <input type="submit" value="Add member"/>
            </form>
+            <h2>Recent members:</h2>
+           </div>
        )
 
     }
