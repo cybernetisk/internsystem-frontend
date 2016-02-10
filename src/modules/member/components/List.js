@@ -35,10 +35,12 @@ export default class List extends React.Component{
         return (<div>
             <table className="table table-striped" >
                 <thead>
-                    <th>Name</th>
-                    <th>Date sold</th>
-                    <th>Email</th>
-                    <th>Lifetime</th>
+                    <tr>
+                    <td>Name</td>
+                    <td>Date sold</td>
+                    <td>Email</td>
+                    <td>Lifetime</td>
+                        </tr>
                 </thead>
                 <tbody>
                 {this.props.members.get('data').get('results').toJS().map((member) => {

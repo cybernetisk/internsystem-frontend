@@ -3,14 +3,15 @@ import {api} from '../../../api'
 import reqwestWithCsrf from '../../../utils/reqwest'
 
 class MemberService {
-    getMemberList(page = 1, limit = 50, ordering='date_joined') {
+    getMemberList(page = 1, limit = 50, ordering='date_joined', search='') {
         return reqwestWithCsrf({
             url: api('member/member'),
             type: 'json',
             data:{
                 page,
                 limit,
-                ordering
+                ordering,
+                search
             }
         })
     }
@@ -33,13 +34,12 @@ class MemberService {
             type: 'json'
         })
     }
-    searchMember(search) {
+    searchMember(name) {
         return reqwestWithCsrf({
             url: api('member/member'),
-            method: 'get',
             data: {
-                search,
-                limit: 10
+                limit: 10,
+                search: name
             },
             type: 'json'
         })

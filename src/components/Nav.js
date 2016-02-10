@@ -83,6 +83,7 @@ export default class Nav extends React.Component {
               <NavLink to='member'>Overview</NavLink>
               <NavLink to='member/add'>Add member</NavLink>
               <NavLink to='member/list'>Member List</NavLink>
+              <NavLink to='member/search'>Search</NavLink>
             </NavDropdown>
             <NavDropdown title="Other" id="nav-other-dropdown">
               <li>

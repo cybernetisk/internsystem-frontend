@@ -1,24 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-import NewMemberList from './NewMemberList'
+import List from './List'
 
 import MemberService from '../services/MemberService'
 
 import { connect } from 'nuclear-js-react-addons'
 import moment from '../../../moment'
-import getters from '../getters'
 import * as actions from '../actions'
 
 import Pagination from '../../../components/Pagination'
 import Loader from '../../../components/Loader'
 
-import { userDetails } from '../../auth/getters'
-
-@connect(props => ({
-    members: getters.members,
-    userDetails
-}))
 
 export default class Add extends React.Component{
     constructor(props) {
@@ -42,6 +35,7 @@ export default class Add extends React.Component{
     }
     initState() {
         this.state = {name: '', email: '', lifetime: false}
+        actions.getMemberList(1,10,'-date_joined')
     }
 
     handleSubmit(e){
@@ -67,12 +61,6 @@ export default class Add extends React.Component{
     }
 
 
-
-
-
-
-
-
     renderAddForm() {
         return (
             <form onSubmit={this.handleSubmit}>
@@ -96,8 +84,9 @@ export default class Add extends React.Component{
     }
 
     renderNewlyMembers() {
+        actions.getMemberList(1,10,'-date_joined')
         return (
-            <NewMemberList />
+            <List />
         )
     }
 
