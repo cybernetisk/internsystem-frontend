@@ -63,22 +63,32 @@ export default class Add extends React.Component{
 
     renderAddForm() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="'text" name="'name" value={this.state.name} placeholder="John Doe"
-                           onChange={this.handleNameChange}/>
-
-                    <label for="email">Email:</label>
-                    <input type="text" name='email' value={this.state.email} placeholder="user@example.com"
-                           onChange={this.handleEmailChange}/>
-
-                    <label for="lifetime">Lifetime</label>
-                    <input type="checkbox" name="lifetime" value={this.state.lifetime}
-                           onChange={this.handleLifetimeChange}/>
-                    <input type="submit" value="Add member"/>
-                </div>
-            </form>
+            <div className="panel-body">
+                <form onSubmit={this.handleSubmit}>
+                    <div className="row">
+                        <div className="form-group">
+                            <div className="col-sm-3">
+                                <label for="name">Name</label>
+                                <input type="'text" name="'name" value={this.state.name} placeholder="John Doe"
+                                       onChange={this.handleNameChange} class="form-control"/>
+                            </div>
+                            <div className="col-sm-3">
+                                <label for="email">Email:</label>
+                                <input type="text" name='email' value={this.state.email} placeholder="user@example.com"
+                                       onChange={this.handleEmailChange} class="form-control"/>
+                            </div>
+                            <div className="col-sm-2">
+                                <label for="lifetime">Lifetime</label>
+                                <input type="checkbox" name="lifetime" value={this.state.lifetime}
+                                       onChange={this.handleLifetimeChange} class="form-control"/>
+                            </div>
+                            <div className="col-sm-2">
+                                <input type="submit" className="form-control btn-success" value="Add member"/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         )
 
     }
@@ -95,7 +105,8 @@ export default class Add extends React.Component{
 
     render() {
         return (
-            <div><h1>Add member</h1>
+            <div className="panel panel-default">
+                <div className="panel-heading">Add member</div>
                 {this.renderAddForm()}
                 <h2>Recent members:</h2>
                 {this.renderNewlyMembers()}
