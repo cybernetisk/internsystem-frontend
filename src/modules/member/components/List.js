@@ -27,13 +27,23 @@ export default class List extends React.Component{
     renderDate(date) {
         return moment(date).format("dddd DD. MMM YYYY HH:mm")
     }
+    renderLifetime(lifetime) {
+
+        if(lifetime == true){
+            return 'Yes'
+        } else {
+            return 'No'
+        }
+    }
 
     render() {
+
         if(!this.props.members.get('data')) {
             return (<div><h1>CRAP!</h1></div>)
         }
         return (<div>
-            <table className="table table-striped" >
+            <h1>Members</h1>
+            <table className="table table-bordered" >
                 <thead>
                     <tr>
                     <td>Name</td>
@@ -49,7 +59,7 @@ export default class List extends React.Component{
                             <td>{member.name}</td>
                             <td>{this.renderDate(member.date_joined)}</td>
                             <td>{member.email}</td>
-                            <td>{member.liftetime}</td>
+                            <td>{this.renderLifetime(member.lifetime)}</td>
                         </tr>)
                 })}
                 </tbody>
