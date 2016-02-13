@@ -12,10 +12,6 @@ import List from './List'
 
 import { userDetails } from '../../auth/getters'
 
-@connect(props => ({
-    members: getters.members,
-    userDetails
-}))
 
 export default class MemberList extends React.Component{
     constructor(props){
@@ -23,9 +19,7 @@ export default class MemberList extends React.Component{
     }
     render() {
 
-        if(!this.props.members.get('data')) {
-            return (<div>Failed to get data.</div>)
-        }
+
         return (<div>
             <h1>Memberlist</h1>
             <List/>

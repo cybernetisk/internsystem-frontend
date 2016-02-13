@@ -1,3 +1,4 @@
 const members = ['members']
+const member = ['member']
 
-export default { members }
+export default { members, member }

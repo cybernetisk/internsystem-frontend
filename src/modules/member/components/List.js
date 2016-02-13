@@ -44,19 +44,19 @@ export default class List extends React.Component {
                 <thead>
                 <tr>
                     <td>Name</td>
-                    <td>Date sold</td>
+                    <td>Date joined</td>
                     <td>Email</td>
-                    <td>Lifetime</td>
+
                 </tr>
                 </thead>
                 <tbody>
                 {this.props.members.get('data').get('results').toJS().map((member) => {
                     return (
                         <tr key={member.id}>
-                            <td>{member.name}</td>
+                            <td><Link to={`/member/${member.id}`}> {member.name}</Link></td>
                             <td>{this.renderDate(member.date_joined)}</td>
                             <td>{member.email}</td>
-                            <td>{this.renderLifetime(member.lifetime)}</td>
+
                         </tr>)
                 })}
                 </tbody>

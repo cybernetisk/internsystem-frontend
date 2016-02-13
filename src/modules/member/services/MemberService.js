@@ -44,6 +44,20 @@ class MemberService {
             type: 'json'
         })
     }
+    updateMember(id, name, email, lifetime, honorary) {
+        return reqwestWithCsrf({
+            url: api(`member/member/${id}`),
+            data: {
+                name,
+                email,
+                lifetime,
+                honorary,
+            },
+
+            type: 'json',
+            method: 'patch'
+        })
+    }
 }
 
 

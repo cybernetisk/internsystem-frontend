@@ -11,25 +11,25 @@ export default Store({
     },
 
     initialize() {
-        this.on(actionTypes.RECIVE_MEMBER_START, reciveMemberStart)
-        this.on(actionTypes.RECIVE_MEMBER_SUCCESS, reciveMemberSuccess)
-        this.on(actionTypes.RECIVE_MEMBER_FAILURE, reciveMemberFailure)
+        this.on(actionTypes.RECIVE_MEMBERLIST_START, reciveMembersStart)
+        this.on(actionTypes.RECIVE_MEMBERLIST_SUCCESS, reciveMembersSuccess)
+        this.on(actionTypes.RECIVE_MEMBERLIST_FAILURE, reciveMembersFailure)
     }
 })
 
-function reciveMemberStart(state) {
+function reciveMembersStart(state) {
     return state
         .set('data', null)
         .set('error', null)
         .set('isLoading', true)
 }
-function reciveMemberSuccess(state, {response}) {
-    console.log("Recived stats" + state + response)
+function reciveMembersSuccess(state, {response}) {
+    console.log("Recived stats")
     return state
         .set('data', toImmutable(response))
         .set('isLoading', false)
 }
-function reciveMemberFailure(state, {error}) {
+function reciveMembersFailure(state, {error}) {
     console.log("Reciveing stats failed", error.statusText)
     return state
         .set('error', toImmutable(error))
