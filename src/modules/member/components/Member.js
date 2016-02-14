@@ -65,7 +65,7 @@ export default class Member extends React.Component {
             return(
                 <div>
                     <h1>Member is deleted!</h1>
-                    <Link to="member/">Go back to overview</Link>
+                    <Link to="/member">Go back to overview</Link>
                 </div>
             )
         }
