@@ -176,7 +176,7 @@ export default class Member extends React.Component {
                     <dt>Lifetime member:</dt>
                     <dd>{this.renderBoolean(this.state.lifetime)}</dd>
                     <dt>Semester:</dt>
-                    <dd>{this.state.semester}</dd>
+                    <dd>{this.renderSemester(this.state.semester)}</dd>
                 </dl>
                 <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
                 <button type="button" className="btn btn-default" onClick={this.handleDelete}>Delete</button>
@@ -222,5 +222,9 @@ export default class Member extends React.Component {
             return('False')
         }
     }
-
+    renderSemester(semester){
+        return(
+            <div>{semester.year} {semester.semester}</div>
+        )
+    }
 }
