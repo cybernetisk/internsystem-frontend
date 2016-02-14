@@ -23,6 +23,7 @@ export default class Member extends React.Component {
     constructor(props){
         super(props)
         this.handleEdit = this.handleEdit.bind(this)
+        this.abortEdit = this.abortEdit.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.handleNameChange = this.handleNameChange.bind(this)
         this.saveEdit = this.saveEdit.bind(this)
@@ -42,7 +43,6 @@ export default class Member extends React.Component {
                     lifetime: result.lifetime,
                     honorary: result.honorary,
                     semester: result.semester,
-                    can_edit: result.can_edit
 
                 })
             }, error => {
@@ -102,7 +102,7 @@ export default class Member extends React.Component {
         return(
             <div>
 
-                <button type="button" className="btn btn-default" onClick={this.handleEdit}>Abort</button>
+                <button type="button" className="btn btn-default" onClick={this.abortEdit}>Abort</button>
                 <button type="button" className="btn btn-default" onClick={this.saveEdit}>Save</button>
                 <div className="panel-body">
                     <form onsubmit={this.saveEdit}>
@@ -128,12 +128,18 @@ export default class Member extends React.Component {
         )
     }
 
+    abortEdit(e){
+        e.preventDefault();
+        this.setState({
+            isEditing : false
+        })
+    }
+
     saveEdit(e){
         e.preventDefault()
         MemberService.updateMember(this.state.id, this.state.name, this.state.email,
             this.state.lifetime, this.state.honorary).then(result => {
-            actions.updateMember(this.state.id, this.state.name, this.state.email,
-                this.state.lifetime, this.state.honorary)
+            actions.updateMember(this.state.id)
             this.setState({
                 id: result.id,
                 name: result.name,
@@ -170,7 +176,7 @@ export default class Member extends React.Component {
                     <dt>Lifetime member:</dt>
                     <dd>{this.renderBoolean(this.state.lifetime)}</dd>
                     <dt>Semester:</dt>
-                    <dd>{this.renderSemester(this.state.semester)}</dd>
+                    <dd>{this.state.semester}</dd>
                 </dl>
                 <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
                 <button type="button" className="btn btn-default" onClick={this.handleDelete}>Delete</button>
@@ -189,10 +195,12 @@ export default class Member extends React.Component {
         if(confirm('Are you sure you want to delete this member?')) {
             MemberService.removeMember(this.state.id).then(result => {
                 actions.memberDeleted(this.state.id)
+                this.setState({
+                    isDeleted: true
+                })
             }, error => {
                 alert(error.responseText)
             })
-            this.setState({isDeleted: true})
         }
 
     }
@@ -214,10 +222,5 @@ export default class Member extends React.Component {
             return('False')
         }
     }
-    renderSemester(semester){
-        return(
-            <div>{semester.year} {semester.semester}</div>
-        )
 
-    }
 }

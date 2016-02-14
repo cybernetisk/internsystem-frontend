@@ -16,6 +16,7 @@ import { userDetails } from '../../auth/getters'
 export default class MemberList extends React.Component{
     constructor(props){
         super(props)
+        actions.getMemberList(1,50,'date_joined')
     }
     render() {
 

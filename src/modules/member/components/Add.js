@@ -52,6 +52,7 @@ export default class Add extends React.Component{
                 lifetime: false
             })
         }, error => {
+            alert(error.responseText)
             this.setState({
                 name: '',
                 emaik: '',
@@ -94,7 +95,7 @@ export default class Add extends React.Component{
     }
 
     renderNewlyMembers() {
-        actions.getMemberList(1,10,'-date_joined')
+
         return (
             <List />
         )
