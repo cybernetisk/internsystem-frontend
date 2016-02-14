@@ -13,4 +13,6 @@ export default keyMirror({
     RECIVE_STATS_START: null,
     RECIVE_STATS_SUCCESS: null,
     RECIVE_STATS_FAILURE: null,
+    MEMBER_DELETED: null,
+    MEMBER_UPDATED: null,
 })

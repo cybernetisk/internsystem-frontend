@@ -58,6 +58,13 @@ class MemberService {
             method: 'patch'
         })
     }
+    removeMember(id){
+        return reqwestWithCsrf({
+            url: api(`member/member/${id}`),
+            method: 'delete',
+            type: 'json'
+        })
+    }
 }
 
 

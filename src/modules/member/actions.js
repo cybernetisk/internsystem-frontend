@@ -20,3 +20,9 @@ export function getMember(memberId){
         failure: actionsType.RECIVE_MEMBER_FAILURE,
     }, {memberId})
 }
+export function memberDeleted(memberId){
+    reactor.dispatch(actionsType.MEMBER_DELETED, {memberId})
+}
+export function updateMember(id){
+    reactor.dispatch(actionsType.MEMBER_UPDATED, {id})
+}
