@@ -68,6 +68,4 @@ class MemberService {
 }
 
 
-
-
 export default new MemberService()
