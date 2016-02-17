@@ -31,7 +31,7 @@ function receiveUseLogsSuccess(state, {response}) {
 }
 
 function receiveUseLogsFailure(state, {error}) {
-  console.log("Receiving use logs failed", error.statusText)
+  console.log('Receiving use logs failed', error.statusText)
   return state
     .set('error', toImmutable(error))
     .set('isLoading', false)

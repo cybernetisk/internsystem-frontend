@@ -29,7 +29,7 @@ export default class List extends React.Component {
   }
 
   renderDateSpent(val) {
-    return moment(val).format("dddd DD. MMM YYYY HH:mm")
+    return moment(val).format('dddd DD. MMM YYYY HH:mm')
   }
 
   renderUseLogs() {

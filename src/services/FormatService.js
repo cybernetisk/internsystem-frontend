@@ -42,7 +42,7 @@ export default {
       return x1 + x2
     }
 
-    if (typeof(decimals) != "number") decimals = 0
+    if (typeof(decimals) != 'number') decimals = 0
     return (in_nok ? 'NOK ' : 'kr ') + formatNumber(parseFloat(amount), decimals)
   },
 }

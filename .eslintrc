@@ -21,7 +21,7 @@
     "jsx-quotes": 1,
     "no-console": 0,
     "no-use-before-define": 0, // TODO: apply this
-    //"quotes": [1, "single"],
+    "quotes": [1, "single"],
     //"react/jsx-no-undef": 1,
     //"react/jsx-uses-react": 1,
     //"react/jsx-uses-vars": 1,

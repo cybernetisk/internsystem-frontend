@@ -60,11 +60,11 @@ export default class List extends React.Component {
           {this.props.list.get('items').toList().toJS().map((event) => {
             let start, end
             if (event.is_allday) {
-              start = moment.utc(event.start).format("ddd D. MMM YYYY")
-              end = moment.utc(event.end).format("ddd D. MMM YYYY")
+              start = moment.utc(event.start).format('ddd D. MMM YYYY')
+              end = moment.utc(event.end).format('ddd D. MMM YYYY')
             } else {
-              start = moment(event.start).format("ddd D. MMM YYYY HH:mm")
-              end = moment(event.end).format("ddd D. MMM YYYY HH:mm")
+              start = moment(event.start).format('ddd D. MMM YYYY HH:mm')
+              end = moment(event.end).format('ddd D. MMM YYYY HH:mm')
             }
 
             let duration = start === end ? start : `${start} - ${end}`

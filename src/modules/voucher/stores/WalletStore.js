@@ -35,7 +35,7 @@ function receiveWalletsSuccess(state, {response}) {
 }
 
 function receiveWalletsFailure(state, {error}) {
-  console.log("Receiving wallets failed", error.statusText)
+  console.log('Receiving wallets failed', error.statusText)
   return state
     .set('error', toImmutable(error))
     .set('isLoading', false)

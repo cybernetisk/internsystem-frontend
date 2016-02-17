@@ -33,7 +33,7 @@ function receiveWorkLogsSuccess(state, {response}) {
 }
 
 function receiveWorkLogsFailure(state, {error}) {
-  console.log("Receiving work logs failed", error.statusText)
+  console.log('Receiving work logs failed', error.statusText)
   return state
     .set('error', toImmutable(error))
     .set('isLoading', false)

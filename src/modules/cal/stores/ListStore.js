@@ -38,7 +38,7 @@ function receiveListSuccess(state, {response}) {
 }
 
 function receiveListFailure(state, {error}) {
-  console.log("Receiving list failed", error)
+  console.log('Receiving list failed', error)
   return state
     .set('error', toImmutable(error))
     .set('isLoading', false)

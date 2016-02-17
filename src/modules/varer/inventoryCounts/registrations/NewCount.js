@@ -56,7 +56,7 @@ export default class NewCount extends React.Component {
 
   getNumber(value) {
     try {
-      return math.eval(value.replace(",", "."))
+      return math.eval(value.replace(',', '.'))
     } catch (e) {
       return NaN
     }

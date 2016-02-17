@@ -32,7 +32,7 @@ export default Store({
     })
 
     this.on(actionTypes.RECEIVE_INVENTORYCOUNTCOUNTS_FAILURE, (state, {error}) => {
-      console.log("Receiving inventory count counts failed", error)
+      console.log('Receiving inventory count counts failed', error)
       return state
         .set('error', toImmutable(error))
         .set('isLoading', false)
