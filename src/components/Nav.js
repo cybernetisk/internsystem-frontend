@@ -86,6 +86,7 @@ export default class Nav extends React.Component {
               <NavLink to='member/search'>Search</NavLink>
             </NavDropdown>
             <NavDropdown title="Other" id="nav-other-dropdown">
+              <li><a target='_self' href='https://internt.cyb.no/medlem/'>Member system</a></li>
               <li>
                 <a target="_self" href='http://heim.ifi.uio.no/cyb/tilganger/'>Access control management (Garm)</a>
               </li>
