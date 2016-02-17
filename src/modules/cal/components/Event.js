@@ -23,7 +23,7 @@ export default class Event extends React.Component {
       <PageLoader
         error={this.props.event.get('error')}
         isLoading={this.props.event.get('isLoading')}
-        title='Arrangement'/>
+        title="Arrangement"/>
     )
   }
 
@@ -48,7 +48,7 @@ export default class Event extends React.Component {
       <div>
         <h1>Arrangement: {event.title}</h1>
 
-        <p><Link to='cal/list'>Tilbake</Link></p>
+        <p><Link to="cal/list">Tilbake</Link></p>
 
         <p>{start === end ? start : `${start} til ${end}`}</p>
 
@@ -56,7 +56,7 @@ export default class Event extends React.Component {
           <p>Beskrivelse: {event.description}</p>
         ) : ''}
 
-        <dl className='dl-horizontal'>
+        <dl className="dl-horizontal">
           <dt>In Escape?</dt>
           <dd>{event.in_escape ? 'Yes' : 'No'}</dd>
           <dt>Cancelled?</dt>

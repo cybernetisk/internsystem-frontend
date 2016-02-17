@@ -62,7 +62,7 @@ export default class Item extends React.Component {
       }
 
       return (
-        <p className="alert alert-warning">You have to <Link to='auth.login'>log in</Link> to register items.</p>
+        <p className="alert alert-warning">You have to <Link to="auth.login">log in</Link> to register items.</p>
       )
     }
   }
@@ -79,7 +79,7 @@ export default class Item extends React.Component {
         <div className="pull-right hidden-print">
           <a className="btn btn-default" href={`admin/varer/varetelling/${this.props.data.get('id')}/`} target="_self">Edit</a>
           {' '}
-          <Link to='varer/inventorycount' params={{id: this.props.data.get('id')}}
+          <Link to="varer/inventorycount" params={{id: this.props.data.get('id')}}
             className="btn btn-default">
             Show detailed view
           </Link>

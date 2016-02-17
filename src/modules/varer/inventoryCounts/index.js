@@ -20,8 +20,8 @@ reactor.registerStores({
 
 export default (
   <Route>
-    <Route name='varer/inventorycounts' path='/varer/inventorycounts' handler={List}/>
-    <Route name='varer/inventorycount' path='/varer/inventorycount/:id' handler={InventoryCount}/>
-    <Route name='varer/inventorycount/registrations' path='/varer/inventorycount/:id/registrations' handler={Registrations}/>
+    <Route name="varer/inventorycounts" path="/varer/inventorycounts" handler={List}/>
+    <Route name="varer/inventorycount" path="/varer/inventorycount/:id" handler={InventoryCount}/>
+    <Route name="varer/inventorycount/registrations" path="/varer/inventorycount/:id/registrations" handler={Registrations}/>
   </Route>
 )

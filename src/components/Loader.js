@@ -18,7 +18,7 @@ export default class Loader extends React.Component {
     }
 
     return (
-      <div className='core-loader is-error'>
+      <div className="core-loader is-error">
         {message}
       </div>
     )
@@ -26,7 +26,7 @@ export default class Loader extends React.Component {
 
   renderLoading() {
     return (
-      <div className='core-loader is-loading'>
+      <div className="core-loader is-loading">
         Loading data ...
       </div>
     )
@@ -34,7 +34,7 @@ export default class Loader extends React.Component {
 
   renderEmpty() {
     return (
-      <div className='core-loader is-empty'>
+      <div className="core-loader is-empty">
         {this.props.children || 'No data found.'}
       </div>
     )

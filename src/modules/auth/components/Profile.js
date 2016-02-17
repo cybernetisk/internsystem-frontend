@@ -18,7 +18,7 @@ export default class Profile extends React.Component {
       <PageLoader
         error={this.props.authdata.get('error')}
         isLoading={this.props.authdata.get('isLoading')}
-        title='Profile'/>
+        title="Profile"/>
     )
   }
 

@@ -12,7 +12,7 @@ export default class Root extends React.Component {
       <Provider reactor={reactor}>
         <div>
           <Nav />
-          <div className='container'>
+          <div className="container">
             <RouteHandler />
           </div>
         </div>

@@ -18,7 +18,7 @@
   ],
   "rules": {
     "eol-last": 2,
-    //"jsx-quotes": 1,
+    "jsx-quotes": 1,
     "no-console": 0,
     "no-use-before-define": 0, // TODO: apply this
     //"quotes": [1, "single"],

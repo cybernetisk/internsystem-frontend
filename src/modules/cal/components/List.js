@@ -73,9 +73,9 @@ export default class List extends React.Component {
               <tr key={event.id}>
                 <td>
                   <Link to={`/cal/event/${event.id}`}>{event.title}</Link>
-                  {event.is_external ? (event.is_public ? <Tag text='Announced utlån' /> : <Tag text='Utlån' />) : ''}
-                  {!event.in_escape ? <Tag text='Not Escape' type='not-escape' /> : ''}
-                  {!event.is_public && !event.is_external ? <Tag text='Internal' type='not-public' /> : ''}
+                  {event.is_external ? (event.is_public ? <Tag text="Announced utlån" /> : <Tag text="Utlån" />) : ''}
+                  {!event.in_escape ? <Tag text="Not Escape" type="not-escape" /> : ''}
+                  {!event.is_public && !event.is_external ? <Tag text="Internal" type="not-public" /> : ''}
                 </td>
                 <td>{duration}</td>
               </tr>

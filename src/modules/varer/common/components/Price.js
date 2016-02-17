@@ -111,7 +111,7 @@ export default class extends React.Component {
     }
 
     return (
-      <span className='varer-price-buyPrice' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <span className="varer-price-buyPrice" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         {price(this.props.price)}
         {pant}
         {priceDate}

@@ -17,28 +17,28 @@ export default class Nav extends React.Component {
     if (this.props.authdata.get('isLoading')) {
       return (
         <RefNav pullRight>
-          <li className='navbar-text'>Loading data ..</li>
+          <li className="navbar-text">Loading data ..</li>
         </RefNav>
       )
     } else if (this.props.authdata.get('error')) {
       return (
         <RefNav pullRight>
-          <li className='navbar-text'>Error: {this.props.authdata.get('error')}</li>
+          <li className="navbar-text">Error: {this.props.authdata.get('error')}</li>
         </RefNav>
       )
     } else if (this.props.isLoggedIn) {
       return (
         <RefNav pullRight>
           <NavDropdown title={this.props.userDetails.realname} id="nav-auth-dropdown">
-            <NavLink to='auth.profile'>Profile</NavLink>
-            <NavLink to='auth.logout'>Log out</NavLink>
+            <NavLink to="auth.profile">Profile</NavLink>
+            <NavLink to="auth.logout">Log out</NavLink>
           </NavDropdown>
         </RefNav>
       )
     } else {
       return (
         <RefNav pullRight>
-          <NavLink to='auth.login'>Log in with UiO-account</NavLink>
+          <NavLink to="auth.login">Log in with UiO-account</NavLink>
         </RefNav>
       )
     }
@@ -58,38 +58,38 @@ export default class Nav extends React.Component {
         <Navbar.Collapse>
           <RefNav>
             <NavDropdown title="Products" id="nav-products-dropdown">
-              <NavLink to='varer/accounts'>Account list</NavLink>
-              <NavLink to='varer/inventorycounts'>Inventory counts</NavLink>
-              <NavLink to='varer/inventory'>Inventory items</NavLink>
-              <NavLink to='varer/salesestimates'>Sales estimates</NavLink>
-              <NavLink to='varer/products'>Sales products</NavLink>
-              <NavLink to='varer/vendors'>Vendor list</NavLink>
+              <NavLink to="varer/accounts">Account list</NavLink>
+              <NavLink to="varer/inventorycounts">Inventory counts</NavLink>
+              <NavLink to="varer/inventory">Inventory items</NavLink>
+              <NavLink to="varer/salesestimates">Sales estimates</NavLink>
+              <NavLink to="varer/products">Sales products</NavLink>
+              <NavLink to="varer/vendors">Vendor list</NavLink>
             </NavDropdown>
             <NavDropdown title="Z" id="nav-z-dropdown">
-              <NavLink to='z'>Overview</NavLink>
+              <NavLink to="z">Overview</NavLink>
               <MenuItem divider/>
               <MenuItem header>Modules</MenuItem>
-              <NavLink to='z/stats'>Statistics</NavLink>
+              <NavLink to="z/stats">Statistics</NavLink>
             </NavDropdown>
             <NavDropdown title="Calendar" id="nav-cal-dropdown">
-              <NavLink to='cal/list'>Overview</NavLink>
+              <NavLink to="cal/list">Overview</NavLink>
             </NavDropdown>
             <NavDropdown title="Vouchers" id="nav-voucher-dropdown">
-              <NavLink to='voucher/stats'>Overview</NavLink>
-              <NavLink to='voucher/uselogs'>Use logs</NavLink>
-              <NavLink to='voucher/worklogs'>Work logs</NavLink>
+              <NavLink to="voucher/stats">Overview</NavLink>
+              <NavLink to="voucher/uselogs">Use logs</NavLink>
+              <NavLink to="voucher/worklogs">Work logs</NavLink>
             </NavDropdown>
             <NavDropdown title="Other" id="nav-other-dropdown">
-              <li><a target='_self' href='https://internt.cyb.no/medlem/'>Member system</a></li>
+              <li><a target="_self" href="https://internt.cyb.no/medlem/">Member system</a></li>
               <li>
-                <a target="_self" href='http://heim.ifi.uio.no/cyb/tilganger/'>Access control management (Garm)</a>
+                <a target="_self" href="http://heim.ifi.uio.no/cyb/tilganger/">Access control management (Garm)</a>
               </li>
-              <li><a target='_self' href='https://jira.cyb.no/'>JIRA (task management)</a></li>
-              <li><a target='_self' href='https://confluence.cyb.no/'>Wiki (Confluence)</a></li>
-              <li><a target='_self' href='https://github.com/cybrairai/'>GitHub-organization</a></li>
-              <li><a target='_self' href='https://cybernetisk.slack.com/'>Slack</a></li>
+              <li><a target="_self" href="https://jira.cyb.no/">JIRA (task management)</a></li>
+              <li><a target="_self" href="https://confluence.cyb.no/">Wiki (Confluence)</a></li>
+              <li><a target="_self" href="https://github.com/cybrairai/">GitHub-organization</a></li>
+              <li><a target="_self" href="https://cybernetisk.slack.com/">Slack</a></li>
               <li>
-                <a target='_self' href='https://www.facebook.com/groups/CYB.intern/'>Facebook group: CYB Intern</a>
+                <a target="_self" href="https://www.facebook.com/groups/CYB.intern/">Facebook group: CYB Intern</a>
               </li>
             </NavDropdown>
           </RefNav>

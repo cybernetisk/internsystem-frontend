@@ -11,6 +11,6 @@ reactor.registerStores({
 
 export default (
   <Route>
-    <Route name='varer/inventory' path='/varer/inventory' handler={List}/>
+    <Route name="varer/inventory" path="/varer/inventory" handler={List}/>
   </Route>
 )
