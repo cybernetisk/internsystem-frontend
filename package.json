@@ -44,6 +44,7 @@
     "xhr2": "^0.1.2"
   },
   "scripts": {
-    "lint": "eslint . --ext .js"
+    "lint": "eslint . --ext .js",
+    "test": "npm run lint"
   }
 }
