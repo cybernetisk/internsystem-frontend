@@ -1,3 +1,4 @@
+/*global DEBUG*/
 import { Reactor } from 'nuclear-js'
 
 export default new Reactor({

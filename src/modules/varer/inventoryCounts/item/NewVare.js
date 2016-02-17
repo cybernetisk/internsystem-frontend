@@ -1,3 +1,4 @@
+/*global math*/
 import React from 'react'
 
 export default class NewVare extends React.Component {
