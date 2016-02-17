@@ -217,9 +217,9 @@ export default class Member extends React.Component {
 
     renderBoolean(bool){
         if(bool){
-            return('True')
+          return 'True'
         } else {
-            return('False')
+          return 'False'
         }
     }
     renderSemester(semester){

@@ -53,11 +53,6 @@ export default class Add extends React.Component{
             })
         }, error => {
             alert(error.responseText)
-            this.setState({
-                name: '',
-                emaik: '',
-                lifetime: false
-            })
         })
     }
 
@@ -70,8 +65,8 @@ export default class Add extends React.Component{
                         <div className="form-group">
                             <div className="col-sm-3">
                                 <label for="name">Name</label>
-                                <input type="'text" name="'name" value={this.state.name} placeholder="John Doe"
-                                       onChange={this.handleNameChange} class="form-control"/>
+                              <input type="text" name="name" value={this.state.name} placeholder="John Doe"
+                                     onChange={this.handleNameChange} class="form-control"/>
                             </div>
                             <div className="col-sm-3">
                                 <label for="email">Email:</label>

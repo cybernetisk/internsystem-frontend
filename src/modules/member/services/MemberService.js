@@ -1,4 +1,3 @@
-import reqwest from 'reqwest'
 import {api} from '../../../api'
 import reqwestWithCsrf from '../../../utils/reqwest'
 

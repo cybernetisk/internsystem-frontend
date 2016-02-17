@@ -14,7 +14,6 @@ import { userDetails } from '../../auth/getters'
     members: getters.members,
     userDetails
 }))
-
 export default class List extends React.Component {
     componentDidMount() {
 
@@ -43,9 +42,9 @@ export default class List extends React.Component {
             <table className="table table-bordered">
                 <thead>
                 <tr>
-                    <td>Name</td>
-                    <td>Date joined</td>
-                    <td>Email</td>
+                  <th>Name</th>
+                  <th>Date joined</th>
+                  <th>Email</th>
 
                 </tr>
                 </thead>
@@ -79,7 +78,7 @@ export default class List extends React.Component {
     }
 
     render() {
-
+      //TODO: fix null check and better error message.
         if (!this.props.members.get('data')) {
             return (<div><h1>CRAP!</h1></div>)
 
