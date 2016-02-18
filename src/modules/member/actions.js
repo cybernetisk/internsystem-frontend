@@ -18,7 +18,7 @@ export function getMember(memberId){
         request: actionsType.RECIVE_MEMBER_START,
         success: actionsType.RECIVE_MEMBER_SUCCESS,
         failure: actionsType.RECIVE_MEMBER_FAILURE,
-    }, {memberId})
+    })
 }
 export function memberDeleted(memberId){
     reactor.dispatch(actionsType.MEMBER_DELETED, {memberId})

@@ -32,23 +32,26 @@ export default class Member extends React.Component {
         this.handleLifetimeChange = this.handleLifetimeChange.bind(this)
         this.state = {isEditing: false, isDeleted: false}
     }
-    componentDidMount(){
-        let memberId = this.props.params.memberId
-        MemberService.getMember(memberId).then(result =>{
-                this.setState({
-                    id: result.id,
-                    name: result.name,
-                    email: result.email,
-                    date_joined: result.date_joined,
-                    lifetime: result.lifetime,
-                    honorary: result.honorary,
-                    semester: result.semester,
 
-                })
-            }, error => {
-                alert(error.responseText)
-            }
-        )
+  componentDidMount() {
+    let memberId = this.props.params.memberId
+    MemberService.getMember(memberId).then(result => {
+        actions.getMember(memberId)
+        this.setState({
+          id: result.id,
+          name: result.name,
+          email: result.email,
+          date_joined: result.date_joined,
+          lifetime: result.lifetime,
+          honorary: result.honorary,
+          semester: result.semester.semester,
+          year: result.semester.year
+
+        })
+      }, error => {
+        alert(error.responseText)
+      }
+    )
     }
 
 
@@ -176,7 +179,7 @@ export default class Member extends React.Component {
                     <dt>Lifetime member:</dt>
                     <dd>{this.renderBoolean(this.state.lifetime)}</dd>
                     <dt>Semester:</dt>
-                    <dd>{this.renderSemester(this.state.semester)}</dd>
+                  <dd>{this.state.year} {this.state.semester}</dd>
                 </dl>
                 <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
                 <button type="button" className="btn btn-default" onClick={this.handleDelete}>Delete</button>
@@ -222,9 +225,5 @@ export default class Member extends React.Component {
           return 'False'
         }
     }
-    renderSemester(semester){
-        return(
-            <div>{semester.year} {semester.semester}</div>
-        )
-    }
+
 }
