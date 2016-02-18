@@ -29,7 +29,7 @@ export default class List extends React.Component {
   }
 
   renderDateSpent(val) {
-    return moment(val).format("dddd DD. MMM YYYY HH:mm")
+    return moment(val).format('dddd DD. MMM YYYY HH:mm')
   }
 
   renderUseLogs() {
@@ -88,7 +88,7 @@ export default class List extends React.Component {
     }
 
     return (
-      <div className="alert alert-warning">You have to <Link to='auth.login'>log in</Link> to register
+      <div className="alert alert-warning">You have to <Link to="auth.login">log in</Link> to register
         vouchers usage.</div>
     )
   }

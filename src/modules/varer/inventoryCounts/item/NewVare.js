@@ -1,3 +1,4 @@
+/*global math*/
 import React from 'react'
 
 export default class NewVare extends React.Component {
@@ -14,8 +15,8 @@ export default class NewVare extends React.Component {
   saveMe(e) {
     e.preventDefault()
     this.props.storeHandle({
-      antall: math.eval(this.props.antall.replace(",", ".")),
-      antallpant: math.eval(this.props.antallpant.replace(",", ".")),
+      antall: math.eval(this.props.antall.replace(',', '.')),
+      antallpant: math.eval(this.props.antallpant.replace(',', '.')),
       kommentar: this.props.kommentar,
       sted: this.props.sted
     })

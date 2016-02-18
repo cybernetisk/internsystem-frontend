@@ -78,7 +78,7 @@ export default class List extends React.Component {
     }
 
     if (newProps.query.page != this.props.query.page) {
-      fetchIventoryItems(newProps.query.page || 1)
+      fetchInventoryItems(newProps.query.page || 1)
     }
   }
 
@@ -91,7 +91,7 @@ export default class List extends React.Component {
     let group = e.target.value
     if (group === '0') {
       group = null
-    } else if (parseInt(group) + "" == group) {
+    } else if (parseInt(group) + '' == group) {
       group = parseInt(group)
     }
 
@@ -111,7 +111,7 @@ export default class List extends React.Component {
   }
 
   handlePageChange(newPage) {
-    fetchIventoryItems(newPage)
+    fetchInventoryItems(newPage)
 
     let page = newPage !== 1 ? newPage : undefined
     this.updateQuery('page', page)

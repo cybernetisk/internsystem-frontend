@@ -97,7 +97,7 @@ export default class Item extends React.Component {
     let group = e.target.value
     if (group === '0') {
       group = null
-    } else if (parseInt(group) + "" == group) {
+    } else if (parseInt(group) + '' == group) {
       group = parseInt(group)
     }
 
@@ -198,7 +198,7 @@ export default class Item extends React.Component {
         <div className="pull-right hidden-print">
           <a className="btn btn-default" href={`admin/varer/varetelling/${item.id}/`} target="_self">Edit</a>
           {' '}
-          <Link to='varer/inventorycount/registrations' params={{id: this.props.data.get('id')}}
+          <Link to="varer/inventorycount/registrations" params={{id: this.props.data.get('id')}}
             className="btn btn-default">
             Show registrations view
           </Link>

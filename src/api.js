@@ -1,3 +1,4 @@
+/*global BACKEND_URL*/
 let backendUrl = BACKEND_URL
 
 if (backendUrl.indexOf('SAMEHOST') !== -1) {

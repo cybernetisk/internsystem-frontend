@@ -27,7 +27,7 @@ export default Store({
     })
 
     this.on(actionTypes.RECEIVE_INVENTORYCOUNT_FAILURE, (state, {error}) => {
-      console.log("Receiving inventory count failed", error)
+      console.log('Receiving inventory count failed', error)
       return state
         .set('error', toImmutable(error))
         .set('isLoading', false)

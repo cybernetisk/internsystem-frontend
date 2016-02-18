@@ -31,7 +31,7 @@ function receiveAccountsSuccess(state, {response}) {
 }
 
 function receiveAccountsFailure(state, {error}) {
-  console.log("Receiving list failed", error)
+  console.log('Receiving list failed', error)
   return state
     .set('error', toImmutable(error))
     .set('isLoading', false)

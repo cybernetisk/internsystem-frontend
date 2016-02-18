@@ -1,7 +1,7 @@
 var concat = require('gulp-concat'),
     del = require('del'),
     gulp = require('gulp'),
-    gutil = require("gulp-util"),
+    gutil = require('gulp-util'),
     uglify = require('gulp-uglify'),
     webpack = require('webpack'),
     WebpackDevServer = require('webpack-dev-server'),
@@ -35,22 +35,22 @@ gulp.task('scripts-library-dev', function() {
 var webpackBuild = function(callback, config, name) {
     webpack(config, function(err, stats) {
         if (err) throw new gutil.PluginError(name, err);
-        gutil.log("["+name+"]", stats.toString({
+        gutil.log('['+name+']', stats.toString({
            colors: true
         }));
         callback();
     });
 };
 
-gulp.task("webpack:build", function(callback) {
-    webpackBuild(callback, webpackConfigDist, "webpack:build");
+gulp.task('webpack:build', function(callback) {
+    webpackBuild(callback, webpackConfigDist, 'webpack:build');
 });
 
-gulp.task("webpack:build-dev", function(callback) {
-    webpackBuild(callback, webpackConfigDev, "webpack:build-dev");
+gulp.task('webpack:build-dev', function(callback) {
+    webpackBuild(callback, webpackConfigDev, 'webpack:build-dev');
 });
 
-gulp.task("webpack-dev-server", function(callback) {
+gulp.task('webpack-dev-server', function(callback) {
     var bindHost = '0.0.0.0'; // replace with 0.0.0.0 to allow remote connections
     var webpackPort = 3000;
     var webpackHost = 'localhost' + ':' + webpackPort;
@@ -62,8 +62,8 @@ gulp.task("webpack-dev-server", function(callback) {
         publicPath: webpackConfigDev.output.publicPath,
         contentBase: 'build',
     }).listen(webpackPort, bindHost, function(err) {
-        if (err) throw new gutil.PluginError("webpack-dev-server", err);
-        gutil.log("[webpack-dev-server]", "Go to http://" + webpackHost + "/webpack-dev-server/");
+        if (err) throw new gutil.PluginError('webpack-dev-server', err);
+        gutil.log('[webpack-dev-server]', 'Go to http://' + webpackHost + '/webpack-dev-server/');
     });
 });
 

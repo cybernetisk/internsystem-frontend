@@ -91,7 +91,7 @@ export default class List extends React.Component {
     let group = e.target.value
     if (group === '0') {
       group = null
-    } else if (parseInt(group) + "" == group) {
+    } else if (parseInt(group) + '' == group) {
       group = parseInt(group)
     }
 

@@ -157,7 +157,7 @@ export default class List extends React.Component {
                 <td><BuyPrice product={raavare}/></td>
                 <td>{this.renderCounts(raavare)}</td>
                 <td>
-                  <button type="button" className={"hidden-print btn btn-primary" + btnClass}
+                  <button type="button" className={'hidden-print btn btn-primary' + btnClass}
                     onClick={() => this.props.newItem(raavare)}>
                     <span className="glyphicon glyphicon-plus"/>
                   </button>

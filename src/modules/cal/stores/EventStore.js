@@ -36,7 +36,7 @@ function receiveEventFailure(state, {error}) {
     msg = 'Data not found'
   }
 
-  console.log("Receiving list failed", msg)
+  console.log('Receiving list failed', msg)
   return state
     .set('error', toImmutable(msg))
     .set('isLoading', false)

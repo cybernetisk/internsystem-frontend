@@ -5,7 +5,7 @@ export const pageLimit = 500
 
 export function getInventoryItems(page) {
   return reqwest({
-    url: api(`varer/råvarer`),
+    url: api('varer/råvarer'),
     data: {limit: pageLimit, page},
     type: 'json'
   })
@@ -51,7 +51,7 @@ function getDateMidnight(date) {
 
 export function getInPrices(inventoryItemId) {
   return reqwest({
-    url: api(`varer/inprices`),
+    url: api('varer/inprices'),
     data: {
       raavare: inventoryItemId
     },

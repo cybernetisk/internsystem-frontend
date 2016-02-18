@@ -73,7 +73,7 @@ export default class List extends React.Component {
     }
 
     return (
-      <div className="alert alert-warning">You have to <Link to='auth.login'>log in</Link> to register
+      <div className="alert alert-warning">You have to <Link to="auth.login">log in</Link> to register
         work.</div>
     )
   }

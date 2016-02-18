@@ -37,7 +37,7 @@ export default class List extends React.Component {
   }
 
   handlePageChange(newPage) {
-    fetchList(newPage)
+    fetchInventoryCounts(newPage)
 
     let page = newPage !== 1 ? newPage : undefined
     this.updateQuery('page', page)

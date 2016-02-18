@@ -23,7 +23,7 @@ export default class Event extends React.Component {
       <PageLoader
         error={this.props.event.get('error')}
         isLoading={this.props.event.get('isLoading')}
-        title='Arrangement'/>
+        title="Arrangement"/>
     )
   }
 
@@ -37,18 +37,18 @@ export default class Event extends React.Component {
 
     let start, end
     if (event.is_allday) {
-      start = moment.utc(event.start).format("dddd DD. MMM YYYY")
-      end = moment.utc(event.end).format("dddd DD. MMM YYYY")
+      start = moment.utc(event.start).format('dddd DD. MMM YYYY')
+      end = moment.utc(event.end).format('dddd DD. MMM YYYY')
     } else {
-      start = moment(event.start).format("dddd DD. MMM YYYY HH:mm")
-      end = moment(event.end).format("dddd DD. MMM YYYY HH:mm")
+      start = moment(event.start).format('dddd DD. MMM YYYY HH:mm')
+      end = moment(event.end).format('dddd DD. MMM YYYY HH:mm')
     }
 
     return (
       <div>
         <h1>Arrangement: {event.title}</h1>
 
-        <p><Link to='cal/list'>Tilbake</Link></p>
+        <p><Link to="cal/list">Tilbake</Link></p>
 
         <p>{start === end ? start : `${start} til ${end}`}</p>
 
@@ -56,7 +56,7 @@ export default class Event extends React.Component {
           <p>Beskrivelse: {event.description}</p>
         ) : ''}
 
-        <dl className='dl-horizontal'>
+        <dl className="dl-horizontal">
           <dt>In Escape?</dt>
           <dd>{event.in_escape ? 'Yes' : 'No'}</dd>
           <dt>Cancelled?</dt>

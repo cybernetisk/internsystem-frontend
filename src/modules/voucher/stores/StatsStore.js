@@ -31,7 +31,7 @@ function receiveStatsSuccess(state, {response}) {
 }
 
 function receiveStatsFailure(state, {error}) {
-  console.log("Receiving stats failed", error.statusText)
+  console.log('Receiving stats failed', error.statusText)
   return state
     .set('error', toImmutable(error))
     .set('isLoading', false)

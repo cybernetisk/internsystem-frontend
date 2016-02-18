@@ -60,11 +60,11 @@ export default class List extends React.Component {
           {this.props.list.get('items').toList().toJS().map((event) => {
             let start, end
             if (event.is_allday) {
-              start = moment.utc(event.start).format("ddd D. MMM YYYY")
-              end = moment.utc(event.end).format("ddd D. MMM YYYY")
+              start = moment.utc(event.start).format('ddd D. MMM YYYY')
+              end = moment.utc(event.end).format('ddd D. MMM YYYY')
             } else {
-              start = moment(event.start).format("ddd D. MMM YYYY HH:mm")
-              end = moment(event.end).format("ddd D. MMM YYYY HH:mm")
+              start = moment(event.start).format('ddd D. MMM YYYY HH:mm')
+              end = moment(event.end).format('ddd D. MMM YYYY HH:mm')
             }
 
             let duration = start === end ? start : `${start} - ${end}`
@@ -73,9 +73,9 @@ export default class List extends React.Component {
               <tr key={event.id}>
                 <td>
                   <Link to={`/cal/event/${event.id}`}>{event.title}</Link>
-                  {event.is_external ? (event.is_public ? <Tag text='Announced utlån' /> : <Tag text='Utlån' />) : ''}
-                  {!event.in_escape ? <Tag text='Not Escape' type='not-escape' /> : ''}
-                  {!event.is_public && !event.is_external ? <Tag text='Internal' type='not-public' /> : ''}
+                  {event.is_external ? (event.is_public ? <Tag text="Announced utlån" /> : <Tag text="Utlån" />) : ''}
+                  {!event.in_escape ? <Tag text="Not Escape" type="not-escape" /> : ''}
+                  {!event.is_public && !event.is_external ? <Tag text="Internal" type="not-public" /> : ''}
                 </td>
                 <td>{duration}</td>
               </tr>
