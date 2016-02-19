@@ -18,7 +18,6 @@ import { userDetails } from '../../auth/getters'
     members: getters.members,
     userDetails
 }))
-
 export default class Search extends React.Component{
     constructor(props) {
         super(props)
@@ -44,7 +43,7 @@ export default class Search extends React.Component{
     renderSearchField(){
         return (
             <form onSubmit={this.handleSearch}>
-                <div class="form-group">
+              <div className="form-group">
                     <label for="name">Name</label>
                     <input type="text" name="name" value={this.state.name}
                            placeholder="Search..." onChange={this.handleSearch} />
@@ -59,15 +58,14 @@ export default class Search extends React.Component{
     handleSearch(e){
         e.preventDefault()
         this.state.name = e.target.value
-        var search = this.state.name
+      const search = this.state.name
 
         MemberService.getMemberList(1, 10, 'name', search).then(results =>{
             actions.getMemberList(1, 10, 'name', search)
-            this.setState(
-                {
+          this.setState({
                     isSending: false,
-                }
-            )
+            name: '',
+          })
         }, error => {
             this.setState({
                 name: ''

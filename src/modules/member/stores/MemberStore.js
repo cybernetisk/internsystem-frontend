@@ -1,5 +1,5 @@
 import { Store, toImmutable } from 'nuclear-js'
-import actionTypes from '../actionsType'
+import actionTypes from '../actionTypes'
 
 export default Store({
     getInitialState() {
@@ -24,13 +24,13 @@ function reciveMemberStart(state) {
         .set('isLoading', true)
 }
 function reciveMemberSuccess(state, {response}) {
-    console.log("Recived stats" + state + response)
+  console.log('Recived stats' + state + response)
     return state
         .set('data', toImmutable(response))
         .set('isLoading', false)
 }
 function reciveMemberFailure(state, {error}) {
-    console.log("Reciveing stats failed", error.statusText)
+  console.log('Reciveing stats failed', error.statusText)
     return state
         .set('error', toImmutable(error))
         .set('isLoading', false)

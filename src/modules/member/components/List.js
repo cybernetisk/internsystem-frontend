@@ -25,7 +25,7 @@ export default class List extends React.Component {
 
 
     renderDate(date) {
-        return moment(date).format("dddd DD. MMM YYYY HH:mm")
+      return moment(date).format('dddd DD. MMM YYYY HH:mm')
     }
 
     renderLifetime(lifetime) {

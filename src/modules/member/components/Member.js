@@ -115,8 +115,8 @@ export default class Member extends React.Component {
                                 <input type="'text" name="'name" value={this.state.name}
                                        onChange={this.handleNameChange} className="form-control"/>
                                 <label htmlFor="email">Email:</label>
-                                <input type="text" name='email' value={this.state.email}
-                                       onChange={this.handleEmailChange} className="form-control"/>
+                              <input type="text" name="email" value={this.state.email}
+                                     onChange={this.handleEmailChange} className="form-control"/>
                                 <label htmlFor="lifetime">Lifetime</label>
                                 <input type="checkbox" name="lifetime" checked={this.state.lifetime}
                                        onChange={this.handleLifetimeChange}/>
