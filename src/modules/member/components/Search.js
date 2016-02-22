@@ -12,11 +12,12 @@ import List from './List'
 
 import MemberService from '../services/MemberService'
 
-import { userDetails } from '../../auth/getters'
+import { userDetails, isLoggedIn } from '../../auth/getters'
 
 @connect(props => ({
   members: getters.members,
-  userDetails
+  userDetails,
+  isLoggedIn
 }))
 export default class Search extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ export default class Search extends React.Component {
   render() {
     if (!this.props.isLoggedIn) {
       return (
-        <div>You haven't logged in! Please login!</div>
+        <h1>You haven't logged in! Please login!</h1>
       )
     }
     return (

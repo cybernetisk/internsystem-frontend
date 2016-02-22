@@ -14,9 +14,9 @@ import { isLoggedIn } from '../../auth/getters'
 import Pagination from '../../../components/Pagination'
 import Loader from '../../../components/Loader'
 
-@connect(props => {
-
-})
+@connect(props => ({
+  isLoggedIn
+}))
 export default class Add extends React.Component {
   constructor(props) {
     super(props)
@@ -106,6 +106,7 @@ export default class Add extends React.Component {
 
 
   render() {
+    console.debug(this.props.isLoggedIn)
     if (!this.props.isLoggedIn) {
       return (
         <h1>You haven't logged in! Please login!</h1>

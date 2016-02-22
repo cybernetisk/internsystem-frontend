@@ -56,6 +56,7 @@ export default class Member extends React.Component {
 
 
   render() {
+
     if (!this.props.isLoggedIn) {
       return (
         <h1>Not logged in! Please login!</h1>
