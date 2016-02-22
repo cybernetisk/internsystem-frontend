@@ -11,83 +11,85 @@ import Loader from '../../../components/Loader'
 import { userDetails } from '../../auth/getters'
 
 @connect(props => ({
-    members: getters.members,
-    userDetails
+  members: getters.members,
+  userDetails
 }))
 export default class List extends React.Component {
-    componentDidMount() {
+  componentDidMount() {
 
+  }
+
+  handlePageChange(newPage) {
+    actions.getMemberList(newPage)
+  }
+
+
+  renderDate(date) {
+    return moment(date).format('dddd DD. MMM YYYY HH:mm')
+  }
+
+  renderLifetime(lifetime) {
+
+    if (lifetime == true) {
+      return 'Yes'
+    } else {
+      return 'No'
     }
+  }
 
-    handlePageChange(newPage) {
-        actions.getMemberList(newPage)
+  renderList() {
+    return (
+      <table className="table table-bordered">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Date joined</th>
+          <th>Email</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {this.props.members.get('data').get('results').toJS().map((member) => {
+          return (
+            <tr key={member.id}>
+              <td>{member.id}</td>
+              <td><Link to={`/member/${member.id}`}>{member.name}</Link></td>
+              <td>{this.renderDate(member.date_joined)}</td>
+              <td>{member.email}</td>
+
+            </tr>)
+        })}
+        </tbody>
+      </table>
+    )
+  }
+
+  renderPageSwitcher() {
+    if (this.props.members.get('data').get('pages') == 1) {
+      return
+    } else {
+      return (
+        <Pagination
+          active={this.props.members.get('data').get('page')}
+          pages={this.props.members.get('data').get('pages')}
+          onChange={this.handlePageChange}
+        />
+      )
     }
+  }
 
+  render() {
+    //TODO: fix null check and better error message.
+    if (!this.props.members.get('data')) {
+      return (<div><h1>CRAP!</h1></div>)
 
-    renderDate(date) {
-      return moment(date).format('dddd DD. MMM YYYY HH:mm')
+    } else {
+      return (
+        <div>
+          {this.renderList()}
+          {this.renderPageSwitcher()}
+        </div>)
     }
-
-    renderLifetime(lifetime) {
-
-        if (lifetime == true) {
-            return 'Yes'
-        } else {
-            return 'No'
-        }
-    }
-
-    renderList() {
-        return(
-            <table className="table table-bordered">
-                <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Date joined</th>
-                  <th>Email</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                {this.props.members.get('data').get('results').toJS().map((member) => {
-                    return (
-                        <tr key={member.id}>
-                            <td><Link to={`/member/${member.id}`}> {member.name}</Link></td>
-                            <td>{this.renderDate(member.date_joined)}</td>
-                            <td>{member.email}</td>
-
-                        </tr>)
-                })}
-                </tbody>
-            </table>
-        )
-    }
-
-    renderPageSwitcher(){
-        if(this.props.members.get('data').get('pages') == 1){
-            return
-        } else {
-            return (
-                <Pagination
-                    active={this.props.members.get('data').get('page')}
-                    pages={this.props.members.get('data').get('pages')}
-                    onChange={this.handlePageChange}
-                />
-            )
-        }
-    }
-
-    render() {
-      //TODO: fix null check and better error message.
-        if (!this.props.members.get('data')) {
-            return (<div><h1>CRAP!</h1></div>)
-
-        } else {
-            return (
-                <div>
-                    {this.renderList()}
-                    {this.renderPageSwitcher()}
-                </div>)
-        }
-    }
+  }
 }
