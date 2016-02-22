@@ -8,11 +8,12 @@ import * as actions from '../actions'
 import Pagination from '../../../components/Pagination'
 import Loader from '../../../components/Loader'
 
-import { userDetails } from '../../auth/getters'
+import { userDetails, isLoggedIn } from '../../auth/getters'
 
 @connect(props => ({
   members: getters.members,
-  userDetails
+  userDetails,
+  isLoggedIn
 }))
 export default class List extends React.Component {
   componentDidMount() {
@@ -81,8 +82,13 @@ export default class List extends React.Component {
 
   render() {
     //TODO: fix null check and better error message.
+    if (!this.props.isLoggedIn) {
+      return (
+        <div>You haven't logged in! Please login!</div>
+      )
+    }
     if (!this.props.members.get('data')) {
-      return (<div><h1>CRAP!</h1></div>)
+      return (<div><h1>You don't have access! Please login!</h1></div>)
 
     } else {
       return (

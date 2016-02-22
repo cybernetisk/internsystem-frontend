@@ -31,6 +31,11 @@ export default class Search extends React.Component {
   }
 
   render() {
+    if (!this.props.isLoggedIn) {
+      return (
+        <div>You haven't logged in! Please login!</div>
+      )
+    }
     return (
       <div>
         <h1>Search</h1>
