@@ -9,10 +9,14 @@ import { connect } from 'nuclear-js-react-addons'
 import moment from '../../../moment'
 import * as actions from '../actions'
 
+import { isLoggedIn } from '../../auth/getters'
+
 import Pagination from '../../../components/Pagination'
 import Loader from '../../../components/Loader'
 
+@connect(props => {
 
+})
 export default class Add extends React.Component {
   constructor(props) {
     super(props)
@@ -102,6 +106,11 @@ export default class Add extends React.Component {
 
 
   render() {
+    if (!this.props.isLoggedIn) {
+      return (
+        <h1>You haven't logged in! Please login!</h1>
+      )
+    }
     return (
       <div className="panel panel-default">
         <div className="panel-heading">Add member</div>

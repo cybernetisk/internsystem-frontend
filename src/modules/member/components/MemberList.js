@@ -13,19 +13,24 @@ import List from './List'
 import { userDetails } from '../../auth/getters'
 
 
-export default class MemberList extends React.Component{
-    constructor(props){
-        super(props)
-        actions.getMemberList(1,50,'date_joined')
+export default class MemberList extends React.Component {
+  constructor(props) {
+    super(props)
+    actions.getMemberList(1, 50, 'date_joined')
+  }
+
+  render() {
+    if (!this.props.isLoggedIn) {
+      return (
+        <div>You haven't logged in! Please login!</div>
+      )
     }
-    render() {
 
+    return (<div>
+      <h1>Memberlist</h1>
+      <List/>
+    </div>)
 
-        return (<div>
-            <h1>Memberlist</h1>
-            <List/>
-        </div>)
-
-    }
+  }
 
 }
