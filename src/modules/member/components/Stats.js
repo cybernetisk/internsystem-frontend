@@ -6,7 +6,7 @@ export default class Stats extends React.Component{
     render() {
         return (<div>
             <p>
-                This is not implmented yet.
+              This is not implemented yet.
             </p>
         </div>)
 

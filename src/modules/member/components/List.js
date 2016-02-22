@@ -84,11 +84,11 @@ export default class List extends React.Component {
     //TODO: fix null check and better error message.
     if (!this.props.isLoggedIn) {
       return (
-        <div>You haven't logged in! Please login!</div>
+        <h1>You haven't logged in! Please login!</h1>
       )
     }
     if (!this.props.members.get('data')) {
-      return (<div><h1>You don't have access! Please login!</h1></div>)
+      return (<div><h1>Something went wrong. Contact #webgruppa on slack</h1></div>)
 
     } else {
       return (

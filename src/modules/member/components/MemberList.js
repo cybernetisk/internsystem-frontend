@@ -10,9 +10,12 @@ import Loader from '../../../components/Loader'
 
 import List from './List'
 
-import { userDetails } from '../../auth/getters'
+import { userDetails, isLoggedIn } from '../../auth/getters'
 
-
+@connect(props => ({
+  userDetails,
+  isLoggedIn
+}))
 export default class MemberList extends React.Component {
   constructor(props) {
     super(props)
@@ -20,9 +23,10 @@ export default class MemberList extends React.Component {
   }
 
   render() {
+    console.debug(this.props.isLoggedIn)
     if (!this.props.isLoggedIn) {
       return (
-        <div>You haven't logged in! Please login!</div>
+        <h1>You haven't logged in! Please login!</h1>
       )
     }
 
