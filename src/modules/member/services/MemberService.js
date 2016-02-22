@@ -1,9 +1,9 @@
 import {api} from '../../../api'
-import reqwestWithCsrf from '../../../utils/reqwest'
+import reqwest from '../../../utils/reqwest'
 
 class MemberService {
     getMemberList(page = 1, limit = 50, ordering='date_joined', search='') {
-        return reqwestWithCsrf({
+      return reqwest({
             url: api('member/member'),
             type: 'json',
             data:{
@@ -16,13 +16,13 @@ class MemberService {
     }
 
     getMember(memberId) {
-        return reqwestWithCsrf({
+      return reqwest({
             url: api('member/member/' + memberId),
             type: 'json'
         })
     }
     registerMember(name, email, lifetime) {
-        return reqwestWithCsrf({
+      return reqwest({
             url: api('member/member'),
             method: 'post',
             data: {
@@ -34,7 +34,7 @@ class MemberService {
         })
     }
     searchMember(name) {
-        return reqwestWithCsrf({
+      return reqwest({
             url: api('member/member'),
             data: {
                 limit: 10,
@@ -44,7 +44,7 @@ class MemberService {
         })
     }
     updateMember(id, name, email, lifetime, honorary) {
-        return reqwestWithCsrf({
+      return reqwest({
             url: api(`member/member/${id}`),
             data: {
                 name,
@@ -58,7 +58,7 @@ class MemberService {
         })
     }
     removeMember(id){
-        return reqwestWithCsrf({
+      return reqwest({
             url: api(`member/member/${id}`),
             method: 'delete',
             type: 'json'
