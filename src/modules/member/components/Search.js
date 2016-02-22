@@ -26,7 +26,7 @@ export default class Search extends React.Component {
   }
 
   componentDidMount() {
-    actions.getMemberList(1, 10, 'name', search)
+    actions.getMemberList(1, 10, 'name', '')
     this.setState({name: ''})
   }
 
