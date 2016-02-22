@@ -15,62 +15,59 @@ import MemberService from '../services/MemberService'
 import { userDetails } from '../../auth/getters'
 
 @connect(props => ({
-    members: getters.members,
-    userDetails
+  members: getters.members,
+  userDetails
 }))
-export default class Search extends React.Component{
-    constructor(props) {
-        super(props)
-        this.state={name: ''}
-        this.handleSearch = this.handleSearch.bind(this)
-    }
+export default class Search extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {name: ''}
+    this.handleSearch = this.handleSearch.bind(this)
+  }
 
-    componentDidMount(){
-        this.setState({name: ''})
-    }
+  componentDidMount() {
+    actions.getMemberList(1, 10, 'name', search)
+    this.setState({name: ''})
+  }
 
-    render(){
-        return(
-            <div>
-                <h1>Search</h1>
-                {this.renderSearchField()}
-                <h2>Results</h2>
-                <List/>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h1>Search</h1>
+        {this.renderSearchField()}
+        <h2>Results</h2>
+        <List/>
+      </div>
+    )
+  }
 
-    renderSearchField(){
-        return (
-            <form onSubmit={this.handleSearch}>
-              <div className="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" value={this.state.name}
-                           placeholder="Search..." onChange={this.handleSearch} />
+  renderSearchField() {
+    return (
+      <form onSubmit={this.handleSearch}>
+        <div className="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" value={this.state.name}
+                 placeholder="Search..." onChange={this.handleSearch}/>
 
-                </div>
-            </form>
+        </div>
+      </form>
 
 
-        )
-    }
+    )
+  }
 
-    handleSearch(e){
-        e.preventDefault()
-        this.state.name = e.target.value
-      const search = this.state.name
+  handleSearch(e) {
+    e.preventDefault()
+    this.state.name = e.target.value
+    const search = this.state.name
 
-        MemberService.getMemberList(1, 10, 'name', search).then(results =>{
-            actions.getMemberList(1, 10, 'name', search)
-          this.setState({
-                    isSending: false,
-            name: '',
-          })
-        }, error => {
-            this.setState({
-                name: ''
-            })
-        })
-    }
+    MemberService.getMemberList(1, 10, 'name', search).then(results => {
+      actions.getMemberList(1, 10, 'name', search)
+    }, error => {
+      this.setState({
+        name: ''
+      })
+    })
+  }
 
 }
