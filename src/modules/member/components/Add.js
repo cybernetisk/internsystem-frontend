@@ -68,31 +68,29 @@ export default class Add extends React.Component {
   renderAddForm() {
     return (
       <div className="panel-body">
-        <form onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="form-group">
-              <div className="col-sm-3">
-                <label for="name">Name</label>
-                <input type="text" name="name" value={this.state.name} placeholder="John Doe"
-                       onChange={this.handleNameChange} class="form-control"/>
-              </div>
-              <div className="col-sm-3">
-                <label for="email">Email:</label>
-                <input type="text" name="email" value={this.state.email} placeholder="user@example.com"
-                       onChange={this.handleEmailChange} class="form-control"/>
-              </div>
-              <div className="col-sm-2">
-                <label for="lifetime">Lifetime</label>
-                <input type="checkbox" name="lifetime" value={this.state.lifetime}
-                       onChange={this.handleLifetimeChange} class="form-control"/>
-              </div>
-              <div className="col-sm-2">
-                <input type="submit" className="form-control btn-success" value="Add member"/>
-              </div>
-            </div>
+        <form className="form-inline" onSubmit={this.handleSubmit}>
+          <div className="form-group">
+
+            <label htmlFor="name">Name</label>
+            <input type="text" name="name" value={this.state.name} placeholder="John Doe"
+                   onChange={this.handleNameChange} className="form-control"/>
           </div>
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
+            <input type="text" name="email" value={this.state.email} placeholder="user@example.com"
+                   onChange={this.handleEmailChange} className="form-control"/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="lifetime">
+              <input type="checkbox" name="lifetime" value={this.state.lifetime}
+                     onChange={this.handleLifetimeChange}/>Lifetime</label>
+          </div>
+          <div className="form-group">
+            <input type="submit" className="form-control btn-success" value="Add member"/>
+          </div>
+
         </form>
-      </div>
+      </div >
     )
 
   }
