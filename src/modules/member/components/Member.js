@@ -45,7 +45,8 @@ export default class Member extends React.Component {
           lifetime: result.lifetime,
           honorary: result.honorary,
           semester: result.semester.semester,
-          year: result.semester.year
+          year: result.semester.year,
+          seller: result.seller.realname
 
         })
       }, error => {
@@ -144,7 +145,6 @@ export default class Member extends React.Component {
         lifetime: result.lifetime,
         honorary: result.honorary,
         semester: result.semester,
-        can_edit: result.can_edit
       })
     }, error => {
       alert(error.responseText)
@@ -169,6 +169,8 @@ export default class Member extends React.Component {
           <dd>{this.renderBoolean(this.state.lifetime)}</dd>
           <dt>Semester:</dt>
           <dd>{this.state.year} {this.state.semester}</dd>
+          <dt>Seller:</dt>
+          <dd>{this.state.seller}</dd>
         </dl>
         <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
         <button type="button" className="btn btn-default" onClick={this.handleDelete}>Delete</button>
