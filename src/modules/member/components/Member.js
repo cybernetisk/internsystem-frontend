@@ -113,16 +113,25 @@ export default class Member extends React.Component {
               <input type="text" name="email" value={this.state.email}
                      onChange={this.handleEmailChange} className="form-control"/>
               <label htmlFor="lifetime">Lifetime</label>
-              <input type="checkbox" name="lifetime" checked={this.state.lifetime}
-                     onChange={this.handleLifetimeChange}/>
+              {this.renderCheckbox("lifetime", this.state.lifetime, this.handleLifetimeChange)}
+
               <label htmlFor="honorary">Honorary</label>
-              <input type="checkbox" name="honorary" checked={this.state.honorary}
-                     onChange={this.handleLifetimeChange}/>
+              {this.renderCheckbox("honorary", this.state.honorary, this.handleHonoraryChange)}
             </div>
           </form>
         </div>
       </div>
     )
+  }
+
+  renderCheckbox(name, value, func) {
+    if (value) {
+      return <input type="checkbox" name={name} checked="checked"
+                    onChange={func}/>
+    } else {
+      return <input type="checkbox" name={name}
+                    onChange={func}/>
+    }
   }
 
   abortEdit(e) {
@@ -141,10 +150,8 @@ export default class Member extends React.Component {
         id: result.id,
         name: result.name,
         email: result.email,
-        date_joined: result.date_joined,
         lifetime: result.lifetime,
         honorary: result.honorary,
-        semester: result.semester,
       })
     }, error => {
       alert(error.responseText)
