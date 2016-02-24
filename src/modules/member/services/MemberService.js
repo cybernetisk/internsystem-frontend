@@ -43,7 +43,8 @@ class MemberService {
             type: 'json'
         })
     }
-    updateMember(id, name, email, lifetime, honorary) {
+
+  updateMember(id, name, email, lifetime, honorary, comments) {
       return reqwest({
             url: api(`member/member/${id}`),
             data: {
@@ -51,6 +52,7 @@ class MemberService {
                 email,
                 lifetime,
                 honorary,
+              comments,
             },
 
             type: 'json',
