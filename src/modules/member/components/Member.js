@@ -30,6 +30,7 @@ export default class Member extends React.Component {
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handleHonoraryChange = this.handleHonoraryChange.bind(this)
     this.handleLifetimeChange = this.handleLifetimeChange.bind(this)
+    this.handleComments = this.handleComments.bind(this)
     this.state = {isEditing: false, isDeleted: false}
   }
 
@@ -46,7 +47,8 @@ export default class Member extends React.Component {
           honorary: result.honorary,
           semester: result.semester.semester,
           year: result.semester.year,
-          seller: result.seller.realname
+          seller: result.seller.realname,
+          comments: result.comments
 
         })
       }, error => {
@@ -96,6 +98,10 @@ export default class Member extends React.Component {
     this.setState({honorary: e.target.checked})
   }
 
+  handleComments(e) {
+    this.setState({comments: e.target.value})
+  }
+
 
   renderEdit() {
     return (
@@ -112,11 +118,15 @@ export default class Member extends React.Component {
               <label htmlFor="email">Email:</label>
               <input type="text" name="email" value={this.state.email}
                      onChange={this.handleEmailChange} className="form-control"/>
+              <label htmlFor="comments">Comments:</label>
+              <textarea name="comments" value={this.state.comments} rows="4"
+                        onChange={this.handleComments} className="form-control"/>
               <label htmlFor="lifetime">Lifetime</label>
               {this.renderCheckbox("lifetime", this.state.lifetime, this.handleLifetimeChange)}
 
               <label htmlFor="honorary">Honorary</label>
               {this.renderCheckbox("honorary", this.state.honorary, this.handleHonoraryChange)}
+
             </div>
           </form>
         </div>
@@ -144,7 +154,7 @@ export default class Member extends React.Component {
   saveEdit(e) {
     e.preventDefault()
     MemberService.updateMember(this.state.id, this.state.name, this.state.email,
-      this.state.lifetime, this.state.honorary).then(result => {
+      this.state.lifetime, this.state.honorary, this.state.comments).then(result => {
       actions.updateMember(this.state.id)
       this.setState({
         id: result.id,
@@ -152,6 +162,7 @@ export default class Member extends React.Component {
         email: result.email,
         lifetime: result.lifetime,
         honorary: result.honorary,
+        comments: result.comments
       })
     }, error => {
       alert(error.responseText)
@@ -178,6 +189,8 @@ export default class Member extends React.Component {
           <dd>{this.state.year} {this.state.semester}</dd>
           <dt>Seller:</dt>
           <dd>{this.state.seller}</dd>
+          <dt>Comments:</dt>
+          <dd>{this.state.comments}</dd>
         </dl>
         <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
         <button type="button" className="btn btn-default" onClick={this.handleDelete}>Delete</button>
