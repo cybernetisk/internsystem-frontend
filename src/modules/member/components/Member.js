@@ -45,6 +45,7 @@ export default class Member extends React.Component {
           date_joined: result.date_joined,
           lifetime: result.lifetime,
           honorary: result.honorary,
+          last_edited_by: result.last_edited_by.realname,
           semester: result.semester.semester,
           year: result.semester.year,
           seller: result.seller.realname,
@@ -189,6 +190,8 @@ export default class Member extends React.Component {
           <dd>{this.state.year} {this.state.semester}</dd>
           <dt>Seller:</dt>
           <dd>{this.state.seller}</dd>
+          <dt>Last modified by:</dt>
+          <dd>{this.state.last_edited_by}</dd>
           <dt>Comments:</dt>
           <dd>{this.state.comments}</dd>
         </dl>
