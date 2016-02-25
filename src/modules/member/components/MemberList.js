@@ -32,7 +32,7 @@ export default class MemberList extends React.Component {
 
     return (<div>
       <h1>Memberlist</h1>
-      <List/>
+      <List switcher={true}/>
     </div>)
 
   }

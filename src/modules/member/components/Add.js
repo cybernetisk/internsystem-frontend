@@ -107,7 +107,7 @@ export default class Add extends React.Component {
   renderNewlyMembers() {
 
     return (
-      <List />
+      <List switcher={false}/>
     )
   }
 
@@ -122,6 +122,7 @@ export default class Add extends React.Component {
     return (
       <div className="panel panel-default">
         <div className="panel-heading">Add member</div>
+        <p className="lead">If you don't have access to add members and should have, go to #webgruppa on slack</p>
         {this.renderAddForm()}
         <h2>Recent members:</h2>
         {this.renderNewlyMembers()}

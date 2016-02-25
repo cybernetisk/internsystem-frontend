@@ -42,7 +42,7 @@ export default class Search extends React.Component {
         <h1>Search</h1>
         {this.renderSearchField()}
         <h2>Results</h2>
-        <List/>
+        <List switcher={false}/>
       </div>
     )
   }
