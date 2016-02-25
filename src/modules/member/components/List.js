@@ -16,8 +16,9 @@ import { userDetails, isLoggedIn } from '../../auth/getters'
   isLoggedIn
 }))
 export default class List extends React.Component {
-  componentDidMount() {
 
+  PropTypes = {
+    switcher: React.PropTypes.bool
   }
 
   handlePageChange(newPage) {
@@ -68,6 +69,8 @@ export default class List extends React.Component {
 
   renderPageSwitcher() {
     if (this.props.members.get('data').get('pages') == 1) {
+      return
+    } else if (!this.props.switcher) {
       return
     } else {
       return (
