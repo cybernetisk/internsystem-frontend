@@ -22,13 +22,15 @@ import { userDetails, isLoggedIn } from '../../auth/getters'
 export default class Search extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {name: ''}
     this.handleSearch = this.handleSearch.bind(this)
   }
 
   componentDidMount() {
     actions.getMemberList(1, 10, 'name', '')
-    this.setState({name: ''})
+    this.setState({
+      name: '',
+      isSending: false
+    })
   }
 
   render() {
@@ -67,13 +69,8 @@ export default class Search extends React.Component {
     this.state.name = e.target.value
     const search = this.state.name
 
-    MemberService.getMemberList(1, 10, 'name', search).then(results => {
-      actions.getMemberList(1, 10, 'name', search)
-    }, error => {
-      this.setState({
-        name: ''
-      })
-    })
+    actions.getMemberList(1, 10, 'name', search)
+
   }
 
 }
