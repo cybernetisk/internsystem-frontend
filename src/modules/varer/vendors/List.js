@@ -51,7 +51,8 @@ export default class List extends React.Component {
         <Loader
           isLoading={this.props.vendors.get('isLoading')}
           error={this.props.vendors.get('error')}
-          isEmpty={this.props.vendors.get('items').isEmpty()}>
+          isEmpty={this.props.vendors.get('items').isEmpty()}
+        >
           No vendors exist.
         </Loader>
 

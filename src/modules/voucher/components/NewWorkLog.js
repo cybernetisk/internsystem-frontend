@@ -65,7 +65,8 @@ export default class NewWorkLog extends React.Component {
             <div className="row">
               <div className="col-sm-2">
                 <input type="date" className="form-control" placeholder="date of work" value={this.state.date}
-                  onChange={this.handleChange('date')}/>
+                  onChange={this.handleChange('date')}
+                />
               </div>
               <div className="col-sm-2">
                 <WorkGroupInput value={this.state.work_group} onChange={this.handleChange('work_group')}/>
@@ -75,11 +76,13 @@ export default class NewWorkLog extends React.Component {
               </div>
               <div className="col-sm-2">
                 <input type="number" className="form-control" placeholder="Hours, eg. 1.5" value={this.state.hours}
-                  onChange={this.handleChange('hours')} step="0.01" min="0"/>
+                  onChange={this.handleChange('hours')} step="0.01" min="0"
+                />
               </div>
               <div className="col-sm-2">
                 <input type="text" className="form-control" placeholder="Optional comment" value={this.state.comment}
-                  onChange={this.handleChange('comment')}/>
+                  onChange={this.handleChange('comment')}
+                />
               </div>
               <div className="col-sm-2">
                 <input type="submit" className="form-control btn-success" value="Register work"/>

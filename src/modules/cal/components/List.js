@@ -96,14 +96,16 @@ export default class List extends React.Component {
         <Loader
           isLoading={this.props.semesters.get('isLoading')}
           error={this.props.semesters.get('error')}
-          isEmpty={this.props.semesters.get('items').isEmpty()}>
+          isEmpty={this.props.semesters.get('items').isEmpty()}
+        >
           No semesters have event information.
         </Loader>
         {this.renderSemesters()}
         <Loader
           isLoading={this.props.list.get('isLoading')}
           error={this.props.list.get('error')}
-          isEmpty={this.props.list.get('items').isEmpty()}>
+          isEmpty={this.props.list.get('items').isEmpty()}
+        >
           No events exists for selected semester.
         </Loader>
         {this.renderList()}

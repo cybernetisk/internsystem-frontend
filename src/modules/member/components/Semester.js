@@ -54,11 +54,13 @@ export default class Semester extends React.Component {
       )
     }
 
-    return (<div>
+    return (
+      <div>
         <Loader
           isLoading={this.props.members.get('isLoading')}
           error={this.props.members.get('error')}
-          isEmpty={!this.props.members.get('data')}>
+          isEmpty={!this.props.members.get('data')}
+        >
           No semesters registered!
         </Loader>
         {this.renderNormal()}
@@ -83,18 +85,18 @@ export default class Semester extends React.Component {
     return (
       <table className="table table-condensed">
         <thead>
-        <tr>
-          <th>Normal</th>
-          <th>Lifetime</th>
-          <th>Honorary</th>
-        </tr>
+          <tr>
+            <th>Normal</th>
+            <th>Lifetime</th>
+            <th>Honorary</th>
+          </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>{this.state.normal}</td>
-          <td>{this.state.lifetime}</td>
-          <td>{this.state.honorary}</td>
-        </tr>
+          <tr>
+            <td>{this.state.normal}</td>
+            <td>{this.state.lifetime}</td>
+            <td>{this.state.honorary}</td>
+          </tr>
         </tbody>
       </table>
     )

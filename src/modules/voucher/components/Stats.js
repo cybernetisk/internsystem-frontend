@@ -46,8 +46,10 @@ export default class List extends React.Component {
           <tbody>
             {this.props.stats.get('data').toList().toJS().map((wallet) => (
               <tr key={wallet.semester.id}>
-                <td><Link to="voucher/semester"
-                  params={{semesterId: wallet.semester.id}}>{wallet.semester.year} {wallet.semester.semester}</Link>
+                <td>
+                  <Link to="voucher/semester" params={{semesterId: wallet.semester.id}}>
+                    {wallet.semester.year} {wallet.semester.semester}
+                  </Link>
                 </td>
                 <td>{wallet.sum_balance}</td>
                 <td>{wallet.sum_vouchers}</td>
@@ -68,7 +70,8 @@ export default class List extends React.Component {
         <Loader
           isLoading={this.props.stats.get('isLoading')}
           error={this.props.stats.get('error')}
-          isEmpty={!this.props.stats.get('data')}>
+          isEmpty={!this.props.stats.get('data')}
+        >
           No voucher data is registered.
         </Loader>
         {this.renderStats()}

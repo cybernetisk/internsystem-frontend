@@ -23,7 +23,8 @@ export default class Event extends React.Component {
       <PageLoader
         error={this.props.event.get('error')}
         isLoading={this.props.event.get('isLoading')}
-        title="Arrangement"/>
+        title="Arrangement"
+      />
     )
   }
 

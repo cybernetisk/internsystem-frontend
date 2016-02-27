@@ -129,13 +129,15 @@ export default class List extends React.Component {
           <div className="form-group col-md-3">
             <label>Group</label>
             <AccountFilter onChange={this.handleGroupChange} value={this.props.filters.get('group', '')}
-              accounts={this.props.selectGroups} />
+              accounts={this.props.selectGroups}
+            />
           </div>
 
           <div className="form-group col-md-3">
             <label>Outdated products</label>
             <select className="form-control" onChange={this.handleOutdatedChange}
-              value={this.props.filters.get('outdated', '')}>
+              value={this.props.filters.get('outdated', '')}
+            >
               {consts.outdatedOptions.map((option, key) => (
                 <option value={key} key={key}>{option.get('text')}</option>
               ))}

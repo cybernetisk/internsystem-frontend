@@ -37,28 +37,32 @@ export default class NewVare extends React.Component {
           <div className="form-group">
             <input className="form-control telling-antall" type="text" placeholder="Quantity" required autoFocus
               onChange={this.props.changeHandleBind('antall')} value={this.props.antall}
-              onKeyDown={this.handleKeyDown}/>
+              onKeyDown={this.handleKeyDown}
+            />
           </div>
           {' '}
           <div className="form-group">
             <input className="form-control telling-antallpant" type="text" placeholder="Pant (quantity)"
               onChange={this.props.changeHandleBind('antallpant')}
               value={this.props.antallpant}
-              onKeyDown={this.handleKeyDown}/>
+              onKeyDown={this.handleKeyDown}
+            />
           </div>
           {' '}
           <div className="form-group">
             <input className="form-control telling-sted" type="text" placeholder="Location"
               defaultValue={this.props.defaultPlace} value={this.props.sted}
               onChange={this.props.changeHandleBind('sted')}
-              onKeyDown={this.handleKeyDown}/>
+              onKeyDown={this.handleKeyDown}
+            />
           </div>
         </p>
         <p>
           <div className="form-group">
             <input className="form-control telling-kommentar" type="text" placeholder="Comment"
               onChange={this.props.changeHandleBind('kommentar')} value={this.props.kommentar}
-              onKeyDown={this.handleKeyDown}/>
+              onKeyDown={this.handleKeyDown}
+            />
           </div>
           {' '}
           <div className="form-group">

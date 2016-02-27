@@ -34,7 +34,7 @@ export default class List extends React.Component {
     }
 
     const shouldShowLastCol = this.props.worklogs.getIn(['data', 'results']).find(worklog => (
-      worklog.get('can_edit') || worklog.get('can_delete')))
+    worklog.get('can_edit') || worklog.get('can_delete')))
     let lastCol = shouldShowLastCol ? <th>&nbsp;</th> : ''
 
     return (
@@ -53,14 +53,15 @@ export default class List extends React.Component {
           </thead>
           <tbody>
             {this.props.worklogs.get('data').get('results').toJS().map((worklog) => (
-              <WorkLogItem worklog={worklog} showLastCol={shouldShowLastCol} />
+              <WorkLogItem worklog={worklog} showLastCol={shouldShowLastCol}/>
             ))}
           </tbody>
         </table>
         <Pagination
           active={this.props.worklogs.get('data').get('page')}
           pages={this.props.worklogs.get('data').get('pages')}
-          onChange={this.handlePageChange} />
+          onChange={this.handlePageChange}
+        />
       </div>
     )
   }
@@ -73,8 +74,9 @@ export default class List extends React.Component {
     }
 
     return (
-      <div className="alert alert-warning">You have to <Link to="auth.login">log in</Link> to register
-        work.</div>
+      <div className="alert alert-warning">
+        You have to <Link to="auth.login">log in</Link> to register work.
+      </div>
     )
   }
 
@@ -90,7 +92,8 @@ export default class List extends React.Component {
         <Loader
           isLoading={this.props.worklogs.get('isLoading')}
           error={this.props.worklogs.get('error')}
-          isEmpty={!this.props.worklogs.get('data')}>
+          isEmpty={!this.props.worklogs.get('data')}
+        >
           No work data is registered.
         </Loader>
         {this.renderWorkLogs()}

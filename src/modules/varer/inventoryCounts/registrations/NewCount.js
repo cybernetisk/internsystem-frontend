@@ -124,13 +124,14 @@ export default class NewCount extends React.Component {
 
       return (
         <span>
-          <Quantity product={this.state.raavare} count={count} />
+          <Quantity product={this.state.raavare} count={count}/>
           {' = '}
           <Price
             price={count.getIn(['summer', 'sum'])}
             priceDate={this.state.raavare.getIn(['innpris', 'dato'])}
             priceDateRelativeTo={this.state.time_price || this.props.time}
-            pant={count.getIn(['summer', 'pant'])}/>
+            pant={count.getIn(['summer', 'pant'])}
+          />
         </span>
       )
     }
@@ -148,11 +149,12 @@ export default class NewCount extends React.Component {
           <form onSubmit={this.handleSave}>
             <div className="row">
               <div className="col-sm-4">
-                <InventoryItemSearch onSelect={this.handleInventoryItemSelect} ref="inventoryItemSearch" />
+                <InventoryItemSearch onSelect={this.handleInventoryItemSelect} ref="inventoryItemSearch"/>
               </div>
               <div className="col-sm-2">
                 <input type="text" className="form-control" placeholder="Quantity, e.g. 6*3+1" value={this.state.antall}
-                  onChange={this.handleChange('antall')}/>
+                  onChange={this.handleChange('antall')}
+                />
               </div>
               <div className="col-sm-3 form-control-static">
                 {this.renderMengde()}
@@ -168,15 +170,18 @@ export default class NewCount extends React.Component {
             <div className="row">
               <div className="col-sm-8">
                 <input type="text" className="form-control" placeholder="Comment (optional)" value={this.state.comment}
-                  onChange={this.handleChange('comment')}/>
+                  onChange={this.handleChange('comment')}
+                />
               </div>
               <div className="col-sm-2">
                 <input type="text" className="form-control" placeholder="Location (optional)" value={this.state.place}
-                  onChange={this.handleChange('place')}/>
+                  onChange={this.handleChange('place')}
+                />
               </div>
               <div className="col-sm-2">
                 <input type="date" className="form-control" placeholder="date of work" value={this.state.time_price}
-                  onChange={this.handleChange('time_price')}/>
+                  onChange={this.handleChange('time_price')}
+                />
               </div>
             </div>
           </form>

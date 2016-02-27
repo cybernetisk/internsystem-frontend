@@ -41,7 +41,8 @@ export default class List extends React.Component {
         <Loader
           isLoading={this.props.salesEstimates.get('isLoading')}
           error={this.props.salesEstimates.get('error')}
-          isEmpty={this.props.salesEstimates.get('items').isEmpty()}>
+          isEmpty={this.props.salesEstimates.get('items').isEmpty()}
+        >
           No sales estimates exist.
         </Loader>
 

@@ -26,22 +26,22 @@ export default class Stats extends React.Component {
     return (
       <table className="table-responsive table">
         <thead>
-        <tr>
-          <th>Semester</th>
-          <th>Semester members</th>
-          <th>Lifetime members</th>
-          <th>Honorary members</th>
-        </tr>
+          <tr>
+            <th>Semester</th>
+            <th>Semester members</th>
+            <th>Lifetime members</th>
+            <th>Honorary members</th>
+          </tr>
         </thead>
         <tbody>
-        {this.props.stats.get('data').toList().toJS().map((stats) => (
-          <tr key={stats.id}>
-            <td><Link to={`/member/semester/${stats.id}`}>{stats.semester}</Link></td>
-            <td>{stats.normal}</td>
-            <td>{stats.lifetime}</td>
-            <td>{stats.honorary}</td>
-          </tr>
-        ))}
+          {this.props.stats.get('data').toList().toJS().map((stats) => (
+            <tr key={stats.id}>
+              <td><Link to={`/member/semester/${stats.id}`}>{stats.semester}</Link></td>
+              <td>{stats.normal}</td>
+              <td>{stats.lifetime}</td>
+              <td>{stats.honorary}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     )
@@ -54,7 +54,8 @@ export default class Stats extends React.Component {
         <Loader
           isLoading={this.props.stats.get('isLoading')}
           error={this.props.stats.get('error')}
-          isEmpty={!this.props.stats.get('data')}>
+          isEmpty={!this.props.stats.get('data')}
+        >
           No semesters registered!
         </Loader>
         {this.renderList()}

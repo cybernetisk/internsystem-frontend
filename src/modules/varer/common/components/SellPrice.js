@@ -38,7 +38,8 @@ export default class extends React.Component {
         <br/>,
         <PriceMargin innPris={inPrice}
           utPris={this.props.item.get('salgspris').get(this.getPricePropertyName())}
-          utMva={this.props.item.get('salgspris').get('mva')}/>
+          utMva={this.props.item.get('salgspris').get('mva')}
+        />
       ]
     }
   }

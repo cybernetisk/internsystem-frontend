@@ -17,7 +17,6 @@ reactor.registerStores({
   members: MemberListStore,
   member: MemberStore,
   memberStats: StatsStore
-
 })
 
 module.exports = (

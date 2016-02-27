@@ -16,7 +16,6 @@ import MemberService from '../services/MemberService'
   member: getters.member,
   userDetails,
   isLoggedIn
-
 }))
 export default class Member extends React.Component {
 
@@ -50,7 +49,6 @@ export default class Member extends React.Component {
           year: result.semester.year,
           seller: result.seller.realname,
           comments: result.comments
-
         })
       }, error => {
         alert(error.responseText)
@@ -103,11 +101,9 @@ export default class Member extends React.Component {
     this.setState({comments: e.target.value})
   }
 
-
   renderEdit() {
     return (
       <div>
-
         <button type="button" className="btn btn-default" onClick={this.abortEdit}>Abort</button>
         <button type="button" className="btn btn-default" onClick={this.saveEdit}>Save</button>
         <div className="panel-body">
@@ -115,13 +111,17 @@ export default class Member extends React.Component {
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input type="'text" name="'name" value={this.state.name}
-                     onChange={this.handleNameChange} className="form-control"/>
+                onChange={this.handleNameChange} className="form-control"
+              />
               <label htmlFor="email">Email:</label>
               <input type="text" name="email" value={this.state.email}
-                     onChange={this.handleEmailChange} className="form-control"/>
+                onChange={this.handleEmailChange} className="form-control"
+              />
               <label htmlFor="comments">Comments:</label>
-              <textarea name="comments" value={this.state.comments} rows="4"
-                        onChange={this.handleComments} className="form-control"/>
+              <textarea
+                name="comments" value={this.state.comments} rows="4" onChange={this.handleComments}
+                className="form-control"
+              />
               <label htmlFor="lifetime">Lifetime</label>
               {this.renderCheckbox('lifetime', this.state.lifetime, this.handleLifetimeChange)}
 
@@ -137,11 +137,9 @@ export default class Member extends React.Component {
 
   renderCheckbox(name, value, func) {
     if (value) {
-      return <input type="checkbox" name={name} checked="checked"
-                    onChange={func}/>
+      return <input type="checkbox" name={name} checked="checked" onChange={func}/>
     } else {
-      return <input type="checkbox" name={name}
-                    onChange={func}/>
+      return <input type="checkbox" name={name} onChange={func}/>
     }
   }
 
@@ -173,7 +171,8 @@ export default class Member extends React.Component {
 
 
   renderNormal() {
-    return (<div>
+    return (
+      <div>
         <h1>{this.state.name}</h1>
         <dl>
           <dt>Name:</dt>
@@ -199,7 +198,6 @@ export default class Member extends React.Component {
         <button type="button" className="btn btn-default" onClick={this.handleDelete}>Delete</button>
       </div>
     )
-
   }
 
   handleEdit() {

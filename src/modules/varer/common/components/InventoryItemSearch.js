@@ -21,7 +21,8 @@ function renderSuggestion(product) {
         product={product}
         showLinks={false}
         isInventory={true}
-        showAccountGroup={true}/>
+        showAccountGroup={true}
+      />
       <Quantity product={product}/>
       <BuyPrice product={product}/>
     </div>
@@ -103,7 +104,8 @@ export default class InventoryItemSearch extends React.Component {
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
           theme={theme}
-          ref="autosuggest"/>
+          ref="autosuggest"
+        />
       </span>
     )
   }

@@ -43,7 +43,8 @@ export default class UserInput extends React.Component {
         getSuggestionValue={sug => sug.username}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
-        theme={theme}/>
+        theme={theme}
+      />
     )
   }
 }

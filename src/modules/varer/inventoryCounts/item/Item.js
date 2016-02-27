@@ -175,7 +175,8 @@ export default class Item extends React.Component {
       return (
         <ItemListView
           newItem={this.addNewItem}
-          newitems={this.state.newitems}/>
+          newitems={this.state.newitems}
+        />
       )
     }
   }
@@ -199,7 +200,8 @@ export default class Item extends React.Component {
           <a className="btn btn-default" href={`admin/varer/varetelling/${item.id}/`} target="_self">Edit</a>
           {' '}
           <Link to="varer/inventorycount/registrations" params={{id: this.props.data.get('id')}}
-            className="btn btn-default">
+            className="btn btn-default"
+          >
             Show registrations view
           </Link>
         </div>
@@ -229,23 +231,28 @@ export default class Item extends React.Component {
 
         <h2>Products</h2>
 
-        <p className="text-muted hidden-print">Press ctrl+down or ctrl+up to move focus. Press + to quicky add new count.</p>
+        <p className="text-muted hidden-print">
+          Press ctrl+down or ctrl+up to move focus. Press + to quicky add new count.
+        </p>
 
         <div className="row hidden-print">
           <div className="form-group col-md-6">
             <label>Search</label>
             <ListInputQ autofocus={true} onChange={this.handleSearch} value={this.props.filters.get('text')}
-              ref="frisok"/>
+              ref="frisok"
+            />
           </div>
           <div className="form-group col-md-3">
             <label>Group</label>
             <AccountFilter onChange={this.handleGroupChange} value={this.props.filters.get('group', '')}
-              accounts={this.props.accountsForSelectElement} />
+              accounts={this.props.accountsForSelectElement}
+            />
           </div>
           <div className="form-group col-md-3">
             <label>Filtering</label>
             <select className="form-control" onChange={this.handleVisibleChange}
-              value={this.props.filters.get('f', '')}>
+              value={this.props.filters.get('f', '')}
+            >
               {consts.inventoryCountOptions.map((option, key) => (
                 <option value={key} key={key}>{option.get('text')}</option>
               ))}

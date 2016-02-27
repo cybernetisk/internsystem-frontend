@@ -80,7 +80,8 @@ export default class Item extends React.Component {
           <a className="btn btn-default" href={`admin/varer/varetelling/${this.props.data.get('id')}/`} target="_self">Edit</a>
           {' '}
           <Link to="varer/inventorycount" params={{id: this.props.data.get('id')}}
-            className="btn btn-default">
+            className="btn btn-default"
+          >
             Show detailed view
           </Link>
         </div>

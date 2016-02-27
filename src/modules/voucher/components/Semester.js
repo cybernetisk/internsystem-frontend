@@ -67,7 +67,8 @@ export default class Semester extends React.Component {
         <Loader
           isLoading={this.props.wallets.get('isLoading')}
           error={this.props.wallets.get('error')}
-          isEmpty={!this.props.wallets.get('data')}>
+          isEmpty={!this.props.wallets.get('data')}
+        >
           No semester data is registered.
         </Loader>
         {this.renderWallets()}

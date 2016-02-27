@@ -54,25 +54,23 @@ export default class List extends React.Component {
     return (
       <table className="table table-bordered">
         <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Date joined</th>
-          <th>Email</th>
-
-        </tr>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date joined</th>
+            <th>Email</th>
+          </tr>
         </thead>
         <tbody>
-        {this.props.members.get('data').get('results').toJS().map((member) => {
-          return (
-            <tr key={member.id}>
-              <td>{member.id}</td>
-              <td><Link to={`/member/${member.id}`}>{member.name}</Link></td>
-              <td>{this.renderDate(member.date_joined)}</td>
-              <td>{member.email}</td>
-
-            </tr>)
-        })}
+          {this.props.members.get('data').get('results').toJS().map((member) => {
+            return (
+              <tr key={member.id}>
+                <td>{member.id}</td>
+                <td><Link to={`/member/${member.id}`}>{member.name}</Link></td>
+                <td>{this.renderDate(member.date_joined)}</td>
+                <td>{member.email}</td>
+              </tr>)
+          })}
         </tbody>
       </table>
     )

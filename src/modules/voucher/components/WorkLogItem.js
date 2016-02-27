@@ -98,21 +98,25 @@ export default class WorkLogItem extends React.Component {
       <tr key={worklog.id}>
         <td>
           <input type="date" className="form-control" placeholder="date of work" value={this.state.date_worked}
-            onChange={this.handleChange('date_worked')} ref="date_worked" onKeyDown={this.detectKeyEvents}/>
+            onChange={this.handleChange('date_worked')} ref="date_worked" onKeyDown={this.detectKeyEvents}
+          />
         </td>
         <td>{this.getWho(worklog)}</td>
         <td>
           <WorkGroupInput value={this.state.work_group} onChange={this.handleChange('work_group')}
-            onKeyDown={this.detectKeyEvents}/>
+            onKeyDown={this.detectKeyEvents}
+          />
         </td>
         <td>
           <input type="number" className="form-control" placeholder="Hours, eg. 1.5" value={this.state.hours}
-            onChange={this.handleChange('hours')} step="0.01" min="0" onKeyDown={this.detectKeyEvents}/>
+            onChange={this.handleChange('hours')} step="0.01" min="0" onKeyDown={this.detectKeyEvents}
+          />
         </td>
         <td>&nbsp;</td>
         <td>
           <input type="text" className="form-control" placeholder="Optional comment" value={this.state.comment}
-            onChange={this.handleChange('comment')} onKeyDown={this.detectKeyEvents}/>
+            onChange={this.handleChange('comment')} onKeyDown={this.detectKeyEvents}
+          />
           <div className="small text-muted">Registered {reg_by} {time}</div>
         </td>
         <td>

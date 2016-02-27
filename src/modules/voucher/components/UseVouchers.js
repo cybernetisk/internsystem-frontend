@@ -103,11 +103,13 @@ export default class UseVouchers extends React.Component {
               <div className="col-sm-3">
                 <input type="number" className="form-control" placeholder="Number of vouchers to spend"
                   value={this.state.vouchers}
-                  onChange={this.handleChange('vouchers')}/>
+                  onChange={this.handleChange('vouchers')}
+                />
               </div>
               <div className="col-sm-3">
                 <input type="text" className="form-control" placeholder="Optional comment" value={this.state.comment}
-                  onChange={this.handleChange('comment')}/>
+                  onChange={this.handleChange('comment')}
+                />
               </div>
               <div className="col-sm-2">
                 <input type="submit" className="form-control btn-primary" value="Use vouchers"/>

@@ -138,7 +138,7 @@ export default class List extends React.Component {
 
               prev.push((
                 <tr className="group-row" key={'gruppe-' + gruppe.get('id')}>
-                  <th colSpan="3"><Account account={gruppe} showGroup={true} /></th>
+                  <th colSpan="3"><Account account={gruppe} showGroup={true}/></th>
                   <th colSpan="2">
                     {this.renderAmount(summer)}
                   </th>
@@ -158,7 +158,8 @@ export default class List extends React.Component {
                 <td>{this.renderCounts(raavare)}</td>
                 <td>
                   <button type="button" className={'hidden-print btn btn-primary' + btnClass}
-                    onClick={() => this.props.newItem(raavare)}>
+                    onClick={() => this.props.newItem(raavare)}
+                  >
                     <span className="glyphicon glyphicon-plus"/>
                   </button>
                 </td>

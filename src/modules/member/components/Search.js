@@ -59,8 +59,8 @@ export default class Search extends React.Component {
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input type="text" name="name" value={this.state.name}
-                 placeholder="Search..." onChange={this.handleSearch}/>
-
+            placeholder="Search..." onChange={this.handleSearch}
+          />
         </div>
       </form>
 

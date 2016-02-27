@@ -25,6 +25,9 @@
     "react/jsx-no-undef": 1,
     "react/jsx-uses-react": 1,
     "react/jsx-uses-vars": 1,
+    "react/jsx-closing-bracket-location": 2,
+    "react/jsx-indent": [2, 2],
+    "react/jsx-indent-props": [2, 2],
     //"strict": 0,
     "comma-dangle": [0, "always-multiline"],
     "no-unused-vars": 0, // TODO: apply this

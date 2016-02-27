@@ -73,16 +73,19 @@ export default class Add extends React.Component {
 
             <label htmlFor="name">Name</label>
             <input type="text" name="name" value={this.state.name} placeholder="John Doe"
-                   onChange={this.handleNameChange} className="form-control"/>
+              onChange={this.handleNameChange} className="form-control"
+            />
           </div>
           <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input type="text" name="email" value={this.state.email} placeholder="user@example.com"
-                   onChange={this.handleEmailChange} className="form-control"/>
+              onChange={this.handleEmailChange} className="form-control"
+            />
           </div>
           <div className="checkbox">
             <label htmlFor="lifetime">{this.renderLifetimeCheckbox(this.state.lifetime)}
-              Lifetime</label>
+              Lifetime
+            </label>
           </div>
           <div className="form-group">
             <input type="submit" className="form-control btn-success" value="Add member"/>
@@ -96,11 +99,17 @@ export default class Add extends React.Component {
 
   renderLifetimeCheckbox(bol) {
     if (bol) {
-      return <input className="form-checkbox" type="checkbox" name="lifetime" checked="checked"
-                    onChange={this.handleLifetimeChange}/>
+      return (
+        <input className="form-checkbox" type="checkbox" name="lifetime" checked="checked"
+          onChange={this.handleLifetimeChange}
+        />
+      )
     } else {
-      return <input className="form-checkbox" type="checkbox" name="lifetime"
-                    onChange={this.handleLifetimeChange}/>
+      return (
+        <input className="form-checkbox" type="checkbox" name="lifetime"
+          onChange={this.handleLifetimeChange}
+        />
+      )
     }
   }
 

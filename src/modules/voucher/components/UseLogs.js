@@ -75,7 +75,8 @@ export default class List extends React.Component {
         <Pagination
           active={this.props.uselogs.get('data').get('page')}
           pages={this.props.uselogs.get('data').get('pages')}
-          onChange={this.handlePageChange} />
+          onChange={this.handlePageChange}
+        />
       </div>
     )
   }
@@ -88,8 +89,9 @@ export default class List extends React.Component {
     }
 
     return (
-      <div className="alert alert-warning">You have to <Link to="auth.login">log in</Link> to register
-        vouchers usage.</div>
+      <div className="alert alert-warning">
+        You have to <Link to="auth.login">log in</Link> to register vouchers usage.
+      </div>
     )
   }
 
@@ -105,7 +107,8 @@ export default class List extends React.Component {
         <Loader
           isLoading={this.props.uselogs.get('isLoading')}
           error={this.props.uselogs.get('error')}
-          isEmpty={!this.props.uselogs.get('data')}>
+          isEmpty={!this.props.uselogs.get('data')}
+        >
           No use data is registered.
         </Loader>
         {this.renderUseLogs()}

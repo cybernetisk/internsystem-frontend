@@ -45,7 +45,8 @@ export default class extends React.Component {
           <Account
             account={product.get(accountKey)}
             showLinks={this.props.showLinks}
-            showGroup={this.props.showAccountGroup}/>
+            showGroup={this.props.showAccountGroup}
+          />
         </span>
       )
     }

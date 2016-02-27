@@ -17,7 +17,8 @@ export default class extends React.Component {
         price={this.props.product.getIn(['innpris', 'pris'])}
         priceDate={this.props.product.getIn(['innpris', 'dato'])}
         pant={this.props.product.getIn(['innpris', 'pant'])}
-        raavareId={this.props.product.get('id')}/>
+        raavareId={this.props.product.get('id')}
+      />
     )
   }
 }
