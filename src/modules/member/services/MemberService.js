@@ -4,7 +4,7 @@ import reqwest from '../../../utils/reqwest'
 class MemberService {
   getMemberList(page = 1, limit = 50, ordering = 'date_joined', search = '') {
     return reqwest({
-      url: api('member/member'),
+      url: api('member/members'),
       type: 'json',
       data: {
         page,
@@ -29,14 +29,14 @@ class MemberService {
 
   getMember(memberId) {
     return reqwest({
-      url: api('member/member/' + memberId),
+      url: api('member/members/' + memberId),
       type: 'json'
     })
   }
 
   registerMember(name, email, lifetime) {
     return reqwest({
-      url: api('member/member'),
+      url: api('member/members'),
       method: 'post',
       data: {
         name,
@@ -49,7 +49,7 @@ class MemberService {
 
   searchMember(name) {
     return reqwest({
-      url: api('member/member'),
+      url: api('member/members'),
       data: {
         limit: 10,
         search: name
@@ -60,7 +60,7 @@ class MemberService {
 
   updateMember(id, name, email, lifetime, honorary, comments) {
     return reqwest({
-      url: api(`member/member/${id}`),
+      url: api(`member/members/${id}`),
       data: {
         name,
         email,
@@ -76,7 +76,7 @@ class MemberService {
 
   removeMember(id) {
     return reqwest({
-      url: api(`member/member/${id}`),
+      url: api(`member/members/${id}`),
       method: 'delete',
       type: 'json'
     })
