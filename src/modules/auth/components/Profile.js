@@ -32,8 +32,8 @@ export default class Profile extends React.Component {
         <dl className="dl-horizontal">
           {Object.keys(data.details).map(key => {
             return [
-              <dt>{key}</dt>,
-              <dd>{data.details[key]}</dd>,
+              <dt key={key}>{key}</dt>,
+              <dd key={`${key}-data`}>{data.details[key]}</dd>,
             ]
           })}
         </dl>
@@ -42,11 +42,11 @@ export default class Profile extends React.Component {
             <p>Data from remote authentication system:</p>
             <dl className="dl-horizontal">
               {Object.keys(data.metadata).map(key => [
-                <dt>{key}</dt>,
-                <dd>
+                <dt key={key}>{key}</dt>,
+                <dd key={`${key}-data`}>
                   <ul>
                     {data.metadata[key].map(subval => (
-                      <li>{subval}</li>
+                      <li key={subval}>{subval}</li>
                     ))}
                   </ul>
                 </dd>,

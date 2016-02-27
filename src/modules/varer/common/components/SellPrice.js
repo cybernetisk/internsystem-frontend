@@ -4,6 +4,8 @@ import {price} from '../../../../services/FormatService'
 
 import PriceMargin from './PriceMargin'
 
+import './SellPrice.scss'
+
 export default class extends React.Component {
 
   static propTypes = {
@@ -34,13 +36,14 @@ export default class extends React.Component {
         inPrice = inPrice.get('pris')
       }
 
-      return [
-        <br/>,
-        <PriceMargin innPris={inPrice}
-          utPris={this.props.item.get('salgspris').get(this.getPricePropertyName())}
-          utMva={this.props.item.get('salgspris').get('mva')}
-        />
-      ]
+      return (
+        <div className="varer-sellPrice--priceMargin">
+          <PriceMargin innPris={inPrice}
+            utPris={this.props.item.get('salgspris').get(this.getPricePropertyName())}
+            utMva={this.props.item.get('salgspris').get('mva')}
+          />
+        </div>
+      )
     }
   }
 

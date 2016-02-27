@@ -32,7 +32,7 @@ export default class List extends React.Component {
         </thead>
         <tbody>
           {accounts.map(account => (
-            <tr>
+            <tr key={account.id}>
               <td>{account.id}</td>
               <td><a href={`admin/varer/konto/${account.id}/`} target="_self">{account.navn}</a></td>
               <td>{account.gruppe}</td>

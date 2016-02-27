@@ -214,18 +214,22 @@ export default class Item extends React.Component {
           <dt>Time</dt>
           <dd>{moment(item.tid).format('YYYY-MM-DD HH:mm')}</dd>
           {item.kommentar ? [
-            <dt>Comment</dt>,
-            <dd>{item.kommentar}</dd>
+            <dt key="kommentar-dt">Comment</dt>,
+            <dd key="kommentar-dd">{item.kommentar}</dd>
           ] : ''}
           <dt>Responsible</dt>
           <dd>{item.ansvarlig}</dd>
           {summer ? [
-            <dt>Total value (ex. VAT)</dt>,
-            <dd>{price(summer.sum + summer.pant)} ({price(summer.sum)} + {price(summer.pant)} i pant)</dd>
+            <dt key="summer-dt">Total value (ex. VAT)</dt>,
+            <dd key="summer-dd">
+              {price(summer.sum + summer.pant)} ({price(summer.sum)} + {price(summer.pant)} i pant)
+            </dd>
           ] : ''}
           {showFilteredSummer ? [
-            <dt>By search filter</dt>,
-            <dd>{price(summerFiltered.sum + summerFiltered.pant)} ({price(summerFiltered.sum)} + {price(summerFiltered.pant)} i pant)</dd>
+            <dt key="filteredsummer-dt">By search filter</dt>,
+            <dd key="filteredsummer-dd">
+              {price(summerFiltered.sum + summerFiltered.pant)} ({price(summerFiltered.sum)} + {price(summerFiltered.pant)} i pant)
+            </dd>
           ] : ''}
         </dl>
 

@@ -53,7 +53,7 @@ export default class List extends React.Component {
           </thead>
           <tbody>
             {this.props.worklogs.get('data').get('results').toJS().map((worklog) => (
-              <WorkLogItem worklog={worklog} showLastCol={shouldShowLastCol}/>
+              <WorkLogItem key={worklog.id} worklog={worklog} showLastCol={shouldShowLastCol}/>
             ))}
           </tbody>
         </table>

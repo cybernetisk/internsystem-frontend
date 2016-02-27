@@ -27,7 +27,9 @@ export default class extends React.Component {
         {item.get('raavarer').map(meta => {
           let quantity
           if (meta.get('mengde') != meta.get('raavare').get('mengde')) {
-            quantity = [<VareMengde verdi={meta.get('mengde')} enhet={meta.get('raavare').get('enhet')}/>, ' ']
+            quantity = (
+              <span><VareMengde verdi={meta.get('mengde')} enhet={meta.get('raavare').get('enhet')}/> </span>
+            )
           }
 
           let buyprice

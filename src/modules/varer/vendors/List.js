@@ -30,7 +30,7 @@ export default class List extends React.Component {
         </thead>
         <tbody>
           {vendors.map((vendor) => (
-            <tr>
+            <tr key={vendor.id}>
               <td>{vendor.id}</td>
               <td><a href={`admin/varer/leverandør/${vendor.id}/`} target="_self">{vendor.navn}</a></td>
               <td><Markdown source={vendor.kommentar}/></td>
