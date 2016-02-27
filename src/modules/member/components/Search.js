@@ -22,6 +22,7 @@ import { userDetails, isLoggedIn } from '../../auth/getters'
 export default class Search extends React.Component {
   constructor(props) {
     super(props)
+    this.setState({name: ''})
     this.handleSearch = this.handleSearch.bind(this)
   }
 
@@ -53,7 +54,7 @@ export default class Search extends React.Component {
     return (
       <form onSubmit={this.handleSearch}>
         <div className="form-group">
-          <label for="name">Name</label>
+          <label htmlFor="name">Name</label>
           <input type="text" name="name" value={this.state.name}
                  placeholder="Search..." onChange={this.handleSearch}/>
 
