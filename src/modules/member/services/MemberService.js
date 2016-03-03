@@ -66,6 +66,14 @@ class MemberService {
             type: 'json'
         })
     }
+
+  getStats() {
+    return reqwest({
+      url: api('member/stats'),
+      method: 'get',
+      type: 'json',
+    })
+  }
 }
 
 

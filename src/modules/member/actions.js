@@ -26,3 +26,10 @@ export function memberDeleted(memberId) {
 export function updateMember(id) {
   reactor.dispatch(actionTypes.MEMBER_UPDATED, {id})
 }
+export function getStats() {
+  dispatchAsync(MemberService.getStats(), {
+    request: actionTypes.RECEIVE_MEMBERSTATS_START,
+    success: actionTypes.RECEIVE_MEMBERSTATS_SUCCESS,
+    failure: actionTypes.RECEIVE_MEMBERSTATS_FAILURE
+  })
+}

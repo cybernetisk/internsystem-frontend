@@ -22,16 +22,19 @@ import { userDetails, isLoggedIn } from '../../auth/getters'
 export default class Search extends React.Component {
   constructor(props) {
     super(props)
-    this.setState({name: ''})
     this.handleSearch = this.handleSearch.bind(this)
+    this.state = ({
+      name: ''
+    })
   }
 
+
   componentDidMount() {
-    actions.getMemberList(1, 10, 'name', '')
     this.setState({
       name: '',
       isSending: false
     })
+    actions.getMemberList(1, 10, 'name', '')
   }
 
   render() {

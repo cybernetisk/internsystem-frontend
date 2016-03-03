@@ -10,10 +10,13 @@ import Member from './components/Member'
 
 import MemberListStore from './stores/MemberListStore'
 import MemberStore from './stores/MemberStore'
+import StatsStore from './stores/MemberStatsStore'
 
 reactor.registerStores({
     members: MemberListStore,
-    member: MemberStore
+  member: MemberStore,
+  memberStats: StatsStore
+
 })
 
 module.exports = (
