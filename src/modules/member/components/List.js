@@ -17,12 +17,22 @@ import { userDetails, isLoggedIn } from '../../auth/getters'
 }))
 export default class List extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.handlePageChange = this.handlePageChange.bind(this)
+  }
+
   PropTypes = {
-    switcher: React.PropTypes.bool
+    switcher: React.PropTypes.bool,
+    semId: React.PropTypes.number
   }
 
   handlePageChange(newPage) {
-    actions.getMemberList(newPage)
+    if (this.props.semId !== null) {
+      actions.getSemMemberList(this.props.semId, newPage, 50)
+    } else {
+      actions.getMemberList(newPage)
+    }
   }
 
 

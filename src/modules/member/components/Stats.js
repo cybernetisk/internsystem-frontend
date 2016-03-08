@@ -36,7 +36,7 @@ export default class Stats extends React.Component {
         <tbody>
         {this.props.stats.get('data').toList().toJS().map((stats) => (
           <tr key={stats.id}>
-            <td>{stats.semester}</td>
+            <td><Link to={`/member/semester/${stats.id}`}>{stats.semester}</Link></td>
             <td>{stats.normal}</td>
             <td>{stats.lifetime}</td>
             <td>{stats.honorary}</td>

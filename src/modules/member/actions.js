@@ -13,6 +13,14 @@ export function getMemberList(page, limit, ordering, name) {
   }, {page, limit, ordering, name})
 }
 
+export function getSemMemberList(semId, page, limit) {
+  dispatchAsync(MemberService.getSemMemberList(semId, limit, page), {
+    request: actionTypes.RECEIVE_MEMBERLIST_START,
+    success: actionTypes.RECEIVE_MEMBERLIST_SUCCESS,
+    failure: actionTypes.RECEIVE_MEMBERLIST_FAILURE
+  }, ({semId, page, limit}))
+}
+
 export function getMember(memberId) {
   dispatchAsync(MemberService.getMember(memberId), {
     request: actionTypes.RECEIVE_MEMBER_START,
