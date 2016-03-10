@@ -123,10 +123,10 @@ export default class Member extends React.Component {
               <textarea name="comments" value={this.state.comments} rows="4"
                         onChange={this.handleComments} className="form-control"/>
               <label htmlFor="lifetime">Lifetime</label>
-              {this.renderCheckbox("lifetime", this.state.lifetime, this.handleLifetimeChange)}
+              {this.renderCheckbox('lifetime', this.state.lifetime, this.handleLifetimeChange)}
 
               <label htmlFor="honorary">Honorary</label>
-              {this.renderCheckbox("honorary", this.state.honorary, this.handleHonoraryChange)}
+              {this.renderCheckbox('honorary', this.state.honorary, this.handleHonoraryChange)}
 
             </div>
           </form>
