@@ -41,3 +41,10 @@ export function getStats() {
     failure: actionTypes.RECEIVE_MEMBERSTATS_FAILURE
   })
 }
+export function getSemStats(semesterId) {
+  dispatchAsync(MemberService.getSemesterStats(semesterId), {
+    request: actionTypes.RECEIVE_MEMBERSTATS_START,
+    success: actionTypes.RECEIVE_MEMBERSTATS_SUCCESS,
+    failure: actionTypes.RECEIVE_MEMBERSTATS_FAILURE
+  })
+}
