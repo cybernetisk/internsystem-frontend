@@ -29,12 +29,12 @@ export default class Stats extends React.Component {
     return (
       <table className="table-responsive table">
         <thead>
-        <tr>
-          <th>Semester</th>
-          <th>Semester members</th>
-          <th>Lifetime members</th>
-          <th>Honorary members</th>
-        </tr>
+          <tr>
+            <th>Semester</th>
+            <th>Semester members</th>
+            <th>Lifetime members</th>
+            <th>Honorary members</th>
+          </tr>
         </thead>
         <tbody>
         {this.props.stats.get('data').toList().toJS().map((stats) => (
@@ -49,12 +49,12 @@ export default class Stats extends React.Component {
           </tr>
 
         ))}
-        <tr>
-          <td>All</td>
-          <td>{normal}</td>
-          <td>{lifetime}</td>
-          <td>{honorary}</td>
-        </tr>
+          <tr>
+            <td>All</td>
+            <td>{normal}</td>
+            <td>{lifetime}</td>
+            <td>{honorary}</td>
+          </tr>
         </tbody>
       </table>
     )
