@@ -22,6 +22,17 @@ export default class Stats extends React.Component {
     if (!this.props.stats.get('data')) {
       return
     }
+    var normal = 0
+    var lifetime = 0
+    var honorary = 0
+
+    let mylist = this.props.stats.get('data').toList().toJS()
+    var i
+    for(i = 0; i < mylist.length; i++){
+      normal += mylist[i].normal
+      lifetime += mylist[i].lifetime
+      honorary += mylist[i].honorary
+    }
 
     return (
       <table className="table-responsive table">
@@ -34,14 +45,21 @@ export default class Stats extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.stats.get('data').toList().toJS().map((stats) => (
-            <tr key={stats.id}>
-              <td><Link to={`/member/semester/${stats.id}`}>{stats.semester}</Link></td>
-              <td>{stats.normal}</td>
-              <td>{stats.lifetime}</td>
-              <td>{stats.honorary}</td>
-            </tr>
-          ))}
+        {mylist.map((stats) => (
+          <tr key={stats.id}>
+            <td><Link to={`/member/semester/${stats.id}`}>{stats.semester}</Link></td>
+            <td>{stats.normal}</td>
+            <td>{stats.lifetime}</td>
+            <td>{stats.honorary}</td>
+          </tr>
+
+        ))}
+          <tr>
+            <td>All</td>
+            <td>{normal}</td>
+            <td>{lifetime}</td>
+            <td>{honorary}</td>
+          </tr>
         </tbody>
       </table>
     )

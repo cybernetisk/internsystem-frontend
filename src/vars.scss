@@ -1,5 +1,8 @@
 //$icon-font-path: "fonts/bootstrap/";
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
+// expand menu when width is minimum this value, see #7
+$grid-float-breakpoint: 1000px;
+
 // Core variables and mixins
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/_variables";
