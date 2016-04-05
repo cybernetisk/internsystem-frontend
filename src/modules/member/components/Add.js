@@ -82,11 +82,6 @@ export default class Add extends React.Component {
               onChange={this.handleEmailChange} className="form-control"
             />
           </div>
-          <div className="checkbox">
-            <label htmlFor="lifetime">{this.renderLifetimeCheckbox(this.state.lifetime)}
-              Lifetime
-            </label>
-          </div>
           <div className="form-group">
             <input type="submit" className="form-control btn-success" value="Add member"/>
           </div>
@@ -95,22 +90,6 @@ export default class Add extends React.Component {
       </div >
     )
 
-  }
-
-  renderLifetimeCheckbox(bol) {
-    if (bol) {
-      return (
-        <input className="form-checkbox" type="checkbox" name="lifetime" checked="checked"
-          onChange={this.handleLifetimeChange}
-        />
-      )
-    } else {
-      return (
-        <input className="form-checkbox" type="checkbox" name="lifetime"
-          onChange={this.handleLifetimeChange}
-        />
-      )
-    }
   }
 
   renderNewlyMembers() {
