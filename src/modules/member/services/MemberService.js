@@ -14,6 +14,17 @@ class MemberService {
       }
     })
   }
+  getLifetimeMembers(page=1, limit=50){
+    return reqwest({
+      url: api('member/members'),
+      type: 'json',
+      data: {
+        page,
+        limit,
+        lifetime: 'True'
+      }
+    })
+  }
 
   getSemMemberList(semester = 1, limit = 50, page = 1) {
     return reqwest(({

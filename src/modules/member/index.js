@@ -8,6 +8,7 @@ import Stats from './components/Stats'
 import Search from './components/Search'
 import Member from './components/Member'
 import Semester from './components/Semester'
+import Lifetime from './components/Lifetime'
 
 import MemberListStore from './stores/MemberListStore'
 import MemberStore from './stores/MemberStore'
@@ -25,8 +26,10 @@ module.exports = (
     <Route name="member/add" path="/member/add" handler={Add}/>
     <Route name="member/list" path="/member/list" handler={MemberList}/>
     <Route name="member/search" path="/member/search" handler={Search}/>
+    <Route name="member/lifetime" path="member/lifetime" handler={Lifetime}/>
     <Route name="member/member" path="/member/:memberId" handler={Member}/>
     <Route name="member/semester" path="member/semester/:semId" handler={Semester}/>
+
   </Route>
 
 )

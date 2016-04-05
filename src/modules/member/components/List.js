@@ -25,11 +25,15 @@ export default class List extends React.Component {
   PropTypes = {
     switcher: React.PropTypes.bool,
     semId: React.PropTypes.number,
-    semester: React.PropTypes.bool
+    semester: React.PropTypes.bool,
+    lifetime: React.PropTypes.bool,
   }
 
   handlePageChange(newPage) {
-    if (this.props.semId != null) {
+    if(this.props.lifetime){
+      actions.getLifetimeMember(newPage, 50)
+    }
+    else if (this.props.semId != null) {
       actions.getSemMemberList(this.props.semId, newPage, 50)
     } else {
       actions.getMemberList(newPage)
