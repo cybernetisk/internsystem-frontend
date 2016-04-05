@@ -13,8 +13,8 @@ export function fetchStats() {
   })
 }
 
-export function fetchUseLogs(page = 1) {
-  dispatchAsync(VoucherService.getUseLogs(page), {
+export function fetchUseLogs(page = 1, limit = undefined) {
+  dispatchAsync(VoucherService.getUseLogs(page, limit), {
     request: actionTypes.RECEIVE_USELOGS_START,
     success: actionTypes.RECEIVE_USELOGS_SUCCESS,
     failure: actionTypes.RECEIVE_USELOGS_FAILURE
