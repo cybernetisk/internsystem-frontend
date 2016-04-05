@@ -1,0 +1,38 @@
+@import '../../../vars';
+
+ul.voucher-simpleUse {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin-bottom: 1rem;
+  }
+}
+
+.voucher-simpleUse-when {
+  display: block;
+
+  @media (min-width: $screen-sm-min) {
+    display: inline-block;
+    width: 250px;
+  }
+}
+
+.voucher-simpleUse-who {
+  display: block;
+
+  @media (min-width: $screen-sm-min) {
+    display: inline-block;
+    width: 200px;
+  }
+}
+
+.voucher-simpleUse-amount {
+  display: block;
+
+  @media (min-width: $screen-sm-min) {
+    display: inline-block;
+    width: 200px;
+  }
+}
