@@ -72,13 +72,13 @@ export default class Add extends React.Component {
           <div className="form-group">
 
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" value={this.state.name} placeholder="John Doe"
+            <input type="text" name="name" value={this.state.name} placeholder="Required"
               onChange={this.handleNameChange} className="form-control"
             />
           </div>
           <div className="form-group">
             <label htmlFor="email">Email:</label>
-            <input type="text" name="email" value={this.state.email} placeholder="user@example.com"
+            <input type="text" name="email" value={this.state.email} placeholder="Optional"
               onChange={this.handleEmailChange} className="form-control"
             />
           </div>
