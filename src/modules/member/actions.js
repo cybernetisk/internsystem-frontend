@@ -49,7 +49,7 @@ export function getSemStats(semesterId) {
   })
 }
 export function getLifetimeMember(page, limit) {
-  dispatchAsync(MemberService.getLifetimeMembers(), {
+  dispatchAsync(MemberService.getLifetimeMembers(page, limit), {
     request: actionTypes.RECEIVE_MEMBERLIST_START,
     success: actionTypes.RECEIVE_MEMBERLIST_SUCCESS,
     failure: actionTypes.RECEIVE_MEMBERLIST_FAILURE
