@@ -12,3 +12,10 @@ export function getInterns(page, limit, search){
     failure: actionTypes.RECEIVE_INTERNLIST_FAILURE
   }, {page, limit, search})
 }
+export function getGroups(page, limit){
+  dispatchAsync(InternService.getGroupList(page, limit),{
+    request: actionTypes.RECEIVE_GROUPLIST_START,
+    success: actionTypes.RECEIVE_GROUPLIST_SUCCESS,
+    failure: actionTypes.RECEIVE_GROUPLIST_FAILURE
+  }, {page, limit})
+}
