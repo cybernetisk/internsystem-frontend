@@ -19,17 +19,17 @@ import './UseLogs.scss'
   uselogs: getters.uselogs,
   userDetails,
 }))
-export default class List extends React.Component {
+export default class UseLogs extends React.Component {
   componentDidMount() {
     actions.fetchUseLogs(1)
   }
 
   handlePageChange(newPage) {
-    actions.fetchWorkLogs(newPage)
+    actions.fetchUseLogs(newPage)
   }
 
   renderDateSpent(val) {
-    return moment(val).format('dddd DD. MMM YYYY HH:mm')
+    return moment(val).format('dddd D. MMM YYYY HH:mm')
   }
 
   renderUseLogs() {
@@ -84,7 +84,7 @@ export default class List extends React.Component {
   renderNew() {
     if (this.props.userDetails) {
       return (
-        <UseVouchers default_username={this.props.userDetails.username} />
+        <UseVouchers defaultUsername={this.props.userDetails.username} />
       )
     }
 
