@@ -9,8 +9,8 @@ import Stats from './components/Stats'
 
 module.exports = (
   <Route>
-    <Route name="intern" path="intern" handler={Stats}/>
-    <Route name="intern/Intern" path="intern/:internId" handler={Intern}/>
-    <Route name="intern" path="intern/group" handler={Group}/>
+    <Route name="intern" path="/intern" handler={Stats}/>
+    <Route name="intern/Intern" path="/intern/:internId" handler={Intern}/>
+    <Route name="intern/group" path="/intern/group" handler={Group}/>
   </Route>
 )

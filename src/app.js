@@ -18,6 +18,7 @@ import Varer from './modules/varer'
 import Voucher from './modules/voucher'
 import Z from './modules/z'
 import Member from './modules/member'
+import Intern from './modules/intern'
 
 class App extends React.Component {
   render() {
@@ -35,6 +36,7 @@ let routes = (
     {Voucher}
     {Z}
     {Member}
+    {Intern}
   </Route>
 )
 
