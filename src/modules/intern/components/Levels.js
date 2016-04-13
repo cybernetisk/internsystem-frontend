@@ -54,7 +54,8 @@ export default class Levels extends React.Component {
         <Loader
           isLoading={this.props.levels.get('isLoading')}
           error={this.props.levels.get('error')}
-          isEmpty={!this.props.levels.get('data')}>Loading..</Loader>
+          isEmpty={!this.props.levels.get('data')}>Loading..
+        </Loader>
         {this.renderLevels()}
 
       </div>
