@@ -1,5 +1,5 @@
 import { Store, toImmutable} from 'nuclear-js'
-import actionsType from '../actionTypes'
+import actionTypes from '../actionTypes'
 
 export default Store({
   getInitialState(){
@@ -10,7 +10,9 @@ export default Store({
     })
   },
   initialize(){
-    this.on(actionsType)
+    this.on(actionTypes.RECEIVE_ACCESS_LEVELS_START, receiveAccessLevelsStart)
+    this.on(actionTypes.RECEIVE_ACCESS_LEVELS_SUCCESS, receiveAccessLevelsSuccess)
+    this.on(actionTypes.RECEIVE_ACCESS_LEVELS_FAILURE, receiveAccessLevelsFailure)
   }
 })
 

@@ -5,6 +5,7 @@ import * as actions from '../actions'
 
 import getters from '../getters'
 import { isLoggedIn } from '../../auth/getters'
+import InternService from '../services/InternService'
 
 import Loader from '../../../components/Loader'
 
@@ -13,13 +14,18 @@ import Loader from '../../../components/Loader'
   levels: getters.accesslevels
 }))
 export default class Levels extends React.Component {
-  componentDidMount() {
+  constructor(props){
+    super(props)
     actions.getAccessLevels()
   }
 
   renderLevels() {
+    if(!this.props.levels.get('data')){
+      return
+    }
     return (
       <div>
+        <h1>Access levels</h1>
         <table className="table-responsive table">
           <thead>
             <tr>
@@ -48,10 +54,11 @@ export default class Levels extends React.Component {
         <Loader
           isLoading={this.props.levels.get('isLoading')}
           error={this.props.levels.get('error')}
-          isEmpty={!this.props.stats.get('data')}
+          isEmpty={!this.props.levels.get('data')}
         >
           Loading...</Loader>
         {this.renderLevels()}
+
       </div>
     )
   }

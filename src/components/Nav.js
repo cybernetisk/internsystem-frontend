@@ -89,6 +89,8 @@ export default class Nav extends React.Component {
             </NavDropdown>
             <NavDropdown title="Garm" id="nav-intern-dropdown">
               <NavLink to="intern">Overview</NavLink>
+              <MenuItem divider/>
+              <NavLink to="intern/levels">Access Levels</NavLink>
             </NavDropdown>
             <NavDropdown title="Other" id="nav-other-dropdown">
               <li>

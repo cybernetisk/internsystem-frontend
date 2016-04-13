@@ -1,5 +1,5 @@
 const interns =['interns']
 const groups =['groups']
-const accesslevels =['levels']
+const accesslevels =['accesslevels']
 
 export default{interns, groups, accesslevels}

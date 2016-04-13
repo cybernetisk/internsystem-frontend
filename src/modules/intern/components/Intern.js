@@ -4,7 +4,7 @@ export  default class Intern extends React.Component {
 
   render() {
     return (
-      <h1>Not implemented yet</h1>
+      <h1>Not implement4ed yet</h1>
     )
   }
 }

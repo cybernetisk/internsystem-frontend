@@ -32,10 +32,11 @@ class InternService {
     })
   }
 
-  getAccessLevels(){
+  getAccessLevels() {
     return reqwest({
       url: api('intern/accesslevels'),
       type: 'json',
     })
   }
 }
+export default new InternService()
