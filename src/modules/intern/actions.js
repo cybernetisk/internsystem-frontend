@@ -19,3 +19,10 @@ export function getGroups(page, limit){
     failure: actionTypes.RECEIVE_GROUPLIST_FAILURE
   }, {page, limit})
 }
+export function getAccessLevels(){
+  dispatchAsync(InternService.getAccessLevels(),{
+    request: actionTypes.RECEIVE_ACCESS_LEVELS_START,
+    success: actionTypes.RECEIVE_ACCESS_LEVELS_SUCCESS,
+    failure: actionTypes.RECEIVE_ACCESS_LEVELS_FAILURE
+  })
+}

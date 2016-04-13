@@ -31,4 +31,11 @@ class InternService {
       }
     })
   }
+
+  getAccessLevels(){
+    return reqwest({
+      url: api('intern/accesslevels'),
+      type: 'json',
+    })
+  }
 }
