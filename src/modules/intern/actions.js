@@ -26,3 +26,10 @@ export function getAccessLevels(){
     failure: actionTypes.RECEIVE_ACCESS_LEVELS_FAILURE
   })
 }
+export function getIntern(internId){
+  dispatchAsync(InternService.getIntern(internId),{
+    request: actionTypes.RECEIVE_INTERN_START,
+    success: actionTypes.RECEIVE_INTERN_SUCCESS,
+    failure: actionTypes.RECEIVE_INTERN_FAILURE
+  })
+}

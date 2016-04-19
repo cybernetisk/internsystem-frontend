@@ -19,6 +19,6 @@ module.exports = (
     <Route name="intern" path="/intern" handler={Stats}/>
     <Route name="intern/group" path="/intern/group" handler={Group}/>
     <Route name="intern/levels" path="/intern/levels" handler={Levels}/>
-    <Route name="intern/intern" path="/intern/:internId" handler={Intern}/>
+    <Route name="intern/intern" path="/intern/interns/:internId" handler={Intern}/>
   </Route>
 )

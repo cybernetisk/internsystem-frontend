@@ -20,6 +20,13 @@ class InternService {
     })
   }
 
+  getIntern(internId){
+    return reqwest({
+      url: api('intern/interns' + internId),
+      type: 'json'
+    })
+  }
+
   getInterns(page = 1, limit = 50, search = '') {
     return reqwest({
       url: api('intern/interns'),
