@@ -10,26 +10,26 @@ export default Store({
     })
   },
   initialize(){
-    this.on(actionsType.RECEIVE_INTERN_START, receiveInternStart)
-    this.on(actionsType.RECEIVE_INTERN_SUCCESS, receiveInternSuccess)
-    this.on(actionsType.RECEIVE_INTERN_FAILURE, receiveInternFailure)
+    this.on(actionsType.RECEIVE_INTERNLIST_START, receiveInternsStart)
+    this.on(actionsType.RECEIVE_INTERNLIST_SUCCESS, receiveInternsSuccess)
+    this.on(actionsType.RECEIVE_INTERNLIST_FAILURE, receiveInternsFailure)
   }
 })
 
-function receiveInternStart(state) {
+function receiveInternsStart(state) {
   return state
     .set('data', null)
     .set('error', null)
     .set('isLoading', true)
 }
-function receiveInternSuccess(state, {response}) {
-  console.log('received intern' + state + response)
+function receiveInternsSuccess(state, {response}) {
+  console.log('received interns' + state + response)
   return state
     .set('data', toImmutable(response))
     .set('isLoading', false)
 }
-function receiveInternFailure(state, {error}) {
-  console.log('receiving intern failed' + error.statusText)
+function receiveInternsFailure(state, {error}) {
+  console.log('receiving interns failed' + error.statusText)
   return state
     .set('error', toImmutable(error))
     .set('isLoading', false)
