@@ -4,7 +4,7 @@ import reqwest from '../../../utils/reqwest'
 class InternService {
   getGroup(groupId) {
     return reqwest({
-      url: api('intern/groups' + groupId),
+      url: api('intern/groups/' + groupId),
       type: 'json'
     })
   }
@@ -22,7 +22,7 @@ class InternService {
 
   getIntern(internId){
     return reqwest({
-      url: api('intern/interns' + internId),
+      url: api('intern/interns/' + internId),
       type: 'json'
     })
   }

@@ -6,7 +6,7 @@ export default Store({
     return toImmutable({
       data: null,
       error: null,
-      isLoading: null
+      isLoading: true
     })
   },
   initialize(){
