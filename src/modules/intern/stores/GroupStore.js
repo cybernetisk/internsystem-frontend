@@ -10,9 +10,9 @@ export default Store({
     })
   },
   initialize(){
-    this.on(actionTypes.RECEIVE_GROUPLIST_START, receiveAccessLevelsStart)
-    this.on(actionTypes.RECEIVE_GROUPLIST_SUCCESS, receiveAccessLevelsSuccess)
-    this.on(actionTypes.RECEIVE_GROUPLIST_FAILURE, receiveAccessLevelsFailure)
+    this.on(actionTypes.RECEIVE_GROUPLIST_START, receiveGroupsStart)
+    this.on(actionTypes.RECEIVE_GROUPLIST_SUCCESS, receiveGroupsSuccess)
+    this.on(actionTypes.RECEIVE_GROUPLIST_FAILURE, receiveGroupsFailure)
   }
 })
 
