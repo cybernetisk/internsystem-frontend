@@ -3,6 +3,8 @@ import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'nuclear-js-react-addons'
 
+import actions from '../actions'
+
 import getters from '../getters'
 import {userDetails, isLoggedIn} from '../../auth/getters'
 
@@ -38,9 +40,9 @@ export  default class Intern extends React.Component {
   }
   handleEdit(e) {
     if(this.state.isEditing) {
-      this.setState({isEditing: True})
+      this.setState({isEditing: true})
     } else {
-      this.setState({isEditing: False})
+      this.setState({isEditing: false})
     }
   }
 

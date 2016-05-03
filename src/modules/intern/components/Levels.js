@@ -29,11 +29,11 @@ export default class Levels extends React.Component {
         <h1>Access levels</h1>
         <table className="table-responsive table">
           <thead>
-          <tr>
-            <th>Name</th>
-            <th>UiO name</th>
-            <th>Description</th>
-          </tr>
+            <tr>
+              <th>Name</th>
+              <th>UiO name</th>
+              <th>Description</th>
+            </tr>
           </thead>
           <tbody>
           {this.props.levels.get('data').toList().toJS().map((level) => (
