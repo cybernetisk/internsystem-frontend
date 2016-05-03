@@ -26,11 +26,11 @@ export default class InternList extends React.Component {
     return (
       <table className="table table-bordered">
         <thead>
-        <tr>
-          <th>Name</th>
-          <th>Roles</th>
-          <th>Comments</th>
-        </tr>
+          <tr>
+            <th>Name</th>
+            <th>Roles</th>
+            <th>Comments</th>
+          </tr>
         </thead>
         <tbody>
         {this.props.interns.get('data').get('results').toJS().map((intern) => {
@@ -61,7 +61,8 @@ export default class InternList extends React.Component {
       return (<h1>There is no interns!</h1>)
     } else {
 
-      return (<div>
+      return (
+        <div>
           <Loader
             isLoading={this.props.interns.get('isLoading')}
             error={this.props.interns.get('error')}
