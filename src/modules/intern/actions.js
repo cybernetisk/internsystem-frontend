@@ -31,5 +31,5 @@ export function getIntern(internId){
     request: actionTypes.RECEIVE_INTERN_START,
     success: actionTypes.RECEIVE_INTERN_SUCCESS,
     failure: actionTypes.RECEIVE_INTERN_FAILURE
-  })
+  }) [internId]
 }
