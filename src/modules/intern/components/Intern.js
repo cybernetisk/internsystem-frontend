@@ -55,13 +55,12 @@ export  default class Intern extends React.Component {
     </div>)
   }
 
-  renderGroups() {
+  renderRoles() {
     return (
       <ul>{this.state.roles.map(role => {
         return (
-          <div key={role.id}>{role.groups.map(group => {
-            return (<li key={group.id}><Link to={`/intern/groups/${group.id}`} >{group.name}</Link></li>)
-          })}</div>
+          <li key={role.id}><Link to="">{}</Link></li>
+
         )
       })}</ul>)
   }
@@ -75,8 +74,8 @@ export  default class Intern extends React.Component {
           <dd>{this.state.name}</dd>
           <dt>Mail:</dt>
           <dd>{this.renderMail(this.state.user.email)}</dd>
-          <dt>Groups:</dt>
-          <dd>{this.renderGroups()}</dd>
+          <dt>Roles:</dt>
+          <dd>{this.renderRoles()}</dd>
           <dt>Comments:</dt>
           <dd>{this.state.comments}</dd>
         </dl>
