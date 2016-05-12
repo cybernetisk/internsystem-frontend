@@ -21,6 +21,7 @@ reactor.registerStores({
   interns: InternStore,
   groups: GroupStore,
   internList: InternListStore
+  
 })
 module.exports = (
   <Route>

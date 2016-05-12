@@ -45,5 +45,12 @@ class InternService {
       type: 'json',
     })
   }
+
+  getInternRoles(){
+    return reqwest({
+      url: api('intern/roles'),
+      type: 'json'
+    })
+  }
 }
 export default new InternService()

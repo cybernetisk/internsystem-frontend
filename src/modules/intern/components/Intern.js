@@ -59,7 +59,7 @@ export  default class Intern extends React.Component {
     return (
       <ul>{this.state.roles.map(role => {
         return (
-          <li key={role.id}><Link to="">{}</Link></li>
+          <li key={role.id}><Link to={`/intern/roles/${role.id}`}>{role.name}</Link></li>
 
         )
       })}</ul>)

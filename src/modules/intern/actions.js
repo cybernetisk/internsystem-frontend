@@ -33,3 +33,10 @@ export function getIntern(internId){
     failure: actionTypes.RECEIVE_INTERN_FAILURE
   }) [internId]
 }
+export function getInternRoles(){
+  dispatchAsync(InternService.getInternRoles(),{
+    request: actionTypes.RECEIVE_INTERNROLES_START,
+    success: actionTypes.RECEIVE_INTERNROLES_SUCCESS,
+    failure: actionTypes.RECEIVE_INTERNROLES_FAILURE
+  })
+}
