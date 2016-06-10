@@ -52,5 +52,6 @@ class InternService {
       type: 'json'
     })
   }
+
 }
 export default new InternService()
