@@ -42,9 +42,9 @@ export function getInternRoles(){
 }
 export function getGroup(groupId) {
   dispatchAsync(InternService.getGroup(groupId),{
-    request: actionsTypes.RECEIVE_GROUP_START,
-    success: actionsTypes.RECEIVE_GROUP_SUCCESS,
-    failure: actionsTypes.RECEIVE_GROUP_FAILURE
+    request: actionTypes.RECEIVE_GROUP_START,
+    success: actionTypes.RECEIVE_GROUP_SUCCESS,
+    failure: actionTypes.RECEIVE_GROUP_FAILURE
   })
 
 }
