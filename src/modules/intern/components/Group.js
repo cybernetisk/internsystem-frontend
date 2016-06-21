@@ -1,6 +1,4 @@
-import React from 'react'
-
-import InternService from '../services/InternService'
+import React from "react";
 
 export  default class Group extends React.Component {
 
@@ -35,9 +33,24 @@ export  default class Group extends React.Component {
   addMember(e){
     //TODO: Write some request to do this
   }
-  render() {
+  renderEdit() {
+    //TODO: how should this look
+    return(
+      <h1>Editing is not implemented yet!</h1>
+    )
+  }
+  renderNormal(){
+    //TODO: How should this look.
     return (
       <h1>Not implemented yet</h1>
     )
+  }
+  render() {
+    //TODO: Find out how to render this
+    if(this.state.isEditing){
+      return this.renderEdit()
+    } else {
+      return this.renderNormal()
+    }
   }
 }
