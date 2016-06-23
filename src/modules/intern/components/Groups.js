@@ -12,10 +12,10 @@ export  default class Groups extends React.Component {
 
   constructor(props) {
     super(props)
+    actions.getGroups()
   }
 
   componentDidMount() {
-    actions.getGroups()
   }
 
   renderTable() {
@@ -26,6 +26,7 @@ export  default class Groups extends React.Component {
             <th>ID</th>
             <th>Name</th>
             <th>Leader</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
@@ -34,7 +35,8 @@ export  default class Groups extends React.Component {
               <tr key={group.id}>
                 <td>{group.id}</td>
                 <td>{group.name}</td>
-                <td>{group.leader.name}</td>
+                <td>{group.leader.realname}</td>
+                <td>{group.description}</td>
               </tr>
             )
           })}
@@ -44,8 +46,9 @@ export  default class Groups extends React.Component {
   }
 
   render() {
-    return (
-      <h1>Not implemented yet</h1>
-    )
+    if(!this.props.groups.get('data')) { 
+      return (<div>Doh!</div>)
+    }
+    return this.renderTable()
   }
 }
