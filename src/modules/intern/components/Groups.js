@@ -1,7 +1,9 @@
-import React from "react";
-import {connect} from "nuclear-js-react-addons";
-import getters from "../getters";
-import * as actions from "../actions";
+import React from 'react'
+import {connect} from 'nuclear-js-react-addons'
+import getters from '../getters'
+import * as actions from '../actions'
+
+import { userDetails, isLoggedIn } from '../../auth/getters';
 
 @connect(props => ({
   groups: getters.groups,
