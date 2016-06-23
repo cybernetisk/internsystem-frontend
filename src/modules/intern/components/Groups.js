@@ -48,7 +48,7 @@ export  default class Groups extends React.Component {
   }
 
   render() {
-    if(!this.props.groups.get('data')) { 
+    if(!this.props.groups.get('data')) {
       return (<div>Doh!</div>)
     }
     return this.renderTable()
