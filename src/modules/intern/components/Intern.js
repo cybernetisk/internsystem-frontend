@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'nuclear-js-react-addons'
 
-import actions from '../actions'
+import * as actions from '../actions'
 
 import getters from '../getters'
 import {userDetails, isLoggedIn} from '../../auth/getters'
@@ -25,20 +25,7 @@ export  default class Intern extends React.Component {
 
   componentDidMount() {
     let internId = this.props.params.internId
-    InternService.getIntern(internId).then(result => {
-      this.setState({
-        name: result.user.realname,
-        user: result.user,
-        semester: result.semester,
-        active: result.active,
-        comments: result.comments,
-        roles: result.roles,
-        cards: result.cards,
-        isLoaded: true
-      })
-    }, error => {
-      alert(error.responseText)
-    })
+    actions.getIntern(internId)
   }
 
   handleEdit(e) {
@@ -55,29 +42,30 @@ export  default class Intern extends React.Component {
     </div>)
   }
 
-  renderRoles() {
+  renderRoles(roles) {
     return (
-      <ul>{this.state.roles.map(role => {
+      <ul>{roles.map(role => {
         return (
-          <li key={role.id}><Link to={`/intern/roles/${role.id}`}>{role.name}</Link></li>
+          <li key={role.role.id}><Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link></li>
 
         )
       })}</ul>)
   }
 
   renderNormal() {
+    var intern = this.props.interns.get('data').toJS()
     return (
       <div>
-        <h1>{this.state.name}</h1>
+        <h1>{intern.user.realname}</h1>
         <dl>
           <dt>Name:</dt>
-          <dd>{this.state.name}</dd>
+          <dd>{intern.user.realname}</dd>
           <dt>Mail:</dt>
-          <dd>{this.renderMail(this.state.user.email)}</dd>
+          <dd>{this.renderMail(intern.user.email)}</dd>
           <dt>Roles:</dt>
-          <dd>{this.renderRoles()}</dd>
+          <dd>{this.renderRoles(intern.roles)}</dd>
           <dt>Comments:</dt>
-          <dd>{this.state.comments}</dd>
+          <dd>{intern.comments}</dd>
         </dl>
         <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
       </div>
@@ -91,7 +79,7 @@ export  default class Intern extends React.Component {
         <h1>Not logged in! Please login!</h1>
       )
     }
-    if (!this.state.isLoaded) {
+    if (!this.props.interns.get('data')) {
       return (<h1>Loading...</h1>)
     }
 

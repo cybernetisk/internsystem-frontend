@@ -38,7 +38,7 @@ export default class InternList extends React.Component {
               <td><Link to={`/intern/interns/${intern.id}`}>{intern.user.realname}</Link></td>
               <td>
                 <ul>{intern.roles.map((role) => {
-                  return (<li key={role.id}>{role.name}</li>)
+                  return (<li key={role.role.id}>{role.role.name}</li>)
                 })
                 }</ul>
               </td>
