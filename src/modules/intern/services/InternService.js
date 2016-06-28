@@ -53,5 +53,15 @@ class InternService {
     })
   }
 
+  getInternsFromRole(roleId){
+    return reqwest({
+      url: api('intern/interns'),
+      type: 'json',
+      data: {
+        roles: roleId
+      }
+    })
+  }
+
 }
 export default new InternService()

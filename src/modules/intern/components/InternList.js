@@ -19,7 +19,6 @@ import { userDetails, isLoggedIn } from '../../auth/getters'
 export default class InternList extends React.Component {
   constructor(props) {
     super(props)
-    actions.getInterns(1, 50, '')
   }
 
   renderList() {

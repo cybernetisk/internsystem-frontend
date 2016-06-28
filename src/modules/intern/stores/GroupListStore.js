@@ -10,9 +10,9 @@ export default Store({
     })
   },
   initialize(){
-    this.on(actionTypes.RECEIVE_GROUP_START, receiveGroupsStart)
-    this.on(actionTypes.RECEIVE_GROUP_SUCCESS, receiveGroupsSuccess)
-    this.on(actionTypes.RECEIVE_GROUP_FAILURE, receiveGroupsFailure)
+    this.on(actionTypes.RECEIVE_GROUPLIST_START, receiveGroupsStart)
+    this.on(actionTypes.RECEIVE_GROUPLIST_SUCCESS, receiveGroupsSuccess)
+    this.on(actionTypes.RECEIVE_GROUPLIST_FAILURE, receiveGroupsFailure)
   }
 })
 
@@ -23,13 +23,13 @@ function receiveGroupsStart(state) {
     .set('isLoading', true)
 }
 function receiveGroupsSuccess(state, {response}) {
-  console.log('received group' + state + response)
+  console.log('received groups' + state + response)
   return state
     .set('data', toImmutable(response))
     .set('isLoading', false)
 }
 function receiveGroupsFailure(state, {error}) {
-  console.log('receiving group failed' + error.statusText)
+  console.log('receiving groups failed' + error.statusText)
   return state
     .set('error', toImmutable(error))
     .set('isLoading', false)

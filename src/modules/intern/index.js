@@ -4,6 +4,7 @@ import reactor from '../../reactor'
 
 import Intern from './components/Intern'
 import InternList from './components/InternList'
+import Interns from './components/Interns'
 import Group from './components/Group'
 import Groups from './components/Groups'
 import Stats from './components/Stats'
@@ -14,14 +15,15 @@ import Roles from './components/Roles'
 import AccessLevelsStore from './stores/AccessLevelStore'
 import InternStore from './stores/InternStore'
 import InternListStore from './stores/InternListStore'
+import GroupListStore from './stores/GroupListStore'
 import GroupStore from './stores/GroupStore'
 
 reactor.registerStores({
   accesslevels: AccessLevelsStore,
   interns: InternStore,
-  groups: GroupStore,
-  internList: InternListStore
-
+  groups: GroupListStore,
+  internList: InternListStore,
+  group: GroupStore
 })
 module.exports = (
   <Route>
@@ -29,7 +31,7 @@ module.exports = (
     <Route name="intern/groups" path="/intern/groups" handler={Groups}/>
     <Route name="intern/group" path="/intern/groups/:groupId" handler={Group}/>
     <Route name="intern/levels" path="/intern/levels" handler={Levels}/>
-    <Route name="intern/interns" path="intern/interns" handler={InternList}/>
+    <Route name="intern/interns" path="intern/interns" handler={Interns}/>
     <Route name="intern/intern" path="/intern/interns/:internId" handler={Intern}/>
     <Route name="intern/roles" path="/intern/roles" handler={Roles}/>
     <Route name="intern/role" path="/intern/roles/:roleId" handler={Role}/>

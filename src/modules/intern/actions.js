@@ -46,5 +46,10 @@ export function getGroup(groupId) {
     success: actionTypes.RECEIVE_GROUP_SUCCESS,
     failure: actionTypes.RECEIVE_GROUP_FAILURE
   })
+}
+export function getRolesInGroup(groupID) {
+
+}
+export function getInternInRoles(roleId) {
 
 }

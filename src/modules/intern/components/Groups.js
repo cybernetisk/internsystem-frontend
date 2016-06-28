@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import {connect} from 'nuclear-js-react-addons'
 import getters from '../getters'
 import * as actions from '../actions'
@@ -36,8 +37,8 @@ export  default class Groups extends React.Component {
             return (
               <tr key={group.id}>
                 <td>{group.id}</td>
-                <td>{group.name}</td>
-                <td>{group.leader.realname}</td>
+                <td><Link to={`/intern/groups/${group.id}`}>{group.name}</Link></td>
+                <td><Link to={`/intern/interns/${group.leader.id}`}>{group.leader.realname}</Link></td>
                 <td>{group.description}</td>
               </tr>
             )
