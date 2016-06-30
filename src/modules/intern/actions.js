@@ -47,8 +47,13 @@ export function getGroup(groupId) {
     failure: actionTypes.RECEIVE_GROUP_FAILURE
   })
 }
-export function getRolesInGroup(groupID) {
-
+export function getRolesInGroup(groupId) {
+  dispatchAsync(InternService.getRolesInGroup(groupId),{
+    request: actionTypes.RECEIVE_ROLES_START,
+    success: actionTypes.RECEIVE_ROLES_SUCCESS,
+    failure: actionTypes.RECEIVE_ROLES_FAILURE
+  }), {groupId}
+  
 }
 export function getInternInRoles(roleId) {
 

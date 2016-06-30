@@ -1,6 +1,6 @@
 import React from 'react'
-import {Link} from 'react-router'
-import {connect} from 'nuclear-js-react-addons'
+import { Link } from 'react-router'
+import { connect } from 'nuclear-js-react-addons'
 
 import * as actions from '../actions'
 import getters from '../getters'
@@ -8,6 +8,7 @@ import {userDetails, isLoggedIn} from '../../auth/getters'
 
 @connect(props => ({
   group: getters.group,
+  roles: getters.roles,
   userDetails,
   isLoggedIn
 }))
@@ -22,6 +23,7 @@ export  default class Group extends React.Component {
 
     let groupId = this.props.params.groupId
     actions.getGroup(groupId)
+    actions.getRolesInGroup(groupId)
 
     this.state = {isEditing: false, isDeleted: false}
   }
@@ -52,24 +54,51 @@ export  default class Group extends React.Component {
 
   renderEdit() {
     //TODO: how should this look
-    return (
-      <h1>Editing is not implemented yet!</h1>
+
+  }
+
+  renderGroup(group){
+    return(
+      <div>
+        <h1>{group.name}</h1>
+        <dl>
+          <dt>Name:</dt>
+          <dd>{group.name}</dd>
+          <dt>Leader:</dt>
+          <dd><Link to={`/intern/interns/${group.leader.id}`}>{group.leader.realname}</Link></dd>
+          <dt>Roles:</dt>
+          <dd>
+            <ul>
+              {this.props.roles.get('data').toJS().map((role) => {
+                return(
+                  <li key={role.id}><Link to={`/intern/roles/${role.id}`}>{role.name}</Link></li>
+                )
+              }
+              )}
+            </ul>
+          </dd>
+          <dt>Description:</dt>
+          <dd>{group.description}</dd>
+        </dl>
+      </div>
     )
   }
 
   renderNormal() {
     //TODO: How should this look.
-    return (
-      <h1>Not implemented yet</h1>
-    )
+    return this.renderGroup(this.props.group.get('data').toJS())
   }
 
   render() {
     //TODO: Find out how to render this
-    if (this.state.isEditing) {
-      return this.renderEdit()
+    if (!this.props.roles.get('data') & !this.props.group.get('data')) {
+      return (<h1>Waiting</h1>)
     } else {
-      return this.renderNormal()
+      if (this.state.isEditing) {
+        return this.renderEdit()
+      } else {
+        return this.renderNormal()
+      }
     }
   }
 }

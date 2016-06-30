@@ -15,15 +15,18 @@ import Roles from './components/Roles'
 import AccessLevelsStore from './stores/AccessLevelStore'
 import InternStore from './stores/InternStore'
 import InternListStore from './stores/InternListStore'
+import RolesStore from './stores/RolesStore'
 import GroupListStore from './stores/GroupListStore'
 import GroupStore from './stores/GroupStore'
+
 
 reactor.registerStores({
   accesslevels: AccessLevelsStore,
   interns: InternStore,
   groups: GroupListStore,
   internList: InternListStore,
-  group: GroupStore
+  group: GroupStore,
+  roles: RolesStore
 })
 module.exports = (
   <Route>
