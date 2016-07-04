@@ -18,6 +18,7 @@ import InternListStore from './stores/InternListStore'
 import RolesStore from './stores/RolesStore'
 import GroupListStore from './stores/GroupListStore'
 import GroupStore from './stores/GroupStore'
+import InternRolesStore from './stores/InternRolesStore'
 
 
 reactor.registerStores({
@@ -26,7 +27,8 @@ reactor.registerStores({
   groups: GroupListStore,
   internList: InternListStore,
   group: GroupStore,
-  roles: RolesStore
+  roles: RolesStore,
+  internroles: InternRolesStore
 })
 module.exports = (
   <Route>

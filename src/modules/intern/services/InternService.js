@@ -73,5 +73,15 @@ class InternService {
     })
   }
 
+  getInternsInGroup(groupId){
+    return reqwest({
+      url: api('intern/internroles'),
+      type: 'json',
+      data: {
+        role__groups: groupId
+      }
+    })
+  }
+
 }
 export default new InternService()

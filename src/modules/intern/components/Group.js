@@ -1,14 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
+import {Link} from 'react-router'
+import {connect} from 'nuclear-js-react-addons'
 
 import * as actions from '../actions'
 import getters from '../getters'
 import {userDetails, isLoggedIn} from '../../auth/getters'
 
+import InternService from '../services/InternService'
+
 @connect(props => ({
   group: getters.group,
   roles: getters.roles,
+  interns: getters.internroles,
   userDetails,
   isLoggedIn
 }))
@@ -21,11 +24,14 @@ export  default class Group extends React.Component {
     this.saveEdit = this.saveEdit.bind(this)
     this.addMember = this.addMember.bind(this)
 
+    this.state = {isEditing: false, isDeleted: false}
+  }
+
+  componentDidMount() {
     let groupId = this.props.params.groupId
     actions.getGroup(groupId)
     actions.getRolesInGroup(groupId)
-
-    this.state = {isEditing: false, isDeleted: false}
+    actions.getInternsInGroup(groupId)
   }
 
 
@@ -57,8 +63,44 @@ export  default class Group extends React.Component {
 
   }
 
-  renderGroup(group){
-    return(
+  renderInterns() {
+    return (<div><h2>Interns</h2>
+        <table className="table table-bordered">
+          <thead>
+          <tr>
+            <th>Username</th>
+            <th>Semester started</th>
+            <th>Semester ended</th>
+            <th>Role</th>
+          </tr>
+          </thead>
+          <tbody>
+          {this.props.interns.get('data').toJS().map((intern) => {
+            return (
+              <tr key={intern.id}>
+                <td>{intern.intern.user.username}</td>
+                <td>{this.renderSemester(intern.semester_start)}</td>
+                <td>{this.renderSemester(intern.semester_end)}</td>
+                <td>{intern.role.name}</td>
+              </tr>
+            )
+          })}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+
+  renderSemester(semester){
+    if(semester){
+      return(<div>{semester.year} {semester.semester}</div>)
+    } else {
+      return(<div>Unknown</div>)
+    }
+  }
+
+  renderGroup(group) {
+    return (
       <div>
         <h1>{group.name}</h1>
         <dl>
@@ -70,10 +112,11 @@ export  default class Group extends React.Component {
           <dd>
             <ul>
               {this.props.roles.get('data').toJS().map((role) => {
-                return(
-                  <li key={role.id}><Link to={`/intern/roles/${role.id}`}>{role.name}</Link></li>
-                )
-              }
+
+                  return (
+                    <li key={role.id}><Link to={`/intern/roles/${role.id}`}>{role.name}</Link></li>
+                  )
+                }
               )}
             </ul>
           </dd>
@@ -86,12 +129,21 @@ export  default class Group extends React.Component {
 
   renderNormal() {
     //TODO: How should this look.
-    return this.renderGroup(this.props.group.get('data').toJS())
+    return (<div>
+        {this.renderGroup(this.props.group.get('data').toJS())}
+        {this.renderInterns()}
+      </div>
+    )
   }
 
   render() {
     //TODO: Find out how to render this
-    if (!this.props.roles.get('data') & !this.props.group.get('data')) {
+
+    if (this.props.roles.get('isLoading')) {
+      return (<h1>Waiting</h1>)
+    } else if (this.props.group.get('isLoading')) {
+      return (<h1>Waiting</h1>)
+    } else if (this.props.interns.get('isLoading')) {
       return (<h1>Waiting</h1>)
     } else {
       if (this.state.isEditing) {
