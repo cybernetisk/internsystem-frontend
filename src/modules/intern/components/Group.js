@@ -64,15 +64,16 @@ export  default class Group extends React.Component {
   }
 
   renderInterns() {
-    return (<div><h2>Interns</h2>
+    return (
+      <div><h2>Interns</h2>
         <table className="table table-bordered">
           <thead>
-          <tr>
-            <th>Username</th>
-            <th>Semester started</th>
-            <th>Semester ended</th>
-            <th>Role</th>
-          </tr>
+            <tr>
+              <th>Username</th>
+              <th>Semester started</th>
+              <th>Semester ended</th>
+              <th>Role</th>
+            </tr>
           </thead>
           <tbody>
           {this.props.interns.get('data').toJS().map((intern) => {
@@ -91,11 +92,11 @@ export  default class Group extends React.Component {
     )
   }
 
-  renderSemester(semester){
-    if(semester){
-      return(<div>{semester.year} {semester.semester}</div>)
+  renderSemester(semester) {
+    if (semester) {
+      return (<div>{semester.year} {semester.semester}</div>)
     } else {
-      return(<div>Unknown</div>)
+      return (<div>Unknown</div>)
     }
   }
 
@@ -129,7 +130,8 @@ export  default class Group extends React.Component {
 
   renderNormal() {
     //TODO: How should this look.
-    return (<div>
+    return (
+      <div>
         {this.renderGroup(this.props.group.get('data').toJS())}
         {this.renderInterns()}
       </div>
