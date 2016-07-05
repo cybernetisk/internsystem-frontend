@@ -35,7 +35,7 @@ export default class InternList extends React.Component {
         {this.props.interns.get('data').get('results').toJS().map((intern) => {
           return (
             <tr key={intern.id}>
-              <td><Link to={`/intern/interns/${intern.id}`}>{intern.user.realname}</Link></td>
+              <td><Link to={`/intern/interns/${intern.id}`}>{intern.user.username}</Link></td>
               <td>
                 <ul>{intern.roles.map((role) => {
                   return (<li key={role.role.id}>{role.role.name}</li>)
