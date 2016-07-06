@@ -20,7 +20,7 @@ class VoucherService {
 
   getWorkLogs(page = 1, limit = 50) {
     return reqwest({
-      url: api('voucher/worklogs'),
+      url: api('voucher/registerlogs'),
       data: {
         page,
         limit
@@ -60,7 +60,7 @@ class VoucherService {
 
   registerWork(username, date_worked, work_group, hours, comment) {
     return reqwest({
-      url: api('voucher/worklogs'),
+      url: api('voucher/registerlogs'),
       method: 'post',
       data: {
         user: username,
@@ -87,7 +87,7 @@ class VoucherService {
 
   updateWorkLog(id, data) {
     return reqwest({
-      url: api(`voucher/worklogs/${id}`),
+      url: api(`voucher/registerlogs/${id}`),
       method: 'patch',
       data,
       type: 'json'
@@ -96,7 +96,7 @@ class VoucherService {
 
   deleteWorkLog(id) {
     return reqwest({
-      url: api(`voucher/worklogs/${id}`),
+      url: api(`voucher/registerlogs/${id}`),
       method: 'delete',
       type: 'json'
     })
