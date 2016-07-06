@@ -49,6 +49,12 @@ export  default class Groups extends React.Component {
   }
 
   render() {
+    if (!this.props.isLoggedIn) {
+      return (
+        <h1>Not logged in! Please login!</h1>
+      )
+    }
+    
     if(!this.props.groups.get('data')) {
       return (<div>Doh!</div>)
     }

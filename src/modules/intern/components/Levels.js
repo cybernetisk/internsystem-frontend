@@ -20,6 +20,7 @@ export default class Levels extends React.Component {
   }
 
   renderLevels() {
+    
     if (!this.props.levels.get('data')) {
       return
     }

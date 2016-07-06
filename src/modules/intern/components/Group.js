@@ -140,7 +140,11 @@ export  default class Group extends React.Component {
 
   render() {
     //TODO: Find out how to render this
-
+    if (!this.props.isLoggedIn) {
+      return (
+        <h1>Not logged in! Please login!</h1>
+      )
+    }
     if (this.props.roles.get('isLoading')) {
       return (<h1>Waiting</h1>)
     } else if (this.props.group.get('isLoading')) {
