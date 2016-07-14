@@ -63,13 +63,6 @@ class InternService {
     })
   }
 
-  getRoles(){
-    return reqwest({
-      url: api('intern/roles'),
-      type:'json'
-    })
-  }
-
   getRolesInGroup(groupId){
     return reqwest({
       url: api('intern/roles'),
