@@ -34,7 +34,7 @@ export function getIntern(internId){
   }), {internId}
 }
 export function getInternRoles(){
-  dispatchAsync(InternService.getInternRoles(),{
+  dispatchAsync(InternService.getRoles(),{
     request: actionTypes.RECEIVE_INTERNROLES_START,
     success: actionTypes.RECEIVE_INTERNROLES_SUCCESS,
     failure: actionTypes.RECEIVE_INTERNROLES_FAILURE
@@ -45,6 +45,13 @@ export function getGroup(groupId) {
     request: actionTypes.RECEIVE_GROUP_START,
     success: actionTypes.RECEIVE_GROUP_SUCCESS,
     failure: actionTypes.RECEIVE_GROUP_FAILURE
+  })
+}
+export function getRoles(){
+  dispatchAsync(InternService.getRoles(),{
+    request: actionTypes.RECEIVE_ROLES_START,
+    success: actionTypes.RECEIVE_ROLES_SUCCESS,
+    failure: actionTypes.RECEIVE_ROLES_FAILURE
   })
 }
 export function getRolesInGroup(groupId) {

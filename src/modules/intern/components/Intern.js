@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Link } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
+import {Link} from 'react-router'
+import {connect} from 'nuclear-js-react-addons'
 
 import * as actions from '../actions'
 
@@ -12,6 +12,7 @@ import InternService from '../services/InternService'
 
 @connect(props => ({
   interns: getters.interns,
+  roles: getters.roles,
   userDetails,
   isLoggedIn
 }))
@@ -26,6 +27,7 @@ export  default class Intern extends React.Component {
   componentDidMount() {
     let internId = this.props.params.internId
     actions.getIntern(internId)
+    actions.getRoles()
   }
 
   handleEdit(e) {
@@ -44,12 +46,14 @@ export  default class Intern extends React.Component {
 
   renderRoles(roles) {
     return (
-      <ul>{roles.map(role => {
-        return (
-          <li key={role.role.id}><Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link></li>
+      <div>
+        <ul>{roles.map(role => {
+          return (
+            <li key={role.role.id}><Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link></li>
 
-        )
-      })}</ul>)
+          )
+        })}</ul>
+      </div>)
   }
 
   renderNormal() {
@@ -62,12 +66,11 @@ export  default class Intern extends React.Component {
           <dd>{intern.user.realname}</dd>
           <dt>Mail:</dt>
           <dd>{this.renderMail(intern.user.email)}</dd>
-          <dt>Roles:</dt>
-          <dd>{this.renderRoles(intern.roles)}</dd>
           <dt>Comments:</dt>
           <dd>{intern.comments}</dd>
         </dl>
         <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
+        {this.renderRoles(intern.roles)}
       </div>
 
     )

@@ -46,7 +46,7 @@ class InternService {
     })
   }
 
-  getInternRoles(){
+  getRoles(){
     return reqwest({
       url: api('intern/roles'),
       type: 'json'
@@ -60,6 +60,13 @@ class InternService {
       data: {
         roles: roleId
       }
+    })
+  }
+
+  getRoles(){
+    return reqwest({
+      url: api('intern/roles'),
+      type:'json'
     })
   }
 
@@ -83,13 +90,13 @@ class InternService {
     })
   }
 
-  addRoleToIntern(internId, roleId){
+  addRoleToIntern(username, roleId){
     return reqwest({
       url: api('intern/internroles'),
       type: 'json',
       method: 'post',
       data: {
-        intern: internId,
+        username: username,
         role: roleId
       }
     })

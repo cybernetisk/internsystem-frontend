@@ -2,6 +2,7 @@ import React from 'react'
 import {Route} from 'react-router'
 import reactor from '../../reactor'
 
+import AddIntern from './components/AddIntern'
 import Intern from './components/Intern'
 import InternList from './components/InternList'
 import Interns from './components/Interns'
@@ -40,4 +41,5 @@ module.exports = (
     <Route name="intern/intern" path="/intern/interns/:internId" handler={Intern}/>
     <Route name="intern/roles" path="/intern/roles" handler={Roles}/>
     <Route name="intern/role" path="/intern/roles/:roleId" handler={Role}/>
+    <Route name="intern/add" path="/intern/add" handler={AddIntern}/>
   </Route>)
