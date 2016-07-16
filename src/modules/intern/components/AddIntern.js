@@ -41,6 +41,9 @@ export default class AddIntern extends React.Component {
         roleId: '',
         username: ''
       })
+    }, error =>{
+      alert(error.responseText)
+      this.setState({isSending: false})
     })
   }
 
@@ -52,7 +55,7 @@ export default class AddIntern extends React.Component {
   renderRoleSelector() {
     return (
       <select id="role-sel" className="form-control" value={this.state.roleId} onChange={this.handleRoleChange}>
-        <option value={-1}>Select a value</option>
+        <option selected disabled>Select a value</option>
         {this.props.roles.get('data').toJS().map((role) => {
           return (
             <option key={role.id} value={role.id}>{role.name}</option>
