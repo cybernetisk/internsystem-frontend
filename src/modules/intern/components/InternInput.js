@@ -12,7 +12,7 @@ function renderSuggestion(suggestion) {
 }
 
 
-export default class Intern extends React.Component {
+export default class InternInput extends React.Component {
   constructor(props) {
     super(props)
 

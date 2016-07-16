@@ -20,6 +20,7 @@ export default class AddIntern extends React.Component {
     super(props)
     this.handleSave = this.handleSave.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleRoleChange = this.handleRoleChange.bind(this)
     this.state = {
       isSending: false,
       roleId: '',
@@ -41,6 +42,24 @@ export default class AddIntern extends React.Component {
         username: ''
       })
     })
+  }
+
+  handleRoleChange(e) {
+    console.log(e.target.value)
+    this.setState({roleId: e.target.value})
+  }
+
+  renderRoleSelector() {
+    return (
+      <select id="role-sel" className="form-control" value={this.state.roleId} onChange={this.handleRoleChange}>
+        <option value={-1}>Select a value</option>
+        {this.props.roles.get('data').toJS().map((role) => {
+          return (
+            <option key={role.id} value={role.id}>{role.name}</option>
+          )
+        })}
+      </select>
+    )
   }
 
   handleChange(field) {
@@ -65,6 +84,8 @@ export default class AddIntern extends React.Component {
             <div className="form-group">
               <InternInput value={this.state.username} onChange={this.handleChange('username')}/>
             </div>
+            {this.renderRoleSelector()}
+            <input type="submit" className="form-control btn-success"/>
           </form>
         </div>
       </div>
