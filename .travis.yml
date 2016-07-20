@@ -2,7 +2,6 @@ language: node_js
 node_js:
   - "6"
   - "5"
-  - "5.12.0"
 sudo: false
 notifications:
   slack:
@@ -12,7 +11,7 @@ deploy:
   script: scripts/deploy.sh
   on:
     branch: master
-    node: '5.12.0'
+    node: '6'
 cache:
   directories:
     - node_modules
