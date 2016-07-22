@@ -5,6 +5,7 @@ import {connect} from 'nuclear-js-react-addons'
 import * as actions from '../actions'
 import getters from '../getters'
 import {userDetails, isLoggedIn} from '../../auth/getters'
+import AddIntern from './AddIntern'
 
 import InternService from '../services/InternService'
 
@@ -54,10 +55,6 @@ export  default class Group extends React.Component {
     //TODO: write code to update group
   }
 
-  addMember(e) {
-    //TODO: Write some request to do this
-  }
-
   renderEdit() {
     //TODO: how should this look
 
@@ -70,8 +67,7 @@ export  default class Group extends React.Component {
           <thead>
             <tr>
               <th>Username</th>
-              <th>Semester started</th>
-              <th>Semester ended</th>
+              <th>Semesters</th>
               <th>Role</th>
             </tr>
           </thead>
@@ -80,8 +76,7 @@ export  default class Group extends React.Component {
             return (
               <tr key={intern.id}>
                 <td>{intern.intern.user.username}</td>
-                <td>{this.renderSemester(intern.semester_start)}</td>
-                <td>{this.renderSemester(intern.semester_end)}</td>
+                <td>{this.renderSemester(intern.semesters)}</td>
                 <td>{intern.role.name}</td>
               </tr>
             )
@@ -133,6 +128,7 @@ export  default class Group extends React.Component {
     return (
       <div>
         {this.renderGroup(this.props.group.get('data').toJS())}
+        <AddIntern/>
         {this.renderInterns()}
       </div>
     )

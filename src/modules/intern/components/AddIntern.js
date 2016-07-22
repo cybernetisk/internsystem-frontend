@@ -12,9 +12,6 @@ import * as actions from '../actions'
   roles: getters.roles,
 }))
 export default class AddIntern extends React.Component {
-  componentDidMount() {
-    actions.getRoles()
-  }
 
   constructor(props) {
     super(props)
@@ -23,7 +20,7 @@ export default class AddIntern extends React.Component {
     this.handleRoleChange = this.handleRoleChange.bind(this)
     this.state = {
       isSending: false,
-      roleId: '',
+      roleId: -1,
       username: ''
     }
   }
@@ -38,7 +35,7 @@ export default class AddIntern extends React.Component {
     InternService.addRoleToIntern(this.state.username, this.state.roleId).then(result => {
       this.setState({
         isSending: false,
-        roleId: '',
+        roleId: -1,
         username: ''
       })
     }, error =>{
@@ -55,7 +52,7 @@ export default class AddIntern extends React.Component {
   renderRoleSelector() {
     return (
       <select id="role-sel" className="form-control" value={this.state.roleId} onChange={this.handleRoleChange}>
-        <option selected disabled>Select a value</option>
+        <option value={-1} disabled>Select a value</option>
         {this.props.roles.get('data').toJS().map((role) => {
           return (
             <option key={role.id} value={role.id}>{role.name}</option>
