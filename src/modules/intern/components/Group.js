@@ -23,7 +23,6 @@ export  default class Group extends React.Component {
     this.handleEdit = this.handleEdit.bind(this)
     this.abortEdit = this.abortEdit.bind(this)
     this.saveEdit = this.saveEdit.bind(this)
-    this.addMember = this.addMember.bind(this)
 
     this.state = {isEditing: false, isDeleted: false}
   }

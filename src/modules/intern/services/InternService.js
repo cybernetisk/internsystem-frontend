@@ -20,6 +20,17 @@ class InternService {
     })
   }
 
+  getUsers(search) {
+    return reqwest({
+      url: api('core/users'),
+      data: {
+        search,
+        limit: 20
+      },
+      type: 'json'
+    })
+  }
+
   getIntern(internId){
     return reqwest({
       url: api('intern/interns/' + internId),
@@ -83,6 +94,16 @@ class InternService {
     })
   }
 
+  getInternRoleForIntern(internId){
+    return reqwest({
+      url: api('intern/internroles'),
+      type: 'json',
+      data: {
+        intern: internId
+      }
+    })
+  }
+
   addRoleToIntern(username, roleId){
     return reqwest({
       url: api('intern/internroles'),
@@ -94,6 +115,8 @@ class InternService {
       }
     })
   }
+
+
 
 }
 export default new InternService()

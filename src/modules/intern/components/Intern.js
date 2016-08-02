@@ -13,6 +13,7 @@ import InternService from '../services/InternService'
 @connect(props => ({
   interns: getters.interns,
   roles: getters.roles,
+  internroles: getters.internroles,
   userDetails,
   isLoggedIn
 }))

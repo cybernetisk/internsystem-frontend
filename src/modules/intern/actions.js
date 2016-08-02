@@ -40,6 +40,14 @@ export function getInternRoles(){
     failure: actionTypes.RECEIVE_INTERNROLES_FAILURE
   })
 }
+export function getInternRolesForIntern(internId) {
+  dispatchAsync(InternService.getInternRoleForIntern(internId),{
+    request: actionTypes.RECEIVE_INTERNROLES_START,
+    success: actionTypes.RECEIVE_INTERNROLES_SUCCESS,
+    failure: actionTypes.RECEIVE_INTERNROLES_FAILURE
+  })
+
+}
 export function getGroup(groupId) {
   dispatchAsync(InternService.getGroup(groupId),{
     request: actionTypes.RECEIVE_GROUP_START,

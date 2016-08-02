@@ -7,7 +7,7 @@ theme.input = 'form-control'
 
 function renderSuggestion(suggestion) {
   return (
-    <span>{suggestion.user.username} ({suggestion.user.realname})</span>
+    <span>{suggestion.username} ({suggestion.realname})</span>
   )
 }
 
@@ -24,7 +24,7 @@ export default class InternInput extends React.Component {
   }
 
   onSuggestionsUpdateRequested({ value }) {
-    InternService.getInterns(1, 10, value).then(result => {
+    InternService.getUsers(value).then(result => {
       this.setState({
         suggestions: result.results
       })
@@ -41,7 +41,7 @@ export default class InternInput extends React.Component {
     return (
       <Autosuggest suggestions={this.state.suggestions}
         onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
-        getSuggestionValue={sug => sug.user.username}
+        getSuggestionValue={sug => sug.username}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
         theme={theme}
