@@ -40,7 +40,7 @@ class MemberService {
 
   getMember(memberId) {
     return reqwest({
-      url: api('member/members/' + memberId),
+      url: api('member/all/' + memberId),
       type: 'json'
     })
   }
