@@ -42,6 +42,8 @@ export  default class Intern extends React.Component {
   renderEdit() {
     return (<div>
       <h1>Not implemented yet!</h1>
+      {this.renderRoles(intern.roles)}
+      {this.renderLogs(intern.log)}
     </div>)
   }
 
@@ -55,6 +57,32 @@ export  default class Intern extends React.Component {
           )
         })}</ul>
       </div>)
+  }
+
+  renderLogs(logs) {
+    return (
+      <table className="tavle table-bordered table-responsive">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Editor</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+        {logs.map((log) => {
+            return (
+              <tr key={log.id}>
+                <td>{log.time}</td>
+                <td>{log.changed_by.username}</td>
+                <td>{log.description}</td>
+              </tr>
+            )
+          }
+        )}
+        </tbody>
+      </table>
+    )
   }
 
   renderNormal() {
@@ -72,6 +100,7 @@ export  default class Intern extends React.Component {
         </dl>
         <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
         {this.renderRoles(intern.roles)}
+        {this.renderLogs(intern.log)}
       </div>
 
     )
