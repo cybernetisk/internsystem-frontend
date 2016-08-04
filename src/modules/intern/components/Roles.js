@@ -1,8 +1,8 @@
 import React from 'react'
 
-export  default class Roles extends React.Component {
 
-  
+
+export  default class Roles extends React.Component {
 
   render() {
     if (!this.props.isLoggedIn) {
