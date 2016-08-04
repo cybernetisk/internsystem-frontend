@@ -42,8 +42,6 @@ export  default class Intern extends React.Component {
   renderEdit() {
     return (<div>
       <h1>Not implemented yet!</h1>
-      {this.renderRoles(intern.roles)}
-      {this.renderLogs(intern.log)}
     </div>)
   }
 

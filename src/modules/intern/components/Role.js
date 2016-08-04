@@ -20,7 +20,7 @@ export  default class Role extends React.Component {
   }
 
   componentDidMount(){
-    roleId = this.props.params.roleId
+    var roleId = this.props.params.roleId
     actions.getRole(roleId)
     actions.getInternInRoles(roleId)
   }
