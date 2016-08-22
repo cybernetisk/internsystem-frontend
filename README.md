@@ -1,4 +1,9 @@
 # CYBs internsystem (frontend)
+
+| Master | Test |
+| --- | --- |
+| [![Build Status](https://travis-ci.org/cybrairai/internsystem-frontend.svg?branch=master)](https://travis-ci.org/cybrairai/internsystem-frontend) | [![Build Status](https://travis-ci.org/cybrairai/internsystem-frontend.svg?branch=test)](https://travis-ci.org/cybrairai/internsystem-frontend) |
+
 Dette prosjektet er frontend-delen av https://github.com/cybrairai/internsystem. Utvidet informasjon er tilgjengelig i det prosjektet.
 
 ## Teknisk oversikt for frontend
