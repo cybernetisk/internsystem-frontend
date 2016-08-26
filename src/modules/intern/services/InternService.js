@@ -123,6 +123,18 @@ class InternService {
     })
   }
 
+  addCardToUser(user_id ,card_number){
+    return reqwest({
+      url: api(`core/cards`),
+      type: 'json',
+      method: 'post',
+      data: {
+        user: user_id,
+        card_number: card_number
+      }
+    })
+  }
+
 
 
 }
