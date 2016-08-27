@@ -104,7 +104,7 @@ export default class List extends React.Component {
       )
     }
     if (!this.props.members.get('data')) {
-      return (<div><h1>Something went wrong. Contact #webgruppa on slack</h1></div>)
+      return (<div><h1>Something went wrong. Contact #it on slack</h1></div>)
 
     } else {
       return (
