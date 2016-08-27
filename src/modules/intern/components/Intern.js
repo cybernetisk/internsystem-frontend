@@ -63,7 +63,8 @@ export  default class Intern extends React.Component {
           return (
             <tr key={role.role.id}>
               <td>
-              <Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link></td>
+                <Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link>
+              </td>
               <td>{role.role.description}</td>
               <td>
                 <ul>
@@ -106,25 +107,26 @@ export  default class Intern extends React.Component {
       </table>
     )
   }
-  renderCards(){
+
+  renderCards() {
     return (
       <table className="table table-bordered">
         <thead>
-          <tr>
+          <tr>k
             <th>Card_Number</th>
             <th>Disabled</th>
             <th>Comments</th>
           </tr>
         </thead>
         <tbody>
-        {this.props.uio_cards.get('data').toJS().map((card) =>{
-          return (
-            <tr key={card.id}>
-              <td>{card.card_number}</td>
-              <td>{card.disabled}</td>
-              <td>{card.comment}</td>
-            </tr>
-          )
+        {this.props.uio_cards.get('data').toJS().map((card) => {
+            return (
+              <tr key={card.id}>
+                <td>{card.card_number}</td>
+                <td>{card.disabled}</td>
+                <td>{card.comment}</td>
+              </tr>
+            )
           }
         )}
         </tbody>
@@ -150,12 +152,12 @@ export  default class Intern extends React.Component {
           </dl>
           <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
         </Row>
-          <Row>
-            <Col md={4}><h2>Roles</h2> {this.renderRoles(intern.roles)}</Col>
-            <Col md={4}><h2>Logs</h2> {this.renderLogs(intern.log)}</Col>
-            <Col md={4}><h2>Cards</h2>{this.renderCards()}</Col>
-          </Row>
-        </div>
+        <Row>
+          <Col md={4}><h2>Roles</h2> {this.renderRoles(intern.roles)}</Col>
+          <Col md={4}><h2>Logs</h2> {this.renderLogs(intern.log)}</Col>
+          <Col md={4}><h2>Cards</h2>{this.renderCards()}</Col>
+        </Row>
+      </div>
 
     )
   }
@@ -169,8 +171,8 @@ export  default class Intern extends React.Component {
     if (!this.props.interns.get('data')) {
       return (<h1>Loading...</h1>)
     }
-    if (!this.props.uio_cards.get('data')){
-      return(<h1>Still loacing...</h1>)
+    if (!this.props.uio_cards.get('data')) {
+      return (<h1>Still loacing...</h1>)
     }
 
     if (this.state.isDeleted) {
