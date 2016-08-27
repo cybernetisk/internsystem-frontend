@@ -92,3 +92,10 @@ export function getInternsInGroup(groupId) {
     failure: actionTypes.RECEIVE_INTERNROLES_FAILURE
   }), {groupId}
 }
+export function getCardsForIntern(internId) {
+  dispatchAsync(InternService.getCardsForIntern(internId),{
+    request: actionTypes.RECEIVE_UIOCARD_START,
+    success: actionTypes.RECEIVE_UIOCARD_SUCCESS,
+    failure: actionTypes.RECEIVE_UIOCARD_FAILURE
+  })
+}

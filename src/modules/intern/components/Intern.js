@@ -2,6 +2,7 @@ import React from 'react'
 
 import {Link} from 'react-router'
 import {connect} from 'nuclear-js-react-addons'
+import {Col, Row} from 'react-bootstrap'
 
 import * as actions from '../actions'
 
@@ -14,6 +15,7 @@ import InternService from '../services/InternService'
   interns: getters.interns,
   roles: getters.roles,
   internroles: getters.internroles,
+  uio_cards: getters.uio_cards,
   userDetails,
   isLoggedIn
 }))
@@ -29,6 +31,7 @@ export  default class Intern extends React.Component {
     let internId = this.props.params.internId
     actions.getIntern(internId)
     actions.getRoles()
+    actions.getCardsForIntern(internId)
   }
 
   handleEdit(e) {
@@ -47,19 +50,40 @@ export  default class Intern extends React.Component {
 
   renderRoles(roles) {
     return (
-      <div>
-        <ul>{roles.map(role => {
+      <table className="table table-responsive table-bordered">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Description</th>
+            <th>Groups</th>
+          </tr>
+        </thead>
+        <tbody>
+        {roles.map(role => {
           return (
-            <li key={role.role.id}><Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link></li>
-
+            <tr key={role.role.id}>
+              <td>
+              <Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link></td>
+              <td>{role.role.description}</td>
+              <td>
+                <ul>
+                  {role.role.groups.map(group => {
+                    return (
+                      <li key={group.id}>
+                        {group.name}</li>
+                    )
+                  })}
+                </ul>
+              </td>
+            </tr>
           )
-        })}</ul>
-      </div>)
+        })}</tbody>
+      </table>)
   }
 
   renderLogs(logs) {
     return (
-      <table className="tavle table-bordered table-responsive">
+      <table className="table table-responsive table-bordered">
         <thead>
           <tr>
             <th>Time</th>
@@ -82,24 +106,56 @@ export  default class Intern extends React.Component {
       </table>
     )
   }
+  renderCards(){
+    return (
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th>Card_Number</th>
+            <th>Disabled</th>
+            <th>Comments</th>
+          </tr>
+        </thead>
+        <tbody>
+        {this.props.uio_cards.get('data').toJS().map((card) =>{
+          return (
+            <tr key={card.id}>
+              <td>{card.card_number}</td>
+              <td>{card.disabled}</td>
+              <td>{card.comment}</td>
+            </tr>
+          )
+          }
+        )}
+        </tbody>
+
+      </table>
+    )
+
+  }
 
   renderNormal() {
     var intern = this.props.interns.get('data').toJS()
     return (
       <div>
-        <h1>{intern.user.realname}</h1>
-        <dl>
-          <dt>Name:</dt>
-          <dd>{intern.user.realname}</dd>
-          <dt>Mail:</dt>
-          <dd>{this.renderMail(intern.user.email)}</dd>
-          <dt>Comments:</dt>
-          <dd>{intern.comments}</dd>
-        </dl>
-        <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
-        {this.renderRoles(intern.roles)}
-        {this.renderLogs(intern.log)}
-      </div>
+        <Row>
+          <h1>{intern.user.realname}</h1>
+          <dl>
+            <dt>Name:</dt>
+            <dd>{intern.user.realname}</dd>
+            <dt>Mail:</dt>
+            <dd>{this.renderMail(intern.user.email)}</dd>
+            <dt>Comments:</dt>
+            <dd>{intern.comments}</dd>
+          </dl>
+          <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
+        </Row>
+          <Row>
+            <Col md={4}><h2>Roles</h2> {this.renderRoles(intern.roles)}</Col>
+            <Col md={4}><h2>Logs</h2> {this.renderLogs(intern.log)}</Col>
+            <Col md={4}><h2>Cards</h2>{this.renderCards()}</Col>
+          </Row>
+        </div>
 
     )
   }
@@ -112,6 +168,9 @@ export  default class Intern extends React.Component {
     }
     if (!this.props.interns.get('data')) {
       return (<h1>Loading...</h1>)
+    }
+    if (!this.props.uio_cards.get('data')){
+      return(<h1>Still loacing...</h1>)
     }
 
     if (this.state.isDeleted) {

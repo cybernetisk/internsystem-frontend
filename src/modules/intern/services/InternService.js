@@ -134,6 +134,15 @@ class InternService {
       }
     })
   }
+  getCardsForIntern(internId){
+    return reqwest({
+      url: api(`core/cards`),
+      type: 'json',
+      data:{
+        user__intern__id: internId
+      }
+    })
+  }
 
 
 

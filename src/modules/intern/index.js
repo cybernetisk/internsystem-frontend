@@ -20,6 +20,7 @@ import RolesStore from './stores/RolesStore'
 import GroupListStore from './stores/GroupListStore'
 import GroupStore from './stores/GroupStore'
 import InternRolesStore from './stores/InternRolesStore'
+import UIOCardsStore from './stores/UIOCardStore'
 
 
 reactor.registerStores({
@@ -29,7 +30,8 @@ reactor.registerStores({
   internList: InternListStore,
   group: GroupStore,
   roles: RolesStore,
-  internroles: InternRolesStore
+  internroles: InternRolesStore,
+  uiocards: UIOCardsStore
 })
 module.exports = (
   <Route>
