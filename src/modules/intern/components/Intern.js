@@ -22,8 +22,18 @@ import InternService from '../services/InternService'
 export  default class Intern extends React.Component {
   constructor(props) {
     super(props)
+    this.handleRoleChange = this.handleRoleChange.bind(this)
     this.handleEdit = this.handleEdit.bind(this)
-    this.state = {isEditing: false, isDeleted: false, isLoaded: false}
+    this.addRole = this.addRole.bind(this)
+    this.state = {
+      isEditing: false,
+      isDeleted: false,
+      isLoaded: false,
+      cardnumber: '',
+      roleId: -1,
+      isSending: false,
+      username: ''
+    }
 
   }
 
@@ -34,18 +44,89 @@ export  default class Intern extends React.Component {
     actions.getCardsForIntern(internId)
   }
 
-  handleEdit(e) {
-    if (this.state.isEditing) {
+  handleEdit() {
+    console.log(this.state.isEditing)
+    if (!this.state.isEditing) {
       this.setState({isEditing: true})
     } else {
       this.setState({isEditing: false})
     }
   }
 
+  addCard(e){
+
+  }
+
+  addRole(e) {
+    if (this.state.isSending){
+      return
+    }
+    let username = this.props.interns.get('data').toJS().user.username
+    this.setState({isSending: true})
+    InternService.addRoleToIntern(username, this.state.roleId).then(result => {
+      actions.getIntern(this.props.params.internId)
+      this.setState({
+        isSending: false,
+        roleId: -1,
+      })
+    }, error =>{
+      alert(error.responseText)
+      this.setState({isSending: false})
+    })
+  }
+
+  renderAddRole(){
+
+    return (
+      <div>
+        {this.renderRoleSelector()}
+        <button type="button" className="btn btn-default" onClick={this.addRole}>Add role</button>
+      </div>
+    )
+  }
+
+  handleRoleChange(e) {
+    console.log(e.target.value)
+    this.setState({roleId: e.target.value})
+  }
+
+  renderRoleSelector() {
+    return (
+      <select id="role-sel" className="form-control" value={this.state.roleId} onChange={this.handleRoleChange}>
+        <option value={-1} disabled>Select a value</option>
+        {this.props.roles.get('data').toJS().map((role) => {
+          return (
+            <option key={role.id} value={role.id}>{role.name}</option>
+          )
+        })}
+      </select>
+    )
+  }
+
+  renderAddCard(){
+    return (
+      <form className="form-inline" onSubmit={this.addCard()}>
+        <input type="text" name="cardnumber" value={this.state.cardnumber} placeholder="Card number"/>
+        <input type="submit" className="form-control btn-success"/>
+      </form>
+    )
+  }
+
   renderEdit() {
-    return (<div>
-      <h1>Not implemented yet!</h1>
-    </div>)
+    var intern = this.props.interns.get('data').toJS()
+    return (
+      <div>
+        <Row>
+          {this.renderIntern(intern)}
+          <button type="button" className="btn btn-default" onClick={this.handleEdit}>Cancel</button>
+        </Row>
+        <Row>
+          <Col md={4}><h2>Roles</h2> {this.renderAddRole()} {this.renderRoles(intern.roles)}</Col>
+          <Col md={4}><h2>Logs</h2> {this.renderLogs(intern.log)}</Col>
+          <Col md={4}><h2>Cards</h2>{this.renderAddCard()} {this.renderCards()}</Col>
+        </Row>
+      </div>
+    )
   }
 
   renderRoles(roles) {
@@ -107,33 +188,50 @@ export  default class Intern extends React.Component {
       </table>
     )
   }
-
   renderCards() {
     return (
-      <table className="table table-bordered">
-        <thead>
-          <tr>k
-            <th>Card_Number</th>
-            <th>Disabled</th>
-            <th>Comments</th>
-          </tr>
-        </thead>
-        <tbody>
-        {this.props.uio_cards.get('data').toJS().map((card) => {
+      <div>
+
+        <table className="table table-bordered">
+          <thead>
+            <tr>
+              <th>Card_Number</th>
+              <th>Disabled</th>
+              <th>Comments</th>
+            </tr>
+          </thead>
+          <tbody>
+          {this.props.uio_cards.get('data').toJS().map((card) => {
             return (
               <tr key={card.id}>
                 <td>{card.card_number}</td>
                 <td>{card.disabled}</td>
                 <td>{card.comment}</td>
               </tr>
-            )
-          }
-        )}
-        </tbody>
+            )}
+          )}
+          </tbody>
 
-      </table>
+        </table>
+      </div>
     )
 
+  }
+
+  renderIntern(intern) {
+    return (
+      <div>
+        <h1>{intern.user.realname}</h1>
+        <dl>
+          <dt>Name:</dt>
+          <dd>{intern.user.realname}</dd>
+          <dt>Mail:</dt>
+          <dd>{this.renderMail(intern.user.email)}</dd>
+          <dt>Comments:</dt>
+          <dd>{intern.comments}</dd>
+        </dl>
+      </div>
+    )
   }
 
   renderNormal() {
@@ -141,15 +239,7 @@ export  default class Intern extends React.Component {
     return (
       <div>
         <Row>
-          <h1>{intern.user.realname}</h1>
-          <dl>
-            <dt>Name:</dt>
-            <dd>{intern.user.realname}</dd>
-            <dt>Mail:</dt>
-            <dd>{this.renderMail(intern.user.email)}</dd>
-            <dt>Comments:</dt>
-            <dd>{intern.comments}</dd>
-          </dl>
+          {this.renderIntern(intern)}
           <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
         </Row>
         <Row>
@@ -183,7 +273,7 @@ export  default class Intern extends React.Component {
         </div>
       )
     }
-    if (this.state.isEditings) {
+    if (this.state.isEditing) {
       return this.renderEdit()
     } else {
       return this.renderNormal()
