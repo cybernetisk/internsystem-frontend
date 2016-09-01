@@ -24,7 +24,9 @@ export  default class Intern extends React.Component {
     super(props)
     this.handleRoleChange = this.handleRoleChange.bind(this)
     this.handleEdit = this.handleEdit.bind(this)
+    this.handleCardNumberChange = this.handleCardNumberChange.bind(this)
     this.addRole = this.addRole.bind(this)
+    this.addCard = this.addCard.bind(this)
     this.state = {
       isEditing: false,
       isDeleted: false,
@@ -54,10 +56,26 @@ export  default class Intern extends React.Component {
   }
 
   addCard(e){
-
+    e.preventDefault()
+    if (this.state.isSending){
+      return
+    }
+    this.setState({isSending: true})
+    const userid = this.props.interns.get('data').toJS().user.id
+    InternService.addCardToUser(userid, this.state.cardnumber).then(result => {
+      actions.getCardsForIntern(this.props.params.internId)
+      this.setState({
+        cardnumber: '',
+        isSending: false
+      }), error =>{
+        alert(error.responseText)
+        this.setState({isSending: false})
+      }
+    })
   }
 
   addRole(e) {
+    e.preventDefault()
     if (this.state.isSending){
       return
     }
@@ -76,7 +94,6 @@ export  default class Intern extends React.Component {
   }
 
   renderAddRole(){
-
     return (
       <div>
         {this.renderRoleSelector()}
@@ -103,11 +120,18 @@ export  default class Intern extends React.Component {
     )
   }
 
+  handleCardNumberChange(e){
+    console.log(e.target.value)
+    this.setState({cardnumber: e.target.value})
+  }
+
   renderAddCard(){
     return (
-      <form className="form-inline" onSubmit={this.addCard()}>
-        <input type="text" name="cardnumber" value={this.state.cardnumber} placeholder="Card number"/>
-        <input type="submit" className="form-control btn-success"/>
+      <form className="form-inline" onSubmit={this.addCard}>
+        <input type="text" name="cardnumber" value={this.state.cardnumber} placeholder="Card number"
+          onChange={this.handleCardNumberChange} className="form-control"
+        />
+        <input type="submit" className="form-control btn-success" value="Add Card"/>
       </form>
     )
   }
@@ -262,7 +286,7 @@ export  default class Intern extends React.Component {
       return (<h1>Loading...</h1>)
     }
     if (!this.props.uio_cards.get('data')) {
-      return (<h1>Still loacing...</h1>)
+      return (<h1>Still loading...</h1>)
     }
 
     if (this.state.isDeleted) {
