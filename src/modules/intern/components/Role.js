@@ -32,7 +32,7 @@ export  default class Role extends React.Component {
       )
     }
     return (
-      <h1>Not impl2emented yet</h1>
+      <h1>Not implemented yet</h1>
     )
   }
 }

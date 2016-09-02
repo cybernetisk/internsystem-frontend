@@ -9,7 +9,7 @@ export  default class Stats extends React.Component {
       )
     }
     return (
-      <h1>Not implemen2ted yet</h1>
+      <h1>Not implemented yet</h1>
     )
   }
 }

@@ -50,15 +50,6 @@ export  default class Group extends React.Component {
     })
   }
 
-  saveEdit(e) {
-    //TODO: write code to update group
-  }
-
-  renderEdit() {
-    //TODO: how should this look
-
-  }
-
   renderInterns() {
     return (
       <div><h2>Interns</h2>
@@ -123,7 +114,6 @@ export  default class Group extends React.Component {
   }
 
   renderNormal() {
-    //TODO: How should this look.
     return (
       <div>
         {this.renderGroup(this.props.group.get('data').toJS())}
@@ -134,7 +124,6 @@ export  default class Group extends React.Component {
   }
 
   render() {
-    //TODO: Find out how to render this
     if (!this.props.isLoggedIn) {
       return (
         <h1>Not logged in! Please login!</h1>
@@ -147,11 +136,8 @@ export  default class Group extends React.Component {
     } else if (this.props.interns.get('isLoading')) {
       return (<h1>Waiting</h1>)
     } else {
-      if (this.state.isEditing) {
-        return this.renderEdit()
-      } else {
-        return this.renderNormal()
-      }
+      return this.renderNormal()
+
     }
   }
 }
