@@ -25,8 +25,10 @@ export  default class Intern extends React.Component {
     this.handleRoleChange = this.handleRoleChange.bind(this)
     this.handleEdit = this.handleEdit.bind(this)
     this.handleCardNumberChange = this.handleCardNumberChange.bind(this)
+    this.handleComments = this.handleComments.bind(this)
     this.addRole = this.addRole.bind(this)
     this.addCard = this.addCard.bind(this)
+    this.saveComment = this.saveComment.bind(this)
     this.state = {
       isEditing: false,
       isDeleted: false,
@@ -34,7 +36,8 @@ export  default class Intern extends React.Component {
       cardnumber: '',
       roleId: -1,
       isSending: false,
-      username: ''
+      username: '',
+      comments: ''
     }
 
   }
@@ -55,9 +58,9 @@ export  default class Intern extends React.Component {
     }
   }
 
-  addCard(e){
+  addCard(e) {
     e.preventDefault()
-    if (this.state.isSending){
+    if (this.state.isSending) {
       return
     }
     this.setState({isSending: true})
@@ -67,7 +70,7 @@ export  default class Intern extends React.Component {
       this.setState({
         cardnumber: '',
         isSending: false
-      }), error =>{
+      }), error => {
         alert(error.responseText)
         this.setState({isSending: false})
       }
@@ -76,7 +79,7 @@ export  default class Intern extends React.Component {
 
   addRole(e) {
     e.preventDefault()
-    if (this.state.isSending){
+    if (this.state.isSending) {
       return
     }
     let username = this.props.interns.get('data').toJS().user.username
@@ -87,13 +90,13 @@ export  default class Intern extends React.Component {
         isSending: false,
         roleId: -1,
       })
-    }, error =>{
+    }, error => {
       alert(error.responseText)
       this.setState({isSending: false})
     })
   }
 
-  renderAddRole(){
+  renderAddRole() {
     return (
       <div>
         {this.renderRoleSelector()}
@@ -120,40 +123,22 @@ export  default class Intern extends React.Component {
     )
   }
 
-  handleCardNumberChange(e){
+  handleCardNumberChange(e) {
     console.log(e.target.value)
     this.setState({cardnumber: e.target.value})
   }
 
-  renderAddCard(){
+  renderAddCard() {
     return (
       <form className="form-inline" onSubmit={this.addCard}>
-        <input type="text" name="cardnumber" value={this.state.cardnumber} placeholder="Card number"
-          onChange={this.handleCardNumberChange} className="form-control"
-        />
+        <input type="text" name="cardnumber" value={this.state.cardnumber} placeholder="Card number" onChange={this.handleCardNumberChange} className="form-control"/>
         <input type="submit" className="form-control btn-success" value="Add Card"/>
       </form>
     )
   }
 
-  renderEdit() {
-    var intern = this.props.interns.get('data').toJS()
-    return (
-      <div>
-        <Row>
-          {this.renderIntern(intern)}
-          <button type="button" className="btn btn-default" onClick={this.handleEdit}>Cancel</button>
-        </Row>
-        <Row>
-          <Col md={4}><h2>Roles</h2> {this.renderAddRole()} {this.renderRoles(intern.roles)}</Col>
-          <Col md={4}><h2>Logs</h2> {this.renderLogs(intern.log)}</Col>
-          <Col md={4}><h2>Cards</h2>{this.renderAddCard()} {this.renderCards()}</Col>
-        </Row>
-      </div>
-    )
-  }
-
   renderRoles(roles) {
+    //TODO: Fix delete button
     return (
       <table className="table table-responsive table-bordered">
         <thead>
@@ -161,27 +146,29 @@ export  default class Intern extends React.Component {
             <th>Role</th>
             <th>Description</th>
             <th>Groups</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-        {roles.map(role => {
-          return (
-            <tr key={role.role.id}>
-              <td>
-                <Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link>
-              </td>
-              <td>{role.role.description}</td>
-              <td>
-                <ul>
-                  {role.role.groups.map(group => {
-                    return (
-                      <li key={group.id}>
-                        {group.name}</li>
-                    )
-                  })}
-                </ul>
-              </td>
-            </tr>
+          {roles.map(role => {
+            return (
+              <tr key={role.role.id}>
+                <td>
+                  <Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link>
+                </td>
+                <td>{role.role.description}</td>
+                <td>
+                  <ul>
+                    {role.role.groups.map(group => {
+                      return (
+                        <li key={group.id}>
+                          {group.name}</li>
+                      )
+                    })}
+                  </ul>
+                </td>
+                <th>Delete</th>
+              </tr>
           )
         })}</tbody>
       </table>)
@@ -212,10 +199,16 @@ export  default class Intern extends React.Component {
       </table>
     )
   }
+
   renderCards() {
+    let add = ''
+    if (this.state.isEditing) {
+      add = this.renderAddCard()
+    }
     return (
       <div>
-
+        <h2>Cards</h2>
+        {add}
         <table className="table table-bordered">
           <thead>
             <tr>
@@ -226,13 +219,14 @@ export  default class Intern extends React.Component {
           </thead>
           <tbody>
           {this.props.uio_cards.get('data').toJS().map((card) => {
-            return (
-              <tr key={card.id}>
-                <td>{card.card_number}</td>
-                <td>{card.disabled}</td>
-                <td>{card.comment}</td>
-              </tr>
-            )}
+              return (
+                <tr key={card.id}>
+                  <td>{card.card_number}</td>
+                  <td>{card.disabled}</td>
+                  <td>{card.comment}</td>
+                </tr>
+              )
+            }
           )}
           </tbody>
 
@@ -241,8 +235,39 @@ export  default class Intern extends React.Component {
     )
 
   }
+  saveComment(e) {
+    e.preventDefault()
+    InternService.addComment(this.props.params.internId, this.state.comments).then(result => {
+        actions.getIntern(this.props.params.internId)
+        this.setState({
+          isEditing: false
+        })
+      }, error => {
+        alert(error.responseText)
+      }
+    )
+  }
+
+  handleComments(e) {
+    this.setState({comments: e.target.value})
+  }
+  addComment(intern) {
+    return(
+      <form onSubmit={this.saveComment}>
+        <textarea name="comments" value={intern.comments}
+          onChange={this.handleComments} className="form-control"
+        />
+        <input type="submit" className="btn btn-default"/>
+      </form>
+    )
+
+  }
 
   renderIntern(intern) {
+    let comment_field = intern.comments
+    if (this.state.isEditing){
+      comment_field = this.addComment(intern)
+    }
     return (
       <div>
         <h1>{intern.user.realname}</h1>
@@ -252,63 +277,76 @@ export  default class Intern extends React.Component {
           <dt>Mail:</dt>
           <dd>{this.renderMail(intern.user.email)}</dd>
           <dt>Comments:</dt>
-          <dd>{intern.comments}</dd>
+          <dd>{comment_field}</dd>
         </dl>
       </div>
     )
   }
 
-  renderNormal() {
-    var intern = this.props.interns.get('data').toJS()
-    return (
-      <div>
-        <Row>
-          {this.renderIntern(intern)}
-          <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
-        </Row>
-        <Row>
-          <Col md={4}><h2>Roles</h2> {this.renderRoles(intern.roles)}</Col>
-          <Col md={4}><h2>Logs</h2> {this.renderLogs(intern.log)}</Col>
-          <Col md={4}><h2>Cards</h2>{this.renderCards()}</Col>
-        </Row>
-      </div>
+  renderEditButton() {
+    if (this.state.isEditing) {
+     return(<button type="button" className="btn btn-default" onClick={this.handleEdit}>Cancel</button>)
+    } else {
+      return(<button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>)
+    }
+}
 
+renderNormal()
+{
+  var intern = this.props.interns.get('data').toJS()
+  let add_role = ''
+  if (this.state.isEditing) {
+    add_role = this.renderAddRole()
+  }
+  return (
+    <div>
+      <Row>
+        <Col md={8}>
+          {this.renderIntern(intern)}
+          {this.renderEditButton()}
+        </Col>
+        <Col md={4}>{this.renderCards()}</Col>
+      </Row>
+      <Row>
+        <Col md={6}><h2>Roles</h2> {add_role} {this.renderRoles(intern.roles)}</Col>
+        <Col md={6}><h2>Logs</h2> {this.renderLogs(intern.log)}</Col>
+      </Row>
+    </div>
+
+  )
+}
+
+render()
+{
+  if (!this.props.isLoggedIn) {
+    return (
+      <h1>Not logged in! Please login!</h1>
     )
   }
-
-  render() {
-    if (!this.props.isLoggedIn) {
-      return (
-        <h1>Not logged in! Please login!</h1>
-      )
-    }
-    if (!this.props.interns.get('data')) {
-      return (<h1>Loading...</h1>)
-    }
-    if (!this.props.uio_cards.get('data')) {
-      return (<h1>Still loading...</h1>)
-    }
-
-    if (this.state.isDeleted) {
-      return (
-        <div>
-          <h1>Intern deleted!</h1>
-          <Link to="/intern">Go back to overview</Link>
-        </div>
-      )
-    }
-    if (this.state.isEditing) {
-      return this.renderEdit()
-    } else {
-      return this.renderNormal()
-    }
+  if (!this.props.interns.get('data')) {
+    return (<h1>Loading...</h1>)
+  }
+  if (!this.props.uio_cards.get('data')) {
+    return (<h1>Still loading...</h1>)
   }
 
-  renderMail(mail) {
-    if (mail) {
-      return mail
-    } else {
-      return 'No mail registered.'
-    }
+  if (this.state.isDeleted) {
+    return (
+      <div>
+        <h1>Intern deleted!</h1>
+        <Link to="/intern">Go back to overview</Link>
+      </div>
+    )
   }
+  return this.renderNormal()
+}
+
+renderMail(mail)
+{
+  if (mail) {
+    return mail
+  } else {
+    return 'No mail registered.'
+  }
+}
 }

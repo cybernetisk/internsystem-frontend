@@ -125,7 +125,7 @@ class InternService {
 
   addCardToUser(user_id ,card_number){
     return reqwest({
-      url: api(`core/cards`),
+      url: api('core/cards'),
       type: 'json',
       method: 'post',
       data: {
@@ -136,11 +136,21 @@ class InternService {
   }
   getCardsForIntern(internId){
     return reqwest({
-      url: api(`core/cards`),
+      url: api('core/cards'),
       type: 'json',
       data:{
         user__intern__id: internId
       }
+    })
+  }
+  addComment(internId, comments) {
+    return reqwest({
+      url: api(`intern/interns/${internId}`),
+      data: {
+        comments
+      },
+      type: 'json',
+      method: 'patch'
     })
   }
 
