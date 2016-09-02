@@ -20,10 +20,6 @@ export  default class Group extends React.Component {
 
   constructor(props) {
     super(props)
-    this.handleEdit = this.handleEdit.bind(this)
-    this.abortEdit = this.abortEdit.bind(this)
-    this.saveEdit = this.saveEdit.bind(this)
-
     this.state = {isEditing: false, isDeleted: false}
   }
 
@@ -32,22 +28,6 @@ export  default class Group extends React.Component {
     actions.getGroup(groupId)
     actions.getRolesInGroup(groupId)
     actions.getInternsInGroup(groupId)
-  }
-
-
-  handleEdit(e) {
-    if (this.state.isEditing) {
-      this.setState({isEditing: false})
-    } else {
-      this.setState({isEditing: true})
-    }
-  }
-
-  abortEdit(e) {
-    e.preventDefault()
-    this.setState({
-      isEditing: false
-    })
   }
 
   renderInterns() {

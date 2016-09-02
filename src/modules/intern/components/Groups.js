@@ -54,9 +54,9 @@ export  default class Groups extends React.Component {
         <h1>Not logged in! Please login!</h1>
       )
     }
-    
-    if(!this.props.groups.get('data')) {
-      return (<div>Doh!</div>)
+
+    if(this.props.groups.get('isLoading')) {
+      return (<div>Loading...</div>)
     }
     return this.renderTable()
   }
