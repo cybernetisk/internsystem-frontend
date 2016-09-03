@@ -51,7 +51,6 @@ export  default class Intern extends React.Component {
   }
 
   handleEdit() {
-    console.log(this.state.isEditing)
     if (!this.state.isEditing) {
       this.setState({isEditing: true})
     } else {
@@ -107,7 +106,6 @@ export  default class Intern extends React.Component {
   }
 
   handleRoleChange(e) {
-    console.log(e.target.value)
     this.setState({roleId: e.target.value})
   }
 
@@ -125,7 +123,6 @@ export  default class Intern extends React.Component {
   }
 
   handleCardNumberChange(e) {
-    console.log(e.target.value)
     this.setState({cardnumber: e.target.value})
   }
 
@@ -181,7 +178,6 @@ export  default class Intern extends React.Component {
   }
 
   removeRole(e) {
-    console.log(e.target.value)
     if (confirm('Are you sure you want to remove that role?')) {
       InternService.removeRoleFromIntern(e.target.value).then(results => {
         actions.getIntern(this.props.params.internId)
