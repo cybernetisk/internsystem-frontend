@@ -55,7 +55,7 @@ export  default class Group extends React.Component {
                     })
                     }
                   </ul>
-                 </td>
+                </td>
                 <td>{intern.role.name}</td>
               </tr>
             )
