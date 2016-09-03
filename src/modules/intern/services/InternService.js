@@ -122,6 +122,13 @@ class InternService {
       }
     })
   }
+  removeRoleFromIntern(internRoleId){
+    return reqwest({
+      url: api(`intern/internroles/${internRoleId}`),
+      method: 'delete',
+      type: 'json'
+    })
+  }
 
   addCardToUser(user_id ,card_number){
     return reqwest({

@@ -29,6 +29,7 @@ export  default class Intern extends React.Component {
     this.addRole = this.addRole.bind(this)
     this.addCard = this.addCard.bind(this)
     this.saveComment = this.saveComment.bind(this)
+    this.removeRole = this.removeRole.bind(this)
     this.state = {
       isEditing: false,
       isDeleted: false,
@@ -131,7 +132,9 @@ export  default class Intern extends React.Component {
   renderAddCard() {
     return (
       <form className="form-inline" onSubmit={this.addCard}>
-        <input type="text" name="cardnumber" value={this.state.cardnumber} placeholder="Card number" onChange={this.handleCardNumberChange} className="form-control"/>
+        <input type="text" name="cardnumber" value={this.state.cardnumber} placeholder="Card number"
+          onChange={this.handleCardNumberChange} className="form-control"
+        />
         <input type="submit" className="form-control btn-success" value="Add Card"/>
       </form>
     )
@@ -150,28 +153,42 @@ export  default class Intern extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {roles.map(role => {
-            return (
-              <tr key={role.role.id}>
-                <td>
-                  <Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link>
-                </td>
-                <td>{role.role.description}</td>
-                <td>
-                  <ul>
-                    {role.role.groups.map(group => {
-                      return (
-                        <li key={group.id}>
-                          {group.name}</li>
-                      )
-                    })}
-                  </ul>
-                </td>
-                <th>Delete</th>
-              </tr>
+        {roles.map(role => {
+          return (
+            <tr key={role.role.id}>
+              <td>
+                <Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link>
+              </td>
+              <td>{role.role.description}</td>
+              <td>
+                <ul>
+                  {role.role.groups.map(group => {
+                    return (
+                      <li key={group.id}>
+                        {group.name}</li>
+                    )
+                  })}
+                </ul>
+              </td>
+              <th>
+                <button type="button" value={role.id} className="btn btn-default" onClick={this.removeRole}>Delete
+                </button>
+              </th>
+            </tr>
           )
         })}</tbody>
       </table>)
+  }
+
+  removeRole(e) {
+    console.log(e.target.value)
+    if (confirm('Are you sure you want to remove that role?')) {
+      InternService.removeRoleFromIntern(e.target.value).then(results => {
+        actions.getIntern(this.props.params.internId)
+      }), error => {
+        alert(error.responseText)
+      }
+    }
   }
 
   renderLogs(logs) {
@@ -235,6 +252,7 @@ export  default class Intern extends React.Component {
     )
 
   }
+
   saveComment(e) {
     e.preventDefault()
     InternService.addComment(this.props.params.internId, this.state.comments).then(result => {
@@ -251,8 +269,9 @@ export  default class Intern extends React.Component {
   handleComments(e) {
     this.setState({comments: e.target.value})
   }
+
   addComment(intern) {
-    return(
+    return (
       <form onSubmit={this.saveComment}>
         <textarea name="comments" value={intern.comments}
           onChange={this.handleComments} className="form-control"
@@ -265,7 +284,7 @@ export  default class Intern extends React.Component {
 
   renderIntern(intern) {
     let comment_field = intern.comments
-    if (this.state.isEditing){
+    if (this.state.isEditing) {
       comment_field = this.addComment(intern)
     }
     return (
@@ -285,68 +304,65 @@ export  default class Intern extends React.Component {
 
   renderEditButton() {
     if (this.state.isEditing) {
-     return(<button type="button" className="btn btn-default" onClick={this.handleEdit}>Cancel</button>)
+      return (<button type="button" className="btn btn-default" onClick={this.handleEdit}>Cancel</button>)
     } else {
-      return(<button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>)
+      return (<button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>)
     }
-}
-
-renderNormal()
-{
-  var intern = this.props.interns.get('data').toJS()
-  let add_role = ''
-  if (this.state.isEditing) {
-    add_role = this.renderAddRole()
-  }
-  return (
-    <div>
-      <Row>
-        <Col md={8}>
-          {this.renderIntern(intern)}
-          {this.renderEditButton()}
-        </Col>
-        <Col md={4}>{this.renderCards()}</Col>
-      </Row>
-      <Row>
-        <Col md={6}><h2>Roles</h2> {add_role} {this.renderRoles(intern.roles)}</Col>
-        <Col md={6}><h2>Logs</h2> {this.renderLogs(intern.log)}</Col>
-      </Row>
-    </div>
-
-  )
-}
-
-render()
-{
-  if (!this.props.isLoggedIn) {
-    return (
-      <h1>Not logged in! Please login!</h1>
-    )
-  }
-  if (!this.props.interns.get('data')) {
-    return (<h1>Loading...</h1>)
-  }
-  if (!this.props.uio_cards.get('data')) {
-    return (<h1>Still loading...</h1>)
   }
 
-  if (this.state.isDeleted) {
+  renderNormal() {
+    var intern = this.props.interns.get('data').toJS()
+    let add_role = ''
+    if (this.state.isEditing) {
+      add_role = this.renderAddRole()
+    }
     return (
       <div>
-        <h1>Intern deleted!</h1>
-        <Link to="/intern">Go back to overview</Link>
+        <Row>
+          <Col md={8}>
+            {this.renderIntern(intern)}
+            {this.renderEditButton()}
+          </Col>
+          <Col md={4}>{this.renderCards()}</Col>
+        </Row>
+        <Row>
+          <Col md={6}><h2>Roles</h2> {add_role} {this.renderRoles(intern.roles)}</Col>
+          <Col md={6}><h2>Logs</h2> {this.renderLogs(intern.log)}</Col>
+        </Row>
       </div>
+
     )
   }
-  return this.renderNormal()
-}
 
-renderMail(mail)
-{
-  if (mail) {
-    return mail
-  } else {
-    return 'No mail registered.'
+  render() {
+    if (!this.props.isLoggedIn) {
+      return (
+        <h1>Not logged in! Please login!</h1>
+      )
+    }
+    if (!this.props.interns.get('data')) {
+      return (<h1>Loading...</h1>)
+    }
+    if (!this.props.uio_cards.get('data')) {
+      return (<h1>Still loading...</h1>)
+    }
+
+    if (this.state.isDeleted) {
+      return (
+        <div>
+          <h1>Intern deleted!</h1>
+          <Link to="/intern">Go back to overview</Link>
+        </div>
+      )
+    }
+    return this.renderNormal()
   }
-}
+
+  renderMail(mail) {
+    if (mail) {
+      return mail
+    } else {
+      return 'No mail registered.'
+    }
+  }
 }
