@@ -86,7 +86,7 @@ export default class List extends React.Component {
         <h1>Vouchers - work logs</h1>
         <p>
           If you have any problems go
-          to <a href="https://cybernetisk.slack.com/messages/webgruppa/details/">#webgruppa</a> on Slack
+          to <a href="https://cybernetisk.slack.com/messages/it/details/">#it</a> on Slack
         </p>
         {this.renderNew()}
         <Loader
