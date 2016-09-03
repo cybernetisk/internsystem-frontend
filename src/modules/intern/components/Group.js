@@ -46,7 +46,16 @@ export  default class Group extends React.Component {
             return (
               <tr key={intern.id}>
                 <td>{intern.intern.user.username}</td>
-                <td>{this.renderSemester(intern.semesters)}</td>
+                <td>
+                  <ul>
+                    {intern.semesters.map(semester => {
+                      return(
+                        <li key={semester.id}>{this.renderSemester(semester)}</li>
+                      )
+                    })
+                    }
+                  </ul>
+                 </td>
                 <td>{intern.role.name}</td>
               </tr>
             )

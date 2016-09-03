@@ -138,7 +138,6 @@ export  default class Intern extends React.Component {
   }
 
   renderRoles(roles) {
-    //TODO: Fix delete button
     return (
       <table className="table table-responsive table-bordered">
         <thead>
