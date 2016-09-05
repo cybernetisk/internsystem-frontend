@@ -98,6 +98,7 @@ export default class Nav extends React.Component {
               <li>
                 <a target="_self" href="http://heim.ifi.uio.no/cyb/tilganger/">Access control management (Garm)</a>
               </li>
+              <li><a target="_self" href="admin/">Admin Panel</a></li>
               <li><a target="_self" href="https://jira.cyb.no/">JIRA (task management)</a></li>
               <li><a target="_self" href="https://confluence.cyb.no/">Wiki (Confluence)</a></li>
               <li><a target="_self" href="https://github.com/cybrairai/">GitHub-organization</a></li>
