@@ -82,10 +82,10 @@ export  default class Intern extends React.Component {
     if (this.state.isSending) {
       return
     }
-    let username = this.props.interns.get('data').toJS().user.username
+    let username = this.props.interns.get('data').toJS()[0].user.username
     this.setState({isSending: true})
     InternService.addRoleToIntern(username, this.state.roleId).then(result => {
-      actions.getIntern(this.props.params.internId)
+      actions.getInternForUser(this.props.params.userId)
       this.setState({
         isSending: false,
         roleId: -1,
