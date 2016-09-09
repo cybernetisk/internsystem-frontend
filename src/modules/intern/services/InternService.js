@@ -31,6 +31,16 @@ class InternService {
     })
   }
 
+  getInterForUser(userId) {
+    return reqwest({
+      url: api('intern/interns'),
+      type: 'json',
+      data: {
+        user: userId
+      }
+    })
+  }
+
   getIntern(internId){
     return reqwest({
       url: api('intern/interns/' + internId),
@@ -141,12 +151,12 @@ class InternService {
       }
     })
   }
-  getCardsForIntern(internId){
+  getCardsForUser(userId){
     return reqwest({
       url: api('core/cards'),
       type: 'json',
       data:{
-        user__intern__id: internId
+        user__id: userId
       }
     })
   }

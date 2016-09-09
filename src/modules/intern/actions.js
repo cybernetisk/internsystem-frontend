@@ -33,6 +33,13 @@ export function getIntern(internId){
     failure: actionTypes.RECEIVE_INTERN_FAILURE
   }), {internId}
 }
+export function getInternForUser(userId) {
+  dispatchAsync(InternService.getInterForUser(userId), {
+    request: actionTypes.RECEIVE_INTERN_START,
+    success: actionTypes.RECEIVE_INTERN_SUCCESS,
+    failure: actionTypes.RECEIVE_INTERN_FAILURE
+  })
+}
 export function getInternRoles(){
   dispatchAsync(InternService.getRoles(),{
     request: actionTypes.RECEIVE_INTERNROLES_START,
@@ -92,8 +99,8 @@ export function getInternsInGroup(groupId) {
     failure: actionTypes.RECEIVE_INTERNROLES_FAILURE
   }), {groupId}
 }
-export function getCardsForIntern(internId) {
-  dispatchAsync(InternService.getCardsForIntern(internId),{
+export function getCardsForUser(userId) {
+  dispatchAsync(InternService.getCardsForUser(userId),{
     request: actionTypes.RECEIVE_UIOCARD_START,
     success: actionTypes.RECEIVE_UIOCARD_SUCCESS,
     failure: actionTypes.RECEIVE_UIOCARD_FAILURE

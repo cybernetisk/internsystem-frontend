@@ -44,10 +44,10 @@ export  default class Intern extends React.Component {
   }
 
   componentDidMount() {
-    let internId = this.props.params.internId
-    actions.getIntern(internId)
+    let userId = this.props.params.userId
+    actions.getInternForUser(userId)
     actions.getRoles()
-    actions.getCardsForIntern(internId)
+    actions.getCardsForUser(userId)
   }
 
   handleEdit() {
@@ -66,7 +66,7 @@ export  default class Intern extends React.Component {
     this.setState({isSending: true})
     const userid = this.props.interns.get('data').toJS().user.id
     InternService.addCardToUser(userid, this.state.cardnumber).then(result => {
-      actions.getCardsForIntern(this.props.params.internId)
+      actions.getCardsForUser(this.props.params.internId)
       this.setState({
         cardnumber: '',
         isSending: false
@@ -306,7 +306,8 @@ export  default class Intern extends React.Component {
   }
 
   renderNormal() {
-    var intern = this.props.interns.get('data').toJS()
+    let intern = this.props.interns.get('data').toJS()[0]
+    console.log(intern)
     let add_role = ''
     if (this.state.isEditing) {
       add_role = this.renderAddRole()

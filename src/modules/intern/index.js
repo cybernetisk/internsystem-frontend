@@ -40,7 +40,7 @@ module.exports = (
     <Route name="intern/group" path="/intern/groups/:groupId" handler={Group}/>
     <Route name="intern/levels" path="/intern/levels" handler={Levels}/>
     <Route name="intern/interns" path="intern/interns" handler={Interns}/>
-    <Route name="intern/intern" path="/intern/interns/:internId" handler={Intern}/>
+    <Route name="intern/intern" path="/intern/interns/:userId" handler={Intern}/>
     <Route name="intern/roles" path="/intern/roles" handler={Roles}/>
     <Route name="intern/role" path="/intern/roles/:roleId" handler={Role}/>
     <Route name="intern/add" path="/intern/add" handler={AddIntern}/>
