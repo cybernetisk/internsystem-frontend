@@ -64,9 +64,9 @@ export  default class Intern extends React.Component {
       return
     }
     this.setState({isSending: true})
-    const userid = this.props.interns.get('data').toJS().user.id
+    const userid = this.props.interns.get('data').toJS()[0].user.id
     InternService.addCardToUser(userid, this.state.cardnumber).then(result => {
-      actions.getCardsForUser(this.props.params.internId)
+      actions.getCardsForUser(this.props.params.userId)
       this.setState({
         cardnumber: '',
         isSending: false
