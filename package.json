@@ -4,7 +4,7 @@
   "description": "CYB varer",
   "devDependencies": {
     "babel": "^5.6.23",
-    "babel-core": "^6.16.0",
+    "babel-core": "^6.17.0",
     "babel-eslint": "^4.1.8",
     "babel-loader": "^5.3.2",
     "bootstrap-sass": "~3.3.1",
