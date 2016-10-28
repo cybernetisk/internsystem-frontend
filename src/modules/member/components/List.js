@@ -103,9 +103,13 @@ export default class List extends React.Component {
         <h1>You haven't logged in! Please login!</h1>
       )
     }
-    if (!this.props.members.get('data')) {
-      return (<div><h1>Something went wrong. Contact #it on slack</h1></div>)
+    if (this.props.members.get('isLoading')) {
+      return (<h1>Loading...</h1>)
 
+    } else if (!this.props.members.get('data')){
+      return (<h1>Can't find any members!</h1>)
+    } else if (this.props.members.get('error')) {
+      return (<h1>Something went wrong. Please contact #it on <a href="https://cybernetisk.slack.com">Slack</a></h1>)
     } else {
       return (
         <div>
