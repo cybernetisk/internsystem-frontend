@@ -45,7 +45,6 @@ export default class AddIntern extends React.Component {
   }
 
   handleRoleChange(e) {
-    console.log(e.target.value)
     this.setState({roleId: e.target.value})
   }
 

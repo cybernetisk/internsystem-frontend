@@ -23,7 +23,6 @@ export default class MemberList extends React.Component {
   }
 
   render() {
-    console.debug(this.props.isLoggedIn)
     if (!this.props.isLoggedIn) {
       return (
         <h1>You haven't logged in! Please login!</h1>
