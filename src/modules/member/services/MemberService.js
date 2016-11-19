@@ -10,7 +10,8 @@ class MemberService {
         page,
         limit,
         ordering,
-        search
+        search,
+        valid: 'true'
       }
     })
   }
@@ -28,7 +29,7 @@ class MemberService {
 
   getSemMemberList(semester = 1, limit = 50, page = 1) {
     return reqwest(({
-      url: api('member/all'),
+      url: api('member/members'),
       type: 'json',
       data: {
         semester,
@@ -40,7 +41,7 @@ class MemberService {
 
   getMember(memberId) {
     return reqwest({
-      url: api('member/all/' + memberId),
+      url: api('member/members/' + memberId),
       type: 'json'
     })
   }
@@ -63,7 +64,8 @@ class MemberService {
       url: api('member/members'),
       data: {
         limit: 10,
-        search: name
+        search: name,
+        valid: 'true'
       },
       type: 'json'
     })
