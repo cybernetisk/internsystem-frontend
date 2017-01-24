@@ -22,7 +22,8 @@ class MemberService {
       data: {
         page,
         limit,
-        lifetime: 'True'
+        lifetime: 'True',
+        ordering: 'date_joined'
       }
     })
   }
