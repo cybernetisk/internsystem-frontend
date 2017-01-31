@@ -42,7 +42,7 @@
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.12",
-    "webpack-dev-server": "^1.14.1",
+    "webpack-dev-server": "^2.2.1",
     "xhr2": "^0.1.2"
   },
   "scripts": {
