@@ -42,24 +42,24 @@ export  default class Group extends React.Component {
             </tr>
           </thead>
           <tbody>
-          {this.props.interns.get('data').toJS().map((intern) => {
-            return (
-              <tr key={intern.id}>
-                <td>{intern.intern.user.username}</td>
-                <td>
-                  <ul>
-                    {intern.semesters.map(semester => {
-                      return(
-                        <li key={semester.id}>{this.renderSemester(semester)}</li>
-                      )
-                    })
-                    }
-                  </ul>
-                </td>
-                <td>{intern.role.name}</td>
-              </tr>
-            )
-          })}
+            {this.props.interns.get('data').toJS().map((intern) => {
+              return (
+                <tr key={intern.id}>
+                  <td>{intern.intern.user.username}</td>
+                  <td>
+                    <ul>
+                      {intern.semesters.map(semester => {
+                        return(
+                          <li key={semester.id}>{this.renderSemester(semester)}</li>
+                        )
+                      })
+                      }
+                    </ul>
+                  </td>
+                  <td>{intern.role.name}</td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>

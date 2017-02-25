@@ -32,19 +32,19 @@ export default class InternList extends React.Component {
           </tr>
         </thead>
         <tbody>
-        {this.props.interns.get('data').get('results').toJS().map((intern) => {
-          return (
-            <tr key={intern.id}>
-              <td><Link to={`/intern/interns/${intern.user.id}`}>{intern.user.username}</Link></td>
-              <td>
-                <ul>{intern.roles.map((role) => {
-                  return (<li key={role.role.id}>{role.role.name}</li>)
-                })
-                }</ul>
-              </td>
-              <td>{intern.comment}</td>
-            </tr>)
-        })}
+          {this.props.interns.get('data').get('results').toJS().map((intern) => {
+            return (
+              <tr key={intern.id}>
+                <td><Link to={`/intern/interns/${intern.user.id}`}>{intern.user.username}</Link></td>
+                <td>
+                  <ul>{intern.roles.map((role) => {
+                    return (<li key={role.role.id}>{role.role.name}</li>)
+                  })
+                  }</ul>
+                </td>
+                <td>{intern.comment}</td>
+              </tr>)
+          })}
         </tbody>
       </table>
     )

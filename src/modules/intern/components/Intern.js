@@ -149,30 +149,31 @@ export  default class Intern extends React.Component {
           </tr>
         </thead>
         <tbody>
-        {roles.map(role => {
-          return (
-            <tr key={role.role.id}>
-              <td>
-                <Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link>
-              </td>
-              <td>{role.role.description}</td>
-              <td>
-                <ul>
-                  {role.role.groups.map(group => {
-                    return (
-                      <li key={group.id}>
-                        {group.name}</li>
-                    )
-                  })}
-                </ul>
-              </td>
-              <th>
-                <button type="button" value={role.id} className="btn btn-default" onClick={this.removeRole}>Delete
-                </button>
-              </th>
-            </tr>
-          )
-        })}</tbody>
+          {roles.map(role => {
+            return (
+              <tr key={role.role.id}>
+                <td>
+                  <Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link>
+                </td>
+                <td>{role.role.description}</td>
+                <td>
+                  <ul>
+                    {role.role.groups.map(group => {
+                      return (
+                        <li key={group.id}>
+                          {group.name}</li>
+                      )
+                    })}
+                  </ul>
+                </td>
+                <th>
+                  <button type="button" value={role.id} className="btn btn-default" onClick={this.removeRole}>Delete
+                  </button>
+                </th>
+              </tr>
+            )
+          })}
+        </tbody>
       </table>)
   }
 
@@ -197,16 +198,16 @@ export  default class Intern extends React.Component {
           </tr>
         </thead>
         <tbody>
-        {logs.map((log) => {
-            return (
-              <tr key={log.id}>
-                <td>{log.time}</td>
-                <td>{log.changed_by.username}</td>
-                <td>{log.description}</td>
-              </tr>
-            )
-          }
-        )}
+          {logs.map((log) => {
+              return (
+                <tr key={log.id}>
+                  <td>{log.time}</td>
+                  <td>{log.changed_by.username}</td>
+                  <td>{log.description}</td>
+                </tr>
+              )
+            }
+          )}
         </tbody>
       </table>
     )
@@ -230,16 +231,16 @@ export  default class Intern extends React.Component {
             </tr>
           </thead>
           <tbody>
-          {this.props.uio_cards.get('data').toJS().map((card) => {
-              return (
-                <tr key={card.id}>
-                  <td>{card.card_number}</td>
-                  <td>{card.disabled}</td>
-                  <td>{card.comment}</td>
-                </tr>
-              )
-            }
-          )}
+            {this.props.uio_cards.get('data').toJS().map((card) => {
+                return (
+                  <tr key={card.id}>
+                    <td>{card.card_number}</td>
+                    <td>{card.disabled}</td>
+                    <td>{card.comment}</td>
+                  </tr>
+                )
+              }
+            )}
           </tbody>
 
         </table>

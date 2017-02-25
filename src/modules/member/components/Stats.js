@@ -45,15 +45,15 @@ export default class Stats extends React.Component {
           </tr>
         </thead>
         <tbody>
-        {mylist.map((stats) => (
-          <tr key={stats.id}>
-            <td><Link to={`/member/semester/${stats.id}`}>{stats.semester}</Link></td>
-            <td>{stats.normal}</td>
-            <td>{stats.lifetime}</td>
-            <td>{stats.honorary}</td>
-          </tr>
+          {mylist.map((stats) => (
+            <tr key={stats.id}>
+              <td><Link to={`/member/semester/${stats.id}`}>{stats.semester}</Link></td>
+              <td>{stats.normal}</td>
+              <td>{stats.lifetime}</td>
+              <td>{stats.honorary}</td>
+            </tr>
 
-        ))}
+          ))}
           <tr>
             <td>All</td>
             <td>{normal}</td>
