@@ -6,6 +6,17 @@ import * as actions from '../actions'
 
 import Loader from '../../../components/Loader'
 
+const ARROW_UP = '&#9652;';
+const ARROW_DOWN = '&#9662;';
+
+const DESCENDING = '-';
+const USER = 'user';
+const BALANCE = 'cached_balance';
+const HOURS = 'cached_hours';
+const VOUCHER = 'cached_vouchers';
+const VOUCHERS_USED = 'cached_vouchers_used';
+
+
 @connect(props => ({
   wallets: getters.wallets,
   semester: getters.current_semester,
