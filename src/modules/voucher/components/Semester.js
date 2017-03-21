@@ -16,15 +16,24 @@ const HOURS = 'cached_hours';
 const VOUCHER = 'cached_vouchers';
 const VOUCHERS_USED = 'cached_vouchers_used';
 
+const DESC_USER = DESCENDING + USER;
+
 
 @connect(props => ({
   wallets: getters.wallets,
   semester: getters.current_semester,
 }))
 export default class Semester extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sortBy: USER
+    };
+
+  }
   componentDidMount() {
     setTimeout(() => {
-      actions.fetchWallets({semester: this.props.params.semesterId})
+      actions.fetchWallets({semester: this.props.params.semesterId, ordering: this.state.sortBy})
       actions.setActiveSemester(this.props.params.semesterId)
     })
   }
@@ -36,6 +45,11 @@ export default class Semester extends React.Component {
     }
   }
 
+  changeOrder(criteria) {
+      this.setState({sortBy: criteria}, () => console.log(this.state.sortBy));
+      actions.fetchWallets({semester: this.props.params.semesterId, ordering: criteria});
+  }
+
   renderWallets() {
     if (!this.props.wallets.get('data')) {
       return
@@ -45,8 +59,8 @@ export default class Semester extends React.Component {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>Person</th>
-            <th>Balance</th>
+            <th onClick={() => this.changeOrder(USER)}>Person</th>
+            <th onClick={() => this.changeOrder(DESC_USER)}>Balance</th>
             <th>Hours tracked</th>
             <th>Vouchers earned</th>
             <th>Vouchers used</th>
@@ -71,6 +85,8 @@ export default class Semester extends React.Component {
     let semester = this.props.semester
       ? `Semester ${this.props.semester.get('year')} ${this.props.semester.get('semester')}`
       : 'Semester ??'
+
+      console
 
     return (
       <div>
