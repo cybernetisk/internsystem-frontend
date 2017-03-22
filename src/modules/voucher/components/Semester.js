@@ -6,9 +6,9 @@ import * as actions from '../actions'
 
 import Loader from '../../../components/Loader'
 
-const ARROW_UP = '&#9652;';
-const ARROW_DOWN = '&#9662;';
-
+const ARROW_UP = '\u25B4';
+const ARROW_DOWN = '\u25BE';
+const UNSORTED = '\u25b8'; 
 const DESCENDING = '-';
 const USER = 'user';
 const BALANCE = 'cached_balance';
