@@ -16,9 +16,6 @@ const HOURS = 'cached_hours';
 const VOUCHER = 'cached_vouchers';
 const VOUCHERS_USED = 'cached_vouchers_used';
 
-const DESC_USER = DESCENDING + USER;
-
-
 @connect(props => ({
   wallets: getters.wallets,
   semester: getters.current_semester,
@@ -49,6 +46,14 @@ export default class Semester extends React.Component {
       this.setState({sortBy: this.state.sortBy === criteria ? DESCENDING + criteria : criteria},
       	actions.fetchWallets({semester: this.props.params.semesterId, ordering: this.state.sortBy}));
   }
+  
+  drawArrow(asc, dsc) {
+	  switch(this.state.sortBy) {
+		  case asc: return ARROW_UP;
+		  case dsc: return ARROW_DOWN;
+		  default: return UNSORTED;
+	  }
+  }
 
   renderWallets() {
 
@@ -60,11 +65,11 @@ export default class Semester extends React.Component {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th onClick={() => this.changeOrder(USER)}>Person</th>
-            <th onClick={() => this.changeOrder(BALANCE)}>Balance</th>
-            <th onClick={() => this.changeOrder(HOURS)}>Hours tracked</th>
-	    <th onClick={() => this.changeOrder(VOUCHER)}>Vouchers earned</th>
-	    <th onClick={() => this.changeOrder(VOUCHERS_USED)}>Vouchers used</th>
+            <th onClick={() => this.changeOrder(USER)}>Person {this.drawArrow(USER, DESCENDING + USER)}</th>
+            <th onClick={() => this.changeOrder(BALANCE)}>Balance {this.drawArrow(BALANCE, DESCENDING + BALANCE)}</th>
+            <th onClick={() => this.changeOrder(HOURS)}>Hours tracked {this.drawArrow(HOURS, DESCENDING + HOURS)}</th>
+	    <th onClick={() => this.changeOrder(VOUCHER)}>Vouchers earned {this.drawArrow(VOUCHER, DESCENDING + VOUCHER)}</th>
+	    <th onClick={() => this.changeOrder(VOUCHERS_USED)}>Vouchers used {this.drawArrow(VOUCHERS_USED, DESCENDING + VOUCHERS_USED)}</th>
           </tr>
         </thead>
         <tbody>
