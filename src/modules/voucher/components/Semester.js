@@ -46,11 +46,12 @@ export default class Semester extends React.Component {
   }
 
   changeOrder(criteria) {
-      this.setState({sortBy: criteria}, () => console.log(this.state.sortBy));
-      actions.fetchWallets({semester: this.props.params.semesterId, ordering: criteria});
+      this.setState({sortBy: this.state.sortBy === criteria ? DESCENDING + criteria : criteria},
+      	actions.fetchWallets({semester: this.props.params.semesterId, ordering: this.state.sortBy}));
   }
 
   renderWallets() {
+
     if (!this.props.wallets.get('data')) {
       return
     }
@@ -60,10 +61,10 @@ export default class Semester extends React.Component {
         <thead>
           <tr>
             <th onClick={() => this.changeOrder(USER)}>Person</th>
-            <th onClick={() => this.changeOrder(DESC_USER)}>Balance</th>
-            <th>Hours tracked</th>
-            <th>Vouchers earned</th>
-            <th>Vouchers used</th>
+            <th onClick={() => this.changeOrder(BALANCE)}>Balance</th>
+            <th onClick={() => this.changeOrder(HOURS)}>Hours tracked</th>
+	    <th onClick={() => this.changeOrder(VOUCHER)}>Vouchers earned</th>
+	    <th onClick={() => this.changeOrder(VOUCHERS_USED)}>Vouchers used</th>
           </tr>
         </thead>
         <tbody>
