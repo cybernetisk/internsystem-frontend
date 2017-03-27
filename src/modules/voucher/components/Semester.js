@@ -43,7 +43,7 @@ export default class Semester extends React.Component {
   }
 
   changeOrder(criteria) {
-      this.state = {sortBy: this.state.sortBy === criteria ? DESCENDING + criteria : criteria};
+      this.state = {sortBy: this.state.sortBy === DESCENDING + criteria ? criteria : DESCENDING + criteria};
       actions.fetchWallets({semester: this.props.params.semesterId, ordering: this.state.sortBy});
   }
   
