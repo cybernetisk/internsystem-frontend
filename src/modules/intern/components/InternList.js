@@ -19,6 +19,11 @@ import { userDetails, isLoggedIn } from '../../auth/getters'
 export default class InternList extends React.Component {
   constructor(props) {
     super(props)
+    this.handlePageChange = this.handlePageChange.bind(this)
+  }
+
+  handlePageChange(newPage) {
+      actions.getInterns(newPage, 50, null)
   }
 
   renderList() {
@@ -50,26 +55,44 @@ export default class InternList extends React.Component {
     )
   }
 
+  renderPageSwitcher() {
+    if (this.props.interns.get('data').get('pages') == 1) {
+      return
+    } else {
+      return (
+        <Pagination
+          active={this.props.interns.get('data').get('page')}
+          pages={this.props.interns.get('data').get('pages')}
+          onChange={this.handlePageChange}
+        />
+      )
+    }
+  }
+
   render() {
     if (!this.props.isLoggedIn) {
       return (
         <h1>You haven't logged in! Please login!</h1>
       )
     }
+
+    if (this.props.interns.get('isLoading')) {
+      return (
+        <Loader
+          isLoading={this.props.interns.get('isLoading')}
+          error={this.props.interns.get('error')}
+          isEmpty={!this.props.interns.get('data')}
+        >
+          <h2>Loading list</h2>
+        </Loader>)
+    }
     if (!this.props.interns.get('data')) {
       return (<h1>There is no interns!</h1>)
     } else {
-
       return (
         <div>
-          <Loader
-            isLoading={this.props.interns.get('isLoading')}
-            error={this.props.interns.get('error')}
-            isEmpty={!this.props.interns.get('data')}
-          >
-            Loading list
-          </Loader>
           {this.renderList()}
+          {this.renderPageSwitcher()}
         </div>
       )
     }
