@@ -102,7 +102,7 @@ export default class Nav extends React.Component {
               <li><a target="_self" href="admin/">Admin Panel</a></li>
               <li><a target="_self" href="https://jira.cyb.no/">JIRA (task management)</a></li>
               <li><a target="_self" href="https://confluence.cyb.no/">Wiki (Confluence)</a></li>
-              <li><a target="_self" href="https://github.com/cybrairai/">GitHub-organization</a></li>
+              <li><a target="_self" href="https://github.com/cybernetisk/">GitHub-organization</a></li>
               <li><a target="_self" href="https://cybernetisk.slack.com/">Slack</a></li>
               <li>
                 <a target="_self" href="https://www.facebook.com/groups/CYB.intern/">Facebook group: CYB Intern</a>
