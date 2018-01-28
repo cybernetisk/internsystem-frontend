@@ -7,7 +7,7 @@ export default class Index extends React.Component {
     return (
       <div>
         <h1>CYB internsystem</h1>
-        <p>For more information about this system, see project at <a href="https://github.com/cybrairai/internsystem">https://github.com/cybrairai/internsystem</a>.</p>
+        <p>For more information about this system, see project at <a href="https://github.com/cybernetisk/internsystem">https://github.com/cybernetisk/internsystem</a>.</p>
       </div>
     )
   }

@@ -2,9 +2,9 @@
 
 | Master | Test |
 | --- | --- |
-| [![Build Status](https://travis-ci.org/cybrairai/internsystem-frontend.svg?branch=master)](https://travis-ci.org/cybrairai/internsystem-frontend) | [![Build Status](https://travis-ci.org/cybrairai/internsystem-frontend.svg?branch=test)](https://travis-ci.org/cybrairai/internsystem-frontend) |
+| [![Build Status](https://travis-ci.org/cybernetisk/internsystem-frontend.svg?branch=master)](https://travis-ci.org/cybernetisk/internsystem-frontend) | [![Build Status](https://travis-ci.org/cybrairai/internsystem-frontend.svg?branch=test)](https://travis-ci.org/cybrairai/internsystem-frontend) |
 
-Dette prosjektet er frontend-delen av https://github.com/cybrairai/internsystem. Utvidet informasjon er tilgjengelig i det prosjektet.
+Dette prosjektet er frontend-delen av https://github.com/cybernetisk/internsystem. Utvidet informasjon er tilgjengelig i det prosjektet.
 
 ## Teknisk oversikt for frontend
 * [ReactJS](http://facebook.github.io/react/) i kombinasjon med [react-router](https://github.com/rackt/react-router)
@@ -57,4 +57,4 @@ Når man tester denne frontend-delen må man husk å ha en fungere backend som t
 ## Frontend i produksjon
 Frontend er bare statiske filer. Se `.travis.yml` og `scripts/deploy.sh` for hvordan dette blir satt i produksjon. Frontend settes i produksjon automatisk ved push til master.
 
-Se flere detaljer om produksjonsmiljøet i http://github.com/cybrairai/internsystem
+Se flere detaljer om produksjonsmiljøet i http://github.com/cybernetisk/internsystem
