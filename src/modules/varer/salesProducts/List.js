@@ -122,7 +122,7 @@ export default class List extends React.Component {
       <div>
         <div className="row">
           <div className="form-group col-md-6">
-            <label>Search</label>
+            <label>Search for products</label>
             <ListInputQ autofocus={true} onChange={this.handleSearch} value={this.props.filters.get('text')}/>
           </div>
 
