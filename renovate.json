@@ -1,5 +1,40 @@
 {
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "groupName": "eslint",
+      "packagePatterns": [
+        "eslint"
+      ],
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
+      "groupName": "webpack-loaders",
+      "packagePatterns": [
+        "-loader$"
+      ],
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
+      "groupName": "webpack",
+      "packagePatterns": [
+        "^webpack",
+        "webpack-plugin$"
+      ],
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
+      "groupName": "babel",
+      "packagePatterns": [
+        "^@babel/"
+      ],
+      "automerge": true,
+      "automergeType": "branch"
+    }
   ]
 }
