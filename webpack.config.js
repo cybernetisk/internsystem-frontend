@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
 const webpack = require('webpack')
+const git = require('git-rev-sync')
 
 const production = process.env.NODE_ENV === 'production'
 const STYLE_LOADER = production ? MiniCssExtractPlugin.loader : 'style-loader'
@@ -116,14 +117,25 @@ const config = {
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
+        manifest: {
+          name: 'manifest',
+          test: /src[\\/]manifest\.js$/,
+          priority: 10,
+          enforce: true,
+        },
         vendor: {
           test: /node_modules/,
           chunks: 'initial',
           name: 'vendor',
-          priority: 10,
-          enforce: true
+          priority: -10,
+          enforce: true,
         },
       },
+    },
+    // Ensure all chunk information only lands in the manifest file
+    // to avoid uneeded cache invalidation.
+    runtimeChunk: {
+      name: 'manifest',
     },
   },
 }
@@ -131,6 +143,10 @@ const config = {
 config.plugins.push((
   new webpack.DefinePlugin({
     DEBUG: production ? true : false,
+    __BUILD_INFO__: JSON.stringify({
+      buildTime: new Date().toString(),
+      gitCommitShort: git.short(),
+    }),
   })
 ))
 

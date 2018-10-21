@@ -19,6 +19,16 @@ import Z from './modules/z'
 import Member from './modules/member'
 import Intern from './modules/intern'
 
+import { buildTime, gitCommitShort } from './manifest'
+
+const commitLink = `https://github.com/cybernetisk/internsystem-frontend/commit/${gitCommitShort}`
+
+console.info(
+  `Internsystem frontend\n` +
+  `- built ${buildTime}\n` +
+  `- from Git commit ${gitCommitShort}: ${commitLink}`
+)
+
 const App = () => (
   <BrowserRouter>
     <Root>
