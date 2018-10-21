@@ -1,5 +1,3 @@
-const members = ['members']
-const member = ['member']
-const stats = ['memberStats']
-
-export default {members, member, stats}
+export const members = ['members']
+export const member = ['member']
+export const stats = ['memberStats']

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
+import { Link } from 'react-router-dom'
+import { connect } from 'nuclear-js-react-addons-chefsplate'
 import moment from '../../../moment'
 
-import getters from '../getters'
+import * as getters from '../getters'
 import * as actions from '../actions'
 
 import Pagination from '../../../components/Pagination'
@@ -15,11 +15,12 @@ import { isLoggedIn } from '../../auth/getters'
 
 import './WorkLogs.scss'
 
+export default
 @connect(props => ({
   worklogs: getters.worklogs,
   isLoggedIn,
 }))
-export default class List extends React.Component {
+class List extends React.Component {
   componentDidMount() {
     actions.fetchWorkLogs(1)
   }

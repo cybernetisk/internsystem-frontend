@@ -1,14 +1,15 @@
 import React from 'react'
-import {Link} from 'react-router'
-import {connect} from 'nuclear-js-react-addons'
+import {Link} from 'react-router-dom'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
 
 import * as actions from '../actions'
-import getters from '../getters'
+import * as getters from '../getters'
 import {userDetails, isLoggedIn} from '../../auth/getters'
 import AddIntern from './AddIntern'
 
 import InternService from '../services/InternService'
 
+export default
 @connect(props => ({
   group: getters.group,
   roles: getters.roles,
@@ -16,7 +17,7 @@ import InternService from '../services/InternService'
   userDetails,
   isLoggedIn
 }))
-export  default class Group extends React.Component {
+class Group extends React.Component {
 
   constructor(props) {
     super(props)
@@ -24,7 +25,7 @@ export  default class Group extends React.Component {
   }
 
   componentDidMount() {
-    let groupId = this.props.params.groupId
+    let groupId = this.props.match.params.groupId
     actions.getGroup(groupId)
     actions.getRolesInGroup(groupId)
     actions.getInternsInGroup(groupId)
@@ -42,24 +43,24 @@ export  default class Group extends React.Component {
             </tr>
           </thead>
           <tbody>
-          {this.props.interns.get('data').toJS().map((intern) => {
-            return (
-              <tr key={intern.id}>
-                <td>{intern.intern.user.username}</td>
-                <td>
-                  <ul>
-                    {intern.semesters.map(semester => {
-                      return(
-                        <li key={semester.id}>{this.renderSemester(semester)}</li>
-                      )
-                    })
-                    }
-                  </ul>
-                </td>
-                <td>{intern.role.name}</td>
-              </tr>
-            )
-          })}
+            {this.props.interns.get('data').toJS().map((intern) => {
+              return (
+                <tr key={intern.id}>
+                  <td>{intern.intern.user.username}</td>
+                  <td>
+                    <ul>
+                      {intern.semesters.map(semester => {
+                        return(
+                          <li key={semester.id}>{this.renderSemester(semester)}</li>
+                        )
+                      })
+                      }
+                    </ul>
+                  </td>
+                  <td>{intern.role.name}</td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>
@@ -126,7 +127,6 @@ export  default class Group extends React.Component {
       return (<h1>Waiting</h1>)
     } else {
       return this.renderNormal()
-
     }
   }
 }

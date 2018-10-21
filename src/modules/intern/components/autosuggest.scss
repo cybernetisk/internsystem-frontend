@@ -8,7 +8,7 @@
   border-bottom-right-radius: 0;
 }
 
-.suggestionsContainer {
+.suggestionsList {
   position: absolute;
   top: 34px;
   width: auto;
@@ -26,6 +26,6 @@
   padding: 10px 20px;
 }
 
-.suggestionFocused {
+.suggestionHighlighted {
   background-color: #ddd;
 }

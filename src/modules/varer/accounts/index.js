@@ -10,7 +10,5 @@ reactor.registerStores({
 })
 
 export default (
-  <Route>
-    <Route name="varer/accounts" path="/varer/accounts" handler={List}/>
-  </Route>
+  <Route exact path="/varer/accounts" component={List}/>
 )

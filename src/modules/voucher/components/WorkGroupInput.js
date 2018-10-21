@@ -31,8 +31,6 @@ export default class UserInput extends React.Component {
   constructor(props) {
     super(props)
 
-    this.onSuggestionsUpdateRequested = this.onSuggestionsUpdateRequested.bind(this)
-
     this.state = {
       suggestions: [],
       suggestions_all: []
@@ -46,9 +44,15 @@ export default class UserInput extends React.Component {
     })
   }
 
-  onSuggestionsUpdateRequested({ value }) {
+  onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: getSuggestions(value, this.state.suggestions_all)
+    })
+  }
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: [],
     })
   }
 
@@ -58,8 +62,10 @@ export default class UserInput extends React.Component {
     inputProps.onChange = (event, {newValue}) => onChange(newValue)
 
     return (
-      <Autosuggest suggestions={this.state.suggestions}
-        onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
+      <Autosuggest
+        suggestions={this.state.suggestions}
+        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         getSuggestionValue={sug => sug.work_group}
         renderSuggestion={renderSuggestion}
         shouldRenderSuggestions={val => true}

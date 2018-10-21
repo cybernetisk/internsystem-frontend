@@ -11,12 +11,12 @@ import SalesProducts from './salesProducts'
 import Vendors from './vendors'
 
 export default (
-  <Route>
+  <React.Fragment>
     {Accounts}
     {InventoryCounts}
     {InventoryItems}
     {SalesEstimates}
     {SalesProducts}
     {Vendors}
-  </Route>
+  </React.Fragment>
 )

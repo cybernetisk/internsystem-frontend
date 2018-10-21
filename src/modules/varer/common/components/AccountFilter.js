@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 
 export default class AccountFilter extends React.Component {
   static propTypes = {
-    onChange: React.PropTypes.func.isRequired,
-    value: React.PropTypes.any,
-    accounts: React.PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.any,
+    accounts: PropTypes.object.isRequired,
   }
 
   render() {

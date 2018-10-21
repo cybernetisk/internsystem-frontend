@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import {price} from '../../../../services/FormatService'
 
@@ -5,9 +6,9 @@ import './PriceMargin.scss'
 
 export default class extends React.Component {
   static propTypes = {
-    innPris: React.PropTypes.number.isRequired,
-    utPris: React.PropTypes.number.isRequired,
-    utMva: React.PropTypes.number.isRequired
+    innPris: PropTypes.number.isRequired,
+    utPris: PropTypes.number.isRequired,
+    utMva: PropTypes.number.isRequired
   }
 
   render() {

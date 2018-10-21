@@ -1,23 +1,24 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
+import { Link } from 'react-router-dom'
+import { connect } from 'nuclear-js-react-addons-chefsplate'
 import moment from '../../../moment'
 
 import {api} from '../../../api'
 
-import getters from '../getters'
+import * as getters from '../getters'
 import * as actions from '../actions'
 import { userDetails, isLoggedIn } from '../../auth/getters'
 
 import PageLoader from '../../../components/PageLoader'
 import MemberService from '../services/MemberService'
 
+export default
 @connect(props => ({
   member: getters.member,
   userDetails,
   isLoggedIn
 }))
-export default class Member extends React.Component {
+class Member extends React.Component {
 
   constructor(props) {
     super(props)
@@ -34,7 +35,7 @@ export default class Member extends React.Component {
   }
 
   componentDidMount() {
-    let memberId = this.props.params.memberId
+    let memberId = this.props.match.params.memberId
     MemberService.getMember(memberId).then(result => {
         actions.getMember(memberId)
         this.setState({

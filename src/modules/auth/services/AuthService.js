@@ -1,5 +1,5 @@
 import AuthStore from '../stores/AuthStore'
-import getters from '../getters'
+import * as getters from '../getters'
 import reqwestWithoutCsrf from 'reqwest'
 import {api} from '../../../api'
 import deferredGetter from '../../../utils/deferredGetter'

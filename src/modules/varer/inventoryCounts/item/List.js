@@ -1,5 +1,6 @@
 import React from 'react'
-import {connect} from 'nuclear-js-react-addons'
+import PropTypes from 'prop-types'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
 
 import Account from '../../common/components/Account'
 import ProductName from '../../common/components/ProductName'
@@ -17,16 +18,17 @@ import {
   filteredList,
 } from './getters'
 
+export default
 @connect(props => ({
   filters,
   accountsSummerFiltered,
   filteredList,
 }))
-export default class List extends React.Component {
+class List extends React.Component {
 
   static propTypes = {
-    newItem: React.PropTypes.func.isRequired,
-    newitems: React.PropTypes.object.isRequired,
+    newItem: PropTypes.func.isRequired,
+    newitems: PropTypes.object.isRequired,
   }
 
   constructor(props) {

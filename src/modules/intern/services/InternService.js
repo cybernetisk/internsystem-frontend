@@ -170,8 +170,6 @@ class InternService {
       method: 'patch'
     })
   }
-
-
-
 }
+
 export default new InternService()

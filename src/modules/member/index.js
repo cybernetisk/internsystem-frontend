@@ -20,16 +20,14 @@ reactor.registerStores({
   memberStats: StatsStore
 })
 
-module.exports = (
-  <Route>
-    <Route name="member" path="/member" handler={Stats}/>
-    <Route name="member/add" path="/member/add" handler={Add}/>
-    <Route name="member/list" path="/member/list" handler={MemberList}/>
-    <Route name="member/search" path="/member/search" handler={Search}/>
-    <Route name="member/lifetime" path="member/lifetime" handler={Lifetime}/>
-    <Route name="member/member" path="/member/:memberId" handler={Member}/>
-    <Route name="member/semester" path="member/semester/:semId" handler={Semester}/>
-
-  </Route>
-
+export default (
+  <React.Fragment>
+    <Route exact path="/member" component={Stats}/>
+    <Route exact path="/member/add" component={Add}/>
+    <Route exact path="/member/list" component={MemberList}/>
+    <Route exact path="/member/search" component={Search}/>
+    <Route exact path="/member/lifetime" component={Lifetime}/>
+    <Route exact path="/member/:memberId" component={Member}/>
+    <Route exact path="/member/semester/:semId" component={Semester}/>
+  </React.Fragment>
 )

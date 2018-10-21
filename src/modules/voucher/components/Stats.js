@@ -1,20 +1,21 @@
 import React from 'react'
-import { Link, RouteHandler } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
+import { Link } from 'react-router-dom'
+import { connect } from 'nuclear-js-react-addons-chefsplate'
 
-import getters from '../getters'
-import authGetters from '../../auth/getters'
+import * as getters from '../getters'
+import * as authGetters from '../../auth/getters'
 import * as actions from '../actions'
 
 import VoucherService from '../services/VoucherService'
 
 import Loader from '../../../components/Loader'
 
+export default
 @connect(props => ({
   stats: getters.stats,
   userDetails: authGetters.userDetails,
 }))
-export default class Stats extends React.Component {
+class Stats extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -87,7 +88,7 @@ export default class Stats extends React.Component {
           {' '}
           <Link to="voucher/uselogs" className="btn btn-primary">Use vouchers</Link>
         </div>
-        <RouteHandler />
+        {this.props.children}
         <h2>Semester list</h2>
         <table className="table table-striped">
           <thead>
@@ -106,7 +107,7 @@ export default class Stats extends React.Component {
             {this.props.stats.get('data').toList().toJS().map((wallet) => (
               <tr key={wallet.semester.id}>
                 <td>
-                  <Link to="voucher/semester" params={{semesterId: wallet.semester.id}}>
+                  <Link to={`/voucher/semester/${wallet.semester.id}`}>
                     {wallet.semester.year} {wallet.semester.semester}
                   </Link>
                 </td>

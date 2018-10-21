@@ -1,12 +1,12 @@
 import React from 'react'
-import { Route, RouteHandler } from 'react-router'
+import { Route } from 'react-router'
 
 import Index from './components/Index'
 import Stats from './components/Stats'
 
-module.exports = (
-  <Route>
-    <Route name="z" path="/z" handler={Index} />
-    <Route name="z/stats" path="/z/stats" handler={Stats} />
-  </Route>
+export default (
+  <React.Fragment>
+    <Route exact path="/z" component={Index} />
+    <Route exact path="/z/stats" component={Stats} />
+  </React.Fragment>
 )

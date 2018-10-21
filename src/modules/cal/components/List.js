@@ -1,20 +1,21 @@
 import moment from '../../../moment'
 import React from 'react'
-import { Link } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
+import { Link } from 'react-router-dom'
+import { connect } from 'nuclear-js-react-addons-chefsplate'
 
 import {api} from '../../../api'
-import getters from '../getters'
+import * as getters from '../getters'
 import * as actions from '../actions'
 
 import Loader from '../../../components/Loader'
 import Tag from './Tag'
 
+export default
 @connect(props => ({
   list: getters.list,
   semesters: getters.semesters,
 }))
-export default class List extends React.Component {
+class List extends React.Component {
   componentDidMount() {
     actions.fetchList(this.props.list.get('year'), this.props.list.get('semester'))
     actions.fetchSemesters()
@@ -35,7 +36,7 @@ export default class List extends React.Component {
         {this.props.semesters.get('items').toList().toJS().map(semester => {
           return (
             <li key={semester.year+semester.semester}>
-              <a href onClick={event => this.handleSemester(semester, event)}>{semester.year} {semester.semester}</a>
+              <a href="#" onClick={event => this.handleSemester(semester, event)}>{semester.year} {semester.semester}</a>
             </li>
           )
         })}

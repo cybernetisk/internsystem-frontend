@@ -1,3 +1,1 @@
-export default {
-  vendors: ['varerVendors']
-}
+export const vendors = ['varerVendors']

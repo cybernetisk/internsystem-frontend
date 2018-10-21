@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import {admin} from '../../../../api'
 
@@ -8,11 +9,11 @@ import './ProductName.scss'
 
 export default class extends React.Component {
   static propTypes = {
-    product: React.PropTypes.object.isRequired,
-    showAccount: React.PropTypes.bool,
-    showAccountGroup: React.PropTypes.bool,
-    isInventory: React.PropTypes.bool,
-    showLinks: React.PropTypes.bool,
+    product: PropTypes.object.isRequired,
+    showAccount: PropTypes.bool,
+    showAccountGroup: PropTypes.bool,
+    isInventory: PropTypes.bool,
+    showLinks: PropTypes.bool,
   }
 
   static defaultProps = {

@@ -1,8 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import { connect } from 'nuclear-js-react-addons-chefsplate'
 import moment from '../../../moment'
-import getters from '../getters'
+import * as getters from '../getters'
 import * as actions from '../actions'
 
 import Pagination from '../../../components/Pagination'
@@ -10,23 +11,24 @@ import Loader from '../../../components/Loader'
 
 import { userDetails, isLoggedIn } from '../../auth/getters'
 
+export default
 @connect(props => ({
   members: getters.members,
   userDetails,
   isLoggedIn
 }))
-export default class List extends React.Component {
+class List extends React.Component {
 
   constructor(props) {
     super(props)
     this.handlePageChange = this.handlePageChange.bind(this)
   }
 
-  PropTypes = {
-    switcher: React.PropTypes.bool,
-    semId: React.PropTypes.number,
-    semester: React.PropTypes.bool,
-    lifetime: React.PropTypes.bool,
+  static propTypes = {
+    switcher: PropTypes.bool,
+    semId: PropTypes.number,
+    semester: PropTypes.bool,
+    lifetime: PropTypes.bool,
   }
 
   handlePageChange(newPage) {

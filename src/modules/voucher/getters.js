@@ -1,9 +1,9 @@
-const stats = ['voucherStats']
-const uselogs = ['voucherUselogs']
-const wallets = ['voucherWallets']
-const worklogs = ['voucherWorklogs']
+export const stats = ['voucherStats']
+export const uselogs = ['voucherUselogs']
+export const wallets = ['voucherWallets']
+export const worklogs = ['voucherWorklogs']
 
-const current_semester = [
+export const current_semester = [
   wallets,
   ['voucherStats', 'data'],
   (wallets, stats) => {
@@ -16,5 +16,3 @@ const current_semester = [
     }).get('semester')
   }
 ]
-
-export default { current_semester, stats, uselogs, wallets, worklogs }

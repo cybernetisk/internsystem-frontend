@@ -11,23 +11,26 @@ function renderSuggestion(suggestion) {
   )
 }
 
-
 export default class InternInput extends React.Component {
   constructor(props) {
     super(props)
-
-    this.onSuggestionsUpdateRequested = this.onSuggestionsUpdateRequested.bind(this)
 
     this.state = {
       suggestions: []
     }
   }
 
-  onSuggestionsUpdateRequested({ value }) {
+  onSuggestionsFetchRequested = ({ value }) => {
     InternService.getUsers(value).then(result => {
       this.setState({
         suggestions: result.results
       })
+    })
+  }
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: [],
     })
   }
 
@@ -39,8 +42,10 @@ export default class InternInput extends React.Component {
     }
 
     return (
-      <Autosuggest suggestions={this.state.suggestions}
-        onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
+      <Autosuggest
+        suggestions={this.state.suggestions}
+        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         getSuggestionValue={sug => sug.username}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}

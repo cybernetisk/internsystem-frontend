@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import './PriceDate.scss'
 
 export default class extends React.Component {
   static propTypes = {
-    dato: React.PropTypes.string.isRequired,
-    relativeTo: React.PropTypes.string,
+    dato: PropTypes.string.isRequired,
+    relativeTo: PropTypes.string,
   }
 
   static defaultProps = {

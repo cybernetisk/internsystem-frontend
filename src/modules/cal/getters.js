@@ -1,5 +1,3 @@
-const list = ['calList']
-const event = ['calEvent']
-const semesters = ['calSemesters']
-
-export default { list, event, semesters }
+export const list = ['calList']
+export const event = ['calEvent']
+export const semesters = ['calSemesters']

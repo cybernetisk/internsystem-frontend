@@ -1,5 +1,6 @@
 import {toImmutable} from 'nuclear-js'
 import reqwest from '../../../../utils/reqwest'
+import PropTypes from 'prop-types';
 import React from 'react'
 import Autosuggest from 'react-autosuggest'
 import {api} from '../../../../api'
@@ -31,17 +32,11 @@ function renderSuggestion(product) {
 
 export default class InventoryItemSearch extends React.Component {
   static propTypes = {
-    onSelect: React.PropTypes.func.isRequired
+    onSelect: PropTypes.func.isRequired
   }
 
   constructor(props) {
     super(props)
-
-    this.onSuggestionsUpdateRequested = this.onSuggestionsUpdateRequested.bind(this)
-    this.onSuggestionSelected = this.onSuggestionSelected.bind(this)
-    this.getSuggestionValue = this.getSuggestionValue.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.clear = this.clear.bind(this)
 
     this.state = {
       suggestions: [],
@@ -49,7 +44,7 @@ export default class InventoryItemSearch extends React.Component {
     }
   }
 
-  onSuggestionsUpdateRequested({ value }) {
+  onSuggestionsFetchRequested = ({ value }) => {
     reqwest({
       url: api('varer/råvarer'),
       data: {
@@ -64,17 +59,23 @@ export default class InventoryItemSearch extends React.Component {
     })
   }
 
-  onSuggestionSelected(event, {suggestion, suggestionValue, method}) {
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: [],
+    })
+  }
+
+  onSuggestionSelected = (event, {suggestion, suggestionValue, method}) => {
     this.props.onSelect(suggestion)
     event.preventDefault()
   }
 
-  getSuggestionValue(product) {
+  getSuggestionValue = (product) => {
     this.props.onSelect(product)
     return product.get('navn')
   }
 
-  handleChange(event, x) {
+  handleChange = (event, x) => {
     this.setState({value: x.newValue})
 
     if (x.method !== 'up' && x.method !== 'down') {
@@ -82,7 +83,7 @@ export default class InventoryItemSearch extends React.Component {
     }
   }
 
-  clear() {
+  clear = () => {
     this.setState({value: ''})
     this.props.onSelect(null)
   }
@@ -98,7 +99,8 @@ export default class InventoryItemSearch extends React.Component {
       <span className="varer-inventoryItemSearch">
         <Autosuggest
           suggestions={this.state.suggestions}
-          onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           onSuggestionSelected={this.onSuggestionSelected}
           getSuggestionValue={this.getSuggestionValue}
           renderSuggestion={renderSuggestion}

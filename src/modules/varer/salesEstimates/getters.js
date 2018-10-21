@@ -1,3 +1,1 @@
-export default {
-  salesEstimates: ['varerSalesEstimates']
-}
+export const salesEstimates = ['varerSalesEstimates']

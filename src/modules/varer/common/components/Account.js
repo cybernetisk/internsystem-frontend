@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import {admin} from '../../../../api'
 
@@ -5,9 +6,9 @@ import './Account.scss'
 
 export default class extends React.Component {
   static propTypes = {
-    account: React.PropTypes.object.isRequired,
-    showLinks: React.PropTypes.bool,
-    showGroup: React.PropTypes.bool,
+    account: PropTypes.object.isRequired,
+    showLinks: PropTypes.bool,
+    showGroup: PropTypes.bool,
   }
 
   static defaultProps = {

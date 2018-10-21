@@ -3,10 +3,9 @@ import './app.scss'
 import domready from 'domready'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Router from 'react-router'
-import { DefaultRoute, Link, Route, RouteHandler } from 'react-router'
-
-import reactor from './reactor'
+import { Route } from 'react-router'
+import { BrowserRouter } from 'react-router-dom'
+import { hot } from 'react-hot-loader'
 
 import Root from './components/Root'
 import Index from './components/Index'
@@ -20,38 +19,24 @@ import Z from './modules/z'
 import Member from './modules/member'
 import Intern from './modules/intern'
 
-class App extends React.Component {
-  render() {
-    return <Root reactor={reactor} />
-  }
-}
-
-let routes = (
-  <Route handler={App}>
-    <Route name="index" path="/" handler={Index} />
-    {Admin}
-    {Auth}
-    {Cal}
-    {Varer}
-    {Voucher}
-    {Z}
-    {Member}
-    {Intern}
-  </Route>
+const App = () => (
+  <BrowserRouter>
+    <Root>
+      <Route exact path="/" component={Index} />
+      {Admin}
+      {Auth}
+      {Cal}
+      {Varer}
+      {Voucher}
+      {Z}
+      {Member}
+      {Intern}
+    </Root>
+  </BrowserRouter>
 )
 
-let rootInstance
-Router.run(routes, Router.HistoryLocation, Handler => {
-  domready(() => {
-    rootInstance = ReactDOM.render(<Handler/>, document.getElementById('react_container'))
-  })
-})
+const HotApp = hot(module)(App)
 
-if (module.hot) {
-  require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({
-    getRootInstances: function () {
-      // Help React Hot Loader figure out the root component instances on the page:
-      return [rootInstance]
-    }
-  })
-}
+domready(() => {
+  ReactDOM.render(<HotApp/>, document.getElementById('react_container'))
+})

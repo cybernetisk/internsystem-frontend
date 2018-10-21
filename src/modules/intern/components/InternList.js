@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
+import { Link } from 'react-router-dom'
+import { connect } from 'nuclear-js-react-addons-chefsplate'
 import moment from '../../../moment'
-import getters from '../getters'
+import * as getters from '../getters'
 import * as actions from '../actions'
 
 import Pagination from '../../../components/Pagination'
@@ -11,12 +11,13 @@ import Loader from '../../../components/Loader'
 
 import { userDetails, isLoggedIn } from '../../auth/getters'
 
+export default
 @connect(props => ({
   userDetails,
   isLoggedIn,
   interns: getters.internList
 }))
-export default class InternList extends React.Component {
+class InternList extends React.Component {
   constructor(props) {
     super(props)
     this.handlePageChange = this.handlePageChange.bind(this)
@@ -37,8 +38,7 @@ export default class InternList extends React.Component {
           </tr>
         </thead>
         <tbody>
-        {this.props.interns.get('data').get('results').toJS().map((intern) => {
-          return (
+          {this.props.interns.get('data').get('results').toJS().map((intern) => (
             <tr key={intern.id}>
               <td><Link to={`/intern/interns/${intern.user.id}`}>{intern.user.username}</Link></td>
               <td>
@@ -48,8 +48,8 @@ export default class InternList extends React.Component {
                 }</ul>
               </td>
               <td>{intern.comment}</td>
-            </tr>)
-        })}
+            </tr>
+          ))}
         </tbody>
       </table>
     )

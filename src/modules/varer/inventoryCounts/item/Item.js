@@ -1,11 +1,12 @@
 import React from 'react'
-import {Link} from 'react-router'
-import {connect} from 'nuclear-js-react-addons'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
 import Immutable from 'immutable'
 
 import moment from '../../../../moment'
 import {price} from '../../../../services/FormatService'
-import {updateQuery} from '../../common/functions'
+import {createQueryUpdater} from '../../common/functions'
 
 import * as consts from '../../consts'
 
@@ -14,6 +15,7 @@ import {addVare} from '../service'
 import * as actions from '../actions'
 import * as inventoryItemsActions from '../../inventoryItems/actions'
 
+import withQueryProps from '../../../../utils/withQueryProps'
 import Loader from '../../../../components/Loader'
 import AccountFilter from '../../common/components/AccountFilter'
 import ListInputQ from '../../common/components/TextInput'
@@ -28,6 +30,7 @@ import {
   totalSummerFiltered,
 } from './getters'
 
+export default
 @connect(props => ({
   data: inventoryCountStore,
   accountsForSelectElement,
@@ -35,12 +38,8 @@ import {
   totalSummer,
   totalSummerFiltered,
 }))
-export default class Item extends React.Component {
-
-  static contextTypes = {
-    router: React.PropTypes.func.isRequired
-  }
-
+@withQueryProps
+class Item extends React.Component {
   constructor(props) {
     super(props)
 
@@ -50,14 +49,14 @@ export default class Item extends React.Component {
     }
 
     this.addNewItem = this.addNewItem.bind(this)
-    this.updateQuery = updateQuery.bind(this)
+    this.updateQuery = createQueryUpdater(props.history)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleGroupChange = this.handleGroupChange.bind(this)
     this.handleVisibleChange = this.handleVisibleChange.bind(this)
   }
 
   componentDidMount() {
-    actions.fetchInventoryCount(this.props.params.id)
+    actions.fetchInventoryCount(this.props.match.params.id)
     inventoryItemsActions.fetchInventoryItems(1)
 
     // timeout is needed because this is done after getting initial state but before adding observer
@@ -199,7 +198,7 @@ export default class Item extends React.Component {
         <div className="pull-right hidden-print">
           <a className="btn btn-default" href={`admin/varer/varetelling/${item.id}/`} target="_self">Edit</a>
           {' '}
-          <Link to="varer/inventorycount/registrations" params={{id: this.props.data.get('id')}}
+          <Link to={`varer/inventorycount/${this.props.data.get('id')}/registrations`}
             className="btn btn-default"
           >
             Show registrations view

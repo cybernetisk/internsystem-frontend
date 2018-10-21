@@ -1,12 +1,13 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 
 export default class Loader extends React.Component {
 
   PropTypes = {
-    children: React.PropTypes.node,
-    isEmpty: React.PropTypes.bool,
-    isLoading: React.PropTypes.bool.isRequired,
-    error: React.PropTypes.string
+    children: PropTypes.node,
+    isEmpty: PropTypes.bool,
+    isLoading: PropTypes.bool.isRequired,
+    error: PropTypes.string
   }
 
   renderError() {

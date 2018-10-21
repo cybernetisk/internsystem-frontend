@@ -1,17 +1,18 @@
 import React from 'react'
 import Autosuggest from 'react-autosuggest'
 
-import {connect} from 'nuclear-js-react-addons'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
 import InternService from '../services/InternService'
 import InternInput from './InternInput'
 
-import getters from '../getters'
+import * as getters from '../getters'
 import * as actions from '../actions'
 
+export default
 @connect(props => ({
   roles: getters.roles,
 }))
-export default class AddIntern extends React.Component {
+class AddIntern extends React.Component {
 
   constructor(props) {
     super(props)

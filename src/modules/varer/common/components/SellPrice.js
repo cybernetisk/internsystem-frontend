@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 
 import {price} from '../../../../services/FormatService'
@@ -9,8 +10,8 @@ import './SellPrice.scss'
 export default class extends React.Component {
 
   static propTypes = {
-    isInternal: React.PropTypes.bool,
-    item: React.PropTypes.object.isRequired
+    isInternal: PropTypes.bool,
+    item: PropTypes.object.isRequired
   }
 
   static defaultProps = {

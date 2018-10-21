@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 
 import Price from './Price'
 
 export default class extends React.Component {
   static propTypes = {
-    product: React.PropTypes.object.isRequired
+    product: PropTypes.object.isRequired
   }
 
   render() {

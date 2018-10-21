@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 
 import Loader from './Loader'
@@ -5,11 +6,11 @@ import Loader from './Loader'
 export default class PageLoader extends React.Component {
 
   PropTypes = {
-    children: React.PropTypes.node,
-    error: React.PropTypes.string,
-    isEmpty: React.PropTypes.bool,
-    isLoading: React.PropTypes.bool.isRequired,
-    title: React.PropTypes.string.isRequired
+    children: PropTypes.node,
+    error: PropTypes.string,
+    isEmpty: PropTypes.bool,
+    isLoading: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired
   }
 
   render() {

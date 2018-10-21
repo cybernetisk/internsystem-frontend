@@ -1,5 +1,5 @@
 import React from 'react'
-import {connect} from 'nuclear-js-react-addons'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
 
 import Account from '../../common/components/Account'
 
@@ -9,10 +9,11 @@ import {
   groupsViewData,
 } from './getters'
 
+export default
 @connect(props => ({
   groupsViewData,
 }))
-export default class GroupsList extends React.Component {
+class GroupsList extends React.Component {
 
   render() {
     if (this.props.groupsViewData.size === 0) return (

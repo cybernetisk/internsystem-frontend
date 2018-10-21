@@ -1,27 +1,28 @@
 import React from 'react'
-import {connect} from 'nuclear-js-react-addons'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
 
-import getters from '../getters'
+import * as getters from '../getters'
 import * as actions from '../actions'
 
 import Loader from '../../../components/Loader'
 
+export default
 @connect(props => ({
   wallets: getters.wallets,
   semester: getters.current_semester,
 }))
-export default class Semester extends React.Component {
+class Semester extends React.Component {
   componentDidMount() {
     setTimeout(() => {
-      actions.fetchWallets({semester: this.props.params.semesterId})
-      actions.setActiveSemester(this.props.params.semesterId)
+      actions.fetchWallets({semester: this.props.match.params.semesterId})
+      actions.setActiveSemester(this.props.match.params.semesterId)
     })
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.params.semesterId != this.props.params.semesterId) {
-      actions.fetchWallets({semester: nextProps.params.semesterId})
-      actions.setActiveSemester(nextProps.params.semesterId)
+    if (nextProps.match.params.semesterId != this.props.match.params.semesterId) {
+      actions.fetchWallets({semester: nextProps.match.params.semesterId})
+      actions.setActiveSemester(nextProps.match.params.semesterId)
     }
   }
 

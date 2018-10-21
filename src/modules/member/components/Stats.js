@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
-import getters from '../getters'
+import { Link } from 'react-router-dom'
+import { connect } from 'nuclear-js-react-addons-chefsplate'
+import * as getters from '../getters'
 import * as actions from '../actions'
 
 import Loader from '../../../components/Loader'
@@ -9,11 +9,12 @@ import Loader from '../../../components/Loader'
 import { isLoggedIn } from '../../auth/getters'
 
 
+export default
 @connect(props => ({
   isLoggedIn,
   stats: getters.stats
 }))
-export default class Stats extends React.Component {
+class Stats extends React.Component {
   componentDidMount() {
     actions.getStats()
   }
@@ -45,15 +46,14 @@ export default class Stats extends React.Component {
           </tr>
         </thead>
         <tbody>
-        {mylist.map((stats) => (
-          <tr key={stats.id}>
-            <td><Link to={`/member/semester/${stats.id}`}>{stats.semester}</Link></td>
-            <td>{stats.normal}</td>
-            <td>{stats.lifetime}</td>
-            <td>{stats.honorary}</td>
-          </tr>
-
-        ))}
+          {mylist.map((stats) => (
+            <tr key={stats.id}>
+              <td><Link to={`/member/semester/${stats.id}`}>{stats.semester}</Link></td>
+              <td>{stats.normal}</td>
+              <td>{stats.lifetime}</td>
+              <td>{stats.honorary}</td>
+            </tr>
+          ))}
           <tr>
             <td>All</td>
             <td>{normal}</td>

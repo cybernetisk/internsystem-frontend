@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import './ProductStatus.scss'
 
 export default class extends React.Component {
   static propTypes = {
-    text: React.PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
   }
 
   render() {

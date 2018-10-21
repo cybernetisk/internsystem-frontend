@@ -20,13 +20,18 @@ reactor.registerStores({
   voucherWorklogs: WorkLogsStore,
 })
 
-module.exports = (
-  <Route>
-    <Route name="voucher/stats" path="/voucher" handler={Stats}>
-      <Route name="voucher/semester" path="/voucher/semester/:semesterId" handler={Semester} />
-    </Route>
-    <Route name="voucher/uselogs" path="/voucher/uselogs" handler={UseLogs} />
-    <Route name="voucher/use" path="/voucher/use" handler={SimpleUse} />
-    <Route name="voucher/worklogs" path="/voucher/worklogs" handler={WorkLogs} />
-  </Route>
+export default (
+  <React.Fragment>
+    <Route
+      path="/voucher"
+      render={() => (
+        <Stats>
+          <Route exact path="/voucher/semester/:semesterId" component={Semester} />
+        </Stats>
+      )}
+    />
+    <Route exact path="/voucher/uselogs" component={UseLogs} />
+    <Route exact path="/voucher/use" component={SimpleUse} />
+    <Route exact path="/voucher/worklogs" component={WorkLogs} />
+  </React.Fragment>
 )

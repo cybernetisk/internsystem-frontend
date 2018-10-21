@@ -1,5 +1,6 @@
-/*global math*/
+import math from 'mathjs'
 import Immutable from 'immutable'
+import PropTypes from 'prop-types';
 import React from 'react'
 import moment from '../../../../moment'
 import * as actions from '../actions'
@@ -27,7 +28,7 @@ import './NewCount.scss'
 export default class NewCount extends React.Component {
 
   static propTypes = {
-    inventoryCountId: React.PropTypes.number.isRequired
+    inventoryCountId: PropTypes.number.isRequired
   }
 
   constructor(props) {

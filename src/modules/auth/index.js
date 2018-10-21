@@ -1,6 +1,6 @@
 import React from 'react'
-import { Route, RouteHandler } from 'react-router'
-import { provideReactor } from 'nuclear-js-react-addons'
+import { Route } from 'react-router'
+import { provideReactor } from 'nuclear-js-react-addons-chefsplate'
 
 import reactor from '../../reactor'
 import * as actions from './actions'
@@ -17,10 +17,10 @@ reactor.registerStores({
 
 actions.fetchAuthData()
 
-module.exports = (
-  <Route>
-    <Route name="auth.profile" path="/profile" handler={Profile} />
-    <Route name="auth.login" path="/login" handler={Login} />
-    <Route name="auth.logout" path="/logout" handler={Logout} />
-  </Route>
+export default (
+  <React.Fragment>
+    <Route exact path="/profile" component={Profile} />
+    <Route exact path="/login" component={Login} />
+    <Route exact path="/logout" component={Logout} />
+  </React.Fragment>
 )

@@ -1,9 +1,10 @@
 import './List.scss'
 
 import React from 'react'
-import {connect} from 'nuclear-js-react-addons'
+import PropTypes from 'prop-types'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
 
-import {updateQuery} from '../common/functions'
+import {createQueryUpdater} from '../common/functions'
 
 import {fetchSalesProducts, updateFilters} from './actions'
 import {
@@ -16,12 +17,14 @@ import {
 } from './getters'
 import * as consts from './../consts'
 
+import withQueryProps from '../../../utils/withQueryProps'
 import Loader from '../../../components/Loader'
 import Pagination from '../../../components/Pagination'
 import AccountFilter from './../common/components/AccountFilter'
 import ListInputQ from './../common/components/TextInput'
 import ListTable from './ListTable'
 
+export default
 @connect(props => ({
   activePage,
   selectGroups,
@@ -30,19 +33,16 @@ import ListTable from './ListTable'
   salesProducts: filteredSalesProducts,
   salesProductsLoader
 }))
-export default class List extends React.Component {
+@withQueryProps
+class List extends React.Component {
 
   static propTypes = {
-    query: React.PropTypes.object.isRequired
-  }
-
-  static contextTypes = {
-    router: React.PropTypes.func.isRequired
+    query: PropTypes.object.isRequired
   }
 
   constructor(props) {
     super(props)
-    this.updateQuery = updateQuery.bind(this)
+    this.updateQuery = createQueryUpdater(props.history)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleGroupChange = this.handleGroupChange.bind(this)
     this.handleOutdatedChange = this.handleOutdatedChange.bind(this)

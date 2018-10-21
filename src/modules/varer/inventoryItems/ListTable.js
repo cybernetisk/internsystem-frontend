@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 
 import ProductName from '../common/components/ProductName'
@@ -8,7 +9,7 @@ import SellPrice from '../common/components/SellPrice'
 export default class extends React.Component {
 
   static propTypes = {
-    inventoryItems: React.PropTypes.object.isRequired
+    inventoryItems: PropTypes.object.isRequired
   }
 
   renderInternalPrice(item) {

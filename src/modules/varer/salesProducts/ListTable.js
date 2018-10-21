@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import {admin} from '../../../api'
 
@@ -14,7 +15,7 @@ import './ListTable.scss'
 export default class extends React.Component {
 
   static propTypes = {
-    salesProducts: React.PropTypes.object.isRequired
+    salesProducts: PropTypes.object.isRequired
   }
 
   renderInventoryItems(item) {

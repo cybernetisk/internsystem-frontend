@@ -1,21 +1,22 @@
 import moment from '../../../moment'
 import React from 'react'
-import { Link } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
+import { Link } from 'react-router-dom'
+import { connect } from 'nuclear-js-react-addons-chefsplate'
 
 import {api} from '../../../api'
 
 import * as actions from '../actions'
-import getters from '../getters'
+import * as getters from '../getters'
 
 import PageLoader from '../../../components/PageLoader'
 
+export default
 @connect(props => ({
   event: getters.event
 }))
-export default class Event extends React.Component {
+class Event extends React.Component {
   componentDidMount() {
-    actions.fetchEvent(this.props.params.eventId)
+    actions.fetchEvent(this.props.match.params.eventId)
   }
 
   renderIncomplete() {

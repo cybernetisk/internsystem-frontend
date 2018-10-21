@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import {antall} from '../../../../services/FormatService'
 
 export default class extends React.Component {
   static propTypes = {
-    verdi: React.PropTypes.number.isRequired,
-    enhet: React.PropTypes.string
+    verdi: PropTypes.number.isRequired,
+    enhet: PropTypes.string
   }
 
   render() {

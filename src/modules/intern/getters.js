@@ -1,10 +1,8 @@
-const interns =['interns']
-const groups =['groups']
-const accesslevels =['accesslevels']
-const internList = ['internList']
-const group = ['group']
-const roles = ['roles']
-const internroles = ['internroles']
-const uio_cards = ['uiocards']
-
-export default{interns, groups, accesslevels, internList, group, roles, internroles, uio_cards}
+export const interns =['interns']
+export const groups =['groups']
+export const accesslevels =['accesslevels']
+export const internList = ['internList']
+export const group = ['group']
+export const roles = ['roles']
+export const internroles = ['internroles']
+export const uio_cards = ['uiocards']

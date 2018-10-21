@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import List from './List'
 
 import MemberService from '../services/MemberService'
 
-import { connect } from 'nuclear-js-react-addons'
+import { connect } from 'nuclear-js-react-addons-chefsplate'
 import moment from '../../../moment'
 import * as actions from '../actions'
 
@@ -14,10 +14,11 @@ import { isLoggedIn } from '../../auth/getters'
 import Pagination from '../../../components/Pagination'
 import Loader from '../../../components/Loader'
 
+export default
 @connect(props => ({
   isLoggedIn
 }))
-export default class Add extends React.Component {
+class Add extends React.Component {
   constructor(props) {
     super(props)
 

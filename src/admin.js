@@ -4,12 +4,16 @@ import {admin} from './api'
 
 class Admin extends React.Component {
 
+  componentDidMount() {
+    // TODO: this.props.params.splat
+    window.location.href = admin()
+  }
+
   render() {
-    window.location.href = admin(this.props.params.splat)
     return <div>Sending you to Django-admin page</div>
   }
 }
 
 export default (
-  <Route name="admin" path="/admin/**" handler={Admin} />
+  <Route path="/admin/" component={Admin} />
 )

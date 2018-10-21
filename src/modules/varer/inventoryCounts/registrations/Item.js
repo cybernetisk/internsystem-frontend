@@ -1,6 +1,6 @@
 import React from 'react'
-import {Link} from 'react-router'
-import {connect} from 'nuclear-js-react-addons'
+import { Link } from 'react-router-dom'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
 
 import {addVare} from '../service'
 
@@ -22,25 +22,21 @@ import {
   isLoggedIn,
 } from '../../../auth/getters'
 
+export default
 @connect(props => ({
   data,
   isLoading,
   error,
   isLoggedIn,
 }))
-export default class Item extends React.Component {
-
-  static contextTypes = {
-    router: React.PropTypes.func.isRequired
-  }
-
+class Item extends React.Component {
   constructor(props) {
     super(props)
   }
 
   componentDidMount() {
-    actions.fetchInventoryCountSimple(this.props.params.id)
-    actions.fetchInventoryCountCounts(this.props.params.id)
+    actions.fetchInventoryCountSimple(this.props.match.params.id)
+    actions.fetchInventoryCountCounts(this.props.match.params.id)
   }
 
   renderComment(data) {
@@ -79,7 +75,7 @@ export default class Item extends React.Component {
         <div className="pull-right hidden-print">
           <a className="btn btn-default" href={`admin/varer/varetelling/${this.props.data.get('id')}/`} target="_self">Edit</a>
           {' '}
-          <Link to="varer/inventorycount" params={{id: this.props.data.get('id')}}
+          <Link to={`varer/inventorycount/${this.props.data.get('id')}`}
             className="btn btn-default"
           >
             Show detailed view

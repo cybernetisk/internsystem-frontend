@@ -1,16 +1,16 @@
 import React from 'react'
 
-import {Link} from 'react-router'
-import {connect} from 'nuclear-js-react-addons'
+import { Link } from 'react-router-dom'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
 import {Col, Row} from 'react-bootstrap'
 
 import * as actions from '../actions'
-
-import getters from '../getters'
+import * as getters from '../getters'
 import {userDetails, isLoggedIn} from '../../auth/getters'
 
 import InternService from '../services/InternService'
 
+export default
 @connect(props => ({
   interns: getters.interns,
   roles: getters.roles,
@@ -19,7 +19,7 @@ import InternService from '../services/InternService'
   userDetails,
   isLoggedIn
 }))
-export  default class Intern extends React.Component {
+class Intern extends React.Component {
   constructor(props) {
     super(props)
     this.handleRoleChange = this.handleRoleChange.bind(this)
@@ -44,7 +44,7 @@ export  default class Intern extends React.Component {
   }
 
   componentDidMount() {
-    let userId = this.props.params.userId
+    let userId = this.props.match.params.userId
     actions.getInternForUser(userId)
     actions.getRoles()
     actions.getCardsForUser(userId)
@@ -66,7 +66,7 @@ export  default class Intern extends React.Component {
     this.setState({isSending: true})
     const userid = this.props.interns.get('data').toJS()[0].user.id
     InternService.addCardToUser(userid, this.state.cardnumber).then(result => {
-      actions.getCardsForUser(this.props.params.userId)
+      actions.getCardsForUser(this.props.match.params.userId)
       this.setState({
         cardnumber: '',
         isSending: false
@@ -85,7 +85,7 @@ export  default class Intern extends React.Component {
     let username = this.props.interns.get('data').toJS()[0].user.username
     this.setState({isSending: true})
     InternService.addRoleToIntern(username, this.state.roleId).then(result => {
-      actions.getInternForUser(this.props.params.userId)
+      actions.getInternForUser(this.props.match.params.userId)
       this.setState({
         isSending: false,
         roleId: -1,
@@ -149,8 +149,7 @@ export  default class Intern extends React.Component {
           </tr>
         </thead>
         <tbody>
-        {roles.map(role => {
-          return (
+          {roles.map(role => (
             <tr key={role.role.id}>
               <td>
                 <Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link>
@@ -171,15 +170,15 @@ export  default class Intern extends React.Component {
                 </button>
               </th>
             </tr>
-          )
-        })}</tbody>
+          ))}
+        </tbody>
       </table>)
   }
 
   removeRole(e) {
     if (confirm('Are you sure you want to remove that role?')) {
       InternService.removeRoleFromIntern(e.target.value).then(results => {
-        actions.getIntern(this.props.params.internId)
+        actions.getIntern(this.props.match.params.internId)
       }), error => {
         alert(error.responseText)
       }
@@ -197,16 +196,13 @@ export  default class Intern extends React.Component {
           </tr>
         </thead>
         <tbody>
-        {logs.map((log) => {
-            return (
-              <tr key={log.id}>
-                <td>{log.time}</td>
-                <td>{log.changed_by.username}</td>
-                <td>{log.description}</td>
-              </tr>
-            )
-          }
-        )}
+          {logs.map((log) => (
+            <tr key={log.id}>
+              <td>{log.time}</td>
+              <td>{log.changed_by.username}</td>
+              <td>{log.description}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     )
@@ -230,16 +226,13 @@ export  default class Intern extends React.Component {
             </tr>
           </thead>
           <tbody>
-          {this.props.uio_cards.get('data').toJS().map((card) => {
-              return (
-                <tr key={card.id}>
-                  <td>{card.card_number}</td>
-                  <td>{card.disabled}</td>
-                  <td>{card.comment}</td>
-                </tr>
-              )
-            }
-          )}
+            {this.props.uio_cards.get('data').toJS().map((card) => (
+              <tr key={card.id}>
+                <td>{card.card_number}</td>
+                <td>{card.disabled}</td>
+                <td>{card.comment}</td>
+              </tr>
+            ))}
           </tbody>
 
         </table>
@@ -250,8 +243,8 @@ export  default class Intern extends React.Component {
 
   saveComment(e) {
     e.preventDefault()
-    InternService.addComment(this.props.params.internId, this.state.comments).then(result => {
-        actions.getIntern(this.props.params.internId)
+    InternService.addComment(this.props.match.params.internId, this.state.comments).then(result => {
+        actions.getIntern(this.props.match.params.internId)
         this.setState({
           isEditing: false
         })

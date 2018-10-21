@@ -1,19 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router'
-import {connect} from 'nuclear-js-react-addons'
-import getters from '../getters'
+import { Link } from 'react-router-dom'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
+import * as getters from '../getters'
 import * as actions from '../actions'
 
 import { userDetails, isLoggedIn } from '../../auth/getters';
 
+export default
 @connect(props => ({
   roles: getters.roles,
   userDetails,
   isLoggedIn
-  })
-
-)
-export  default class Roles extends React.Component {
+}))
+class Roles extends React.Component {
 
   componentDidMount(){
     actions.getRoles()
@@ -30,23 +29,19 @@ export  default class Roles extends React.Component {
           </tr>
         </thead>
         <tbody>
-        {this.props.roles.get('data').toJS().map((role) => {
-          return (
+          {this.props.roles.get('data').toJS().map((role) => (
             <tr key={role.id}>
               <th><Link to={`/intern/role/${role.id}`}>{role.name}</Link></th>
               <th>
                 <ul>
-                {role.groups.map((group) => {
-                  return (
+                  {role.groups.map((group) => (
                     <li key={group.id}><Link to={`/intern/group/${group.id}`}>{group.name}</Link></li>
-                  )
-                })}
+                  ))}
                 </ul>
               </th>
               <th>{role.description}</th>
             </tr>
-          )
-        })}
+          ))}
         </tbody>
       </table>
     )

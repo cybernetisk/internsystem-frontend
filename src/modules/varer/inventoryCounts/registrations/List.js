@@ -1,5 +1,5 @@
 import React from 'react'
-import {connect} from 'nuclear-js-react-addons'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
 import moment from '../../../../moment'
 import {admin} from '../../../../api'
 
@@ -18,11 +18,12 @@ import {
   time,
 } from './getters'
 
+export default
 @connect(props => ({
   counts,
   time,
 }))
-export default class List extends React.Component {
+class List extends React.Component {
 
   renderRegDate(count) {
     let addedTime = null

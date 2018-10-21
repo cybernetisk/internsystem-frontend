@@ -1,18 +1,21 @@
 import Immutable from 'immutable'
+import queryString from 'query-string'
 
-export function updateQuery(name, value) {
-  if (value === null) {
-    value = undefined
+export function createQueryUpdater(history) {
+  return function updateQuery(name, value) {
+    if (value === null) {
+      value = undefined
+    }
+
+    let query = queryString.parse(history.location.search)
+    query[name] = value
+
+    const search = Object.keys(query).length > 0
+      ? `?${queryString.stringify(query)}`
+      : ''
+
+    history.push(history.location.pathname + search)
   }
-
-  let query = this.context.router.getCurrentQuery()
-  query[name] = value
-
-  this.context.router.transitionTo(
-    this.context.router.getCurrentPathname(),
-    this.context.router.getCurrentParams(),
-    query
-  )
 }
 
 export function fillCountSummer(count, raavare) {

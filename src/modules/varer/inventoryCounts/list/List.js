@@ -1,9 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router'
-import {connect} from 'nuclear-js-react-addons'
+import { Link } from 'react-router-dom'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
 
-import {updateQuery} from '../../common/functions'
+import {createQueryUpdater} from '../../common/functions'
 import moment from '../../../../moment'
+import withQueryProps from '../../../../utils/withQueryProps'
 
 import {fetchInventoryCounts} from '../actions'
 
@@ -17,18 +18,20 @@ import {
   numPages
 } from './getters'
 
+export default
 @connect(props => ({
   list,
   listLoader,
   activePage,
   numPages,
 }))
-export default class List extends React.Component {
+@withQueryProps
+class List extends React.Component {
 
   constructor(props) {
     super(props)
 
-    this.updateQuery = updateQuery.bind(this)
+    this.updateQuery = createQueryUpdater(props.history)
     this.handlePageChange = this.handlePageChange.bind(this)
   }
 
@@ -61,7 +64,11 @@ export default class List extends React.Component {
 
               return (
                 <tr key={item.get('id')}>
-                  <td><Link to="varer/inventorycount" params={{id: item.get('id')}}>{item.get('tittel')}</Link></td>
+                  <td>
+                    <Link to={`varer/inventorycount/${item.get('id')}`}>
+                      {item.get('tittel')}
+                    </Link>
+                  </td>
                   <td>{time}</td>
                   <td>{item.get('kommentar')}</td>
                   <td>{item.get('ansvarlig')}</td>

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
+import { Link } from 'react-router-dom'
+import { connect } from 'nuclear-js-react-addons-chefsplate'
 import moment from '../../../moment'
 import {antall} from '../../../services/FormatService'
 
-import getters from '../getters'
+import * as getters from '../getters'
 import * as actions from '../actions'
 
 import Pagination from '../../../components/Pagination'
@@ -15,11 +15,12 @@ import { userDetails } from '../../auth/getters'
 
 import './UseLogs.scss'
 
+export default
 @connect(props => ({
   uselogs: getters.uselogs,
   userDetails,
 }))
-export default class UseLogs extends React.Component {
+class UseLogs extends React.Component {
   componentDidMount() {
     actions.fetchUseLogs(1)
   }

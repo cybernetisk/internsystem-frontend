@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 
 import {antall} from '../../../../services/FormatService'
@@ -8,9 +9,9 @@ import './Quantity.scss'
 
 export default class extends React.Component {
   static propTypes = {
-    product: React.PropTypes.object.isRequired,
-    count: React.PropTypes.object,
-    showSpoilage: React.PropTypes.bool,
+    product: PropTypes.object.isRequired,
+    count: PropTypes.object,
+    showSpoilage: PropTypes.bool,
   }
 
   static defaultProps = {

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
+import { Link } from 'react-router-dom'
+import { connect } from 'nuclear-js-react-addons-chefsplate'
 import moment from '../../../moment'
-import getters from '../getters'
+import * as getters from '../getters'
 import * as actions from '../actions'
 
 import Pagination from '../../../components/Pagination'
@@ -14,12 +14,13 @@ import MemberService from '../services/MemberService'
 
 import { userDetails, isLoggedIn } from '../../auth/getters'
 
+export default
 @connect(props => ({
   members: getters.members,
   userDetails,
   isLoggedIn
 }))
-export default class Search extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props)
     this.handleSearch = this.handleSearch.bind(this)

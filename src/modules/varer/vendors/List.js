@@ -1,6 +1,6 @@
 import React from 'react'
 import Markdown from 'react-remarkable'
-import {connect} from 'nuclear-js-react-addons'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
 
 import './List.scss'
 
@@ -9,10 +9,11 @@ import {vendors} from './getters'
 
 import Loader from '../../../components/Loader'
 
+export default
 @connect(props => ({
   vendors
 }))
-export default class List extends React.Component {
+class List extends React.Component {
 
   componentDidMount() {
     fetchVendors()

@@ -1,4 +1,5 @@
 import {toImmutable} from 'nuclear-js'
+import PropTypes from 'prop-types';
 import React from 'react'
 
 import {price} from '../../../../services/FormatService'
@@ -12,11 +13,11 @@ const debounceTime = 100
 
 export default class extends React.Component {
   static propTypes = {
-    price: React.PropTypes.number.isRequired,
-    priceDate: React.PropTypes.string,
-    priceDateRelativeTo: React.PropTypes.string,
-    pant: React.PropTypes.number,
-    raavareId: React.PropTypes.number,
+    price: PropTypes.number.isRequired,
+    priceDate: PropTypes.string,
+    priceDateRelativeTo: PropTypes.string,
+    pant: PropTypes.number,
+    raavareId: PropTypes.number,
   }
 
   constructor(props) {

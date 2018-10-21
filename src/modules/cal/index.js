@@ -1,6 +1,6 @@
 import React from 'react'
-import { Route, RouteHandler } from 'react-router'
-import { provideReactor } from 'nuclear-js-react-addons'
+import { Route } from 'react-router'
+import { provideReactor } from 'nuclear-js-react-addons-chefsplate'
 
 import reactor from '../../reactor'
 
@@ -17,9 +17,9 @@ reactor.registerStores({
   calSemesters: SemestersStore,
 })
 
-module.exports = (
-  <Route>
-    <Route name="cal/list" path="/cal" handler={List} />
-    <Route name="cal/event" path="/cal/event/:eventId" handler={Event} />
-  </Route>
+export default (
+  <React.Fragment>
+    <Route exact path="/cal" component={List} />
+    <Route exact path="/cal/event/:eventId" component={Event} />
+  </React.Fragment>
 )

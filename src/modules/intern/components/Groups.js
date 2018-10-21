@@ -1,17 +1,18 @@
 import React from 'react'
-import { Link } from 'react-router'
-import {connect} from 'nuclear-js-react-addons'
-import getters from '../getters'
+import { Link } from 'react-router-dom'
+import {connect} from 'nuclear-js-react-addons-chefsplate'
+import * as getters from '../getters'
 import * as actions from '../actions'
 
 import { userDetails, isLoggedIn } from '../../auth/getters';
 
+export default
 @connect(props => ({
   groups: getters.groups,
   userDetails,
   isLoggedIn
 }))
-export  default class Groups extends React.Component {
+class Groups extends React.Component {
 
   constructor(props) {
     super(props)

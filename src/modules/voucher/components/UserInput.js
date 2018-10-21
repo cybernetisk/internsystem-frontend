@@ -15,18 +15,22 @@ export default class UserInput extends React.Component {
   constructor(props) {
     super(props)
 
-    this.onSuggestionsUpdateRequested = this.onSuggestionsUpdateRequested.bind(this)
-
     this.state = {
       suggestions: []
     }
   }
 
-  onSuggestionsUpdateRequested({ value }) {
+  onSuggestionsFetchRequested = ({ value }) => {
     VoucherService.getUsers(value).then(result => {
       this.setState({
         suggestions: result.results
       })
+    })
+  }
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: [],
     })
   }
 
@@ -38,8 +42,10 @@ export default class UserInput extends React.Component {
     }
 
     return (
-      <Autosuggest suggestions={this.state.suggestions}
-        onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
+      <Autosuggest
+        suggestions={this.state.suggestions}
+        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         getSuggestionValue={sug => sug.username}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}

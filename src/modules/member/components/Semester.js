@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { connect } from 'nuclear-js-react-addons'
+import { Link } from 'react-router-dom'
+import { connect } from 'nuclear-js-react-addons-chefsplate'
 import moment from '../../../moment'
-import getters from '../getters'
+import * as getters from '../getters'
 import * as actions from '../actions'
 
 import Pagination from '../../../components/Pagination'
@@ -13,20 +13,21 @@ import List from './List'
 import MemberService from '../services/MemberService'
 import { userDetails, isLoggedIn } from '../../auth/getters'
 
+export default
 @connect(props => ({
   userDetails,
   isLoggedIn,
   stats: getters.stats,
   members: getters.members
 }))
-export default class Semester extends React.Component {
+class Semester extends React.Component {
   constructor(props) {
     super(props)
     this.state = {loaded: false}
   }
 
   componentDidMount() {
-    const semId = this.props.params.semId
+    const semId = this.props.match.params.semId
     MemberService.getSemesterStats(semId).then(result => {
       this.setState({
         id: result.id,
@@ -76,7 +77,7 @@ export default class Semester extends React.Component {
         <Link to="/member">Go back to overview</Link>
         {this.renderStatsTable()}
         <h2>Memberlist</h2>
-        <List switcher={true} semId={this.props.params.semId}/>
+        <List switcher={true} semId={this.props.match.params.semId}/>
       </div>
     )
   }
