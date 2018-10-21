@@ -36,5 +36,8 @@
       "automerge": true,
       "automergeType": "branch"
     }
-  ]
+  ],
+  "pin": {
+    "automerge": true
+  }
 }
