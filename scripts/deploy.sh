@@ -29,11 +29,23 @@ else
     exit 1
 fi
 
+echo "Building artifact for release"
+(
+  cd ..
+  tar -zcvf build.tgz build
+)
+
+echo "Uploading release"
+releasefile="/tmp/in-frontend-$(date -u +%Y%m%d.%H%M%S).tgz"
+
+scp -o StrictHostKeyChecking=no ../build.tgz root@in.cyb.no:"$releasefile"
+
 echo "Running remote SSH-script"
 ssh -o StrictHostKeyChecking=no root@in.cyb.no /bin/bash << EOF
   set -e
   cd ~/drift/internsystem-frontend
-  ENV=$env ./update.sh
+  ENV=$env ./deploy.sh "$releasefile"
+  rm "$releasefile"
 EOF
 
 echo "Deploy finished"
