@@ -10,6 +10,8 @@ const git = require('git-rev-sync')
 const production = process.env.NODE_ENV === 'production'
 const STYLE_LOADER = production ? MiniCssExtractPlugin.loader : 'style-loader'
 
+const hash_type = production ? 'chunkhash' : 'hash'
+
 const config = {
   mode: production ? 'production' : 'development',
   name: 'client',
@@ -18,10 +20,10 @@ const config = {
     app: path.resolve(__dirname, 'src/app.js'),
   },
   output: {
-    chunkFilename: '[name].[chunkhash].js',
+    chunkFilename: `[name].[${hash_type}].js`,
     path: path.resolve(__dirname, 'build/'),
     publicPath: '/',
-    filename: '[name].[chunkhash].js',
+    filename: `[name].[${hash_type}].js`,
   },
   devServer: {
     compress: true,
@@ -158,8 +160,8 @@ if (production) {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: '[name].[chunkhash].css',
-      chunkFilename: '[name].[chunkhash].css',
+      filename: `[name].[${hash_type}].css`,
+      chunkFilename: `[name].[${hash_type}].css`,
     })
   ))
 }
