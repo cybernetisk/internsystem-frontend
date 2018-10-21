@@ -21,7 +21,7 @@ reactor.registerStores({
 })
 
 export default (
-  <React.Fragment>
+  <Switch>
     <Route exact path="/member" component={Stats}/>
     <Route exact path="/member/add" component={Add}/>
     <Route exact path="/member/list" component={MemberList}/>
@@ -29,5 +29,5 @@ export default (
     <Route exact path="/member/lifetime" component={Lifetime}/>
     <Route exact path="/member/:memberId" component={Member}/>
     <Route exact path="/member/semester/:semId" component={Semester}/>
-  </React.Fragment>
+  </Switch>
 )
