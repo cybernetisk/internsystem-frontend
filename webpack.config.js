@@ -17,9 +17,10 @@ const config = {
     app: path.resolve(__dirname, 'src/app.js'),
   },
   output: {
+    chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'build/'),
     publicPath: '/',
-    filename: '[name].js',
+    filename: '[name].[chunkhash].js',
   },
   devServer: {
     compress: true,
@@ -131,8 +132,8 @@ if (production) {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: '[name].css',
-      chunkFilename: '[name].css',
+      filename: '[name].[chunkhash].css',
+      chunkFilename: '[name].[chunkhash].css',
     })
   ))
 }
