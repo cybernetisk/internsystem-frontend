@@ -78,6 +78,18 @@ const config = {
     new CleanWebpackPlugin(['build']),
     new CopyWebpackPlugin([
       'src/robots.txt',
+      // Allow to override environment during development.
+      // If the file exists it will get prioritied before the template.
+      {
+        from: 'env.*.js',
+        to: 'env.js',
+        test: /env\.override\.js$/,
+      },
+      {
+        from: 'env.*.js',
+        to: 'env.js',
+        test: /env\.template\.js$/,
+      },
     ]),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
@@ -119,8 +131,6 @@ const config = {
 config.plugins.push((
   new webpack.DefinePlugin({
     DEBUG: production ? true : false,
-    // if using webpack-dev-server, it will use port 8000 of same hostname, see api.js
-    BACKEND_URL: JSON.stringify(process.env.BACKEND_URL || '/'),
   })
 ))
 

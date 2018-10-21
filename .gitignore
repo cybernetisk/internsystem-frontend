@@ -4,3 +4,4 @@ dist/
 *.iml
 .idea/
 node_modules/
+/env.override.js

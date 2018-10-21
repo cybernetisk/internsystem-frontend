@@ -1,4 +1,5 @@
-/*global BACKEND_URL*/
+import { BACKEND_URL } from './env'
+
 let backendUrl = BACKEND_URL
 
 if (backendUrl.indexOf('SAMEHOST') !== -1) {

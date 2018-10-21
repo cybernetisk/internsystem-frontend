@@ -26,11 +26,8 @@ npm run dev
 
 http://localhost:3000/
 
-API-adressen til backend kan overstyres via environment variabel slik:
-
-```bash
-BACKEND_URL=https://in.cyb.no/ npm run dev
-```
+API-adressen til backend kan overstyres ved å kopiere `env.template.js` til
+`env.override.js` og redigere innholdet.
 
 ### Kobling mot backend
 
