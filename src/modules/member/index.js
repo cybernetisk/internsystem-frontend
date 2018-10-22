@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route} from 'react-router'
+import {Route, Switch} from 'react-router'
 import reactor from '../../reactor'
 
 import Add from './components/Add'
