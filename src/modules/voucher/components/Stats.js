@@ -84,9 +84,9 @@ class Stats extends React.Component {
           to <a href="https://cybernetisk.slack.com/messages/it/details/">#it</a> on Slack
         </p>
         <div className="pull-right">
-          <Link to="voucher/worklogs" className="btn btn-success">Register work</Link>
+          <Link to="/voucher/worklogs" className="btn btn-success">Register work</Link>
           {' '}
-          <Link to="voucher/uselogs" className="btn btn-primary">Use vouchers</Link>
+          <Link to="/voucher/uselogs" className="btn btn-primary">Use vouchers</Link>
         </div>
         {this.props.children}
         <h2>Semester list</h2>

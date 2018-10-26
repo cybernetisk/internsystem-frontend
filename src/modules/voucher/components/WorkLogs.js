@@ -76,7 +76,7 @@ class List extends React.Component {
 
     return (
       <div className="alert alert-warning">
-        You have to <Link to="auth.login">log in</Link> to register work.
+        You have to <Link to="/login">log in</Link> to register work.
       </div>
     )
   }

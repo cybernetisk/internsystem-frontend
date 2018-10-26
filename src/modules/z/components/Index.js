@@ -8,7 +8,7 @@ export default class Index extends React.Component {
       <div>
         <h1>Z</h1>
         <ul>
-          <li><Link to="z/stats">Z-statistics</Link></li>
+          <li><Link to="/z/stats">Z-statistics</Link></li>
         </ul>
       </div>
     )

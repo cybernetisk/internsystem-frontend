@@ -55,7 +55,7 @@ class SimpleUse extends React.Component {
             )
           })}
         </ul>
-        <Link to="voucher/uselogs">View all usage</Link>
+        <Link to="/voucher/uselogs">View all usage</Link>
       </div>
     )
   }
@@ -69,7 +69,7 @@ class SimpleUse extends React.Component {
 
     return (
       <div className="alert alert-warning">
-        You have to <Link to="auth.login">log in</Link> to register vouchers usage.
+        You have to <Link to="/login">log in</Link> to register vouchers usage.
       </div>
     )
   }
