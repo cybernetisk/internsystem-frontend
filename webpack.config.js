@@ -78,7 +78,7 @@ const config = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(['build']),
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       'src/robots.txt',
       // Allow to override environment during development.
