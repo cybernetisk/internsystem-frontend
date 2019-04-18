@@ -28,7 +28,7 @@
     "mathjs": "5.9.0",
     "mini-css-extract-plugin": "0.6.0",
     "moment": "2.24.0",
-    "moment-timezone": "0.5.23",
+    "moment-timezone": "0.5.25",
     "node-sass": "4.11.0",
     "nuclear-js": "1.4.0",
     "nuclear-js-react-addons-chefsplate": "1.0.1",
