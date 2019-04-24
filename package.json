@@ -12,7 +12,7 @@
     "babel-loader": "8.0.5",
     "bootstrap-sass": "3.4.1",
     "clean-webpack-plugin": "2.0.1",
-    "copy-webpack-plugin": "5.0.2",
+    "copy-webpack-plugin": "5.0.3",
     "css-loader": "2.1.1",
     "domready": "1.0.8",
     "eslint": "5.16.0",
