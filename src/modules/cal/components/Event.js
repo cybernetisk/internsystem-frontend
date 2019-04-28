@@ -50,7 +50,7 @@ class Event extends React.Component {
       <div>
         <h1>Arrangement: {event.title}</h1>
 
-        <p><Link to="cal/list">Tilbake</Link></p>
+        <p><Link to="/cal/list">Tilbake</Link></p>
 
         <p>{start === end ? start : `${start} til ${end}`}</p>
 

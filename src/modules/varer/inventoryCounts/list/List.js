@@ -65,7 +65,7 @@ class List extends React.Component {
               return (
                 <tr key={item.get('id')}>
                   <td>
-                    <Link to={`varer/inventorycount/${item.get('id')}`}>
+                    <Link to={`/varer/inventorycount/${item.get('id')}`}>
                       {item.get('tittel')}
                     </Link>
                   </td>

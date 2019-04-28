@@ -75,7 +75,7 @@ class Item extends React.Component {
         <div className="pull-right hidden-print">
           <a className="btn btn-default" href={`admin/varer/varetelling/${this.props.data.get('id')}/`} target="_self">Edit</a>
           {' '}
-          <Link to={`varer/inventorycount/${this.props.data.get('id')}`}
+          <Link to={`/varer/inventorycount/${this.props.data.get('id')}`}
             className="btn btn-default"
           >
             Show detailed view
