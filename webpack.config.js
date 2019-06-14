@@ -82,16 +82,16 @@ const config = {
     new CopyWebpackPlugin([
       'src/robots.txt',
       // Allow to override environment during development.
-      // If the file exists it will get prioritied before the template.
-      {
-        from: 'env.*.js',
-        to: 'env.js',
-        test: /env\.override\.js$/,
-      },
+      // If the file exists it will get prioritied over the template.
       {
         from: 'env.*.js',
         to: 'env.js',
         test: /env\.template\.js$/,
+      },
+      {
+        from: 'env.*.js',
+        to: 'env.js',
+        test: /env\.override\.js$/,
       },
     ]),
     new HtmlWebpackPlugin({
