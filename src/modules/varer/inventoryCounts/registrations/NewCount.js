@@ -1,4 +1,4 @@
-import math from 'mathjs'
+import { evaluate } from 'mathjs'
 import Immutable from 'immutable'
 import PropTypes from 'prop-types';
 import React from 'react'
@@ -57,7 +57,7 @@ export default class NewCount extends React.Component {
 
   getNumber(value) {
     try {
-      return math.eval(value.replace(',', '.'))
+      return evaluate(value.replace(',', '.'))
     } catch (e) {
       return NaN
     }
