@@ -3,6 +3,7 @@
     "config:base"
   ],
   "lockFileMaintenance": {
+    "automerge": true,
     "enabled": true
   },
   "packageRules": [
