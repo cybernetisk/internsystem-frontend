@@ -15,7 +15,7 @@
     "copy-webpack-plugin": "5.0.4",
     "css-loader": "3.2.0",
     "domready": "1.0.8",
-    "eslint": "6.2.1",
+    "eslint": "6.2.2",
     "eslint-plugin-react": "7.14.3",
     "favicons-webpack-plugin": "1.0.1",
     "fbjs": "1.0.0",
