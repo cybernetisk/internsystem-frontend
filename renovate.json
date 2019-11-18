@@ -4,6 +4,7 @@
   ],
   "lockFileMaintenance": {
     "automerge": true,
+    "automergeType": "branch",
     "enabled": true
   },
   "packageRules": [
