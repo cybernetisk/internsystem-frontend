@@ -44,7 +44,7 @@
     "react-router-dom": "5.1.2",
     "reqwest": "2.0.5",
     "sass-loader": "8.0.0",
-    "style-loader": "1.0.0",
+    "style-loader": "1.0.1",
     "url-loader": "3.0.0",
     "webpack": "4.41.2",
     "webpack-cli": "3.3.10",
