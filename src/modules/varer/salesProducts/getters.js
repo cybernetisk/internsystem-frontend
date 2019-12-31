@@ -1,10 +1,9 @@
-import {toImmutable} from 'nuclear-js'
-import {pageLimit} from './service'
-import {extractGroupsImmutable, getSorterImmutable} from '../common/VarerHelper'
-
 import deepSearchPredicate from '../../../utils/deepSearchPredicate'
-
+import { extractGroupsImmutable, getSorterImmutable } from '../common/VarerHelper'
 import * as consts from './../consts'
+import { pageLimit } from './service'
+
+
 
 export const listStore = ['varerSalesProducts']
 
@@ -102,7 +101,7 @@ function fillBuyPrice(salesProduct) {
       return metaRaavare
         .set('innpris', price)
         .set('innpris_accurate', price
-          ? price.get('pris') / getQuantityAfterSpoilage(metaRaavare) * metaRaavare.get('mengde')
+          ? price.get('pris') / price.get('antall') / getQuantityAfterSpoilage(metaRaavare) * metaRaavare.get('mengde')
           : 0)
     }))
 

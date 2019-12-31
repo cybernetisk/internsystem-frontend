@@ -33,6 +33,11 @@ export default class extends React.Component {
       category = product.get('kategori') + ': '
     }
 
+    let type
+    if (this.props.isInventory && product.get('type')) {
+      type = ` (${product.get('type')})`
+    }
+
     let tag
     if (product.get('status') != 'OK') {
       tag = <span> <ProductStatus text={product.get('status')}/></span>
@@ -60,6 +65,7 @@ export default class extends React.Component {
             {product.get('navn')}
           </a>
         ) : product.get('navn')}
+        {type}
         {tag}
         {account}
       </div>

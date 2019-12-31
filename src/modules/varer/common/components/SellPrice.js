@@ -34,7 +34,7 @@ export default class extends React.Component {
     if (this.props.item.get('innpris')) {
       let inPrice = this.props.item.get('innpris')
       if (typeof inPrice === 'object') {
-        inPrice = inPrice.get('pris')
+        inPrice = inPrice.get('pris') / inPrice.get('antall')
       }
 
       return (

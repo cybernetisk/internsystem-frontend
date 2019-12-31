@@ -23,8 +23,9 @@ export function fillCountSummer(count, raavare) {
   let pant = 0
 
   if (raavare.get('innpris')) {
-    sum = Math.round(raavare.get('innpris').get('pris') * count.get('antall') * 100) / 100
+    sum = Math.round(raavare.get('innpris').get('pris') / raavare.get('innpris').get('antall') * count.get('antall') * 100) / 100
     pant = Math.round(raavare.get('innpris').get('pant')
+        / raavare.get('innpris').get('antall')
         * (count.get('antallpant') || Math.ceil(count.get('antall'))) * 100) / 100
   }
 

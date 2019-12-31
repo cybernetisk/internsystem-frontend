@@ -78,8 +78,8 @@ export default class extends React.Component {
               <div key={item.get('id')} className="varer-price-history-item">
                 <span>{item.get('aktiv') ? '' : 'Invalid'}</span>
                 <span>{item.get('dato')}</span>
-                <span>{price(item.get('pris'))}</span>
-                <span>{price(item.get('pant'))}</span>
+                <span>{price(item.get('pris') / item.get('antall'))}</span>
+                <span>{price(item.get('pant') / item.get('antall'))}</span>
                 <span>{item.getIn(['leverandor', 'navn'])}</span>
                 <span>{item.get('type')}</span>
               </div>
