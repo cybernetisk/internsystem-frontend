@@ -66,8 +66,10 @@ export default class NewCount extends React.Component {
   handleSave(event) {
     // TODO: validation
 
+    const antall = this.getNumber(this.state.antall)
+
     event.preventDefault()
-    if (this.state.isSending || !this.state.raavare) {
+    if (this.state.isSending || !this.state.raavare || isNaN(antall)) {
       return
     }
 
@@ -78,7 +80,7 @@ export default class NewCount extends React.Component {
     let data = {
       raavare: this.state.raavare.get('id'),
       varetelling: this.props.inventoryCountId,
-      antall: this.getNumber(this.state.antall),
+      antall,
       antallpant: this.getNumber(this.state.antallpant),
       kommentar: this.state.comment,
       sted: this.state.place,
