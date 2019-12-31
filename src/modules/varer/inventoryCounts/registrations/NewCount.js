@@ -89,7 +89,10 @@ export default class NewCount extends React.Component {
 
     addVare(data).then(res => {
       actions.vareAdded(this.props.inventoryCountId, res)
-      this.setState(getInitialState())
+      this.setState({
+        ...getInitialState(),
+        place: this.state.place,
+      })
       this.refs.inventoryItemSearch.clear()
       this.refs.inventoryItemSearch.refs.autosuggest.input.focus()
     }, err => {
