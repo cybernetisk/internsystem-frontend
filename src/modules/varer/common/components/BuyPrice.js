@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react'
 
+import NoPrice from './NoPrice'
 import Price from './Price'
 
 export default class extends React.Component {
@@ -10,7 +11,7 @@ export default class extends React.Component {
 
   render() {
     if (!this.props.product.get('innpris')) {
-      return null
+      return <NoPrice />
     }
 
     return (
