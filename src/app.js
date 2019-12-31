@@ -24,7 +24,7 @@ import { buildTime, gitCommitShort } from './manifest'
 const commitLink = `https://github.com/cybernetisk/internsystem-frontend/commit/${gitCommitShort}`
 
 console.info(
-  `Internsystem frontend\n` +
+  'Internsystem frontend\n' +
   `- built ${buildTime}\n` +
   `- from Git commit ${gitCommitShort}: ${commitLink}`
 )
