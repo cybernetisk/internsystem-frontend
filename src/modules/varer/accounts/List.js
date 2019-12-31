@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'nuclear-js-react-addons-chefsplate'
+import {admin} from '../../../api'
 
 import {fetchAccounts} from './actions'
 import {accounts, accountsLoader} from './getters'
@@ -35,7 +36,7 @@ class List extends React.Component {
           {accounts.map(account => (
             <tr key={account.id}>
               <td>{account.id}</td>
-              <td><a href={`admin/varer/konto/${account.id}/`} target="_self">{account.navn}</a></td>
+              <td><a href={admin(`varer/konto/${account.id}/`)} target="_self">{account.navn}</a></td>
               <td>{account.gruppe}</td>
               <td>{account.innkjopskonto}</td>
               <td>{account.varelagerkonto}</td>

@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'nuclear-js-react-addons-chefsplate'
+import {admin} from '../../../api'
 
 import {fetchSalesEstimates} from './actions'
 import {salesEstimates} from './getters'
@@ -22,7 +23,7 @@ class List extends React.Component {
         <ul>
           {estimates.map((estimate) => (
             <li key={estimate.id}>
-              <a href={`admin/varer/salgskalkyle/${estimate.id}/`} target="_self">
+              <a href={admin(`varer/salgskalkyle/${estimate.id}/`)} target="_self">
                 {estimate.navn}
               </a> ({estimate.dato})
             </li>

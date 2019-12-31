@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'nuclear-js-react-addons-chefsplate'
+import {admin} from '../../../../api'
 
 import Account from '../../common/components/Account'
 import ProductName from '../../common/components/ProductName'
@@ -92,7 +93,7 @@ class List extends React.Component {
         <ul>
           {raavare.get('tellinger').map(telling => (
             <li key={'telling-'+telling.get('id')}>
-              <a href={'admin/varer/varetellingvare/' + telling.get('id') + '/'} target="_self">
+              <a href={admin('varer/varetellingvare/') + telling.get('id') + '/'} target="_self">
                 {antall(telling.get('antall'))}
                 {' '}
                 ({this.renderAmount(telling.get('summer'), telling.get('antallpant'))})

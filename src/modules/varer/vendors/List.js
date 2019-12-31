@@ -1,6 +1,7 @@
 import React from 'react'
 import Markdown from 'react-remarkable'
 import {connect} from 'nuclear-js-react-addons-chefsplate'
+import {admin} from '../../../api'
 
 import './List.scss'
 
@@ -33,7 +34,7 @@ class List extends React.Component {
           {vendors.map((vendor) => (
             <tr key={vendor.id}>
               <td>{vendor.id}</td>
-              <td><a href={`admin/varer/leverandør/${vendor.id}/`} target="_self">{vendor.navn}</a></td>
+              <td><a href={admin(`varer/leverandør/${vendor.id}/`)} target="_self">{vendor.navn}</a></td>
               <td><Markdown source={vendor.kommentar}/></td>
             </tr>
           ))}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {connect} from 'nuclear-js-react-addons-chefsplate'
+import {admin} from '../../../../api'
 
 import {addVare} from '../service'
 
@@ -73,7 +74,7 @@ class Item extends React.Component {
     return (
       <div>
         <div className="pull-right hidden-print">
-          <a className="btn btn-default" href={`admin/varer/varetelling/${this.props.data.get('id')}/`} target="_self">Edit</a>
+          <a className="btn btn-default" href={admin(`varer/varetelling/${this.props.data.get('id')}/`)} target="_self">Edit</a>
           {' '}
           <Link to={`/varer/inventorycount/${this.props.data.get('id')}`}
             className="btn btn-default"

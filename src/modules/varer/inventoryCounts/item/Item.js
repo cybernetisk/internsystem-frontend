@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import {connect} from 'nuclear-js-react-addons-chefsplate'
 import Immutable from 'immutable'
+import {admin} from '../../../../api'
 
 import moment from '../../../../moment'
 import {price} from '../../../../services/FormatService'
@@ -196,7 +197,7 @@ class Item extends React.Component {
     return (
       <div className="varetellinger-item">
         <div className="pull-right hidden-print">
-          <a className="btn btn-default" href={`admin/varer/varetelling/${item.id}/`} target="_self">Edit</a>
+          <a className="btn btn-default" href={admin(`varer/varetelling/${item.id}/`)} target="_self">Edit</a>
           {' '}
           <Link to={`/varer/inventorycount/${this.props.data.get('id')}/registrations`}
             className="btn btn-default"
