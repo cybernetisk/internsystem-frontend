@@ -5,12 +5,12 @@ import {getInventoryItems} from './service'
 
 import actionTypes from './actionTypes'
 
-export function fetchInventoryItems(page) {
-  dispatchAsync(getInventoryItems(page), {
+export function fetchInventoryItems() {
+  dispatchAsync(getInventoryItems(), {
     request: actionTypes.RECEIVE_INVENTORYITEMS_START,
     success: actionTypes.RECEIVE_INVENTORYITEMS_SUCCESS,
     failure: actionTypes.RECEIVE_INVENTORYITEMS_FAILURE
-  }, {page})
+  })
 }
 
 export function updateFilters(filters) {

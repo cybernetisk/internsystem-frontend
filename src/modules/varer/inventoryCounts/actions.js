@@ -1,7 +1,6 @@
 import reactor from './../../../reactor'
 import {dispatchAsync} from '../../../utils/FluxUtils'
 
-import {getInventoryItems} from '../inventoryItems/service'
 import {getInventoryCounts, getInventoryCount, getInventoryCountCounts} from './service'
 
 import actionTypes from './actionTypes'

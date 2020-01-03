@@ -1,5 +1,4 @@
-import {toImmutable} from 'nuclear-js'
-import {fillBuyPrice, fillSellPrice, pageLimit} from './service'
+import {fillBuyPrice, fillSellPrice} from './service'
 import {extractGroupsImmutable, getSorterImmutable} from '../common/VarerHelper'
 
 import deepSearchPredicate from '../../../utils/deepSearchPredicate'
@@ -7,13 +6,6 @@ import deepSearchPredicate from '../../../utils/deepSearchPredicate'
 import * as consts from '../consts'
 
 export const listStore = ['varerInventoryItems']
-
-export const activePage = ['varerInventoryItems', 'activePage']
-
-export const pages = [
-  ['varerInventoryItems', 'count'],
-  (count) => Math.ceil(count / pageLimit)
-]
 
 export const filters = ['varerInventoryItems', 'filters']
 

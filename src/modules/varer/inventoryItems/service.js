@@ -1,12 +1,9 @@
 import reqwest from '../../../utils/reqwest'
 import {api} from '../../../api'
 
-export const pageLimit = 500
-
-export function getInventoryItems(page) {
+export function getInventoryItems() {
   return reqwest({
     url: api('varer/råvarer'),
-    data: {limit: pageLimit, page},
     type: 'json'
   })
 }

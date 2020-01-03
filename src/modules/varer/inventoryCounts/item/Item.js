@@ -58,7 +58,7 @@ class Item extends React.Component {
 
   componentDidMount() {
     actions.fetchInventoryCount(this.props.match.params.id)
-    inventoryItemsActions.fetchInventoryItems(1)
+    inventoryItemsActions.fetchInventoryItems()
 
     // timeout is needed because this is done after getting initial state but before adding observer
     // the timeout causes the observer to be added first

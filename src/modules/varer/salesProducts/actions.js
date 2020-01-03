@@ -5,12 +5,12 @@ import {getSalesProducts} from './service'
 
 import actionTypes from './actionTypes'
 
-export function fetchSalesProducts(page) {
-  dispatchAsync(getSalesProducts(page), {
+export function fetchSalesProducts() {
+  dispatchAsync(getSalesProducts(), {
     request: actionTypes.RECEIVE_SALESPRODUCTS_START,
     success: actionTypes.RECEIVE_SALESPRODUCTS_SUCCESS,
     failure: actionTypes.RECEIVE_SALESPRODUCTS_FAILURE
-  }, {page})
+  })
 }
 
 export function updateFilters(filters) {

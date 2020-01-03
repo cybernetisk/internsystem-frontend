@@ -8,9 +8,7 @@ import {createQueryUpdater} from '../common/functions'
 
 import {fetchSalesProducts, updateFilters} from './actions'
 import {
-  activePage,
   filters,
-  pages,
   salesProductsLoader,
   selectGroups,
   filteredSalesProducts,
@@ -19,17 +17,14 @@ import * as consts from './../consts'
 
 import withQueryProps from '../../../utils/withQueryProps'
 import Loader from '../../../components/Loader'
-import Pagination from '../../../components/Pagination'
 import AccountFilter from './../common/components/AccountFilter'
 import ListInputQ from './../common/components/TextInput'
 import ListTable from './ListTable'
 
 export default
 @connect(props => ({
-  activePage,
   selectGroups,
   filters,
-  pages,
   salesProducts: filteredSalesProducts,
   salesProductsLoader
 }))
@@ -49,7 +44,7 @@ class List extends React.Component {
   }
 
   componentDidMount() {
-    fetchSalesProducts(this.props.query.page || 1)
+    fetchSalesProducts()
 
     // timeout is needed because this is done after getting initial state but before adding observer
     // the timeout causes the observer to be added first
@@ -75,10 +70,6 @@ class List extends React.Component {
         group: parseInt(newProps.query.group) || null,
         outdated
       })
-    }
-
-    if (newProps.query.page != this.props.query.page) {
-      fetchSalesProducts(newProps.query.page || 1)
     }
   }
 
@@ -108,13 +99,6 @@ class List extends React.Component {
     }
 
     this.updateQuery('outdated', outdated)
-  }
-
-  handlePageChange(newPage) {
-    fetchSalesProducts(newPage)
-
-    let page = newPage !== 1 ? newPage : undefined
-    this.updateQuery('page', page)
   }
 
   renderSalesProducts(salesProducts) {
@@ -148,10 +132,6 @@ class List extends React.Component {
         {salesProducts.count()
           ? <ListTable salesProducts={salesProducts}/>
           : <p>No products matched search criteria.</p>}
-
-        {this.props.pages > 1
-          ? <Pagination pages={this.props.pages} active={this.props.activePage} onChange={this.handlePageChange}/>
-          : ''}
       </div>
     )
   }

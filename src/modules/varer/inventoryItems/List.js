@@ -9,9 +9,7 @@ import {createQueryUpdater} from '../common/functions'
 
 import {fetchInventoryItems, updateFilters} from './actions'
 import {
-  activePage,
   filters,
-  pages,
   inventoryItemsLoader,
   selectGroups,
   filteredInventoryItems,
@@ -19,17 +17,14 @@ import {
 import * as consts from '../consts'
 
 import Loader from '../../../components/Loader'
-import Pagination from '../../../components/Pagination'
 import AccountFilter from './../common/components/AccountFilter'
 import ListInputQ from './../common/components/TextInput'
 import ListTable from './ListTable'
 
 export default
 @connect(props => ({
-  activePage,
   selectGroups,
   filters,
-  pages,
   inventoryItems: filteredInventoryItems,
   inventoryItemsLoader
 }))
@@ -49,7 +44,7 @@ class List extends React.Component {
   }
 
   componentDidMount() {
-    fetchInventoryItems(this.props.query.page || 1)
+    fetchInventoryItems()
 
     // timeout is needed because this is done after getting initial state but before adding observer
     // the timeout causes the observer to be added first
@@ -75,10 +70,6 @@ class List extends React.Component {
         group: parseInt(newProps.query.group) || null,
         outdated
       })
-    }
-
-    if (newProps.query.page != this.props.query.page) {
-      fetchInventoryItems(newProps.query.page || 1)
     }
   }
 
@@ -108,13 +99,6 @@ class List extends React.Component {
     }
 
     this.updateQuery('outdated', outdated)
-  }
-
-  handlePageChange(newPage) {
-    fetchInventoryItems(newPage)
-
-    let page = newPage !== 1 ? newPage : undefined
-    this.updateQuery('page', page)
   }
 
   renderInventoryItems() {
@@ -148,10 +132,6 @@ class List extends React.Component {
         {this.props.inventoryItems.count()
           ? <ListTable inventoryItems={this.props.inventoryItems}/>
           : <p>No items matched search criteria.</p>}
-
-        {this.props.pages > 1
-          ? <Pagination pages={this.props.pages} active={this.props.activePage} onChange={this.handlePageChange}/>
-          : ''}
       </div>
     )
   }

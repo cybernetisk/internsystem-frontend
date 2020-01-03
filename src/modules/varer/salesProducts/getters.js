@@ -1,21 +1,9 @@
 import deepSearchPredicate from '../../../utils/deepSearchPredicate'
 import { extractGroupsImmutable, getSorterImmutable } from '../common/VarerHelper'
 import * as consts from './../consts'
-import { pageLimit } from './service'
-
 
 
 export const listStore = ['varerSalesProducts']
-
-export const activePage = [
-  listStore,
-  (store) => store.get('activePage')
-]
-
-export const pages = [
-  listStore,
-  (store) => Math.ceil(store.get('count') / pageLimit)
-]
 
 export const filters = [
   listStore,

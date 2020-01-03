@@ -11,7 +11,6 @@ const initialFilters = {
 export default Store({
   getInitialState() {
     return toImmutable({
-      activePage: 1,
       count: 0,
       error: null,
       filters: initialFilters,
@@ -39,9 +38,8 @@ function clearFilters(state) {
     .set('filters', toImmutable(initialFilters))
 }
 
-function receiveInventoryItemsStart(state, {page}) {
+function receiveInventoryItemsStart(state) {
   return state
-    .set('activePage', page)
     .set('items', toImmutable([]))
     .set('error', null)
     .set('isLoading', true)
@@ -49,8 +47,8 @@ function receiveInventoryItemsStart(state, {page}) {
 
 function receiveInventoryItemsSuccess(state, {response}) {
   return state
-    .set('count', toImmutable(response.count))
-    .set('items', toImmutable(response.results))
+    .set('count', toImmutable(response.length))
+    .set('items', toImmutable(response))
     .set('isLoading', false)
 }
 
