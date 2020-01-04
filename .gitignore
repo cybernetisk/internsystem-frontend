@@ -2,6 +2,7 @@ build/
 dist/
 
 *.iml
+.vscode/
 .idea/
 node_modules/
 /env.override.js
