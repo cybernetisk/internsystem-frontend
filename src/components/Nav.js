@@ -72,9 +72,6 @@ class Nav extends React.Component {
               <MenuItem header>Modules</MenuItem>
               <NavLink to="/z/stats">Statistics</NavLink>
             </NavDropdown>
-            <NavDropdown title="Calendar" id="nav-cal-dropdown">
-              <NavLink to="/cal/list">Overview</NavLink>
-            </NavDropdown>
             <NavDropdown title="Vouchers" id="nav-voucher-dropdown">
               <NavLink to="/voucher/stats">Overview</NavLink>
               <NavLink to="/voucher/use">Use vouchers</NavLink>

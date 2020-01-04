@@ -12,7 +12,6 @@ import Index from './components/Index'
 
 import Admin from './admin'
 import Auth from './modules/auth'
-import Cal from './modules/cal'
 import Varer from './modules/varer'
 import Voucher from './modules/voucher'
 import Z from './modules/z'
@@ -35,7 +34,6 @@ const App = () => (
       <Route exact path="/" component={Index} />
       {Admin}
       {Auth}
-      {Cal}
       {Varer}
       {Voucher}
       {Z}
