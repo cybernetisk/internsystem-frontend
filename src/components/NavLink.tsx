@@ -1,8 +1,12 @@
 import React from "react"
-import { matchPath, withRouter } from "react-router"
+import { matchPath, RouteComponentProps, withRouter } from "react-router"
 import { Link } from "react-router-dom"
 
-class BareNavLink extends React.Component {
+interface BareNavLinkProps extends RouteComponentProps {
+  to: string
+}
+
+class BareNavLink extends React.Component<BareNavLinkProps> {
   render() {
     const isActive = matchPath(this.props.location.pathname, {
       path: this.props.to,

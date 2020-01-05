@@ -6,12 +6,15 @@ import { authdata, isLoggedIn, userDetails } from "../modules/auth/getters"
 import NavDropdown from "./NavDropdown"
 import NavLink from "./NavLink"
 
-@connect(() => ({
-  authdata,
-  userDetails,
-  isLoggedIn,
-}))
-export default class Nav extends React.Component {
+interface BareNavProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  authdata: any // TODO
+  isLoggedIn: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  userDetails: any // TODO
+}
+
+class BareNav extends React.Component<BareNavProps> {
   renderProfileMenu() {
     if (this.props.authdata.get("isLoading")) {
       return (
@@ -132,3 +135,9 @@ export default class Nav extends React.Component {
     )
   }
 }
+
+export default connect(() => ({
+  authdata,
+  userDetails,
+  isLoggedIn,
+}))(BareNav)

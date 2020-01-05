@@ -1,13 +1,21 @@
 import React from "react"
 import { NavDropdown as RefNavDropdown } from "react-bootstrap"
-import { withRouter } from "react-router"
+import { RouteComponentProps, withRouter } from "react-router"
 
 let counter = 0
 
-class BareNavDropdown extends React.Component {
-  static propTypes = RefNavDropdown.propTypes
+type BareNavDropdownProps = React.ComponentProps<typeof RefNavDropdown> &
+  RouteComponentProps
 
-  constructor(props) {
+class BareNavDropdown extends React.Component<
+  BareNavDropdownProps,
+  {
+    isActive: boolean
+  }
+> {
+  private id: string
+
+  constructor(props: BareNavDropdownProps) {
     super(props)
     this.id = props.id || `nav-dropdown-${++counter}`
     this.state = {
@@ -17,7 +25,7 @@ class BareNavDropdown extends React.Component {
 
   checkActive() {
     const dom = document.getElementById(this.id)
-    if (!dom) return
+    if (!dom || !dom.parentNode) return
 
     const isActive = dom.parentNode.querySelector(".active") !== null
     if (isActive != this.state.isActive) {

@@ -1,7 +1,13 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-export default class Loader extends React.Component {
+interface LoaderProps {
+  isLoading?: boolean
+  isEmpty?: boolean
+  error?: string
+}
+
+export default class Loader extends React.Component<LoaderProps> {
   PropTypes = {
     children: PropTypes.node,
     isEmpty: PropTypes.bool,
@@ -9,10 +15,10 @@ export default class Loader extends React.Component {
     error: PropTypes.string,
   }
 
-  renderError() {
+  renderError(error: string) {
     let message
-    if (this.props.error.length > 0) {
-      message = `Error loading data: ${this.props.error}`
+    if (error.length > 0) {
+      message = `Error loading data: ${error}`
     } else {
       message = "Unexpected error on loading data."
     }
@@ -33,8 +39,8 @@ export default class Loader extends React.Component {
   }
 
   render() {
-    if (this.props.error !== null) {
-      return this.renderError()
+    if (this.props.error != null) {
+      return this.renderError(this.props.error)
     } else if (this.props.isLoading) {
       return this.renderLoading()
     } else if (this.props.isEmpty) {

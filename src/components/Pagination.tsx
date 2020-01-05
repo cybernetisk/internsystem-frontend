@@ -1,14 +1,13 @@
-import PropTypes from "prop-types"
-import React from "react"
+import React, { Component, MouseEvent } from "react"
 
-export default class Pagination extends React.Component {
-  static propTypes = {
-    active: PropTypes.number.isRequired,
-    pages: PropTypes.number.isRequired,
-    onChange: PropTypes.func.isRequired,
-  }
+interface PaginationProps {
+  active: number
+  pages: number
+  onChange(value: number): void
+}
 
-  handleChange(event, newValue) {
+export default class Pagination extends Component<PaginationProps> {
+  handleChange(event: MouseEvent<HTMLElement>, newValue: number) {
     event.preventDefault()
 
     if (

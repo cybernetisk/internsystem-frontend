@@ -16,8 +16,11 @@ const config = {
   mode: production ? "production" : "development",
   name: "client",
   target: "web",
+  resolve: {
+    extensions: ['.js', '.ts', '.tsx'],
+  },
   entry: {
-    app: path.resolve(__dirname, "src/app.js"),
+    app: path.resolve(__dirname, "src/app.tsx"),
   },
   output: {
     chunkFilename: `[name].[${hashType}].js`,
@@ -35,7 +38,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|tsx?)$/,
         exclude: /node_modules/,
         loader: "babel-loader",
         options: {

@@ -17,8 +17,8 @@ if (backendUrl.indexOf("//") === -1) {
   backendUrl = window.location.origin + seperator + backendUrl
 }
 
-export const api = url => backendUrl + "api/" + url // see webpack config
+export const api = (url: string) => backendUrl + "api/" + url // see webpack config
 
-export const saml = url => backendUrl + "saml/" + url
+export const saml = (url: string) => backendUrl + "saml/" + url
 
-export const admin = url => backendUrl + "admin/" + url
+export const admin = (url: string) => backendUrl + "admin/" + url

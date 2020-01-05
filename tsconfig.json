@@ -7,7 +7,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
-    "target": "es6"
+    "target": "es6",
   },
   "include": ["./src"]
 }
