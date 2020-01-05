@@ -65,16 +65,19 @@ class Intern extends React.Component {
     }
     this.setState({isSending: true})
     const userid = this.props.interns.get('data').toJS()[0].user.id
-    InternService.addCardToUser(userid, this.state.cardnumber).then(result => {
-      actions.getCardsForUser(this.props.match.params.userId)
-      this.setState({
-        cardnumber: '',
-        isSending: false
-      }), error => {
+    InternService.addCardToUser(userid, this.state.cardnumber).then(
+      () => {
+        actions.getCardsForUser(this.props.match.params.userId)
+        this.setState({
+          cardnumber: '',
+          isSending: false,
+        })
+      },
+      error => {
         alert(error.responseText)
         this.setState({isSending: false})
-      }
-    })
+      },
+    )
   }
 
   addRole(e) {
