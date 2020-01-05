@@ -1,7 +1,7 @@
 {
-  "name": "cyb.varer",
+  "name": "cyb-internsystem",
   "private": true,
-  "description": "CYB varer",
+  "description": "CYB internsystem (frontend)",
   "devDependencies": {
     "@babel/core": "7.7.7",
     "@babel/plugin-proposal-class-properties": "7.7.4",
