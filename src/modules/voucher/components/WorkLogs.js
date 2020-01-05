@@ -1,9 +1,10 @@
 import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
+import { connect as reduxConnect } from "react-redux"
 import { Link } from "react-router-dom"
 import Loader from "../../../components/Loader"
 import Pagination from "../../../components/Pagination"
-import { isLoggedIn } from "../../auth/getters"
+import { getIsLoggedIn } from "../../auth/selectors"
 import * as actions from "../actions"
 import * as getters from "../getters"
 import NewWorkLog from "./NewWorkLog"
@@ -12,7 +13,9 @@ import "./WorkLogs.scss"
 
 @connect(() => ({
   worklogs: getters.worklogs,
-  isLoggedIn,
+}))
+@reduxConnect(state => ({
+  isLoggedIn: getIsLoggedIn(state),
 }))
 export default class List extends React.Component {
   componentDidMount() {

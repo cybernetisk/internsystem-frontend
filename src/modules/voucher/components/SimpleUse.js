@@ -1,9 +1,10 @@
 import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
+import { connect as reduxConnect } from "react-redux"
 import { Link } from "react-router-dom"
 import Loader from "../../../components/Loader"
 import moment from "../../../moment"
-import { userDetails } from "../../auth/getters"
+import { getUserDetails } from "../../auth/selectors"
 import * as actions from "../actions"
 import * as getters from "../getters"
 import "./SimpleUse.scss"
@@ -11,7 +12,9 @@ import UseVouchers from "./UseVouchers"
 
 @connect(() => ({
   uselogs: getters.uselogs,
-  userDetails,
+}))
+@reduxConnect(state => ({
+  userDetails: getUserDetails(state),
 }))
 export default class SimpleUse extends React.Component {
   componentDidMount() {

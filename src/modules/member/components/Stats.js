@@ -1,14 +1,17 @@
 import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
+import { connect as reduxConnect } from "react-redux"
 import { Link } from "react-router-dom"
 import Loader from "../../../components/Loader"
-import { isLoggedIn } from "../../auth/getters"
+import { getIsLoggedIn } from "../../auth/selectors"
 import * as actions from "../actions"
 import * as getters from "../getters"
 
 @connect(() => ({
-  isLoggedIn,
   stats: getters.stats,
+}))
+@reduxConnect(state => ({
+  isLoggedIn: getIsLoggedIn(state),
 }))
 export default class Stats extends React.Component {
   componentDidMount() {

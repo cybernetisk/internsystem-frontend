@@ -1,14 +1,17 @@
 import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
-import { isLoggedIn, userDetails } from "../../auth/getters"
+import { connect as reduxConnect } from "react-redux"
+import { getIsLoggedIn, getUserDetails } from "../../auth/selectors"
 import * as actions from "../actions"
 import * as getters from "../getters"
 import List from "./List"
 
 @connect(() => ({
   members: getters.members,
-  userDetails,
-  isLoggedIn,
+}))
+@reduxConnect(state => ({
+  userDetails: getUserDetails(state),
+  isLoggedIn: getIsLoggedIn(state),
 }))
 export default class Search extends React.Component {
   constructor(props) {

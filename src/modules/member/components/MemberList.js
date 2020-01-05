@@ -1,12 +1,12 @@
-import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
-import { isLoggedIn, userDetails } from "../../auth/getters"
+import { connect } from "react-redux"
+import { getIsLoggedIn, getUserDetails } from "../../auth/selectors"
 import * as actions from "../actions"
 import List from "./List"
 
-@connect(() => ({
-  userDetails,
-  isLoggedIn,
+@connect(state => ({
+  userDetails: getUserDetails(state),
+  isLoggedIn: getIsLoggedIn(state),
 }))
 export default class MemberList extends React.Component {
   constructor(props) {

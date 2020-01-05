@@ -1,7 +1,8 @@
 import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
+import { connect as reduxConnect } from "react-redux"
 import { Link } from "react-router-dom"
-import { isLoggedIn, userDetails } from "../../auth/getters"
+import { getIsLoggedIn, getUserDetails } from "../../auth/selectors"
 import * as actions from "../actions"
 import * as getters from "../getters"
 
@@ -9,6 +10,10 @@ import * as getters from "../getters"
   groups: getters.groups,
   userDetails,
   isLoggedIn,
+}))
+@reduxConnect(state => ({
+  isLoggedIn: getIsLoggedIn(state),
+  userDetails: getUserDetails(state),
 }))
 export default class Groups extends React.Component {
   constructor(props) {

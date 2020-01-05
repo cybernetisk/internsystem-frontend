@@ -1,8 +1,9 @@
 import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
 import { Col, Row } from "react-bootstrap"
+import { connect as reduxConnect } from "react-redux"
 import { Link } from "react-router-dom"
-import { isLoggedIn, userDetails } from "../../auth/getters"
+import { getIsLoggedIn, getUserDetails } from "../../auth/selectors"
 import * as actions from "../actions"
 import * as getters from "../getters"
 import InternService from "../services/InternService"
@@ -12,8 +13,10 @@ import InternService from "../services/InternService"
   roles: getters.roles,
   internroles: getters.internroles,
   uioCards: getters.uioCards,
-  userDetails,
-  isLoggedIn,
+}))
+@reduxConnect(state => ({
+  isLoggedIn: getIsLoggedIn(state),
+  userDetails: getUserDetails(state),
 }))
 export default class Intern extends React.Component {
   constructor(props) {

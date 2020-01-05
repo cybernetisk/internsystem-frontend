@@ -3,7 +3,6 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { hot } from "react-hot-loader"
 import { Route } from "react-router"
-import { BrowserRouter } from "react-router-dom"
 import Admin from "./admin"
 import "./app.scss"
 import Index from "./components/Index"
@@ -25,18 +24,16 @@ console.info(
 )
 
 const App = () => (
-  <BrowserRouter>
-    <Root>
-      <Route exact path="/" component={Index} />
-      {Admin}
-      {Auth}
-      {Varer}
-      {Voucher}
-      {Z}
-      {Member}
-      {Intern}
-    </Root>
-  </BrowserRouter>
+  <Root>
+    <Route exact path="/" component={Index} />
+    {Admin}
+    {Auth}
+    {Varer}
+    {Voucher}
+    {Z}
+    {Member}
+    {Intern}
+  </Root>
 )
 
 const HotApp = hot(module)(App)

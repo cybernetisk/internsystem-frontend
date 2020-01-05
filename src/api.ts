@@ -21,4 +21,4 @@ export const api = (url: string) => backendUrl + "api/" + url // see webpack con
 
 export const saml = (url: string) => backendUrl + "saml/" + url
 
-export const admin = (url: string) => backendUrl + "admin/" + url
+export const admin = (url = "") => backendUrl + "admin/" + url

@@ -1,16 +1,19 @@
 import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
+import { connect as reduxConnect } from "react-redux"
 import { Link } from "react-router-dom"
 import moment from "../../../moment"
-import { isLoggedIn, userDetails } from "../../auth/getters"
+import { getIsLoggedIn, getUserDetails } from "../../auth/selectors"
 import * as actions from "../actions"
 import * as getters from "../getters"
 import MemberService from "../services/MemberService"
 
 @connect(() => ({
   member: getters.member,
-  userDetails,
-  isLoggedIn,
+}))
+@reduxConnect(state => ({
+  userDetails: getUserDetails(state),
+  isLoggedIn: getIsLoggedIn(state),
 }))
 export default class Member extends React.Component {
   constructor(props) {

@@ -1,9 +1,10 @@
+import { connect as reduxConnect } from "react-redux"
 import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
 import { Link } from "react-router-dom"
 import { admin } from "../../../../api"
 import Loader from "../../../../components/Loader"
-import { isLoggedIn } from "../../../auth/getters"
+import { getIsLoggedIn } from "../../../auth/selectors"
 import * as actions from "../actions"
 import { data, error, isLoading } from "./getters"
 import "./Item.scss"
@@ -14,7 +15,9 @@ import NewCount from "./NewCount"
   data,
   isLoading,
   error,
-  isLoggedIn,
+}))
+@reduxConnect(state => ({
+  isLoggedIn: getIsLoggedIn(state),
 }))
 export default class Item extends React.Component {
   constructor(props) {

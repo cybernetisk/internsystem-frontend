@@ -1,11 +1,12 @@
 import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
+import { connect as reduxConnect } from "react-redux"
 import { Link } from "react-router-dom"
 import Loader from "../../../components/Loader"
 import Pagination from "../../../components/Pagination"
 import moment from "../../../moment"
 import { antall } from "../../../services/FormatService"
-import { userDetails } from "../../auth/getters"
+import { getUserDetails } from "../../auth/selectors"
 import * as actions from "../actions"
 import * as getters from "../getters"
 import "./UseLogs.scss"
@@ -13,7 +14,9 @@ import UseVouchers from "./UseVouchers"
 
 @connect(() => ({
   uselogs: getters.uselogs,
-  userDetails,
+}))
+@reduxConnect(state => ({
+  userDetails: getUserDetails(state),
 }))
 export default class UseLogs extends React.Component {
   componentDidMount() {

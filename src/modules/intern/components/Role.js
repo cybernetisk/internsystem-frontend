@@ -1,13 +1,16 @@
 import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
-import { isLoggedIn } from "../../auth/getters"
+import { connect as reduxConnect } from "react-redux"
+import { getIsLoggedIn } from "../../auth/selectors"
 import * as actions from "../actions"
 import * as getters from "../getters"
 
 @connect(() => ({
   role: getters.roles,
   interns: getters.internList,
-  isLoggedIn,
+}))
+@reduxConnect(state => ({
+  isLoggedIn: getIsLoggedIn(state),
 }))
 export default class Role extends React.Component {
   constructor(props) {
