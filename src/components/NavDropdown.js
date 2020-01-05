@@ -1,37 +1,47 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { NavDropdown as RefNavDropdown } from 'react-bootstrap'
+import { withRouter } from 'react-router'
 
-import {NavDropdown as RefNavDropdown} from 'react-bootstrap'
+let counter = 0
 
-export default class NavDropdown extends React.Component {
-
+class BareNavDropdown extends React.Component {
   static propTypes = RefNavDropdown.propTypes
 
   constructor(props) {
     super(props)
+    this.id = props.id || `nav-dropdown-${++counter}`
     this.state = {
-      isActive: false
+      isActive: false,
+    }
+  }
+
+  checkActive() {
+    const dom = document.getElementById(this.id)
+    if (!dom) return
+
+    const isActive = dom.parentNode.querySelector('.active') !== null
+    if (isActive != this.state.isActive) {
+      this.setState({ isActive })
     }
   }
 
   componentDidUpdate() {
-    // this is really a hack to set active-class if a child is active
-    // should probably not use DOM-operations like this...
-    let dom = ReactDOM.findDOMNode(this)
+    this.checkActive()
+  }
 
-    let isActive = dom.querySelector('.active') !== null
-    if (isActive != this.state.isActive) {
-      this.setState({isActive})
-    }
+  componentDidMount() {
+    this.checkActive()
   }
 
   render() {
-    let className = this.state.isActive ? 'active' : ''
+    const className = this.state.isActive ? 'active' : ''
 
     return (
-      <RefNavDropdown className={className} {...this.props}>
+      <RefNavDropdown className={className} id={this.id} {...this.props}>
         {this.props.children}
       </RefNavDropdown>
     )
   }
 }
+
+export default withRouter(BareNavDropdown)
