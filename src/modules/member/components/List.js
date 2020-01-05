@@ -8,13 +8,12 @@ import { isLoggedIn, userDetails } from "../../auth/getters"
 import * as actions from "../actions"
 import * as getters from "../getters"
 
-export default
 @connect(() => ({
   members: getters.members,
   userDetails,
   isLoggedIn,
 }))
-class List extends React.Component {
+export default class List extends React.Component {
   constructor(props) {
     super(props)
     this.handlePageChange = this.handlePageChange.bind(this)

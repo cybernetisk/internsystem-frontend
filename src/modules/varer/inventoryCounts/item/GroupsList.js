@@ -4,11 +4,10 @@ import { price } from "../../../../services/FormatService"
 import Account from "../../common/components/Account"
 import { groupsViewData } from "./getters"
 
-export default
 @connect(() => ({
   groupsViewData,
 }))
-class GroupsList extends React.Component {
+export default class GroupsList extends React.Component {
   render() {
     if (this.props.groupsViewData.size === 0) return <p>No data found.</p>
 

@@ -11,12 +11,11 @@ import * as getters from "../getters"
 import "./UseLogs.scss"
 import UseVouchers from "./UseVouchers"
 
-export default
 @connect(() => ({
   uselogs: getters.uselogs,
   userDetails,
 }))
-class UseLogs extends React.Component {
+export default class UseLogs extends React.Component {
   componentDidMount() {
     actions.fetchUseLogs(1)
   }

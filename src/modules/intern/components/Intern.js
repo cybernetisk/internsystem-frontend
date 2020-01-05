@@ -7,7 +7,6 @@ import * as actions from "../actions"
 import * as getters from "../getters"
 import InternService from "../services/InternService"
 
-export default
 @connect(() => ({
   interns: getters.interns,
   roles: getters.roles,
@@ -16,7 +15,7 @@ export default
   userDetails,
   isLoggedIn,
 }))
-class Intern extends React.Component {
+export default class Intern extends React.Component {
   constructor(props) {
     super(props)
     this.handleRoleChange = this.handleRoleChange.bind(this)

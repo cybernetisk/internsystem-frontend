@@ -10,12 +10,11 @@ import NewWorkLog from "./NewWorkLog"
 import WorkLogItem from "./WorkLogItem"
 import "./WorkLogs.scss"
 
-export default
 @connect(() => ({
   worklogs: getters.worklogs,
   isLoggedIn,
 }))
-class List extends React.Component {
+export default class List extends React.Component {
   componentDidMount() {
     actions.fetchWorkLogs(1)
   }

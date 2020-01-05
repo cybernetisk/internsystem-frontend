@@ -6,7 +6,6 @@ import * as actions from "../actions"
 import * as getters from "../getters"
 import AddIntern from "./AddIntern"
 
-export default
 @connect(() => ({
   group: getters.group,
   roles: getters.roles,
@@ -14,7 +13,7 @@ export default
   userDetails,
   isLoggedIn,
 }))
-class Group extends React.Component {
+export default class Group extends React.Component {
   constructor(props) {
     super(props)
     this.state = { isEditing: false, isDeleted: false }

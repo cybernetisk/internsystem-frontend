@@ -5,12 +5,11 @@ import * as actions from "../actions"
 import * as getters from "../getters"
 import List from "./List"
 
-export default
 @connect(() => ({
   isLoggedIn,
   member: getters.members,
 }))
-class Lifetime extends React.Component {
+export default class Lifetime extends React.Component {
   componentDidMount() {
     actions.getLifetimeMember(1, 50)
   }

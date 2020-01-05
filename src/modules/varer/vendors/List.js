@@ -7,11 +7,10 @@ import { fetchVendors } from "./actions"
 import { vendors } from "./getters"
 import "./List.scss"
 
-export default
 @connect(() => ({
   vendors,
 }))
-class List extends React.Component {
+export default class List extends React.Component {
   componentDidMount() {
     fetchVendors()
   }

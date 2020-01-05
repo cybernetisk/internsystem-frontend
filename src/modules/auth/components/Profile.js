@@ -4,11 +4,10 @@ import React from "react"
 import PageLoader from "../../../components/PageLoader"
 import { authdata } from "../getters"
 
-export default
 @connect(() => ({
   authdata,
 }))
-class Profile extends React.Component {
+export default class Profile extends React.Component {
   renderIncomplete() {
     return (
       <PageLoader

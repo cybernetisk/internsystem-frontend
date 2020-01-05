@@ -4,12 +4,11 @@ import Loader from "../../../components/Loader"
 import * as actions from "../actions"
 import * as getters from "../getters"
 
-export default
 @connect(() => ({
   wallets: getters.wallets,
   semester: getters.currentSemester,
 }))
-class Semester extends React.Component {
+export default class Semester extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       actions.fetchWallets({ semester: this.props.match.params.semesterId })

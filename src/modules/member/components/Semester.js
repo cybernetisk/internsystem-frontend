@@ -8,14 +8,13 @@ import * as getters from "../getters"
 import MemberService from "../services/MemberService"
 import List from "./List"
 
-export default
 @connect(() => ({
   userDetails,
   isLoggedIn,
   stats: getters.stats,
   members: getters.members,
 }))
-class Semester extends React.Component {
+export default class Semester extends React.Component {
   constructor(props) {
     super(props)
     this.state = { loaded: false }

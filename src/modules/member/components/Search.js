@@ -5,13 +5,12 @@ import * as actions from "../actions"
 import * as getters from "../getters"
 import List from "./List"
 
-export default
 @connect(() => ({
   members: getters.members,
   userDetails,
   isLoggedIn,
 }))
-class Search extends React.Component {
+export default class Search extends React.Component {
   constructor(props) {
     super(props)
     this.handleSearch = this.handleSearch.bind(this)

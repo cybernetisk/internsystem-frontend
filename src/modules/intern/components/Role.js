@@ -4,13 +4,12 @@ import { isLoggedIn } from "../../auth/getters"
 import * as actions from "../actions"
 import * as getters from "../getters"
 
-export default
 @connect(() => ({
   role: getters.roles,
   interns: getters.internList,
   isLoggedIn,
 }))
-class Role extends React.Component {
+export default class Role extends React.Component {
   constructor(props) {
     super(props)
   }

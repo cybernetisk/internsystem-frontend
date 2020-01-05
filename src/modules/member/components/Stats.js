@@ -6,12 +6,11 @@ import { isLoggedIn } from "../../auth/getters"
 import * as actions from "../actions"
 import * as getters from "../getters"
 
-export default
 @connect(() => ({
   isLoggedIn,
   stats: getters.stats,
 }))
-class Stats extends React.Component {
+export default class Stats extends React.Component {
   componentDidMount() {
     actions.getStats()
   }

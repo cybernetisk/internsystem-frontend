@@ -24,7 +24,6 @@ import {
 import GroupsList from "./GroupsList"
 import ItemListView from "./List"
 
-export default
 @connect(() => ({
   data: inventoryCountStore,
   accountsForSelectElement,
@@ -33,7 +32,7 @@ export default
   totalSummerFiltered,
 }))
 @withQueryProps
-class Item extends React.Component {
+export default class Item extends React.Component {
   constructor(props) {
     super(props)
 

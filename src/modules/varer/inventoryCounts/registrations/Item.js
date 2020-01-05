@@ -10,14 +10,13 @@ import "./Item.scss"
 import List from "./List"
 import NewCount from "./NewCount"
 
-export default
 @connect(() => ({
   data,
   isLoading,
   error,
   isLoggedIn,
 }))
-class Item extends React.Component {
+export default class Item extends React.Component {
   constructor(props) {
     super(props)
   }

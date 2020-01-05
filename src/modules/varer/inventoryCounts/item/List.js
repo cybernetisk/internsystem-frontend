@@ -10,13 +10,12 @@ import Quantity from "../../common/components/Quantity"
 import { accountsSummerFiltered, filteredList, filters } from "./getters"
 import VaretellingerItemNewVare from "./NewVare"
 
-export default
 @connect(() => ({
   filters,
   accountsSummerFiltered,
   filteredList,
 }))
-class List extends React.Component {
+export default class List extends React.Component {
   static propTypes = {
     newItem: PropTypes.func.isRequired,
     newitems: PropTypes.object.isRequired,

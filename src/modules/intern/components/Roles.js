@@ -5,13 +5,12 @@ import { isLoggedIn, userDetails } from "../../auth/getters"
 import * as actions from "../actions"
 import * as getters from "../getters"
 
-export default
 @connect(() => ({
   roles: getters.roles,
   userDetails,
   isLoggedIn,
 }))
-class Roles extends React.Component {
+export default class Roles extends React.Component {
   componentDidMount() {
     actions.getRoles()
   }

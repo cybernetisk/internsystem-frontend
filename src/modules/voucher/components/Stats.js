@@ -7,12 +7,11 @@ import * as actions from "../actions"
 import * as getters from "../getters"
 import VoucherService from "../services/VoucherService"
 
-export default
 @connect(() => ({
   stats: getters.stats,
   userDetails: authGetters.userDetails,
 }))
-class Stats extends React.Component {
+export default class Stats extends React.Component {
   constructor(props) {
     super(props)
     this.state = {

@@ -6,13 +6,12 @@ import { authdata, isLoggedIn, userDetails } from "../modules/auth/getters"
 import NavDropdown from "./NavDropdown"
 import NavLink from "./NavLink"
 
-export default
 @connect(() => ({
   authdata,
   userDetails,
   isLoggedIn,
 }))
-class Nav extends React.Component {
+export default class Nav extends React.Component {
   renderProfileMenu() {
     if (this.props.authdata.get("isLoading")) {
       return (

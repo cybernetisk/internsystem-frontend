@@ -9,7 +9,6 @@ import { createQueryUpdater } from "../../common/functions"
 import { fetchInventoryCounts } from "../actions"
 import { activePage, list, listLoader, numPages } from "./getters"
 
-export default
 @connect(() => ({
   list,
   listLoader,
@@ -17,7 +16,7 @@ export default
   numPages,
 }))
 @withQueryProps
-class List extends React.Component {
+export default class List extends React.Component {
   constructor(props) {
     super(props)
 

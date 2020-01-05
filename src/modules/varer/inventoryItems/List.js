@@ -17,7 +17,6 @@ import {
 import "./List.scss"
 import ListTable from "./ListTable"
 
-export default
 @connect(() => ({
   selectGroups,
   filters,
@@ -25,7 +24,7 @@ export default
   inventoryItemsLoader,
 }))
 @withQueryProps
-class List extends React.Component {
+export default class List extends React.Component {
   static propTypes = {
     query: PropTypes.object.isRequired,
   }

@@ -5,12 +5,11 @@ import Loader from "../../../components/Loader"
 import { fetchAccounts } from "./actions"
 import { accounts, accountsLoader } from "./getters"
 
-export default
 @connect(() => ({
   accounts,
   accountsLoader,
 }))
-class List extends React.Component {
+export default class List extends React.Component {
   componentDidMount() {
     fetchAccounts()
   }

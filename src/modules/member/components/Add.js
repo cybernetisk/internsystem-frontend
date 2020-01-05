@@ -5,11 +5,10 @@ import * as actions from "../actions"
 import MemberService from "../services/MemberService"
 import List from "./List"
 
-export default
 @connect(() => ({
   isLoggedIn,
 }))
-class Add extends React.Component {
+export default class Add extends React.Component {
   constructor(props) {
     super(props)
 

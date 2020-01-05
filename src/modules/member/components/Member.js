@@ -7,13 +7,12 @@ import * as actions from "../actions"
 import * as getters from "../getters"
 import MemberService from "../services/MemberService"
 
-export default
 @connect(() => ({
   member: getters.member,
   userDetails,
   isLoggedIn,
 }))
-class Member extends React.Component {
+export default class Member extends React.Component {
   constructor(props) {
     super(props)
     this.handleEdit = this.handleEdit.bind(this)

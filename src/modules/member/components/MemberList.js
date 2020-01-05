@@ -4,12 +4,11 @@ import { isLoggedIn, userDetails } from "../../auth/getters"
 import * as actions from "../actions"
 import List from "./List"
 
-export default
 @connect(() => ({
   userDetails,
   isLoggedIn,
 }))
-class MemberList extends React.Component {
+export default class MemberList extends React.Component {
   constructor(props) {
     super(props)
     actions.getMemberList(1, 50, "date_joined")

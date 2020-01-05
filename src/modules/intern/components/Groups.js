@@ -5,13 +5,12 @@ import { isLoggedIn, userDetails } from "../../auth/getters"
 import * as actions from "../actions"
 import * as getters from "../getters"
 
-export default
 @connect(() => ({
   groups: getters.groups,
   userDetails,
   isLoggedIn,
 }))
-class Groups extends React.Component {
+export default class Groups extends React.Component {
   constructor(props) {
     super(props)
     actions.getGroups()

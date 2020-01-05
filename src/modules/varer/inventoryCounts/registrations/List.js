@@ -9,12 +9,11 @@ import Quantity from "../../common/components/Quantity"
 import { counts, time } from "./getters"
 import "./List.scss"
 
-export default
 @connect(() => ({
   counts,
   time,
 }))
-class List extends React.Component {
+export default class List extends React.Component {
   renderRegDate(count) {
     let addedTime = null
     if (count.get("time_added")) {

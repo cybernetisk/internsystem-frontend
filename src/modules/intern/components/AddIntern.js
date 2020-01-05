@@ -4,11 +4,10 @@ import * as getters from "../getters"
 import InternService from "../services/InternService"
 import InternInput from "./InternInput"
 
-export default
 @connect(() => ({
   roles: getters.roles,
 }))
-class AddIntern extends React.Component {
+export default class AddIntern extends React.Component {
   constructor(props) {
     super(props)
     this.handleSave = this.handleSave.bind(this)
