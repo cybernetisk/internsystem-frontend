@@ -1,18 +1,14 @@
-import React from 'react'
-import {connect} from 'nuclear-js-react-addons-chefsplate'
-
-import * as actions from '../actions'
-
-import * as getters from '../getters'
-import { isLoggedIn } from '../../auth/getters'
-import InternService from '../services/InternService'
-
-import Loader from '../../../components/Loader'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import Loader from "../../../components/Loader"
+import { isLoggedIn } from "../../auth/getters"
+import * as actions from "../actions"
+import * as getters from "../getters"
 
 export default
-@connect(props => ({
+@connect(() => ({
   isLoggedIn,
-  levels: getters.accesslevels
+  levels: getters.accesslevels,
 }))
 class Levels extends React.Component {
   constructor(props) {
@@ -21,8 +17,7 @@ class Levels extends React.Component {
   }
 
   renderLevels() {
-
-    if (!this.props.levels.get('data')) {
+    if (!this.props.levels.get("data")) {
       return
     }
 
@@ -38,13 +33,17 @@ class Levels extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.levels.get('data').toList().toJS().map((level) => (
-              <tr key={level.id}>
-                <td>{level.name}</td>
-                <td>{level.uio_name}</td>
-                <td>{level.description}</td>
-              </tr>
-            ))}
+            {this.props.levels
+              .get("data")
+              .toList()
+              .toJS()
+              .map(level => (
+                <tr key={level.id}>
+                  <td>{level.name}</td>
+                  <td>{level.uio_name}</td>
+                  <td>{level.description}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
@@ -53,27 +52,24 @@ class Levels extends React.Component {
 
   render() {
     if (!this.props.isLoggedIn) {
-      return (<h1>You are not logged into this page</h1>)
+      return <h1>You are not logged into this page</h1>
     }
 
-    if (this.props.levels.get('error')) {
-      if (this.props.levels.get('error').status == 401) {
-        return (<h1>You don't have access to this page!</h1>)
+    if (this.props.levels.get("error")) {
+      if (this.props.levels.get("error").status == 401) {
+        return <h1>You don't have access to this page!</h1>
       } else {
-        return (<h1>{this.props.levels.get('error').statusText}</h1>)
+        return <h1>{this.props.levels.get("error").statusText}</h1>
       }
     }
     return (
       <div>
         <Loader
-          isLoading={this.props.levels.get('isLoading')}
-          error={this.props.levels.get('error')}
-          isEmpty={!this.props.levels.get('data')}
-        >
-
-        </Loader>
+          isLoading={this.props.levels.get("isLoading")}
+          error={this.props.levels.get("error")}
+          isEmpty={!this.props.levels.get("data")}
+        ></Loader>
         {this.renderLevels()}
-
       </div>
     )
   }

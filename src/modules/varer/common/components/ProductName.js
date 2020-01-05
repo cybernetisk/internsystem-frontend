@@ -1,13 +1,11 @@
-import PropTypes from 'prop-types';
-import React from 'react'
-import {admin} from '../../../../api'
+import PropTypes from "prop-types"
+import React from "react"
+import { admin } from "../../../../api"
+import Account from "./Account"
+import "./ProductName.scss"
+import ProductStatus from "./ProductStatus"
 
-import Account from './Account'
-import ProductStatus from './ProductStatus'
-
-import './ProductName.scss'
-
-export default class extends React.Component {
+export default class ProductName extends React.Component {
   static propTypes = {
     product: PropTypes.object.isRequired,
     showAccount: PropTypes.bool,
@@ -25,29 +23,34 @@ export default class extends React.Component {
 
   render() {
     const product = this.props.product
-    const adminModule = this.props.isInventory ? 'råvare' : 'salgsvare'
-    const accountKey = this.props.isInventory ? 'innkjopskonto' : 'salgskonto'
+    const adminModule = this.props.isInventory ? "råvare" : "salgsvare"
+    const accountKey = this.props.isInventory ? "innkjopskonto" : "salgskonto"
 
     let category
-    if (product.get('kategori')) {
-      category = product.get('kategori') + ': '
+    if (product.get("kategori")) {
+      category = product.get("kategori") + ": "
     }
 
     let type
-    if (this.props.isInventory && product.get('type')) {
-      type = ` (${product.get('type')})`
+    if (this.props.isInventory && product.get("type")) {
+      type = ` (${product.get("type")})`
     }
 
     let tag
-    if (product.get('status') != 'OK') {
-      tag = <span> <ProductStatus text={product.get('status')}/></span>
+    if (product.get("status") != "OK") {
+      tag = (
+        <span>
+          {" "}
+          <ProductStatus text={product.get("status")} />
+        </span>
+      )
     }
 
     let account
     if (this.props.showAccount) {
       account = (
         <span>
-          <br/>
+          <br />
           <Account
             account={product.get(accountKey)}
             showLinks={this.props.showLinks}
@@ -61,10 +64,15 @@ export default class extends React.Component {
       <div className="varer-productName">
         {category}
         {this.props.showLinks ? (
-          <a href={admin(`varer/${adminModule}/${product.get('id')}/`)} target="_self">
-            {product.get('navn')}
+          <a
+            href={admin(`varer/${adminModule}/${product.get("id")}/`)}
+            target="_self"
+          >
+            {product.get("navn")}
           </a>
-        ) : product.get('navn')}
+        ) : (
+          product.get("navn")
+        )}
         {type}
         {tag}
         {account}

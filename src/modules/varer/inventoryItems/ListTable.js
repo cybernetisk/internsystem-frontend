@@ -1,31 +1,29 @@
-import PropTypes from 'prop-types';
-import React from 'react'
+import PropTypes from "prop-types"
+import React from "react"
+import BuyPrice from "../common/components/BuyPrice"
+import ProductName from "../common/components/ProductName"
+import Quantity from "../common/components/Quantity"
+import SellPrice from "../common/components/SellPrice"
 
-import ProductName from '../common/components/ProductName'
-import BuyPrice from '../common/components/BuyPrice'
-import Quantity from '../common/components/Quantity'
-import SellPrice from '../common/components/SellPrice'
-
-export default class extends React.Component {
-
+export default class ListTable extends React.Component {
   static propTypes = {
-    inventoryItems: PropTypes.object.isRequired
+    inventoryItems: PropTypes.object.isRequired,
   }
 
   renderInternalPrice(item) {
-    if (item.get('salgspris')) {
-      return <SellPrice item={item} isInternal={true}/>
+    if (item.get("salgspris")) {
+      return <SellPrice item={item} isInternal={true} />
     }
   }
 
   renderNormalPrice(item) {
-    if (item.get('salgspris')) {
-      return <SellPrice item={item} isInternal={false}/>
+    if (item.get("salgspris")) {
+      return <SellPrice item={item} isInternal={false} />
     }
   }
 
   render() {
-    var lastGroup = null
+    let lastGroup = null
 
     return (
       <table className="table table-striped table-condensed varer-table">
@@ -40,23 +38,33 @@ export default class extends React.Component {
         </thead>
         <tbody>
           {this.props.inventoryItems.reduce((prev, item) => {
-            if (lastGroup !== item.get('innkjopskonto').get('gruppe')) {
-              lastGroup = item.get('innkjopskonto').get('gruppe')
-              prev.push((
-                <tr className="group-row" key={item.get('innkjopskonto').get('gruppe')}>
-                  <th colSpan="5">{item.get('innkjopskonto').get('gruppe')}</th>
-                </tr>
-              ))
+            if (lastGroup !== item.get("innkjopskonto").get("gruppe")) {
+              lastGroup = item.get("innkjopskonto").get("gruppe")
+              prev.push(
+                <tr
+                  className="group-row"
+                  key={item.get("innkjopskonto").get("gruppe")}
+                >
+                  <th colSpan="5">{item.get("innkjopskonto").get("gruppe")}</th>
+                </tr>,
+              )
             }
 
-            prev.push((
-              <tr key={item.get('id')}>
-                <td><ProductName product={item}/></td>
-                <td><Quantity product={item}/></td>
-                <td><BuyPrice product={item}/></td>
+            prev.push(
+              <tr key={item.get("id")}>
+                <td>
+                  <ProductName product={item} />
+                </td>
+                <td>
+                  <Quantity product={item} />
+                </td>
+                <td>
+                  <BuyPrice product={item} />
+                </td>
                 <td>{this.renderInternalPrice(item)}</td>
                 <td>{this.renderNormalPrice(item)}</td>
-              </tr>))
+              </tr>,
+            )
             return prev
           }, [])}
         </tbody>

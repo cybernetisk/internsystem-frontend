@@ -8,6 +8,8 @@
     "@babel/plugin-proposal-decorators": "7.7.4",
     "@babel/preset-env": "7.7.7",
     "@babel/preset-react": "7.7.4",
+    "@typescript-eslint/eslint-plugin": "2.14.0",
+    "@typescript-eslint/parser": "2.14.0",
     "babel-eslint": "10.0.3",
     "babel-loader": "8.0.6",
     "bootstrap-sass": "3.4.1",
@@ -16,6 +18,8 @@
     "css-loader": "3.4.1",
     "domready": "1.0.8",
     "eslint": "6.8.0",
+    "eslint-config-prettier": "6.9.0",
+    "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-react": "7.17.0",
     "favicons-webpack-plugin": "2.1.0",
     "fbjs": "1.0.0",
@@ -32,6 +36,7 @@
     "node-sass": "4.13.0",
     "nuclear-js": "1.4.0",
     "nuclear-js-react-addons-chefsplate": "1.0.1",
+    "prettier": "1.19.1",
     "prop-types": "15.7.2",
     "query-string": "6.9.0",
     "react": "16.12.0",
@@ -45,6 +50,7 @@
     "reqwest": "2.0.5",
     "sass-loader": "8.0.0",
     "style-loader": "1.1.2",
+    "typescript": "3.7.4",
     "url-loader": "3.0.0",
     "webpack": "4.41.5",
     "webpack-cli": "3.3.10",
@@ -53,7 +59,8 @@
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "dev": "webpack-dev-server --progress --color --hot",
-    "lint": "eslint . --ext .js",
+    "lint": "eslint . --ext js --ext jsx --ext ts --ext tsx",
+    "lint:fix": "eslint --fix . --ext js --ext jsx --ext ts --ext tsx",
     "test": "npm run lint"
   },
   "dependencies": {}

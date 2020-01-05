@@ -1,32 +1,22 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'nuclear-js-react-addons-chefsplate'
-import {admin} from '../../../../api'
-
-import Account from '../../common/components/Account'
-import ProductName from '../../common/components/ProductName'
-import BuyPrice from '../../common/components/BuyPrice'
-import Quantity from '../../common/components/Quantity'
-import VaretellingerItemNewVare from './NewVare'
-
-import inventoryProductsListTable from '../../inventoryItems/ListTable'
-
-import {price, antall} from '../../../../services/FormatService'
-
-import {
-  filters,
-  accountsSummerFiltered,
-  filteredList,
-} from './getters'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import PropTypes from "prop-types"
+import React from "react"
+import { admin } from "../../../../api"
+import { antall, price } from "../../../../services/FormatService"
+import Account from "../../common/components/Account"
+import BuyPrice from "../../common/components/BuyPrice"
+import ProductName from "../../common/components/ProductName"
+import Quantity from "../../common/components/Quantity"
+import { accountsSummerFiltered, filteredList, filters } from "./getters"
+import VaretellingerItemNewVare from "./NewVare"
 
 export default
-@connect(props => ({
+@connect(() => ({
   filters,
   accountsSummerFiltered,
   filteredList,
 }))
 class List extends React.Component {
-
   static propTypes = {
     newItem: PropTypes.func.isRequired,
     newitems: PropTypes.object.isRequired,
@@ -35,7 +25,7 @@ class List extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      focusNum: 0
+      focusNum: 0,
     }
     this.handleKeyDown = this.handleKeyDown.bind(this)
   }
@@ -52,73 +42,80 @@ class List extends React.Component {
       if (num < 0) {
         num = this.props.filteredList.size - 1
       }
-      this.setState({focusNum: num})
-    }
-
-    else if (e.ctrlKey && e.keyCode === KEY_DOWN) {
+      this.setState({ focusNum: num })
+    } else if (e.ctrlKey && e.keyCode === KEY_DOWN) {
       e.preventDefault()
-      this.setState({focusNum: this.state.focusNum + 1})
-    }
-
-    else if ((e.keyCode === KEY_PLUS || e.keyCode === KEY_NUMPAD_PLUS) && this.props.filteredList.size > 0) {
+      this.setState({ focusNum: this.state.focusNum + 1 })
+    } else if (
+      (e.keyCode === KEY_PLUS || e.keyCode === KEY_NUMPAD_PLUS) &&
+      this.props.filteredList.size > 0
+    ) {
       e.preventDefault()
-      this.props.newItem(this.props.filteredList.get(this.state.focusNum % this.props.filteredList.size))
+      this.props.newItem(
+        this.props.filteredList.get(
+          this.state.focusNum % this.props.filteredList.size,
+        ),
+      )
     }
   }
 
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown)
+    window.addEventListener("keydown", this.handleKeyDown)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown)
+    window.removeEventListener("keydown", this.handleKeyDown)
   }
 
-  renderAmount(summer, count_pant = null) {
-    let pant = ''
-    if (summer.get('pant') != 0) {
-      let count_text = ''
-      if (count_pant) {
-        count_text = ` (${count_pant})`
+  renderAmount(summer, countPant = null) {
+    let pant = ""
+    if (summer.get("pant") != 0) {
+      let countText = ""
+      if (countPant) {
+        countText = ` (${countPant})`
       }
-      pant = ` + ${price(summer.get('pant'), 2)}${count_text} i pant`
+      pant = ` + ${price(summer.get("pant"), 2)}${countText} i pant`
     }
 
-    return price(summer.get('sum'), 2) + pant
+    return price(summer.get("sum"), 2) + pant
   }
 
   renderCounts(raavare) {
     return (
       <div className="tellinger">
         <ul>
-          {raavare.get('tellinger').map(telling => (
-            <li key={'telling-'+telling.get('id')}>
-              <a href={admin('varer/varetellingvare/') + telling.get('id') + '/'} target="_self">
-                {antall(telling.get('antall'))}
-                {' '}
-                ({this.renderAmount(telling.get('summer'), telling.get('antallpant'))})
-                {' '}
-                {telling.get('kommentar')}
-                {telling.get('sted') ? ` (${telling.get('sted')})` : ''}
+          {raavare.get("tellinger").map(telling => (
+            <li key={"telling-" + telling.get("id")}>
+              <a
+                href={admin("varer/varetellingvare/") + telling.get("id") + "/"}
+                target="_self"
+              >
+                {antall(telling.get("antall"))} (
+                {this.renderAmount(
+                  telling.get("summer"),
+                  telling.get("antallpant"),
+                )}
+                ) {telling.get("kommentar")}
+                {telling.get("sted") ? ` (${telling.get("sted")})` : ""}
               </a>
             </li>
           ))}
-          {(this.props.newitems.get(raavare.get('id'), [])).map(function (item, index) {
-            return (
-              <li key={index}>
-                <VaretellingerItemNewVare {...item}/>
-              </li>
-            )
-          })}
+          {this.props.newitems
+            .get(raavare.get("id"), [])
+            .map(function(item, index) {
+              return (
+                <li key={index}>
+                  <VaretellingerItemNewVare {...item} />
+                </li>
+              )
+            })}
         </ul>
       </div>
     )
   }
 
   render() {
-    if (this.props.filteredList.size === 0) return (
-      <p>No data found.</p>
-    )
+    if (this.props.filteredList.size === 0) return <p>No data found.</p>
 
     let gruppe = null
 
@@ -135,42 +132,58 @@ class List extends React.Component {
         </thead>
         <tbody>
           {this.props.filteredList.reduce((prev, raavare, i) => {
-            if (!gruppe || gruppe.get('id') != raavare.getIn(['innkjopskonto', 'id'])) {
-              gruppe = raavare.get('innkjopskonto')
-              let summer = this.props.accountsSummerFiltered.get(gruppe.get('id'))
+            if (
+              !gruppe ||
+              gruppe.get("id") != raavare.getIn(["innkjopskonto", "id"])
+            ) {
+              gruppe = raavare.get("innkjopskonto")
+              const summer = this.props.accountsSummerFiltered.get(
+                gruppe.get("id"),
+              )
 
-              prev.push((
-                <tr className="group-row" key={'gruppe-' + gruppe.get('id')}>
-                  <th colSpan="3"><Account account={gruppe} showGroup={true}/></th>
-                  <th colSpan="2">
-                    {this.renderAmount(summer)}
+              prev.push(
+                <tr className="group-row" key={"gruppe-" + gruppe.get("id")}>
+                  <th colSpan="3">
+                    <Account account={gruppe} showGroup={true} />
                   </th>
-                </tr>
-              ))
+                  <th colSpan="2">{this.renderAmount(summer)}</th>
+                </tr>,
+              )
             }
 
-            let btnClass = this.state.focusNum % this.props.filteredList.size === i
-              ? ' btn-sm'
-              : ' btn-xs'
+            const btnClass =
+              this.state.focusNum % this.props.filteredList.size === i
+                ? " btn-sm"
+                : " btn-xs"
 
-            prev.push((
-              <tr key={`raavare-${raavare.get('id')}`}>
-                <td><ProductName product={raavare} showAccount={false}/></td>
-                <td><Quantity product={raavare}/></td>
-                <td><BuyPrice product={raavare}/></td>
+            prev.push(
+              <tr key={`raavare-${raavare.get("id")}`}>
+                <td>
+                  <ProductName product={raavare} showAccount={false} />
+                </td>
+                <td>
+                  <Quantity product={raavare} />
+                </td>
+                <td>
+                  <BuyPrice product={raavare} />
+                </td>
                 <td>{this.renderCounts(raavare)}</td>
                 <td>
-                  <button type="button" className={'hidden-print btn btn-primary' + btnClass}
+                  <button
+                    type="button"
+                    className={"hidden-print btn btn-primary" + btnClass}
                     onClick={() => this.props.newItem(raavare)}
                   >
-                    <span className="glyphicon glyphicon-plus"/>
+                    <span className="glyphicon glyphicon-plus" />
                   </button>
                 </td>
-              </tr>))
+              </tr>,
+            )
 
             return prev
           }, [])}
         </tbody>
-      </table>)
+      </table>
+    )
   }
 }

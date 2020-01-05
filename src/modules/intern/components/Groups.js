@@ -1,25 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {connect} from 'nuclear-js-react-addons-chefsplate'
-import * as getters from '../getters'
-import * as actions from '../actions'
-
-import { userDetails, isLoggedIn } from '../../auth/getters';
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { Link } from "react-router-dom"
+import { isLoggedIn, userDetails } from "../../auth/getters"
+import * as actions from "../actions"
+import * as getters from "../getters"
 
 export default
-@connect(props => ({
+@connect(() => ({
   groups: getters.groups,
   userDetails,
-  isLoggedIn
+  isLoggedIn,
 }))
 class Groups extends React.Component {
-
   constructor(props) {
     super(props)
     actions.getGroups()
-  }
-
-  componentDidMount() {
   }
 
   renderTable() {
@@ -34,16 +29,26 @@ class Groups extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.groups.get('data').get('results').toJS().map((group) => {
-            return (
-              <tr key={group.id}>
-                <td>{group.id}</td>
-                <td><Link to={`/intern/groups/${group.id}`}>{group.name}</Link></td>
-                <td><Link to={`/intern/interns/${group.leader.id}`}>{group.leader.realname}</Link></td>
-                <td>{group.description}</td>
-              </tr>
-            )
-          })}
+          {this.props.groups
+            .get("data")
+            .get("results")
+            .toJS()
+            .map(group => {
+              return (
+                <tr key={group.id}>
+                  <td>{group.id}</td>
+                  <td>
+                    <Link to={`/intern/groups/${group.id}`}>{group.name}</Link>
+                  </td>
+                  <td>
+                    <Link to={`/intern/interns/${group.leader.id}`}>
+                      {group.leader.realname}
+                    </Link>
+                  </td>
+                  <td>{group.description}</td>
+                </tr>
+              )
+            })}
         </tbody>
       </table>
     )
@@ -51,13 +56,11 @@ class Groups extends React.Component {
 
   render() {
     if (!this.props.isLoggedIn) {
-      return (
-        <h1>Not logged in! Please login!</h1>
-      )
+      return <h1>Not logged in! Please login!</h1>
     }
 
-    if(this.props.groups.get('isLoading')) {
-      return (<div>Loading...</div>)
+    if (this.props.groups.get("isLoading")) {
+      return <div>Loading...</div>
     }
     return this.renderTable()
   }

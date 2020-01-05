@@ -1,17 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'nuclear-js-react-addons-chefsplate'
-
-import * as getters from '../getters'
-import * as authGetters from '../../auth/getters'
-import * as actions from '../actions'
-
-import VoucherService from '../services/VoucherService'
-
-import Loader from '../../../components/Loader'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { Link } from "react-router-dom"
+import Loader from "../../../components/Loader"
+import * as authGetters from "../../auth/getters"
+import * as actions from "../actions"
+import * as getters from "../getters"
+import VoucherService from "../services/VoucherService"
 
 export default
-@connect(props => ({
+@connect(() => ({
   stats: getters.stats,
   userDetails: authGetters.userDetails,
 }))
@@ -19,7 +16,7 @@ class Stats extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      myWallets: []
+      myWallets: [],
     }
   }
 
@@ -31,7 +28,7 @@ class Stats extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.userDetails) {
       this.loadMyWallets(nextProps.userDetails.username)
     }
@@ -44,20 +41,22 @@ class Stats extends React.Component {
     }
 
     this.setState({
-      myWalletsLoaded: true
+      myWalletsLoaded: true,
     })
 
     VoucherService.getWallets({
-      user: username
+      user: username,
     }).then(res => {
       this.setState({
-        myWallets: res
+        myWallets: res,
       })
     })
   }
 
   renderWalletBalance(wallet) {
-    const myWallet = this.state.myWallets.find(myWallet => myWallet.semester.id === wallet.semester.id)
+    const myWallet = this.state.myWallets.find(
+      myWallet => myWallet.semester.id === wallet.semester.id,
+    )
     if (myWallet) {
       const balance = myWallet.cached_balance
       if (myWallet.is_valid) {
@@ -71,7 +70,7 @@ class Stats extends React.Component {
   }
 
   renderStats() {
-    if (!this.props.stats.get('data')) {
+    if (!this.props.stats.get("data")) {
       return
     }
 
@@ -80,13 +79,17 @@ class Stats extends React.Component {
     return (
       <div>
         <p>
-          If you have any problems go
-          to <a href="https://cybernetisk.slack.com/messages/it/details/">#it</a> on Slack
+          If you have any problems go to{" "}
+          <a href="https://cybernetisk.slack.com/messages/it/details/">#it</a>{" "}
+          on Slack
         </p>
         <div className="pull-right">
-          <Link to="/voucher/worklogs" className="btn btn-success">Register work</Link>
-          {' '}
-          <Link to="/voucher/uselogs" className="btn btn-primary">Use vouchers</Link>
+          <Link to="/voucher/worklogs" className="btn btn-success">
+            Register work
+          </Link>{" "}
+          <Link to="/voucher/uselogs" className="btn btn-primary">
+            Use vouchers
+          </Link>
         </div>
         {this.props.children}
         <h2>Semester list</h2>
@@ -98,28 +101,30 @@ class Stats extends React.Component {
               <th>Unused vouchers</th>
               <th>Used vouchers</th>
               <th>People</th>
-              {showCurrentUser ? (
-                <th>Your balance</th>
-              ) : null}
+              {showCurrentUser ? <th>Your balance</th> : null}
             </tr>
           </thead>
           <tbody>
-            {this.props.stats.get('data').toList().toJS().map((wallet) => (
-              <tr key={wallet.semester.id}>
-                <td>
-                  <Link to={`/voucher/semester/${wallet.semester.id}`}>
-                    {wallet.semester.year} {wallet.semester.semester}
-                  </Link>
-                </td>
-                <td>{wallet.sum_vouchers}</td>
-                <td>{wallet.sum_balance}</td>
-                <td>{wallet.sum_vouchers_used}</td>
-                <td>{wallet.count_users}</td>
-                {showCurrentUser ? (
-                  <td>{this.renderWalletBalance(wallet)}</td>
-                ) : null}
-              </tr>
-            ))}
+            {this.props.stats
+              .get("data")
+              .toList()
+              .toJS()
+              .map(wallet => (
+                <tr key={wallet.semester.id}>
+                  <td>
+                    <Link to={`/voucher/semester/${wallet.semester.id}`}>
+                      {wallet.semester.year} {wallet.semester.semester}
+                    </Link>
+                  </td>
+                  <td>{wallet.sum_vouchers}</td>
+                  <td>{wallet.sum_balance}</td>
+                  <td>{wallet.sum_vouchers_used}</td>
+                  <td>{wallet.count_users}</td>
+                  {showCurrentUser ? (
+                    <td>{this.renderWalletBalance(wallet)}</td>
+                  ) : null}
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
@@ -131,9 +136,9 @@ class Stats extends React.Component {
       <div>
         <h1>Vouchers</h1>
         <Loader
-          isLoading={this.props.stats.get('isLoading')}
-          error={this.props.stats.get('error')}
-          isEmpty={!this.props.stats.get('data')}
+          isLoading={this.props.stats.get("isLoading")}
+          error={this.props.stats.get("error")}
+          isEmpty={!this.props.stats.get("data")}
         >
           No voucher data is registered.
         </Loader>

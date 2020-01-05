@@ -1,14 +1,13 @@
-const authdataStore = 'authdata'
+const authdataStore = "authdata"
 export const authdata = [authdataStore]
-const data = [authdataStore, 'data']
 
-export const isLoggedIn = [authdataStore, 'data', 'loggedIn']
+export const isLoggedIn = [authdataStore, "data", "loggedIn"]
 
 export const userDetails = [
-  [authdataStore, 'data', 'details'],
+  [authdataStore, "data", "details"],
   data => {
     return data ? data.toJS() : null
-  }
+  },
 ]
 
-export const csrfToken = [authdataStore, 'data', 'csrfToken']
+export const csrfToken = [authdataStore, "data", "csrfToken"]

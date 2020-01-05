@@ -1,21 +1,17 @@
-import React from 'react'
-import Markdown from 'react-remarkable'
-import {connect} from 'nuclear-js-react-addons-chefsplate'
-import {admin} from '../../../api'
-
-import './List.scss'
-
-import {fetchVendors} from './actions'
-import {vendors} from './getters'
-
-import Loader from '../../../components/Loader'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import Markdown from "react-remarkable"
+import { admin } from "../../../api"
+import Loader from "../../../components/Loader"
+import { fetchVendors } from "./actions"
+import { vendors } from "./getters"
+import "./List.scss"
 
 export default
-@connect(props => ({
-  vendors
+@connect(() => ({
+  vendors,
 }))
 class List extends React.Component {
-
   componentDidMount() {
     fetchVendors()
   }
@@ -31,11 +27,20 @@ class List extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {vendors.map((vendor) => (
+          {vendors.map(vendor => (
             <tr key={vendor.id}>
               <td>{vendor.id}</td>
-              <td><a href={admin(`varer/leverandør/${vendor.id}/`)} target="_self">{vendor.navn}</a></td>
-              <td><Markdown source={vendor.kommentar}/></td>
+              <td>
+                <a
+                  href={admin(`varer/leverandør/${vendor.id}/`)}
+                  target="_self"
+                >
+                  {vendor.navn}
+                </a>
+              </td>
+              <td>
+                <Markdown source={vendor.kommentar} />
+              </td>
             </tr>
           ))}
         </tbody>
@@ -44,21 +49,21 @@ class List extends React.Component {
   }
 
   render() {
-    let vendors = this.props.vendors.get('items').toJS()
+    const vendors = this.props.vendors.get("items").toJS()
 
     return (
       <div>
         <h1>Vendor list</h1>
 
         <Loader
-          isLoading={this.props.vendors.get('isLoading')}
-          error={this.props.vendors.get('error')}
-          isEmpty={this.props.vendors.get('items').isEmpty()}
+          isLoading={this.props.vendors.get("isLoading")}
+          error={this.props.vendors.get("error")}
+          isEmpty={this.props.vendors.get("items").isEmpty()}
         >
           No vendors exist.
         </Loader>
 
-        {vendors.length ? this.renderVendorList(vendors) : ''}
+        {vendors.length ? this.renderVendorList(vendors) : ""}
       </div>
     )
   }

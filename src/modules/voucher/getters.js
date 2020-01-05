@@ -1,18 +1,20 @@
-export const stats = ['voucherStats']
-export const uselogs = ['voucherUselogs']
-export const wallets = ['voucherWallets']
-export const worklogs = ['voucherWorklogs']
+export const stats = ["voucherStats"]
+export const uselogs = ["voucherUselogs"]
+export const wallets = ["voucherWallets"]
+export const worklogs = ["voucherWorklogs"]
 
-export const current_semester = [
+export const currentSemester = [
   wallets,
-  ['voucherStats', 'data'],
+  ["voucherStats", "data"],
   (wallets, stats) => {
-    if (!stats || !wallets.get('semester')) {
+    if (!stats || !wallets.get("semester")) {
       return null
     }
 
-    return stats.find(semester => {
-      return semester.get('semester').get('id') == wallets.get('semester')
-    }).get('semester')
-  }
+    return stats
+      .find(semester => {
+        return semester.get("semester").get("id") == wallets.get("semester")
+      })
+      .get("semester")
+  },
 ]

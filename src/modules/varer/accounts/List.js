@@ -1,19 +1,16 @@
-import React from 'react'
-import { connect } from 'nuclear-js-react-addons-chefsplate'
-import {admin} from '../../../api'
-
-import {fetchAccounts} from './actions'
-import {accounts, accountsLoader} from './getters'
-
-import Loader from '../../../components/Loader'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { admin } from "../../../api"
+import Loader from "../../../components/Loader"
+import { fetchAccounts } from "./actions"
+import { accounts, accountsLoader } from "./getters"
 
 export default
-@connect(props => ({
+@connect(() => ({
   accounts,
-  accountsLoader
+  accountsLoader,
 }))
 class List extends React.Component {
-
   componentDidMount() {
     fetchAccounts()
   }
@@ -36,7 +33,11 @@ class List extends React.Component {
           {accounts.map(account => (
             <tr key={account.id}>
               <td>{account.id}</td>
-              <td><a href={admin(`varer/konto/${account.id}/`)} target="_self">{account.navn}</a></td>
+              <td>
+                <a href={admin(`varer/konto/${account.id}/`)} target="_self">
+                  {account.navn}
+                </a>
+              </td>
               <td>{account.gruppe}</td>
               <td>{account.innkjopskonto}</td>
               <td>{account.varelagerkonto}</td>
@@ -50,7 +51,7 @@ class List extends React.Component {
   }
 
   render() {
-    let accounts = this.props.accounts.get('items').toJS()
+    const accounts = this.props.accounts.get("items").toJS()
 
     return (
       <div>
@@ -58,7 +59,7 @@ class List extends React.Component {
 
         <Loader {...this.props.accountsLoader}>No accounts exist.</Loader>
 
-        {accounts.length ? this.renderList(accounts) : ''}
+        {accounts.length ? this.renderList(accounts) : ""}
       </div>
     )
   }

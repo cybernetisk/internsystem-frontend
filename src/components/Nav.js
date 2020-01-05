@@ -1,36 +1,40 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'nuclear-js-react-addons-chefsplate'
-import {Navbar, Nav as RefNav, NavItem, MenuItem} from 'react-bootstrap'
-
-import { authdata, userDetails, isLoggedIn } from '../modules/auth/getters'
-import NavDropdown from './NavDropdown'
-import NavLink from './NavLink'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { MenuItem, Nav as RefNav, Navbar, NavItem } from "react-bootstrap"
+import { Link } from "react-router-dom"
+import { authdata, isLoggedIn, userDetails } from "../modules/auth/getters"
+import NavDropdown from "./NavDropdown"
+import NavLink from "./NavLink"
 
 export default
-@connect(props => ({
+@connect(() => ({
   authdata,
   userDetails,
   isLoggedIn,
 }))
 class Nav extends React.Component {
   renderProfileMenu() {
-    if (this.props.authdata.get('isLoading')) {
+    if (this.props.authdata.get("isLoading")) {
       return (
         <RefNav pullRight>
           <NavItem className="navbar-text">Loading data ..</NavItem>
         </RefNav>
       )
-    } else if (this.props.authdata.get('error')) {
+    } else if (this.props.authdata.get("error")) {
       return (
         <RefNav pullRight>
-          <NavItem className="navbar-text">Error: {this.props.authdata.get('error')}</NavItem>
+          <NavItem className="navbar-text">
+            Error: {this.props.authdata.get("error")}
+          </NavItem>
         </RefNav>
       )
     } else if (this.props.isLoggedIn) {
       return (
         <RefNav pullRight>
-          <NavDropdown title={this.props.userDetails.realname} id="nav-auth-dropdown">
+          <NavDropdown
+            title={this.props.userDetails.realname}
+            id="nav-auth-dropdown"
+          >
             <NavLink to="/profile">Profile</NavLink>
             <NavLink to="/logout">Log out</NavLink>
           </NavDropdown>
@@ -46,7 +50,7 @@ class Nav extends React.Component {
   }
 
   render() {
-    let profileMenu = this.renderProfileMenu()
+    const profileMenu = this.renderProfileMenu()
 
     return (
       <Navbar fixedTop inverse>
@@ -68,7 +72,7 @@ class Nav extends React.Component {
             </NavDropdown>
             <NavDropdown title="Z" id="nav-z-dropdown">
               <NavLink to="/z">Overview</NavLink>
-              <MenuItem divider/>
+              <MenuItem divider />
               <MenuItem header>Modules</MenuItem>
               <NavLink to="/z/stats">Statistics</NavLink>
             </NavDropdown>
@@ -87,14 +91,17 @@ class Nav extends React.Component {
             </NavDropdown>
             <NavDropdown title="Garm" id="nav-intern-dropdown">
               <NavLink to="/intern">Overview</NavLink>
-              <MenuItem divider/>
+              <MenuItem divider />
               <NavLink to="/intern/levels">Access Levels</NavLink>
               <NavLink to="/intern/groups">Groups</NavLink>
               <NavLink to="/intern/interns">Interns</NavLink>
               <NavLink to="/intern/roles">Roles</NavLink>
             </NavDropdown>
             <NavDropdown title="Other" id="nav-other-dropdown">
-              <NavItem target="_self" href="http://heim.ifi.uio.no/cyb/tilganger/">
+              <NavItem
+                target="_self"
+                href="http://heim.ifi.uio.no/cyb/tilganger/"
+              >
                 Access control management (Garm)
               </NavItem>
               <NavItem target="_self" href="admin/">
@@ -112,7 +119,10 @@ class Nav extends React.Component {
               <NavItem target="_self" href="https://cybernetisk.slack.com/">
                 Slack
               </NavItem>
-              <NavItem target="_self" href="https://www.facebook.com/groups/CYB.intern/">
+              <NavItem
+                target="_self"
+                href="https://www.facebook.com/groups/CYB.intern/"
+              >
                 Facebook group: CYB Intern
               </NavItem>
             </NavDropdown>

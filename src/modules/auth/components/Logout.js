@@ -1,10 +1,10 @@
-import React from 'react'
-import {saml} from '../../../api'
+import React from "react"
+import { saml } from "../../../api"
 
 export default class Logout extends React.Component {
   componentDidMount() {
-    console.log('go to logout url')
-    window.location.href = saml('?slo')
+    console.log("go to logout url")
+    window.location.href = saml("?slo")
   }
 
   render() {

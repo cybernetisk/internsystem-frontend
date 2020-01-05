@@ -1,8 +1,7 @@
-import React from 'react'
-import { evaluate } from 'mathjs'
+import { evaluate } from "mathjs"
+import React from "react"
 
 export default class NewVare extends React.Component {
-
   static propTypes = {}
 
   constructor(props) {
@@ -15,10 +14,10 @@ export default class NewVare extends React.Component {
   saveMe(e) {
     e.preventDefault()
     this.props.storeHandle({
-      antall: evaluate(this.props.antall.replace(',', '.')),
-      antallpant: evaluate(this.props.antallpant.replace(',', '.')),
+      antall: evaluate(this.props.antall.replace(",", ".")),
+      antallpant: evaluate(this.props.antallpant.replace(",", ".")),
       kommentar: this.props.kommentar,
-      sted: this.props.sted
+      sted: this.props.sted,
     })
   }
 
@@ -35,42 +34,60 @@ export default class NewVare extends React.Component {
       <form className="form-inline" onSubmit={this.saveMe}>
         <p>
           <div className="form-group">
-            <input className="form-control telling-antall" type="text" placeholder="Quantity" required autoFocus
-              onChange={this.props.changeHandleBind('antall')} value={this.props.antall}
+            <input
+              className="form-control telling-antall"
+              type="text"
+              placeholder="Quantity"
+              required
+              autoFocus
+              onChange={this.props.changeHandleBind("antall")}
+              value={this.props.antall}
               onKeyDown={this.handleKeyDown}
             />
-          </div>
-          {' '}
+          </div>{" "}
           <div className="form-group">
-            <input className="form-control telling-antallpant" type="text" placeholder="Pant (quantity)"
-              onChange={this.props.changeHandleBind('antallpant')}
+            <input
+              className="form-control telling-antallpant"
+              type="text"
+              placeholder="Pant (quantity)"
+              onChange={this.props.changeHandleBind("antallpant")}
               value={this.props.antallpant}
               onKeyDown={this.handleKeyDown}
             />
-          </div>
-          {' '}
+          </div>{" "}
           <div className="form-group">
-            <input className="form-control telling-sted" type="text" placeholder="Location"
-              defaultValue={this.props.defaultPlace} value={this.props.sted}
-              onChange={this.props.changeHandleBind('sted')}
+            <input
+              className="form-control telling-sted"
+              type="text"
+              placeholder="Location"
+              defaultValue={this.props.defaultPlace}
+              value={this.props.sted}
+              onChange={this.props.changeHandleBind("sted")}
               onKeyDown={this.handleKeyDown}
             />
           </div>
         </p>
         <p>
           <div className="form-group">
-            <input className="form-control telling-kommentar" type="text" placeholder="Comment"
-              onChange={this.props.changeHandleBind('kommentar')} value={this.props.kommentar}
+            <input
+              className="form-control telling-kommentar"
+              type="text"
+              placeholder="Comment"
+              onChange={this.props.changeHandleBind("kommentar")}
+              value={this.props.kommentar}
               onKeyDown={this.handleKeyDown}
             />
-          </div>
-          {' '}
+          </div>{" "}
           <div className="form-group">
-            <button type="button" className="btn btn-danger" onClick={this.props.removeHandle}>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={this.props.removeHandle}
+            >
               <i className="glyphicon glyphicon-remove" />
             </button>
           </div>
-          <input type="submit"/>
+          <input type="submit" />
         </p>
       </form>
     )

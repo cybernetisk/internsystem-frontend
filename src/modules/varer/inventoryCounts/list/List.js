@@ -1,25 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {connect} from 'nuclear-js-react-addons-chefsplate'
-
-import {createQueryUpdater} from '../../common/functions'
-import moment from '../../../../moment'
-import withQueryProps from '../../../../utils/withQueryProps'
-
-import {fetchInventoryCounts} from '../actions'
-
-import Loader from '../../../../components/Loader'
-import Pagination from '../../../../components/Pagination'
-
-import {
-  list,
-  listLoader,
-  activePage,
-  numPages
-} from './getters'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { Link } from "react-router-dom"
+import Loader from "../../../../components/Loader"
+import Pagination from "../../../../components/Pagination"
+import moment from "../../../../moment"
+import withQueryProps from "../../../../utils/withQueryProps"
+import { createQueryUpdater } from "../../common/functions"
+import { fetchInventoryCounts } from "../actions"
+import { activePage, list, listLoader, numPages } from "./getters"
 
 export default
-@connect(props => ({
+@connect(() => ({
   list,
   listLoader,
   activePage,
@@ -27,7 +18,6 @@ export default
 }))
 @withQueryProps
 class List extends React.Component {
-
   constructor(props) {
     super(props)
 
@@ -42,8 +32,8 @@ class List extends React.Component {
   handlePageChange(newPage) {
     fetchInventoryCounts(newPage)
 
-    let page = newPage !== 1 ? newPage : undefined
-    this.updateQuery('page', page)
+    const page = newPage !== 1 ? newPage : undefined
+    this.updateQuery("page", page)
   }
 
   renderList() {
@@ -60,33 +50,39 @@ class List extends React.Component {
           </thead>
           <tbody>
             {this.props.list.map(item => {
-              let time = moment(item.get('tid')).format('YYYY-MM-DD HH:mm')
+              const time = moment(item.get("tid")).format("YYYY-MM-DD HH:mm")
 
               return (
-                <tr key={item.get('id')}>
+                <tr key={item.get("id")}>
                   <td>
-                    <Link to={`/varer/inventorycount/${item.get('id')}`}>
-                      {item.get('tittel')}
+                    <Link to={`/varer/inventorycount/${item.get("id")}`}>
+                      {item.get("tittel")}
                     </Link>
                   </td>
                   <td>{time}</td>
-                  <td>{item.get('kommentar')}</td>
-                  <td>{item.get('ansvarlig')}</td>
+                  <td>{item.get("kommentar")}</td>
+                  <td>{item.get("ansvarlig")}</td>
                 </tr>
               )
             })}
           </tbody>
         </table>
 
-        {this.props.numPages > 1
-          ? <Pagination pages={this.props.numPages} active={this.props.activePage} onChange={this.handlePageChange}/>
-          : ''}
+        {this.props.numPages > 1 ? (
+          <Pagination
+            pages={this.props.numPages}
+            active={this.props.activePage}
+            onChange={this.handlePageChange}
+          />
+        ) : (
+          ""
+        )}
       </div>
     )
   }
 
   render() {
-    let list = this.props.list.count() ? this.renderList() : ''
+    const list = this.props.list.count() ? this.renderList() : ""
 
     return (
       <div>

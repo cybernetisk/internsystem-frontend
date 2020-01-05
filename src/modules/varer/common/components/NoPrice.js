@@ -1,13 +1,8 @@
-import React from 'react'
+import React from "react"
+import "./NoPrice.scss"
 
-import './NoPrice.scss'
-
-export default class extends React.Component {
+export default class NoPrice extends React.Component {
   render() {
-    return (
-      <span className="varer-noPrice">
-        Missing
-      </span>
-    )
+    return <span className="varer-noPrice">Missing</span>
   }
 }

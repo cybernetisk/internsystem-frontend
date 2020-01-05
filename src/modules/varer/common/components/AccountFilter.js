@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import React from 'react'
+import PropTypes from "prop-types"
+import React from "react"
 
 export default class AccountFilter extends React.Component {
   static propTypes = {
@@ -10,12 +10,24 @@ export default class AccountFilter extends React.Component {
 
   render() {
     return (
-      <select className="form-control" onChange={this.props.onChange} value={this.props.value}>
+      <select
+        className="form-control"
+        onChange={this.props.onChange}
+        value={this.props.value}
+      >
         <option value="0">-- not selected --</option>
         {this.props.accounts.map(list => (
-          <optgroup label={list.first().get('gruppe')} key={list.first().get('gruppe')}>
+          <optgroup
+            label={list.first().get("gruppe")}
+            key={list.first().get("gruppe")}
+          >
             {list.map(account => (
-              <option value={account.get('compareValue')} key={account.get('id')}>{account.get('navn')}</option>
+              <option
+                value={account.get("compareValue")}
+                key={account.get("id")}
+              >
+                {account.get("navn")}
+              </option>
             ))}
           </optgroup>
         ))}

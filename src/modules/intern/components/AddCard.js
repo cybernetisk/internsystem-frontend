@@ -1,13 +1,11 @@
-import React from 'react'
-
-import InternService from '../services/InternService'
+import React from "react"
 
 export default class AddCard extends React.Component {
   constructor(props) {
     super(props)
     this.handleSubmut = this.handleSubmut.bind(this)
     this.state = {
-      isSending: false
+      isSending: false,
     }
   }
 
@@ -18,7 +16,7 @@ export default class AddCard extends React.Component {
     }
   }
 
-  render(){
-
+  render() {
+    return null
   }
 }

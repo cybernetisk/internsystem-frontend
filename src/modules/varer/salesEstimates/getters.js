@@ -1,1 +1,1 @@
-export const salesEstimates = ['varerSalesEstimates']
+export const salesEstimates = ["varerSalesEstimates"]

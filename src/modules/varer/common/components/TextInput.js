@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
-import React from 'react'
+import PropTypes from "prop-types"
+import React from "react"
 
-export default class extends React.Component {
-
+export default class TextInput extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     autofocus: PropTypes.bool,
@@ -22,7 +21,9 @@ export default class extends React.Component {
         type="text"
         value={this.props.value}
         onChange={this.props.onChange}
-        ref={elm => { this.input = elm }}
+        ref={elm => {
+          this.input = elm
+        }}
       />
     )
   }

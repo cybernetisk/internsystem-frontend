@@ -1,23 +1,20 @@
-import React from 'react'
-
-import { Link } from 'react-router-dom'
-import {connect} from 'nuclear-js-react-addons-chefsplate'
-import {Col, Row} from 'react-bootstrap'
-
-import * as actions from '../actions'
-import * as getters from '../getters'
-import {userDetails, isLoggedIn} from '../../auth/getters'
-
-import InternService from '../services/InternService'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { Col, Row } from "react-bootstrap"
+import { Link } from "react-router-dom"
+import { isLoggedIn, userDetails } from "../../auth/getters"
+import * as actions from "../actions"
+import * as getters from "../getters"
+import InternService from "../services/InternService"
 
 export default
-@connect(props => ({
+@connect(() => ({
   interns: getters.interns,
   roles: getters.roles,
   internroles: getters.internroles,
-  uio_cards: getters.uio_cards,
+  uioCards: getters.uioCards,
   userDetails,
-  isLoggedIn
+  isLoggedIn,
 }))
 class Intern extends React.Component {
   constructor(props) {
@@ -34,17 +31,16 @@ class Intern extends React.Component {
       isEditing: false,
       isDeleted: false,
       isLoaded: false,
-      cardnumber: '',
+      cardnumber: "",
       roleId: -1,
       isSending: false,
-      username: '',
-      comments: ''
+      username: "",
+      comments: "",
     }
-
   }
 
   componentDidMount() {
-    let userId = this.props.match.params.userId
+    const userId = this.props.match.params.userId
     actions.getInternForUser(userId)
     actions.getRoles()
     actions.getCardsForUser(userId)
@@ -52,9 +48,9 @@ class Intern extends React.Component {
 
   handleEdit() {
     if (!this.state.isEditing) {
-      this.setState({isEditing: true})
+      this.setState({ isEditing: true })
     } else {
-      this.setState({isEditing: false})
+      this.setState({ isEditing: false })
     }
   }
 
@@ -63,19 +59,19 @@ class Intern extends React.Component {
     if (this.state.isSending) {
       return
     }
-    this.setState({isSending: true})
-    const userid = this.props.interns.get('data').toJS()[0].user.id
+    this.setState({ isSending: true })
+    const userid = this.props.interns.get("data").toJS()[0].user.id
     InternService.addCardToUser(userid, this.state.cardnumber).then(
       () => {
         actions.getCardsForUser(this.props.match.params.userId)
         this.setState({
-          cardnumber: '',
+          cardnumber: "",
           isSending: false,
         })
       },
       error => {
         alert(error.responseText)
-        this.setState({isSending: false})
+        this.setState({ isSending: false })
       },
     )
   }
@@ -85,57 +81,87 @@ class Intern extends React.Component {
     if (this.state.isSending) {
       return
     }
-    let username = this.props.interns.get('data').toJS()[0].user.username
-    this.setState({isSending: true})
-    InternService.addRoleToIntern(username, this.state.roleId).then(result => {
-      actions.getInternForUser(this.props.match.params.userId)
-      this.setState({
-        isSending: false,
-        roleId: -1,
-      })
-    }, error => {
-      alert(error.responseText)
-      this.setState({isSending: false})
-    })
+    const username = this.props.interns.get("data").toJS()[0].user.username
+    this.setState({ isSending: true })
+    InternService.addRoleToIntern(username, this.state.roleId).then(
+      () => {
+        actions.getInternForUser(this.props.match.params.userId)
+        this.setState({
+          isSending: false,
+          roleId: -1,
+        })
+      },
+      error => {
+        alert(error.responseText)
+        this.setState({ isSending: false })
+      },
+    )
   }
 
   renderAddRole() {
     return (
       <div>
         {this.renderRoleSelector()}
-        <button type="button" className="btn btn-default" onClick={this.addRole}>Add role</button>
+        <button
+          type="button"
+          className="btn btn-default"
+          onClick={this.addRole}
+        >
+          Add role
+        </button>
       </div>
     )
   }
 
   handleRoleChange(e) {
-    this.setState({roleId: e.target.value})
+    this.setState({ roleId: e.target.value })
   }
 
   renderRoleSelector() {
     return (
-      <select id="role-sel" className="form-control" value={this.state.roleId} onChange={this.handleRoleChange}>
-        <option value={-1} disabled>Select a value</option>
-        {this.props.roles.get('data').toJS().map((role) => {
-          return (
-            <option key={role.id} value={role.id}>{role.name}</option>
-          )
-        })}
+      <select
+        id="role-sel"
+        className="form-control"
+        value={this.state.roleId}
+        onChange={this.handleRoleChange}
+      >
+        <option value={-1} disabled>
+          Select a value
+        </option>
+        {this.props.roles
+          .get("data")
+          .toJS()
+          .map(role => {
+            return (
+              <option key={role.id} value={role.id}>
+                {role.name}
+              </option>
+            )
+          })}
       </select>
     )
   }
 
   handleCardNumberChange(e) {
-    this.setState({cardnumber: e.target.value})
+    this.setState({ cardnumber: e.target.value })
   }
 
   renderAddCard() {
     return (
       <form className="form-inline" onSubmit={this.addCard}>
-        <input type="text" name="cardnumber" value={this.state.cardnumber} placeholder="Card number"
-          onChange={this.handleCardNumberChange} className="form-control"
+        <input
+          type="text"
+          name="cardnumber"
+          value={this.state.cardnumber}
+          placeholder="Card number"
+          onChange={this.handleCardNumberChange}
+          className="form-control"
         />
-        <input type="submit" className="form-control btn-success" value="Add Card"/>
+        <input
+          type="submit"
+          className="form-control btn-success"
+          value="Add Card"
+        />
       </form>
     )
   }
@@ -155,36 +181,43 @@ class Intern extends React.Component {
           {roles.map(role => (
             <tr key={role.role.id}>
               <td>
-                <Link to={`/intern/roles/${role.role.id}`}>{role.role.name}</Link>
+                <Link to={`/intern/roles/${role.role.id}`}>
+                  {role.role.name}
+                </Link>
               </td>
               <td>{role.role.description}</td>
               <td>
                 <ul>
                   {role.role.groups.map(group => {
-                    return (
-                      <li key={group.id}>
-                        {group.name}</li>
-                    )
+                    return <li key={group.id}>{group.name}</li>
                   })}
                 </ul>
               </td>
               <th>
-                <button type="button" value={role.id} className="btn btn-default" onClick={this.removeRole}>Delete
+                <button
+                  type="button"
+                  value={role.id}
+                  className="btn btn-default"
+                  onClick={this.removeRole}
+                >
+                  Delete
                 </button>
               </th>
             </tr>
           ))}
         </tbody>
-      </table>)
+      </table>
+    )
   }
 
   removeRole(e) {
-    if (confirm('Are you sure you want to remove that role?')) {
-      InternService.removeRoleFromIntern(e.target.value).then(results => {
+    if (confirm("Are you sure you want to remove that role?")) {
+      InternService.removeRoleFromIntern(e.target.value).then(() => {
         actions.getIntern(this.props.match.params.internId)
-      }), error => {
-        alert(error.responseText)
-      }
+      }),
+        error => {
+          alert(error.responseText)
+        }
     }
   }
 
@@ -199,7 +232,7 @@ class Intern extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {logs.map((log) => (
+          {logs.map(log => (
             <tr key={log.id}>
               <td>{log.time}</td>
               <td>{log.changed_by.username}</td>
@@ -212,7 +245,7 @@ class Intern extends React.Component {
   }
 
   renderCards() {
-    let add = ''
+    let add = ""
     if (this.state.isEditing) {
       add = this.renderAddCard()
     }
@@ -229,54 +262,62 @@ class Intern extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.uio_cards.get('data').toJS().map((card) => (
-              <tr key={card.id}>
-                <td>{card.card_number}</td>
-                <td>{card.disabled}</td>
-                <td>{card.comment}</td>
-              </tr>
-            ))}
+            {this.props.uioCards
+              .get("data")
+              .toJS()
+              .map(card => (
+                <tr key={card.id}>
+                  <td>{card.card_number}</td>
+                  <td>{card.disabled}</td>
+                  <td>{card.comment}</td>
+                </tr>
+              ))}
           </tbody>
-
         </table>
       </div>
     )
-
   }
 
   saveComment(e) {
     e.preventDefault()
-    InternService.addComment(this.props.match.params.internId, this.state.comments).then(result => {
+    InternService.addComment(
+      this.props.match.params.internId,
+      this.state.comments,
+    ).then(
+      () => {
         actions.getIntern(this.props.match.params.internId)
         this.setState({
-          isEditing: false
+          isEditing: false,
         })
-      }, error => {
+      },
+      error => {
         alert(error.responseText)
-      }
+      },
     )
   }
 
   handleComments(e) {
-    this.setState({comments: e.target.value})
+    this.setState({ comments: e.target.value })
   }
 
   addComment(intern) {
     return (
       <form onSubmit={this.saveComment}>
-        <textarea name="comments" value={intern.comments}
-          onChange={this.handleComments} className="form-control"
+        <textarea
+          name="comments"
+          value={intern.comments}
+          onChange={this.handleComments}
+          className="form-control"
         />
-        <input type="submit" className="btn btn-default"/>
+        <input type="submit" className="btn btn-default" />
       </form>
     )
-
   }
 
   renderIntern(intern) {
-    let comment_field = intern.comments
+    let commentField = intern.comments
     if (this.state.isEditing) {
-      comment_field = this.addComment(intern)
+      commentField = this.addComment(intern)
     }
     return (
       <div>
@@ -287,7 +328,7 @@ class Intern extends React.Component {
           <dt>Mail:</dt>
           <dd>{this.renderMail(intern.user.email)}</dd>
           <dt>Comments:</dt>
-          <dd>{comment_field}</dd>
+          <dd>{commentField}</dd>
         </dl>
       </div>
     )
@@ -295,18 +336,34 @@ class Intern extends React.Component {
 
   renderEditButton() {
     if (this.state.isEditing) {
-      return (<button type="button" className="btn btn-default" onClick={this.handleEdit}>Cancel</button>)
+      return (
+        <button
+          type="button"
+          className="btn btn-default"
+          onClick={this.handleEdit}
+        >
+          Cancel
+        </button>
+      )
     } else {
-      return (<button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>)
+      return (
+        <button
+          type="button"
+          className="btn btn-default"
+          onClick={this.handleEdit}
+        >
+          Edit
+        </button>
+      )
     }
   }
 
   renderNormal() {
-    let intern = this.props.interns.get('data').toJS()[0]
+    const intern = this.props.interns.get("data").toJS()[0]
     console.log(intern)
-    let add_role = ''
+    let addRole = ""
     if (this.state.isEditing) {
-      add_role = this.renderAddRole()
+      addRole = this.renderAddRole()
     }
     return (
       <div>
@@ -318,25 +375,26 @@ class Intern extends React.Component {
           <Col md={4}>{this.renderCards()}</Col>
         </Row>
         <Row>
-          <Col md={6}><h2>Roles</h2> {add_role} {this.renderRoles(intern.roles)}</Col>
-          <Col md={6}><h2>Logs</h2> {this.renderLogs(intern.log)}</Col>
+          <Col md={6}>
+            <h2>Roles</h2> {addRole} {this.renderRoles(intern.roles)}
+          </Col>
+          <Col md={6}>
+            <h2>Logs</h2> {this.renderLogs(intern.log)}
+          </Col>
         </Row>
       </div>
-
     )
   }
 
   render() {
     if (!this.props.isLoggedIn) {
-      return (
-        <h1>Not logged in! Please login!</h1>
-      )
+      return <h1>Not logged in! Please login!</h1>
     }
-    if (!this.props.interns.get('data')) {
-      return (<h1>Loading...</h1>)
+    if (!this.props.interns.get("data")) {
+      return <h1>Loading...</h1>
     }
-    if (!this.props.uio_cards.get('data')) {
-      return (<h1>Still loading...</h1>)
+    if (!this.props.uioCards.get("data")) {
+      return <h1>Still loading...</h1>
     }
 
     if (this.state.isDeleted) {
@@ -354,7 +412,7 @@ class Intern extends React.Component {
     if (mail) {
       return mail
     } else {
-      return 'No mail registered.'
+      return "No mail registered."
     }
   }
 }

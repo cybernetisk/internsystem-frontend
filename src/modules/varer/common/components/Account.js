@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types';
-import React from 'react'
-import {admin} from '../../../../api'
+import PropTypes from "prop-types"
+import React from "react"
+import { admin } from "../../../../api"
+import "./Account.scss"
 
-import './Account.scss'
-
-export default class extends React.Component {
+export default class Account extends React.Component {
   static propTypes = {
     account: PropTypes.object.isRequired,
     showLinks: PropTypes.bool,
@@ -18,18 +17,21 @@ export default class extends React.Component {
 
   renderGroup() {
     if (this.props.showGroup) {
-      return `${this.props.account.get('gruppe')}: `
+      return `${this.props.account.get("gruppe")}: `
     }
   }
 
   renderName() {
     if (!this.props.showLinks) {
-      return this.props.account.get('navn')
+      return this.props.account.get("navn")
     }
 
     return (
-      <a className="varer-accountLink" href={admin(`varer/konto/${this.props.account.get('id')}/`)}>
-        {this.props.account.get('navn')}
+      <a
+        className="varer-accountLink"
+        href={admin(`varer/konto/${this.props.account.get("id")}/`)}
+      >
+        {this.props.account.get("navn")}
       </a>
     )
   }
@@ -38,9 +40,7 @@ export default class extends React.Component {
     return (
       <span>
         {this.renderGroup()}
-        <span className="varer-account">
-          {this.renderName()}
-        </span>
+        <span className="varer-account">{this.renderName()}</span>
       </span>
     )
   }

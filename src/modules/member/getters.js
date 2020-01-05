@@ -1,3 +1,3 @@
-export const members = ['members']
-export const member = ['member']
-export const stats = ['memberStats']
+export const members = ["members"]
+export const member = ["member"]
+export const stats = ["memberStats"]

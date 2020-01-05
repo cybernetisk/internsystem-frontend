@@ -1,23 +1,18 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'nuclear-js-react-addons-chefsplate'
-import * as getters from '../getters'
-import * as actions from '../actions'
-
-import List from './List'
-
-import Loader from '../../../components/Loader'
-
-import { isLoggedIn } from '../../auth/getters'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { isLoggedIn } from "../../auth/getters"
+import * as actions from "../actions"
+import * as getters from "../getters"
+import List from "./List"
 
 export default
-@connect(props => ({
+@connect(() => ({
   isLoggedIn,
-  member: getters.members
+  member: getters.members,
 }))
 class Lifetime extends React.Component {
   componentDidMount() {
-    actions.getLifetimeMember(1,50)
+    actions.getLifetimeMember(1, 50)
   }
 
   render() {
@@ -27,7 +22,5 @@ class Lifetime extends React.Component {
         <List switcher={true} lifetime={true} />
       </div>
     )
-
   }
-
 }

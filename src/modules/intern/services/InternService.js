@@ -1,173 +1,176 @@
-import {api} from '../../../api'
-import reqwest from '../../../utils/reqwest'
+import { api } from "../../../api"
+import reqwest from "../../../utils/reqwest"
 
 class InternService {
   getGroup(groupId) {
     return reqwest({
-      url: api('intern/groups/' + groupId),
-      type: 'json'
+      url: api("intern/groups/" + groupId),
+      type: "json",
     })
   }
 
   getGroupList(page = 1, limit = 50) {
     return reqwest({
-      url: api('intern/groups'),
-      type: 'json',
+      url: api("intern/groups"),
+      type: "json",
       data: {
         page,
-        limit
-      }
+        limit,
+      },
     })
   }
 
   getUsers(search) {
     return reqwest({
-      url: api('core/users'),
+      url: api("core/users"),
       data: {
         search,
-        limit: 20
+        limit: 20,
       },
-      type: 'json'
+      type: "json",
     })
   }
 
   getInterForUser(userId) {
     return reqwest({
-      url: api('intern/interns'),
-      type: 'json',
+      url: api("intern/interns"),
+      type: "json",
       data: {
-        user: userId
-      }
+        user: userId,
+      },
     })
   }
 
-  getIntern(internId){
+  getIntern(internId) {
     return reqwest({
-      url: api('intern/interns/' + internId),
-      type: 'json'
+      url: api("intern/interns/" + internId),
+      type: "json",
     })
   }
 
-  getInterns(page = 1, limit = 50, search = '') {
+  getInterns(page = 1, limit = 50, search = "") {
     return reqwest({
-      url: api('intern/interns'),
-      type: 'json',
+      url: api("intern/interns"),
+      type: "json",
       data: {
         page,
         limit,
-        search
-      }
+        search,
+      },
     })
   }
 
   getAccessLevels() {
     return reqwest({
-      url: api('intern/accesslevels'),
-      type: 'json',
+      url: api("intern/accesslevels"),
+      type: "json",
     })
   }
 
-  getRoles(){
+  getRoles() {
     return reqwest({
-      url: api('intern/roles'),
-      type: 'json'
+      url: api("intern/roles"),
+      type: "json",
     })
   }
 
-  getRole(roleId){
+  getRole(roleId) {
     return reqwest({
-      url: api('intern/roles/' + roleId),
-      type: 'json'
+      url: api("intern/roles/" + roleId),
+      type: "json",
     })
   }
 
-  getInternsFromRole(roleId){
+  getInternsFromRole(roleId) {
     return reqwest({
-      url: api('intern/interns'),
-      type: 'json',
+      url: api("intern/interns"),
+      type: "json",
       data: {
-        roles: roleId
-      }
+        roles: roleId,
+      },
     })
   }
 
-  getRolesInGroup(groupId){
+  getRolesInGroup(groupId) {
     return reqwest({
-      url: api('intern/roles'),
-      type:'json',
+      url: api("intern/roles"),
+      type: "json",
       data: {
-        groups: groupId
-      }
+        groups: groupId,
+      },
     })
   }
 
-  getInternsInGroup(groupId){
+  getInternsInGroup(groupId) {
     return reqwest({
-      url: api('intern/internroles'),
-      type: 'json',
+      url: api("intern/internroles"),
+      type: "json",
       data: {
-        role__groups: groupId
-      }
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        role__groups: groupId,
+      },
     })
   }
 
-  getInternRoleForIntern(internId){
+  getInternRoleForIntern(internId) {
     return reqwest({
-      url: api('intern/internroles'),
-      type: 'json',
+      url: api("intern/internroles"),
+      type: "json",
       data: {
-        intern: internId
-      }
+        intern: internId,
+      },
     })
   }
 
-  addRoleToIntern(username, roleId){
+  addRoleToIntern(username, roleId) {
     return reqwest({
-      url: api('intern/internroles'),
-      type: 'json',
-      method: 'post',
+      url: api("intern/internroles"),
+      type: "json",
+      method: "post",
       data: {
         username: username,
-        role: roleId
-      }
+        role: roleId,
+      },
     })
   }
-  removeRoleFromIntern(internRoleId){
+  removeRoleFromIntern(internRoleId) {
     return reqwest({
       url: api(`intern/internroles/${internRoleId}`),
-      method: 'delete',
-      type: 'json'
+      method: "delete",
+      type: "json",
     })
   }
 
-  addCardToUser(user_id ,card_number){
+  addCardToUser(userId, cardNumber) {
     return reqwest({
-      url: api('core/cards'),
-      type: 'json',
-      method: 'post',
+      url: api("core/cards"),
+      type: "json",
+      method: "post",
       data: {
-        user: user_id,
-        card_number: card_number
-      }
+        user: userId,
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        card_number: cardNumber,
+      },
     })
   }
-  getCardsForUser(userId){
+  getCardsForUser(userId) {
     return reqwest({
-      url: api('core/cards'),
-      type: 'json',
-      data:{
-        user__id: userId
-      }
+      url: api("core/cards"),
+      type: "json",
+      data: {
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        user__id: userId,
+      },
     })
   }
   addComment(internId, comments) {
     return reqwest({
       url: api(`intern/interns/${internId}`),
       data: {
-        comments
+        comments,
       },
-      type: 'json',
-      method: 'patch'
+      type: "json",
+      method: "patch",
     })
   }
 }

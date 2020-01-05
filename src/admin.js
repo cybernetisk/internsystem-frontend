@@ -1,9 +1,8 @@
-import React from 'react'
-import {Route} from 'react-router'
-import {admin} from './api'
+import React from "react"
+import { Route } from "react-router"
+import { admin } from "./api"
 
 class Admin extends React.Component {
-
   componentDidMount() {
     // TODO: this.props.params.splat
     window.location.href = admin()
@@ -14,6 +13,4 @@ class Admin extends React.Component {
   }
 }
 
-export default (
-  <Route path="/admin/" component={Admin} />
-)
+export default <Route path="/admin/" component={Admin} />

@@ -1,4 +1,4 @@
-import Immutable from 'immutable'
+import Immutable from "immutable"
 
 function deepCompare(actual, expected, comparator) {
   if (Immutable.List.isList(actual) || Immutable.Map.isMap(actual)) {
@@ -11,12 +11,12 @@ function deepCompare(actual, expected, comparator) {
 export default function deepSearchPredicate(expression, comparator) {
   if (comparator === true) {
     comparator = (actual, expected) => actual === expected
-  } else if (typeof comparator !== 'function') {
+  } else if (typeof comparator !== "function") {
     comparator = (actual, expected) => {
       if (actual === undefined || actual === null) {
         return false
       }
-      actual = (actual + '').toLowerCase()
+      actual = (actual + "").toLowerCase()
       return actual.indexOf(expected.toLowerCase()) !== -1
     }
   }

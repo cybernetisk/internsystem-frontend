@@ -1,45 +1,47 @@
-import {fillBuyPrice, fillSellPrice} from './service'
-import {extractGroupsImmutable, getSorterImmutable} from '../common/VarerHelper'
+import deepSearchPredicate from "../../../utils/deepSearchPredicate"
+import {
+  extractGroupsImmutable,
+  getSorterImmutable,
+} from "../common/VarerHelper"
+import * as consts from "../consts"
+import { fillBuyPrice, fillSellPrice } from "./service"
 
-import deepSearchPredicate from '../../../utils/deepSearchPredicate'
+export const listStore = ["varerInventoryItems"]
 
-import * as consts from '../consts'
+export const filters = ["varerInventoryItems", "filters"]
 
-export const listStore = ['varerInventoryItems']
-
-export const filters = ['varerInventoryItems', 'filters']
-
-export const items = ['varerInventoryItems', 'items']
+export const items = ["varerInventoryItems", "items"]
 
 export const inventoryItemsLoader = [
-  ['varerInventoryItems', 'isLoading'],
-  ['varerInventoryItems', 'error'],
-  ['varerInventoryItems', 'items'],
+  ["varerInventoryItems", "isLoading"],
+  ["varerInventoryItems", "error"],
+  ["varerInventoryItems", "items"],
   (isLoading, error, items) => {
     return {
       isLoading,
       error,
-      isEmpty: items.isEmpty()
+      isEmpty: items.isEmpty(),
     }
-  }
+  },
 ]
 
 export const inventoryItemsTransformed = [
   items,
-  items => items
-    .map(item => fillBuyPrice(item))
-    .map(item => fillSellPrice(item))
-    .sort(getSorterImmutable('innkjopskonto'))
+  items =>
+    items
+      .map(item => fillBuyPrice(item))
+      .map(item => fillSellPrice(item))
+      .sort(getSorterImmutable("innkjopskonto")),
 ]
 
 export const groups = [
   inventoryItemsTransformed,
-  inventoryItems => extractGroupsImmutable(inventoryItems, 'innkjopskonto')
+  inventoryItems => extractGroupsImmutable(inventoryItems, "innkjopskonto"),
 ]
 
 export const selectGroups = [
   groups,
-  groups => groups.groupBy(group => group.get('gruppe'))
+  groups => groups.groupBy(group => group.get("gruppe")),
 ]
 
 export const filteredInventoryItems = [
@@ -47,24 +49,33 @@ export const filteredInventoryItems = [
   filters,
   groups,
   (inventoryItems, filters, groups) => {
-    inventoryItems = inventoryItems.filter(consts.outdatedOptions.get(filters.get('outdated')).get('filter'))
+    inventoryItems = inventoryItems.filter(
+      consts.outdatedOptions.get(filters.get("outdated")).get("filter"),
+    )
 
-    if (filters.get('group') !== null) {
-      let compareGroup = groups.find(g => g.get('id') === filters.get('group'))
-      inventoryItems = inventoryItems
-        .filter(item => item.get('innkjopskonto').get(compareGroup.get('compare')) === compareGroup.get('compareValue'))
+    if (filters.get("group") !== null) {
+      const compareGroup = groups.find(
+        g => g.get("id") === filters.get("group"),
+      )
+      inventoryItems = inventoryItems.filter(
+        item =>
+          item.get("innkjopskonto").get(compareGroup.get("compare")) ===
+          compareGroup.get("compareValue"),
+      )
     }
 
-    if (filters.get('text', '') !== '') {
+    if (filters.get("text", "") !== "") {
       // match each word individually
-      let words = filters.get('text').match(/\S+\s*/g)
+      const words = filters.get("text").match(/\S+\s*/g)
       if (words) {
         words.forEach(word => {
-          inventoryItems = inventoryItems.filter(deepSearchPredicate(word.trim()))
+          inventoryItems = inventoryItems.filter(
+            deepSearchPredicate(word.trim()),
+          )
         })
       }
     }
 
     return inventoryItems
-  }
+  },
 ]

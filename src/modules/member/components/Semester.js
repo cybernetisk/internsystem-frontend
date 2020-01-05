@@ -1,73 +1,66 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'nuclear-js-react-addons-chefsplate'
-import moment from '../../../moment'
-import * as getters from '../getters'
-import * as actions from '../actions'
-
-import Pagination from '../../../components/Pagination'
-import Loader from '../../../components/Loader'
-
-import List from './List'
-
-import MemberService from '../services/MemberService'
-import { userDetails, isLoggedIn } from '../../auth/getters'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { Link } from "react-router-dom"
+import Loader from "../../../components/Loader"
+import { isLoggedIn, userDetails } from "../../auth/getters"
+import * as actions from "../actions"
+import * as getters from "../getters"
+import MemberService from "../services/MemberService"
+import List from "./List"
 
 export default
-@connect(props => ({
+@connect(() => ({
   userDetails,
   isLoggedIn,
   stats: getters.stats,
-  members: getters.members
+  members: getters.members,
 }))
 class Semester extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {loaded: false}
+    this.state = { loaded: false }
   }
 
   componentDidMount() {
     const semId = this.props.match.params.semId
-    MemberService.getSemesterStats(semId).then(result => {
-      this.setState({
-        id: result.id,
-        semester: result.semester,
-        lifetime: result.lifetime,
-        normal: result.normal,
-        honorary: result.honorary,
-        loaded: true
-      })
-    }, error => {
-      alert(error.responseText)
-    })
+    MemberService.getSemesterStats(semId).then(
+      result => {
+        this.setState({
+          id: result.id,
+          semester: result.semester,
+          lifetime: result.lifetime,
+          normal: result.normal,
+          honorary: result.honorary,
+          loaded: true,
+        })
+      },
+      error => {
+        alert(error.responseText)
+      },
+    )
     actions.getSemMemberList(semId, 1, 50)
   }
 
   render() {
     if (!this.props.isLoggedIn) {
-      return (
-        <h1>You haven't logged in! Please login!</h1>
-      )
+      return <h1>You haven't logged in! Please login!</h1>
     }
     if (!this.state.loaded) {
-      return (
-        <h1>Loading...</h1>
-      )
+      return <h1>Loading...</h1>
     }
 
     return (
       <div>
         <Loader
-          isLoading={this.props.members.get('isLoading')}
-          error={this.props.members.get('error')}
-          isEmpty={!this.props.members.get('data')}
+          isLoading={this.props.members.get("isLoading")}
+          error={this.props.members.get("error")}
+          isEmpty={!this.props.members.get("data")}
         >
           No semesters registered!
         </Loader>
         {this.renderNormal()}
       </div>
     )
-
   }
 
   renderNormal() {
@@ -77,7 +70,7 @@ class Semester extends React.Component {
         <Link to="/member">Go back to overview</Link>
         {this.renderStatsTable()}
         <h2>Memberlist</h2>
-        <List switcher={true} semId={this.props.match.params.semId}/>
+        <List switcher={true} semId={this.props.match.params.semId} />
       </div>
     )
   }
@@ -102,5 +95,4 @@ class Semester extends React.Component {
       </table>
     )
   }
-
 }

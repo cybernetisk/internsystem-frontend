@@ -1,18 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'nuclear-js-react-addons-chefsplate'
-import * as getters from '../getters'
-import * as actions from '../actions'
-
-import Loader from '../../../components/Loader'
-
-import { isLoggedIn } from '../../auth/getters'
-
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { Link } from "react-router-dom"
+import Loader from "../../../components/Loader"
+import { isLoggedIn } from "../../auth/getters"
+import * as actions from "../actions"
+import * as getters from "../getters"
 
 export default
-@connect(props => ({
+@connect(() => ({
   isLoggedIn,
-  stats: getters.stats
+  stats: getters.stats,
 }))
 class Stats extends React.Component {
   componentDidMount() {
@@ -20,16 +17,19 @@ class Stats extends React.Component {
   }
 
   renderList() {
-    if (!this.props.stats.get('data')) {
+    if (!this.props.stats.get("data")) {
       return
     }
-    var normal = 0
-    var lifetime = 0
-    var honorary = 0
+    let normal = 0
+    let lifetime = 0
+    let honorary = 0
 
-    let mylist = this.props.stats.get('data').toList().toJS()
-    var i
-    for(i = 0; i < mylist.length; i++){
+    const mylist = this.props.stats
+      .get("data")
+      .toList()
+      .toJS()
+    let i
+    for (i = 0; i < mylist.length; i++) {
       normal += mylist[i].normal
       lifetime += mylist[i].lifetime
       honorary += mylist[i].honorary
@@ -46,9 +46,13 @@ class Stats extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {mylist.map((stats) => (
+          {mylist.map(stats => (
             <tr key={stats.id}>
-              <td><Link to={`/member/semester/${stats.id}`}>{stats.semester}</Link></td>
+              <td>
+                <Link to={`/member/semester/${stats.id}`}>
+                  {stats.semester}
+                </Link>
+              </td>
               <td>{stats.normal}</td>
               <td>{stats.lifetime}</td>
               <td>{stats.honorary}</td>
@@ -70,16 +74,14 @@ class Stats extends React.Component {
       <div>
         <h1>Members</h1>
         <Loader
-          isLoading={this.props.stats.get('isLoading')}
-          error={this.props.stats.get('error')}
-          isEmpty={!this.props.stats.get('data')}
+          isLoading={this.props.stats.get("isLoading")}
+          error={this.props.stats.get("error")}
+          isEmpty={!this.props.stats.get("data")}
         >
           No semesters registered!
         </Loader>
         {this.renderList()}
       </div>
     )
-
   }
-
 }

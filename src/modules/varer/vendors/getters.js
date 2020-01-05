@@ -1,1 +1,1 @@
-export const vendors = ['varerVendors']
+export const vendors = ["varerVendors"]

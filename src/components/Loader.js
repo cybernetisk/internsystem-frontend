@@ -1,13 +1,12 @@
-import PropTypes from 'prop-types';
-import React from 'react'
+import PropTypes from "prop-types"
+import React from "react"
 
 export default class Loader extends React.Component {
-
   PropTypes = {
     children: PropTypes.node,
     isEmpty: PropTypes.bool,
     isLoading: PropTypes.bool.isRequired,
-    error: PropTypes.string
+    error: PropTypes.string,
   }
 
   renderError() {
@@ -15,28 +14,20 @@ export default class Loader extends React.Component {
     if (this.props.error.length > 0) {
       message = `Error loading data: ${this.props.error}`
     } else {
-      message = 'Unexpected error on loading data.'
+      message = "Unexpected error on loading data."
     }
 
-    return (
-      <div className="core-loader is-error">
-        {message}
-      </div>
-    )
+    return <div className="core-loader is-error">{message}</div>
   }
 
   renderLoading() {
-    return (
-      <div className="core-loader is-loading">
-        Loading data ...
-      </div>
-    )
+    return <div className="core-loader is-loading">Loading data ...</div>
   }
 
   renderEmpty() {
     return (
       <div className="core-loader is-empty">
-        {this.props.children || 'No data found.'}
+        {this.props.children || "No data found."}
       </div>
     )
   }

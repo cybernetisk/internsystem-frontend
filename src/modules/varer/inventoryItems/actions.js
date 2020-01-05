@@ -1,15 +1,13 @@
-import reactor from './../../../reactor'
-import {dispatchAsync} from '../../../utils/FluxUtils'
-
-import {getInventoryItems} from './service'
-
-import actionTypes from './actionTypes'
+import { dispatchAsync } from "../../../utils/FluxUtils"
+import reactor from "./../../../reactor"
+import actionTypes from "./actionTypes"
+import { getInventoryItems } from "./service"
 
 export function fetchInventoryItems() {
   dispatchAsync(getInventoryItems(), {
     request: actionTypes.RECEIVE_INVENTORYITEMS_START,
     success: actionTypes.RECEIVE_INVENTORYITEMS_SUCCESS,
-    failure: actionTypes.RECEIVE_INVENTORYITEMS_FAILURE
+    failure: actionTypes.RECEIVE_INVENTORYITEMS_FAILURE,
   })
 }
 

@@ -1,9 +1,9 @@
-import reqwest from '../../../utils/reqwest'
-import {api} from '../../../api'
+import { api } from "../../../api"
+import reqwest from "../../../utils/reqwest"
 
 export function getVendors() {
   return reqwest({
-    url: api('varer/leverandører'),
-    type: 'json'
+    url: api("varer/leverandører"),
+    type: "json",
   })
 }

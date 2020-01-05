@@ -1,4 +1,4 @@
-import keyMirror from 'fbjs/lib/keyMirror'
+import keyMirror from "fbjs/lib/keyMirror"
 
 export default keyMirror({
   RECEIVE_INTERNLIST_START: null,
@@ -24,5 +24,5 @@ export default keyMirror({
   RECEIVE_ROLES_FAILURE: null,
   RECEIVE_UIOCARD_START: null,
   RECEIVE_UIOCARD_SUCCESS: null,
-  RECEIVE_UIOCARD_FAILURE: null
+  RECEIVE_UIOCARD_FAILURE: null,
 })

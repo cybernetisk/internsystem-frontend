@@ -1,12 +1,12 @@
-import reactor from '../reactor'
+import reactor from "../reactor"
 
 export default function deferredGetter(getter) {
   return new Promise(resolve => {
-    let res = reactor.evaluate(getter)
+    const res = reactor.evaluate(getter)
     if (res !== null) {
       resolve(res)
     } else {
-      let destroyObserver = reactor.observe(getter, value => {
+      const destroyObserver = reactor.observe(getter, () => {
         resolve(res)
         destroyObserver()
       })

@@ -1,17 +1,14 @@
-import {toImmutable} from 'nuclear-js'
-import PropTypes from 'prop-types';
-import React from 'react'
-
-import {price} from '../../../../services/FormatService'
-import {getInPrices} from '../../inventoryItems/service'
-
-import PriceDate from './PriceDate'
-
-import './Price.scss'
+import { toImmutable } from "nuclear-js"
+import PropTypes from "prop-types"
+import React from "react"
+import { price } from "../../../../services/FormatService"
+import { getInPrices } from "../../inventoryItems/service"
+import "./Price.scss"
+import PriceDate from "./PriceDate"
 
 const debounceTime = 100
 
-export default class extends React.Component {
+export default class Price extends React.Component {
   static propTypes = {
     price: PropTypes.number.isRequired,
     priceDate: PropTypes.string,
@@ -35,7 +32,7 @@ export default class extends React.Component {
 
   loadHistory() {
     this.setState({
-      isHistoryLoading: true
+      isHistoryLoading: true,
     })
 
     getInPrices(this.props.raavareId).then(response => {
@@ -46,42 +43,49 @@ export default class extends React.Component {
     })
   }
 
-  handleMouseEnter(event) {
+  handleMouseEnter() {
     if (this.props.raavareId) {
-      this.debounceTimer = setTimeout(() => {
-        this.setState({
-          showHistory: true,
-        })
+      this.debounceTimer = setTimeout(
+        () => {
+          this.setState({
+            showHistory: true,
+          })
 
-        if (this.state.history === null && !this.state.isHistoryLoading) {
-          this.loadHistory()
-        }
-      }, this.state.history !== null ? 0 : debounceTime)
+          if (this.state.history === null && !this.state.isHistoryLoading) {
+            this.loadHistory()
+          }
+        },
+        this.state.history !== null ? 0 : debounceTime,
+      )
     }
   }
 
-  handleMouseLeave(event) {
+  handleMouseLeave() {
     if (this.props.raavareId) {
       clearTimeout(this.debounceTimer)
       this.setState({
-        showHistory: false
+        showHistory: false,
       })
     }
   }
 
   renderHistory() {
-    if (this.state.showHistory && this.state.history && this.state.history.size > 0) {
+    if (
+      this.state.showHistory &&
+      this.state.history &&
+      this.state.history.size > 0
+    ) {
       return (
         <div className="varer-price-history">
           {this.state.history.map(item => {
             return (
-              <div key={item.get('id')} className="varer-price-history-item">
-                <span>{item.get('aktiv') ? '' : 'Invalid'}</span>
-                <span>{item.get('dato')}</span>
-                <span>{price(item.get('pris') / item.get('antall'))}</span>
-                <span>{price(item.get('pant') / item.get('antall'))}</span>
-                <span>{item.getIn(['leverandor', 'navn'])}</span>
-                <span>{item.get('type')}</span>
+              <div key={item.get("id")} className="varer-price-history-item">
+                <span>{item.get("aktiv") ? "" : "Invalid"}</span>
+                <span>{item.get("dato")}</span>
+                <span>{price(item.get("pris") / item.get("antall"))}</span>
+                <span>{price(item.get("pant") / item.get("antall"))}</span>
+                <span>{item.getIn(["leverandor", "navn"])}</span>
+                <span>{item.get("type")}</span>
               </div>
             )
           })}
@@ -95,8 +99,7 @@ export default class extends React.Component {
     if (this.props.pant) {
       pant = (
         <span className="varer-price-pant">
-          <br/>
-          + {price(this.props.pant)} i pant
+          <br />+ {price(this.props.pant)} i pant
         </span>
       )
     }
@@ -106,13 +109,20 @@ export default class extends React.Component {
       priceDate = (
         <span>
           <br />
-          <PriceDate dato={this.props.priceDate} relativeTo={this.props.priceDateRelativeTo}/>
+          <PriceDate
+            dato={this.props.priceDate}
+            relativeTo={this.props.priceDateRelativeTo}
+          />
         </span>
       )
     }
 
     return (
-      <span className="varer-price-buyPrice" onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <span
+        className="varer-price-buyPrice"
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
         {price(this.props.price)}
         {pant}
         {priceDate}

@@ -1,22 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
-import List from './List'
-
-import MemberService from '../services/MemberService'
-
-import { connect } from 'nuclear-js-react-addons-chefsplate'
-import moment from '../../../moment'
-import * as actions from '../actions'
-
-import { isLoggedIn } from '../../auth/getters'
-
-import Pagination from '../../../components/Pagination'
-import Loader from '../../../components/Loader'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { isLoggedIn } from "../../auth/getters"
+import * as actions from "../actions"
+import MemberService from "../services/MemberService"
+import List from "./List"
 
 export default
-@connect(props => ({
-  isLoggedIn
+@connect(() => ({
+  isLoggedIn,
 }))
 class Add extends React.Component {
   constructor(props) {
@@ -27,24 +18,27 @@ class Add extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
 
-    this.initState()
+    this.state = {
+      name: "",
+      email: "",
+      lifetime: false,
+    }
   }
 
   handleNameChange(e) {
-    this.setState({name: e.target.value});
+    this.setState({ name: e.target.value })
   }
 
   handleEmailChange(e) {
-    this.setState({email: e.target.value});
+    this.setState({ email: e.target.value })
   }
 
   handleLifetimeChange(e) {
-    this.setState({lifetime: e.target.checked})
+    this.setState({ lifetime: e.target.checked })
   }
 
-  initState() {
-    this.state = {name: '', email: '', lifetime: false}
-    actions.getMemberList(1, 10, '-date_joined')
+  componentDidMount() {
+    actions.getMemberList(1, 10, "-date_joined")
   }
 
   handleSubmit(e) {
@@ -52,72 +46,80 @@ class Add extends React.Component {
     const name = this.state.name
     const email = this.state.email
     const lifetime = this.state.lifetime
-    MemberService.registerMember(name, email, lifetime).then(result => {
-      actions.getMemberList(1, 10, '-date_joined')
-      this.setState({
-        isSending: false,
-        name: '',
-        email: '',
-        lifetime: false
-      })
-    }, error => {
-      alert(error.responseText)
-    })
+    MemberService.registerMember(name, email, lifetime).then(
+      () => {
+        actions.getMemberList(1, 10, "-date_joined")
+        this.setState({
+          isSending: false,
+          name: "",
+          email: "",
+          lifetime: false,
+        })
+      },
+      error => {
+        alert(error.responseText)
+      },
+    )
   }
-
 
   renderAddForm() {
     return (
       <div className="panel-body">
         <form className="form-inline" onSubmit={this.handleSubmit}>
           <div className="form-group">
-
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" value={this.state.name} placeholder="Required"
-              onChange={this.handleNameChange} className="form-control"
+            <input
+              type="text"
+              name="name"
+              value={this.state.name}
+              placeholder="Required"
+              onChange={this.handleNameChange}
+              className="form-control"
             />
           </div>
           <div className="form-group">
             <label htmlFor="email">Email:</label>
-            <input type="text" name="email" value={this.state.email} placeholder="Optional"
-              onChange={this.handleEmailChange} className="form-control"
+            <input
+              type="text"
+              name="email"
+              value={this.state.email}
+              placeholder="Optional"
+              onChange={this.handleEmailChange}
+              className="form-control"
             />
           </div>
           <div className="form-group">
-            <input type="submit" className="form-control btn-success" value="Add member"/>
+            <input
+              type="submit"
+              className="form-control btn-success"
+              value="Add member"
+            />
           </div>
-
         </form>
-      </div >
+      </div>
     )
-
   }
 
   renderNewlyMembers() {
-
-    return (
-      <List switcher={false}/>
-    )
+    return <List switcher={false} />
   }
-
 
   render() {
     console.debug(this.props.isLoggedIn)
     if (!this.props.isLoggedIn) {
-      return (
-        <h1>You haven't logged in! Please login!</h1>
-      )
+      return <h1>You haven't logged in! Please login!</h1>
     }
     return (
       <div className="panel panel-default">
         <div className="panel-heading">Add member</div>
-        <p className="lead">If you don't have access to add members and should have, go to #it on slack</p>
+        <p className="lead">
+          If you don't have access to add members and should have, go to #it on
+          slack
+        </p>
         {this.renderAddForm()}
         <h2>Recent members:</h2>
         {this.renderNewlyMembers()}
       </div>
     )
-
   }
-
 }

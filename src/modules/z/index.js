@@ -1,8 +1,7 @@
-import React from 'react'
-import { Route } from 'react-router'
-
-import Index from './components/Index'
-import Stats from './components/Stats'
+import React from "react"
+import { Route } from "react-router"
+import Index from "./components/Index"
+import Stats from "./components/Stats"
 
 export default (
   <React.Fragment>

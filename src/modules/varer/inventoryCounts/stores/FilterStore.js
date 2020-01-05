@@ -1,11 +1,11 @@
-import { Store, toImmutable } from 'nuclear-js'
-import actionTypes from '../actionTypes'
-import * as consts from '../../consts'
+import { Store, toImmutable } from "nuclear-js"
+import * as consts from "../../consts"
+import actionTypes from "../actionTypes"
 
 const initialFilters = {
-  text: '',
+  text: "",
   group: null,
-  f: consts.inventoryCountOptionsDefault
+  f: consts.inventoryCountOptionsDefault,
 }
 
 export default Store({
@@ -15,12 +15,11 @@ export default Store({
 
   initialize() {
     this.on(actionTypes.INVENTORYCOUNT_FILTERS, (state, filters) => {
-      return state
-        .merge(toImmutable(filters))
+      return state.merge(toImmutable(filters))
     })
 
     this.on(actionTypes.INVENTORYCOUNT_FILTERS_CLEAR, () => {
       return toImmutable(initialFilters)
     })
-  }
+  },
 })

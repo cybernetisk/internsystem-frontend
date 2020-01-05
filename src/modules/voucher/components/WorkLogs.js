@@ -1,22 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'nuclear-js-react-addons-chefsplate'
-import moment from '../../../moment'
-
-import * as getters from '../getters'
-import * as actions from '../actions'
-
-import Pagination from '../../../components/Pagination'
-import Loader from '../../../components/Loader'
-import NewWorkLog from './NewWorkLog'
-import WorkLogItem from './WorkLogItem'
-
-import { isLoggedIn } from '../../auth/getters'
-
-import './WorkLogs.scss'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { Link } from "react-router-dom"
+import Loader from "../../../components/Loader"
+import Pagination from "../../../components/Pagination"
+import { isLoggedIn } from "../../auth/getters"
+import * as actions from "../actions"
+import * as getters from "../getters"
+import NewWorkLog from "./NewWorkLog"
+import WorkLogItem from "./WorkLogItem"
+import "./WorkLogs.scss"
 
 export default
-@connect(props => ({
+@connect(() => ({
   worklogs: getters.worklogs,
   isLoggedIn,
 }))
@@ -30,13 +25,14 @@ class List extends React.Component {
   }
 
   renderWorkLogs() {
-    if (!this.props.worklogs.get('data')) {
+    if (!this.props.worklogs.get("data")) {
       return
     }
 
-    const shouldShowLastCol = this.props.worklogs.getIn(['data', 'results']).find(worklog => (
-    worklog.get('can_edit') || worklog.get('can_delete')))
-    let lastCol = shouldShowLastCol ? <th>&nbsp;</th> : ''
+    const shouldShowLastCol = this.props.worklogs
+      .getIn(["data", "results"])
+      .find(worklog => worklog.get("can_edit") || worklog.get("can_delete"))
+    const lastCol = shouldShowLastCol ? <th>&nbsp;</th> : ""
 
     return (
       <div>
@@ -53,14 +49,22 @@ class List extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.worklogs.get('data').get('results').toJS().map((worklog) => (
-              <WorkLogItem key={worklog.id} worklog={worklog} showLastCol={shouldShowLastCol}/>
-            ))}
+            {this.props.worklogs
+              .get("data")
+              .get("results")
+              .toJS()
+              .map(worklog => (
+                <WorkLogItem
+                  key={worklog.id}
+                  worklog={worklog}
+                  showLastCol={shouldShowLastCol}
+                />
+              ))}
           </tbody>
         </table>
         <Pagination
-          active={this.props.worklogs.get('data').get('page')}
-          pages={this.props.worklogs.get('data').get('pages')}
+          active={this.props.worklogs.get("data").get("page")}
+          pages={this.props.worklogs.get("data").get("pages")}
           onChange={this.handlePageChange}
         />
       </div>
@@ -69,9 +73,7 @@ class List extends React.Component {
 
   renderNew() {
     if (this.props.isLoggedIn) {
-      return (
-        <NewWorkLog />
-      )
+      return <NewWorkLog />
     }
 
     return (
@@ -86,14 +88,15 @@ class List extends React.Component {
       <div>
         <h1>Vouchers - work logs</h1>
         <p>
-          If you have any problems go
-          to <a href="https://cybernetisk.slack.com/messages/it/details/">#it</a> on Slack
+          If you have any problems go to{" "}
+          <a href="https://cybernetisk.slack.com/messages/it/details/">#it</a>{" "}
+          on Slack
         </p>
         {this.renderNew()}
         <Loader
-          isLoading={this.props.worklogs.get('isLoading')}
-          error={this.props.worklogs.get('error')}
-          isEmpty={!this.props.worklogs.get('data')}
+          isLoading={this.props.worklogs.get("isLoading")}
+          error={this.props.worklogs.get("error")}
+          isEmpty={!this.props.worklogs.get("data")}
         >
           No work data is registered.
         </Loader>

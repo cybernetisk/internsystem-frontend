@@ -1,4 +1,4 @@
-import keyMirror from 'fbjs/lib/keyMirror'
+import keyMirror from "fbjs/lib/keyMirror"
 
 export default keyMirror({
   RECEIVE_INVENTORYITEMS_START: null,

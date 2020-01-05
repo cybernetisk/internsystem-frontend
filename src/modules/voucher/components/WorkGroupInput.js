@@ -1,28 +1,26 @@
-import React from 'react'
-import Autosuggest from 'react-autosuggest'
-import VoucherService from '../services/VoucherService'
+import theme from "!style-loader!css-loader?modules!./autosuggest.scss"
+import React from "react"
+import Autosuggest from "react-autosuggest"
+import VoucherService from "../services/VoucherService"
 
-import theme from '!style-loader!css-loader?modules!./autosuggest.scss'
-theme.input = 'form-control'
+theme.input = "form-control"
 
 function renderSuggestion(suggestion) {
-  return (
-    <span>{suggestion.work_group}</span>
-  )
+  return <span>{suggestion.work_group}</span>
 }
 
 function escapeRegexCharacters(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
 }
 
 function getSuggestions(value, list) {
   const escapedValue = escapeRegexCharacters(value.trim())
 
-  if (escapedValue === '') {
+  if (escapedValue === "") {
     return list
   }
 
-  const regex = new RegExp('^' + escapedValue, 'i')
+  const regex = new RegExp("^" + escapedValue, "i")
 
   return list.filter(group => regex.test(group.work_group))
 }
@@ -33,20 +31,20 @@ export default class UserInput extends React.Component {
 
     this.state = {
       suggestions: [],
-      suggestions_all: []
+      suggestionsAll: [],
     }
 
     VoucherService.getWorkGroups().then(result => {
       this.setState({
-        suggestions_all: result,
-        suggestions: getSuggestions(this.props.value, result)
+        suggestionsAll: result,
+        suggestions: getSuggestions(this.props.value, result),
       })
     })
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
-      suggestions: getSuggestions(value, this.state.suggestions_all)
+      suggestions: getSuggestions(value, this.state.suggestionsAll),
     })
   }
 
@@ -57,9 +55,9 @@ export default class UserInput extends React.Component {
   }
 
   render() {
-    let { onChange, ...inputProps } = this.props
-    inputProps.placeholder = 'Work group'
-    inputProps.onChange = (event, {newValue}) => onChange(newValue)
+    const { onChange, ...inputProps } = this.props
+    inputProps.placeholder = "Work group"
+    inputProps.onChange = (event, { newValue }) => onChange(newValue)
 
     return (
       <Autosuggest
@@ -68,7 +66,7 @@ export default class UserInput extends React.Component {
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         getSuggestionValue={sug => sug.work_group}
         renderSuggestion={renderSuggestion}
-        shouldRenderSuggestions={val => true}
+        shouldRenderSuggestions={() => true}
         inputProps={inputProps}
         theme={theme}
       />

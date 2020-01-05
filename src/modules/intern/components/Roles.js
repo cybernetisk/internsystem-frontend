@@ -1,24 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {connect} from 'nuclear-js-react-addons-chefsplate'
-import * as getters from '../getters'
-import * as actions from '../actions'
-
-import { userDetails, isLoggedIn } from '../../auth/getters';
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { Link } from "react-router-dom"
+import { isLoggedIn, userDetails } from "../../auth/getters"
+import * as actions from "../actions"
+import * as getters from "../getters"
 
 export default
-@connect(props => ({
+@connect(() => ({
   roles: getters.roles,
   userDetails,
-  isLoggedIn
+  isLoggedIn,
 }))
 class Roles extends React.Component {
-
-  componentDidMount(){
+  componentDidMount() {
     actions.getRoles()
   }
 
-  renderTable(){
+  renderTable() {
     return (
       <table className="table table-responsive">
         <thead>
@@ -29,19 +27,28 @@ class Roles extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.roles.get('data').toJS().map((role) => (
-            <tr key={role.id}>
-              <th><Link to={`/intern/role/${role.id}`}>{role.name}</Link></th>
-              <th>
-                <ul>
-                  {role.groups.map((group) => (
-                    <li key={group.id}><Link to={`/intern/group/${group.id}`}>{group.name}</Link></li>
-                  ))}
-                </ul>
-              </th>
-              <th>{role.description}</th>
-            </tr>
-          ))}
+          {this.props.roles
+            .get("data")
+            .toJS()
+            .map(role => (
+              <tr key={role.id}>
+                <th>
+                  <Link to={`/intern/role/${role.id}`}>{role.name}</Link>
+                </th>
+                <th>
+                  <ul>
+                    {role.groups.map(group => (
+                      <li key={group.id}>
+                        <Link to={`/intern/group/${group.id}`}>
+                          {group.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </th>
+                <th>{role.description}</th>
+              </tr>
+            ))}
         </tbody>
       </table>
     )
@@ -49,12 +56,10 @@ class Roles extends React.Component {
 
   render() {
     if (!this.props.isLoggedIn) {
-      return (
-        <h1>Not logged in! Please login!</h1>
-      )
+      return <h1>Not logged in! Please login!</h1>
     }
-    if(this.props.roles.get('isLoading')){
-      return(<div>Loading...</div>)
+    if (this.props.roles.get("isLoading")) {
+      return <div>Loading...</div>
     }
     return this.renderTable()
   }

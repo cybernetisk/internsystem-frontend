@@ -1,22 +1,18 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'nuclear-js-react-addons-chefsplate'
-import moment from '../../../moment'
-import {antall} from '../../../services/FormatService'
-
-import * as getters from '../getters'
-import * as actions from '../actions'
-
-import Pagination from '../../../components/Pagination'
-import Loader from '../../../components/Loader'
-import UseVouchers from './UseVouchers'
-
-import { userDetails } from '../../auth/getters'
-
-import './UseLogs.scss'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { Link } from "react-router-dom"
+import Loader from "../../../components/Loader"
+import Pagination from "../../../components/Pagination"
+import moment from "../../../moment"
+import { antall } from "../../../services/FormatService"
+import { userDetails } from "../../auth/getters"
+import * as actions from "../actions"
+import * as getters from "../getters"
+import "./UseLogs.scss"
+import UseVouchers from "./UseVouchers"
 
 export default
-@connect(props => ({
+@connect(() => ({
   uselogs: getters.uselogs,
   userDetails,
 }))
@@ -30,11 +26,11 @@ class UseLogs extends React.Component {
   }
 
   renderDateSpent(val) {
-    return moment(val).format('dddd D. MMM YYYY HH:mm')
+    return moment(val).format("dddd D. MMM YYYY HH:mm")
   }
 
   renderUseLogs() {
-    if (!this.props.uselogs.get('data')) {
+    if (!this.props.uselogs.get("data")) {
       return
     }
 
@@ -51,31 +47,40 @@ class UseLogs extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.uselogs.get('data').get('results').toJS().map((uselog) => {
-              let who = uselog.wallet.user.username
-              if (uselog.wallet.user.realname) {
-                who += ` (${uselog.wallet.user.realname})`
-              }
-              return (
-                <tr key={uselog.id}>
-                  <td>{this.renderDateSpent(uselog.date_spent)}</td>
-                  <td>{who}</td>
-                  <td>{uselog.vouchers}</td>
-                  <td>{antall(parseFloat(uselog.wallet.cached_balance))}</td>
-                  <td>
-                    {uselog.comment}
-                    {uselog.issuing_user.username == uselog.wallet.user.username
-                      ? ''
-                      : <div className="small text-muted">Registered by {uselog.issuing_user.username}</div>}
-                  </td>
-                </tr>
-              )
-            })}
+            {this.props.uselogs
+              .get("data")
+              .get("results")
+              .toJS()
+              .map(uselog => {
+                let who = uselog.wallet.user.username
+                if (uselog.wallet.user.realname) {
+                  who += ` (${uselog.wallet.user.realname})`
+                }
+                return (
+                  <tr key={uselog.id}>
+                    <td>{this.renderDateSpent(uselog.date_spent)}</td>
+                    <td>{who}</td>
+                    <td>{uselog.vouchers}</td>
+                    <td>{antall(parseFloat(uselog.wallet.cached_balance))}</td>
+                    <td>
+                      {uselog.comment}
+                      {uselog.issuing_user.username ==
+                      uselog.wallet.user.username ? (
+                        ""
+                      ) : (
+                        <div className="small text-muted">
+                          Registered by {uselog.issuing_user.username}
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                )
+              })}
           </tbody>
         </table>
         <Pagination
-          active={this.props.uselogs.get('data').get('page')}
-          pages={this.props.uselogs.get('data').get('pages')}
+          active={this.props.uselogs.get("data").get("page")}
+          pages={this.props.uselogs.get("data").get("pages")}
           onChange={this.handlePageChange}
         />
       </div>
@@ -84,9 +89,7 @@ class UseLogs extends React.Component {
 
   renderNew() {
     if (this.props.userDetails) {
-      return (
-        <UseVouchers defaultUsername={this.props.userDetails.username} />
-      )
+      return <UseVouchers defaultUsername={this.props.userDetails.username} />
     }
 
     return (
@@ -101,14 +104,15 @@ class UseLogs extends React.Component {
       <div>
         <h1>Vouchers - use logs</h1>
         <p>
-          If you have any problems go
-          to <a href="https://cybernetisk.slack.com/messages/it/details/">#it</a> on Slack
+          If you have any problems go to{" "}
+          <a href="https://cybernetisk.slack.com/messages/it/details/">#it</a>{" "}
+          on Slack
         </p>
         {this.renderNew()}
         <Loader
-          isLoading={this.props.uselogs.get('isLoading')}
-          error={this.props.uselogs.get('error')}
-          isEmpty={!this.props.uselogs.get('data')}
+          isLoading={this.props.uselogs.get("isLoading")}
+          error={this.props.uselogs.get("error")}
+          isEmpty={!this.props.uselogs.get("data")}
         >
           No use data is registered.
         </Loader>

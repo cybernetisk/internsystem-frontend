@@ -1,9 +1,9 @@
-import queryString from 'query-string'
-import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
+import queryString from "query-string"
+import React from "react"
 
 export default function withQueryProps(WrappedComponent) {
-  return class extends React.Component {
+  return class WithQueryProps extends React.Component {
     static propTypes = {
       location: PropTypes.shape({
         search: PropTypes.string,

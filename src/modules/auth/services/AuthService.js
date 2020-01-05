@@ -1,15 +1,14 @@
-import AuthStore from '../stores/AuthStore'
-import * as getters from '../getters'
-import reqwestWithoutCsrf from 'reqwest'
-import {api} from '../../../api'
-import deferredGetter from '../../../utils/deferredGetter'
+import reqwestWithoutCsrf from "reqwest"
+import { api } from "../../../api"
+import deferredGetter from "../../../utils/deferredGetter"
+import * as getters from "../getters"
 
 class AuthService {
   getAuthData() {
     return reqwestWithoutCsrf({
-      url: api('me'),
+      url: api("me"),
       withCredentials: true,
-      type: 'json'
+      type: "json",
     })
   }
 

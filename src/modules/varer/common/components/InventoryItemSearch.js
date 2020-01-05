@@ -1,19 +1,17 @@
-import {toImmutable} from 'nuclear-js'
-import reqwest from '../../../../utils/reqwest'
-import PropTypes from 'prop-types';
-import React from 'react'
-import Autosuggest from 'react-autosuggest'
-import {api} from '../../../../api'
+import theme from "!style-loader!css-loader?modules!sass-loader!./InventoryItemSearch.theme.scss"
+import { toImmutable } from "nuclear-js"
+import PropTypes from "prop-types"
+import React from "react"
+import Autosuggest from "react-autosuggest"
+import { api } from "../../../../api"
+import reqwest from "../../../../utils/reqwest"
+import { fillBuyPrice } from "../../inventoryItems/service"
+import BuyPrice from "./BuyPrice"
+import "./InventoryItemSearch.scss"
+import ProductName from "./ProductName"
+import Quantity from "./Quantity"
 
-import {fillBuyPrice} from '../../inventoryItems/service'
-
-import './InventoryItemSearch.scss'
-import theme from '!style-loader!css-loader?modules!sass-loader!./InventoryItemSearch.theme.scss'
-theme.input = 'form-control'
-
-import ProductName from './ProductName'
-import BuyPrice from './BuyPrice'
-import Quantity from './Quantity'
+theme.input = "form-control"
 
 function renderSuggestion(product) {
   return (
@@ -24,15 +22,15 @@ function renderSuggestion(product) {
         isInventory={true}
         showAccountGroup={true}
       />
-      <Quantity product={product}/>
-      <BuyPrice product={product}/>
+      <Quantity product={product} />
+      <BuyPrice product={product} />
     </div>
   )
 }
 
 export default class InventoryItemSearch extends React.Component {
   static propTypes = {
-    onSelect: PropTypes.func.isRequired
+    onSelect: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -40,21 +38,23 @@ export default class InventoryItemSearch extends React.Component {
 
     this.state = {
       suggestions: [],
-      value: ''
+      value: "",
     }
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
     reqwest({
-      url: api('varer/råvarer'),
+      url: api("varer/råvarer"),
       data: {
         search: value,
-        limit: 10
+        limit: 10,
       },
-      type: 'json'
+      type: "json",
     }).then(result => {
       this.setState({
-        suggestions: result.results.map(product => fillBuyPrice(toImmutable(product)))
+        suggestions: result.results.map(product =>
+          fillBuyPrice(toImmutable(product)),
+        ),
       })
     })
   }
@@ -65,34 +65,34 @@ export default class InventoryItemSearch extends React.Component {
     })
   }
 
-  onSuggestionSelected = (event, {suggestion, suggestionValue, method}) => {
+  onSuggestionSelected = (event, { suggestion }) => {
     this.props.onSelect(suggestion)
     event.preventDefault()
   }
 
-  getSuggestionValue = (product) => {
+  getSuggestionValue = product => {
     this.props.onSelect(product)
-    return product.get('navn')
+    return product.get("navn")
   }
 
   handleChange = (event, x) => {
-    this.setState({value: x.newValue})
+    this.setState({ value: x.newValue })
 
-    if (x.method !== 'up' && x.method !== 'down') {
+    if (x.method !== "up" && x.method !== "down") {
       this.props.onSelect(null)
     }
   }
 
   clear = () => {
-    this.setState({value: ''})
+    this.setState({ value: "" })
     this.props.onSelect(null)
   }
 
   render() {
     const inputProps = {
-      placeholder: 'Find inventory item',
+      placeholder: "Find inventory item",
       value: this.state.value,
-      onChange: this.handleChange
+      onChange: this.handleChange,
     }
 
     return (
@@ -106,7 +106,6 @@ export default class InventoryItemSearch extends React.Component {
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
           theme={theme}
-          ref="autosuggest"
         />
       </span>
     )

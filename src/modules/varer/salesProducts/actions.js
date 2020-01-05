@@ -1,15 +1,13 @@
-import reactor from './../../../reactor'
-import {dispatchAsync} from '../../../utils/FluxUtils'
-
-import {getSalesProducts} from './service'
-
-import actionTypes from './actionTypes'
+import { dispatchAsync } from "../../../utils/FluxUtils"
+import reactor from "./../../../reactor"
+import actionTypes from "./actionTypes"
+import { getSalesProducts } from "./service"
 
 export function fetchSalesProducts() {
   dispatchAsync(getSalesProducts(), {
     request: actionTypes.RECEIVE_SALESPRODUCTS_START,
     success: actionTypes.RECEIVE_SALESPRODUCTS_SUCCESS,
-    failure: actionTypes.RECEIVE_SALESPRODUCTS_FAILURE
+    failure: actionTypes.RECEIVE_SALESPRODUCTS_FAILURE,
   })
 }
 

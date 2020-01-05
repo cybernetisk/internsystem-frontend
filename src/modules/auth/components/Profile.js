@@ -1,24 +1,19 @@
-import React from 'react'
 //import { Link } from 'react-router-dom'
-import { connect } from 'nuclear-js-react-addons-chefsplate'
-
-import AuthService from '../services/AuthService'
-
-import actions from '../actions'
-import { authdata } from '../getters'
-
-import PageLoader from '../../../components/PageLoader'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import PageLoader from "../../../components/PageLoader"
+import { authdata } from "../getters"
 
 export default
-@connect(props => ({
-  authdata
+@connect(() => ({
+  authdata,
 }))
 class Profile extends React.Component {
   renderIncomplete() {
     return (
       <PageLoader
-        error={this.props.authdata.get('error')}
-        isLoading={this.props.authdata.get('isLoading')}
+        error={this.props.authdata.get("error")}
+        isLoading={this.props.authdata.get("isLoading")}
         title="Profile"
       />
     )
@@ -27,7 +22,9 @@ class Profile extends React.Component {
   renderUser(data) {
     return (
       <div>
-        <h1>Profile: {data.details.username} ({data.details.realname})</h1>
+        <h1>
+          Profile: {data.details.username} ({data.details.realname})
+        </h1>
 
         <p>Stored data in CYBs system:</p>
         <dl className="dl-horizontal">
@@ -54,7 +51,9 @@ class Profile extends React.Component {
               ])}
             </dl>
           </div>
-        ) : ''}
+        ) : (
+          ""
+        )}
       </div>
     )
   }
@@ -64,13 +63,16 @@ class Profile extends React.Component {
       <div>
         <h1>Profile</h1>
 
-        <p>You need to be signed in to see this page. It will show details about you, but who are you?</p>
+        <p>
+          You need to be signed in to see this page. It will show details about
+          you, but who are you?
+        </p>
       </div>
     )
   }
 
   render() {
-    let authdata = this.props.authdata.get('data')
+    let authdata = this.props.authdata.get("data")
     if (authdata === null) {
       return this.renderIncomplete()
     }

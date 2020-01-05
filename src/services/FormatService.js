@@ -1,25 +1,25 @@
 export function antall(number, decimals) {
-  if (typeof decimals == 'number') {
+  if (typeof decimals == "number") {
     number = number.toFixed(decimals)
   } else {
     // never show more than 4 decimals
     number = Math.round(number * 10000) / 10000
   }
 
-  let x = (number + '').split('.')
+  const x = (number + "").split(".")
   let x1 = x[0]
-  let x2 = x.length > 1 ? ',' + x[1] : ''
-  let rgx = /(\d+)(\d{3})/
+  const x2 = x.length > 1 ? "," + x[1] : ""
+  const rgx = /(\d+)(\d{3})/
   while (rgx.test(x1)) {
-    x1 = x1.replace(rgx, '$1' + ' ' + '$2')
+    x1 = x1.replace(rgx, "$1" + " " + "$2")
   }
 
   return x1 + x2
 }
 
-export function price(amount, decimals, in_nok) {
-  if (typeof decimals == 'boolean') {
-    in_nok = decimals
+export function price(amount, decimals, inNok) {
+  if (typeof decimals == "boolean") {
+    inNok = decimals
     decimals = 0
   }
 
@@ -30,17 +30,17 @@ export function price(amount, decimals, in_nok) {
   }
 
   function formatNumber(number, decimals) {
-    number = number.toFixed(decimals) + ''
-    let x = number.split('.')
+    number = number.toFixed(decimals) + ""
+    const x = number.split(".")
     let x1 = x[0]
-    let x2 = x.length > 1 ? ',' + x[1] : ''
-    let rgx = /(\d+)(\d{3})/
+    const x2 = x.length > 1 ? "," + x[1] : ""
+    const rgx = /(\d+)(\d{3})/
     while (rgx.test(x1)) {
-      x1 = x1.replace(rgx, '$1' + ' ' + '$2')
+      x1 = x1.replace(rgx, "$1" + " " + "$2")
     }
     return x1 + x2
   }
 
-  if (typeof(decimals) != 'number') decimals = 0
-  return (in_nok ? 'NOK ' : 'kr ') + formatNumber(parseFloat(amount), decimals)
+  if (typeof decimals != "number") decimals = 0
+  return (inNok ? "NOK " : "kr ") + formatNumber(parseFloat(amount), decimals)
 }

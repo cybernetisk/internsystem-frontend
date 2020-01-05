@@ -1,25 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'nuclear-js-react-addons-chefsplate'
-import moment from '../../../moment'
-
-import {api} from '../../../api'
-
-import * as getters from '../getters'
-import * as actions from '../actions'
-import { userDetails, isLoggedIn } from '../../auth/getters'
-
-import PageLoader from '../../../components/PageLoader'
-import MemberService from '../services/MemberService'
+import { connect } from "nuclear-js-react-addons-chefsplate"
+import React from "react"
+import { Link } from "react-router-dom"
+import moment from "../../../moment"
+import { isLoggedIn, userDetails } from "../../auth/getters"
+import * as actions from "../actions"
+import * as getters from "../getters"
+import MemberService from "../services/MemberService"
 
 export default
-@connect(props => ({
+@connect(() => ({
   member: getters.member,
   userDetails,
-  isLoggedIn
+  isLoggedIn,
 }))
 class Member extends React.Component {
-
   constructor(props) {
     super(props)
     this.handleEdit = this.handleEdit.bind(this)
@@ -31,39 +25,39 @@ class Member extends React.Component {
     this.handleHonoraryChange = this.handleHonoraryChange.bind(this)
     this.handleLifetimeChange = this.handleLifetimeChange.bind(this)
     this.handleComments = this.handleComments.bind(this)
-    this.state = {isEditing: false, isDeleted: false}
+    this.state = { isEditing: false, isDeleted: false }
   }
 
   componentDidMount() {
-    let memberId = this.props.match.params.memberId
-    MemberService.getMember(memberId).then(result => {
+    const memberId = this.props.match.params.memberId
+    MemberService.getMember(memberId).then(
+      result => {
         actions.getMember(memberId)
         this.setState({
           id: result.id,
           name: result.name,
           email: result.email,
+          // eslint-disable-next-line @typescript-eslint/camelcase
           date_joined: result.date_joined,
           lifetime: result.lifetime,
           honorary: result.honorary,
+          // eslint-disable-next-line @typescript-eslint/camelcase
           last_edited_by: result.last_edited_by.realname,
           semester: result.semester.semester,
           year: result.semester.year,
           seller: result.seller.realname,
-          comments: result.comments
+          comments: result.comments,
         })
-      }, error => {
+      },
+      error => {
         alert(error.responseText)
-      }
+      },
     )
   }
 
-
   render() {
-
     if (!this.props.isLoggedIn) {
-      return (
-        <h1>Not logged in! Please login!</h1>
-      )
+      return <h1>Not logged in! Please login!</h1>
     }
 
     if (this.state.isDeleted) {
@@ -83,52 +77,82 @@ class Member extends React.Component {
   }
 
   handleNameChange(e) {
-    this.setState({name: e.target.value})
+    this.setState({ name: e.target.value })
   }
 
   handleEmailChange(e) {
-    this.setState({email: e.target.value})
+    this.setState({ email: e.target.value })
   }
 
   handleLifetimeChange(e) {
-    this.setState({lifetime: e.target.checked})
+    this.setState({ lifetime: e.target.checked })
   }
 
   handleHonoraryChange(e) {
-    this.setState({honorary: e.target.checked})
+    this.setState({ honorary: e.target.checked })
   }
 
   handleComments(e) {
-    this.setState({comments: e.target.value})
+    this.setState({ comments: e.target.value })
   }
 
   renderEdit() {
     return (
       <div>
-        <button type="button" className="btn btn-default" onClick={this.abortEdit}>Abort</button>
-        <button type="button" className="btn btn-default" onClick={this.saveEdit}>Save</button>
+        <button
+          type="button"
+          className="btn btn-default"
+          onClick={this.abortEdit}
+        >
+          Abort
+        </button>
+        <button
+          type="button"
+          className="btn btn-default"
+          onClick={this.saveEdit}
+        >
+          Save
+        </button>
         <div className="panel-body">
           <form onSubmit={this.saveEdit}>
             <div className="form-group">
               <label htmlFor="name">Name</label>
-              <input type="'text" name="'name" value={this.state.name}
-                onChange={this.handleNameChange} className="form-control"
+              <input
+                type="'text"
+                name="'name"
+                value={this.state.name}
+                onChange={this.handleNameChange}
+                className="form-control"
               />
               <label htmlFor="email">Email:</label>
-              <input type="text" name="email" value={this.state.email}
-                onChange={this.handleEmailChange} className="form-control"
+              <input
+                type="text"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleEmailChange}
+                className="form-control"
               />
               <label htmlFor="comments">Comments:</label>
               <textarea
-                name="comments" value={this.state.comments} rows="4" onChange={this.handleComments}
+                name="comments"
+                value={this.state.comments}
+                rows="4"
+                onChange={this.handleComments}
                 className="form-control"
               />
               <label htmlFor="lifetime">Lifetime</label>
-              {this.renderCheckbox('lifetime', this.state.lifetime, this.handleLifetimeChange)}
+              {this.renderCheckbox(
+                "lifetime",
+                this.state.lifetime,
+                this.handleLifetimeChange,
+              )}
 
               <label htmlFor="honorary">Honorary</label>
-              {this.renderCheckbox('honorary', this.state.honorary, this.handleHonoraryChange)}
-
+              {this.renderCheckbox(
+                "honorary",
+                this.state.honorary,
+                this.handleHonoraryChange,
+              )}
             </div>
           </form>
         </div>
@@ -138,38 +162,48 @@ class Member extends React.Component {
 
   renderCheckbox(name, value, func) {
     if (value) {
-      return <input type="checkbox" name={name} checked="checked" onChange={func}/>
+      return (
+        <input type="checkbox" name={name} checked="checked" onChange={func} />
+      )
     } else {
-      return <input type="checkbox" name={name} onChange={func}/>
+      return <input type="checkbox" name={name} onChange={func} />
     }
   }
 
   abortEdit(e) {
-    e.preventDefault();
+    e.preventDefault()
     this.setState({
-      isEditing: false
+      isEditing: false,
     })
   }
 
   saveEdit(e) {
     e.preventDefault()
-    MemberService.updateMember(this.state.id, this.state.name, this.state.email,
-      this.state.lifetime, this.state.honorary, this.state.comments).then(result => {
-      actions.updateMember(this.state.id)
-      this.setState({
-        id: result.id,
-        name: result.name,
-        email: result.email,
-        lifetime: result.lifetime,
-        honorary: result.honorary,
-        comments: result.comments
-      })
-    }, error => {
-      alert(error.responseText)
-    })
-    this.setState({isEditing: false,})
+    MemberService.updateMember(
+      this.state.id,
+      this.state.name,
+      this.state.email,
+      this.state.lifetime,
+      this.state.honorary,
+      this.state.comments,
+    ).then(
+      result => {
+        actions.updateMember(this.state.id)
+        this.setState({
+          id: result.id,
+          name: result.name,
+          email: result.email,
+          lifetime: result.lifetime,
+          honorary: result.honorary,
+          comments: result.comments,
+        })
+      },
+      error => {
+        alert(error.responseText)
+      },
+    )
+    this.setState({ isEditing: false })
   }
-
 
   renderNormal() {
     return (
@@ -181,13 +215,15 @@ class Member extends React.Component {
           <dt>Mail:</dt>
           <dd>{this.renderMail(this.state.email)}</dd>
           <dt>Joined:</dt>
-          <dd>{moment(this.state.date_joined).format('DD.MMM YYYY')}</dd>
+          <dd>{moment(this.state.date_joined).format("DD.MMM YYYY")}</dd>
           <dt>Honorary member:</dt>
           <dd>{this.renderBoolean(this.state.honorary)}</dd>
           <dt>Lifetime member:</dt>
           <dd>{this.renderBoolean(this.state.lifetime)}</dd>
           <dt>Semester:</dt>
-          <dd>{this.state.year} {this.state.semester}</dd>
+          <dd>
+            {this.state.year} {this.state.semester}
+          </dd>
           <dt>Seller:</dt>
           <dd>{this.state.seller}</dd>
           <dt>Last modified by:</dt>
@@ -195,50 +231,61 @@ class Member extends React.Component {
           <dt>Comments:</dt>
           <dd>{this.state.comments}</dd>
         </dl>
-        <button type="button" className="btn btn-default" onClick={this.handleEdit}>Edit</button>
-        <button type="button" className="btn btn-default" onClick={this.handleDelete}>Delete</button>
+        <button
+          type="button"
+          className="btn btn-default"
+          onClick={this.handleEdit}
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          className="btn btn-default"
+          onClick={this.handleDelete}
+        >
+          Delete
+        </button>
       </div>
     )
   }
 
   handleEdit() {
     if (this.state.isEditing) {
-      this.setState({isEditing: false})
+      this.setState({ isEditing: false })
     } else {
-      this.setState({isEditing: true})
+      this.setState({ isEditing: true })
     }
   }
 
   handleDelete() {
-    if (confirm('Are you sure you want to delete this member?')) {
-      MemberService.removeMember(this.state.id).then(result => {
-        actions.memberDeleted(this.state.id)
-        this.setState({
-          isDeleted: true
-        })
-      }, error => {
-        alert(error.responseText)
-      })
+    if (confirm("Are you sure you want to delete this member?")) {
+      MemberService.removeMember(this.state.id).then(
+        () => {
+          actions.memberDeleted(this.state.id)
+          this.setState({
+            isDeleted: true,
+          })
+        },
+        error => {
+          alert(error.responseText)
+        },
+      )
     }
-
   }
-
 
   renderMail(mail) {
     if (mail) {
       return mail
     } else {
-      return 'No mail registered.'
+      return "No mail registered."
     }
   }
-
 
   renderBoolean(bool) {
     if (bool) {
-      return 'True'
+      return "True"
     } else {
-      return 'False'
+      return "False"
     }
   }
-
 }

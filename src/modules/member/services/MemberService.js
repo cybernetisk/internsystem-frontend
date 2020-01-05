@@ -1,74 +1,74 @@
-import {api} from '../../../api'
-import reqwest from '../../../utils/reqwest'
+import { api } from "../../../api"
+import reqwest from "../../../utils/reqwest"
 
 class MemberService {
-  getMemberList(page = 1, limit = 50, ordering = 'date_joined', search = '') {
+  getMemberList(page = 1, limit = 50, ordering = "date_joined", search = "") {
     return reqwest({
-      url: api('member/members'),
-      type: 'json',
+      url: api("member/members"),
+      type: "json",
       data: {
         page,
         limit,
         ordering,
         search,
-        valid: 'true'
-      }
+        valid: "true",
+      },
     })
   }
-  getLifetimeMembers(page=1, limit=50){
+  getLifetimeMembers(page = 1, limit = 50) {
     return reqwest({
-      url: api('member/members'),
-      type: 'json',
+      url: api("member/members"),
+      type: "json",
       data: {
         page,
         limit,
-        lifetime: 'True',
-        ordering: 'date_joined'
-      }
+        lifetime: "True",
+        ordering: "date_joined",
+      },
     })
   }
 
   getSemMemberList(semester = 1, limit = 50, page = 1) {
-    return reqwest(({
-      url: api('member/members'),
-      type: 'json',
+    return reqwest({
+      url: api("member/members"),
+      type: "json",
       data: {
         semester,
         page,
-        limit
-      }
-    }))
+        limit,
+      },
+    })
   }
 
   getMember(memberId) {
     return reqwest({
-      url: api('member/members/' + memberId),
-      type: 'json'
+      url: api("member/members/" + memberId),
+      type: "json",
     })
   }
 
   registerMember(name, email, lifetime) {
     return reqwest({
-      url: api('member/members'),
-      method: 'post',
+      url: api("member/members"),
+      method: "post",
       data: {
         name,
         email,
-        lifetime
+        lifetime,
       },
-      type: 'json'
+      type: "json",
     })
   }
 
   searchMember(name) {
     return reqwest({
-      url: api('member/members'),
+      url: api("member/members"),
       data: {
         limit: 10,
         search: name,
-        valid: 'true'
+        valid: "true",
       },
-      type: 'json'
+      type: "json",
     })
   }
 
@@ -83,35 +83,34 @@ class MemberService {
         comments,
       },
 
-      type: 'json',
-      method: 'patch'
+      type: "json",
+      method: "patch",
     })
   }
 
   removeMember(id) {
     return reqwest({
       url: api(`member/members/${id}`),
-      method: 'delete',
-      type: 'json'
+      method: "delete",
+      type: "json",
     })
   }
 
   getStats() {
     return reqwest({
-      url: api('member/stats'),
-      method: 'get',
-      type: 'json',
+      url: api("member/stats"),
+      method: "get",
+      type: "json",
     })
   }
 
   getSemesterStats(id) {
     return reqwest({
       url: api(`member/stats/${id}`),
-      method: 'get',
-      type: 'json'
+      method: "get",
+      type: "json",
     })
   }
 }
-
 
 export default new MemberService()

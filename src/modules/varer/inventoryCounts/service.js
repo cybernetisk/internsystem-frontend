@@ -1,42 +1,42 @@
-import reqwest from '../../../utils/reqwest'
-import {api} from '../../../api'
+import { api } from "../../../api"
+import reqwest from "../../../utils/reqwest"
 
 export const pageLimit = 30
 
 export function getInventoryCounts(page) {
   return reqwest({
-    url: api('varer/varetellinger'),
-    data: {limit: pageLimit, page},
-    type: 'json'
+    url: api("varer/varetellinger"),
+    data: { limit: pageLimit, page },
+    type: "json",
   })
 }
 
 export function getInventoryCount(id, expanded = false) {
-  let data = expanded ? {expand: true} : {}
+  const data = expanded ? { expand: true } : {}
   return reqwest({
     url: api(`varer/varetellinger/${id}`),
     data,
-    type: 'json'
+    type: "json",
   })
 }
 
 export function getInventoryCountCounts(inventoryCountId) {
   return reqwest({
-    url: api('varer/varetellingvarer'),
+    url: api("varer/varetellingvarer"),
     data: {
       varetelling: inventoryCountId,
       expand: 1,
-      ordering: '-time_added'
+      ordering: "-time_added",
     },
-    type: 'json'
+    type: "json",
   })
 }
 
 export function addVare(data) {
   return reqwest({
-    url: api('varer/varetellingvarer'),
-    method: 'post',
+    url: api("varer/varetellingvarer"),
+    method: "post",
     data,
-    type: 'json'
+    type: "json",
   })
 }

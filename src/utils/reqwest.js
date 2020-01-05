@@ -1,6 +1,6 @@
-import reqwest from 'reqwest'
-import deferredGetter from './deferredGetter'
-import {csrfToken} from '../modules/auth/getters'
+import reqwest from "reqwest"
+import { csrfToken } from "../modules/auth/getters"
+import deferredGetter from "./deferredGetter"
 
 export default function reqwestWithCsrf(...args) {
   return new Promise((resolve, reject) => {
@@ -8,9 +8,9 @@ export default function reqwestWithCsrf(...args) {
       if (!args[0].headers) {
         args[0].headers = {}
       }
-      args[0].headers['X-CSRFToken'] = csrfToken
+      args[0].headers["X-CSRFToken"] = csrfToken
       args[0].withCredentials = true
-      console.log('args to reqwest', args)
+      console.log("args to reqwest", args)
       reqwest(...args).then(resolve, reject)
     })
   })

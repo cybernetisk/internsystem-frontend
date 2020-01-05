@@ -1,104 +1,105 @@
-import reqwest from '../../../utils/reqwest'
-import {api} from '../../../api'
+import { api } from "../../../api"
+import reqwest from "../../../utils/reqwest"
 
 class VoucherService {
-
   getWalletStats() {
     return reqwest({
-      url: api('voucher/wallets/stats'),
-      type: 'json'
+      url: api("voucher/wallets/stats"),
+      type: "json",
     })
   }
 
   getWallets(data = {}) {
     return reqwest({
-      url: api('voucher/wallets'),
+      url: api("voucher/wallets"),
       data,
-      type: 'json'
+      type: "json",
     })
   }
 
   getWorkLogs(page = 1, limit = 50) {
     return reqwest({
-      url: api('voucher/worklogs'),
+      url: api("voucher/worklogs"),
       data: {
         page,
-        limit
+        limit,
       },
-      type: 'json'
+      type: "json",
     })
   }
 
   getUseLogs(page = 1, limit = 50) {
     return reqwest({
-      url: api('voucher/uselogs'),
+      url: api("voucher/uselogs"),
       data: {
         page,
-        limit
+        limit,
       },
-      type: 'json'
+      type: "json",
     })
   }
 
   getUsers(search) {
     return reqwest({
-      url: api('core/users'),
+      url: api("core/users"),
       data: {
         search,
-        limit: 20
+        limit: 20,
       },
-      type: 'json'
+      type: "json",
     })
   }
 
   getWorkGroups() {
     return reqwest({
-      url: api('voucher/workgroups'),
-      type: 'json'
+      url: api("voucher/workgroups"),
+      type: "json",
     })
   }
 
-  registerWork(username, date_worked, work_group, hours, comment) {
+  registerWork(username, dateWorked, workGroup, hours, comment) {
     return reqwest({
-      url: api('voucher/worklogs'),
-      method: 'post',
+      url: api("voucher/worklogs"),
+      method: "post",
       data: {
         user: username,
-        date_worked,
-        work_group,
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        date_worked: dateWorked,
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        work_group: workGroup,
         hours,
-        comment
+        comment,
       },
-      type: 'json'
+      type: "json",
     })
   }
 
   useVouchers(username, vouchers, comment) {
     return reqwest({
       url: api(`voucher/users/${username}/use_vouchers`),
-      method: 'post',
+      method: "post",
       data: {
         vouchers,
-        comment
+        comment,
       },
-      type: 'json'
+      type: "json",
     })
   }
 
   updateWorkLog(id, data) {
     return reqwest({
       url: api(`voucher/worklogs/${id}`),
-      method: 'patch',
+      method: "patch",
       data,
-      type: 'json'
+      type: "json",
     })
   }
 
   deleteWorkLog(id) {
     return reqwest({
       url: api(`voucher/worklogs/${id}`),
-      method: 'delete',
-      type: 'json'
+      method: "delete",
+      type: "json",
     })
   }
 }

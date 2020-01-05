@@ -1,9 +1,9 @@
-import React from 'react'
-import {saml} from '../../../api'
+import React from "react"
+import { saml } from "../../../api"
 
 export default class Login extends React.Component {
   componentDidMount() {
-    window.location.href = saml('?sso')
+    window.location.href = saml("?sso")
   }
 
   render() {
