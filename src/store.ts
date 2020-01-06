@@ -7,7 +7,7 @@ import { createBrowserHistory } from "history"
 import { applyMiddleware, combineReducers, compose, createStore } from "redux"
 import createSagaMiddleware from "redux-saga"
 import { ActionType } from "typesafe-actions"
-import { authActions, authSaga, authReducer } from "./modules/auth/duck"
+import { authActions, authReducer, authSagas } from "./modules/auth/duck"
 
 declare const window: Window & {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose
@@ -32,7 +32,7 @@ export const store = createStore(
   composeEnhancers(applyMiddleware(routerMiddleware(history), sagaMiddleware)),
 )
 
-sagaMiddleware.run(authSaga)
+sagaMiddleware.run(authSagas)
 
 export type rootAction =
   | ActionType<typeof routerActions>

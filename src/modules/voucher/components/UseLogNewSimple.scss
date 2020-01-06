@@ -1,6 +1,6 @@
 @import '../../../vars';
 
-ul.voucher-simpleUse {
+ul.voucher-useLogNewSimple {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -10,7 +10,7 @@ ul.voucher-simpleUse {
   }
 }
 
-.voucher-simpleUse-when {
+.voucher-useLogNewSimple-when {
   display: block;
 
   @media (min-width: $screen-sm-min) {
@@ -19,7 +19,7 @@ ul.voucher-simpleUse {
   }
 }
 
-.voucher-simpleUse-who {
+.voucher-useLogNewSimple-who {
   display: block;
 
   @media (min-width: $screen-sm-min) {
@@ -28,7 +28,7 @@ ul.voucher-simpleUse {
   }
 }
 
-.voucher-simpleUse-amount {
+.voucher-useLogNewSimple-amount {
   display: block;
 
   @media (min-width: $screen-sm-min) {
