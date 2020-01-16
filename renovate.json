@@ -41,6 +41,10 @@
       ],
       "automerge": true,
       "automergeType": "branch"
+    },
+    {
+      "updateTypes": ["patch"],
+      "automerge": true
     }
   ],
   "pin": {
