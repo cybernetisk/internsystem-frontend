@@ -3,9 +3,9 @@
     "config:base"
   ],
   "masterIssue": true,
+  "automergeType": "branch",
   "lockFileMaintenance": {
     "automerge": true,
-    "automergeType": "branch",
     "enabled": true
   },
   "packageRules": [
@@ -14,16 +14,14 @@
       "packagePatterns": [
         "eslint"
       ],
-      "automerge": true,
-      "automergeType": "branch"
+      "automerge": true
     },
     {
       "groupName": "webpack-loaders",
       "packagePatterns": [
         "-loader$"
       ],
-      "automerge": true,
-      "automergeType": "branch"
+      "automerge": true
     },
     {
       "groupName": "webpack",
@@ -31,16 +29,14 @@
         "^webpack",
         "webpack-plugin$"
       ],
-      "automerge": true,
-      "automergeType": "branch"
+      "automerge": true
     },
     {
       "groupName": "babel",
       "packagePatterns": [
         "^@babel/"
       ],
-      "automerge": true,
-      "automergeType": "branch"
+      "automerge": true
     },
     {
       "updateTypes": ["patch"],
