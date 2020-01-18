@@ -39,7 +39,7 @@
       "automerge": true
     },
     {
-      "updateTypes": ["patch"],
+      "updateTypes": ["minor", "patch"],
       "automerge": true
     }
   ],
