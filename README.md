@@ -85,7 +85,7 @@ I CYBs internsystem bruker vil NuclearJS til å håndtere tilstand.
 Det er viktig å nevne at React har sin egen måte å håndtere tilstand.
 Denne erstatter vi med NuclearJS sine metoder.
 
-## [Intro til funkjonell programmering i Javascript](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0)
+## [Intro til funksjonell programmering i Javascript](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0)
 
 Mye av den underliggende teorien bak NuclearJS, React og Javascript selv kommer fra konsepter i funksjonell programmering. Det er en annen måte å kode på som blant annet sier at:
 
