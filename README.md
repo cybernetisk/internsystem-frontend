@@ -71,6 +71,8 @@ I effekt er det flere måter man kan gjøre dette, men dette er en god forklarin
 
 ## [Working with JSON (MDN Guide)](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON)
 
+Når vi henter data fra et API, pleier vi både å sende og motta data i et JSON-format. Denne guiden gir litt bakgrunn i hvordan man behandler JSON data og hvordan det funker.
+
 ## [React](https://reactjs.org/)
 
 Reacts egen nettside har noen gode forklaringer på hvordan React funker og hvorfor det funker slik det gjør. Hovedpoenget er at at man kan lett gjenbruke all koden man har skrivet overalt på siden, fordi alt er delt opp i **komponenter**.
