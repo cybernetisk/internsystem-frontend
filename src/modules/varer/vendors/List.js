@@ -26,7 +26,7 @@ export default class List extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {vendors.map(vendor => (
+          {vendors.map((vendor) => (
             <tr key={vendor.id}>
               <td>{vendor.id}</td>
               <td>

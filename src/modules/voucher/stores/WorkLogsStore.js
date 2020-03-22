@@ -2,10 +2,7 @@ import { Store, toImmutable } from "nuclear-js"
 import actionTypes from "../actionTypes"
 
 function receiveWorkLogsStart(state) {
-  return state
-    .set("data", null)
-    .set("error", null)
-    .set("isLoading", true)
+  return state.set("data", null).set("error", null).set("isLoading", true)
 }
 
 function receiveWorkLogsSuccess(state, { response }) {
@@ -18,8 +15,8 @@ function receiveWorkLogsFailure(state, { error }) {
 }
 
 function workLogUpdated(state, { worklog }) {
-  return state.updateIn(["data", "results"], res =>
-    res.map(elm => {
+  return state.updateIn(["data", "results"], (res) =>
+    res.map((elm) => {
       if (elm.get("id") == worklog.id) {
         return toImmutable(worklog)
       } else {
@@ -30,8 +27,8 @@ function workLogUpdated(state, { worklog }) {
 }
 
 function workLogDeleted(state, { id }) {
-  return state.updateIn(["data", "results"], res =>
-    res.filter(elm => elm.get("id") != id),
+  return state.updateIn(["data", "results"], (res) =>
+    res.filter((elm) => elm.get("id") != id),
   )
 }
 

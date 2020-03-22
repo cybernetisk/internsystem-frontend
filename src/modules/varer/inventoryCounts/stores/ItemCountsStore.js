@@ -49,7 +49,7 @@ export default Store({
         return state
       }
 
-      return state.updateIn(["data"], data => data.unshift(toImmutable(vare)))
+      return state.updateIn(["data"], (data) => data.unshift(toImmutable(vare)))
     })
   },
 })

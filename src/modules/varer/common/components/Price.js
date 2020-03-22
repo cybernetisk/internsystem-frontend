@@ -35,7 +35,7 @@ export default class Price extends React.Component {
       isHistoryLoading: true,
     })
 
-    getInPrices(this.props.raavareId).then(response => {
+    getInPrices(this.props.raavareId).then((response) => {
       this.setState({
         history: toImmutable(response),
         isHistoryLoading: false,
@@ -77,7 +77,7 @@ export default class Price extends React.Component {
     ) {
       return (
         <div className="varer-price-history">
-          {this.state.history.map(item => {
+          {this.state.history.map((item) => {
             return (
               <div key={item.get("id")} className="varer-price-history-item">
                 <span>{item.get("aktiv") ? "" : "Invalid"}</span>

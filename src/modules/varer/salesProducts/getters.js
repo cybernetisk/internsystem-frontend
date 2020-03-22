@@ -7,9 +7,9 @@ import * as consts from "./../consts"
 
 export const listStore = ["varerSalesProducts"]
 
-export const filters = [listStore, store => store.get("filters")]
+export const filters = [listStore, (store) => store.get("filters")]
 
-export const items = [listStore, store => store.get("items")]
+export const items = [listStore, (store) => store.get("items")]
 
 function getQuantityAfterSpoilage(metaRaavare) {
   // beregn kun svinn dersom enheten "brytes"
@@ -22,12 +22,12 @@ function getQuantityAfterSpoilage(metaRaavare) {
 function fillBuyPrice(salesProduct) {
   salesProduct = salesProduct.set(
     "raavarer",
-    salesProduct.get("raavarer").map(metaRaavare => {
+    salesProduct.get("raavarer").map((metaRaavare) => {
       const price = metaRaavare
         .get("raavare")
         .get("priser")
-        .filter(price => price.get("aktiv"))
-        .maxBy(price => price.get("dato"))
+        .filter((price) => price.get("aktiv"))
+        .maxBy((price) => price.get("dato"))
 
       return metaRaavare
         .set("innpris", price)
@@ -53,7 +53,7 @@ function fillBuyPrice(salesProduct) {
 
 export const salesProductsLoader = [
   listStore,
-  store => {
+  (store) => {
     return {
       isLoading: store.get("isLoading"),
       error: store.get("error"),
@@ -64,9 +64,9 @@ export const salesProductsLoader = [
 
 export const salesProductsTransformed = [
   items,
-  items =>
+  (items) =>
     items
-      .map(item => {
+      .map((item) => {
         item = fillBuyPrice(item)
 
         // finn aktiv salgspris
@@ -74,8 +74,8 @@ export const salesProductsTransformed = [
           "salgspris",
           item
             .get("priser")
-            .filter(price => price.get("status") !== "FOR")
-            .maxBy(price => price.get("dato")),
+            .filter((price) => price.get("status") !== "FOR")
+            .maxBy((price) => price.get("dato")),
         )
 
         return item
@@ -85,12 +85,12 @@ export const salesProductsTransformed = [
 
 export const groups = [
   salesProductsTransformed,
-  salesProducts => extractGroupsImmutable(salesProducts, "salgskonto"),
+  (salesProducts) => extractGroupsImmutable(salesProducts, "salgskonto"),
 ]
 
 export const selectGroups = [
   groups,
-  groups => groups.groupBy(group => group.get("gruppe")),
+  (groups) => groups.groupBy((group) => group.get("gruppe")),
 ]
 
 export const filteredSalesProducts = [
@@ -104,10 +104,10 @@ export const filteredSalesProducts = [
 
     if (filters.get("group") !== null) {
       const compareGroup = groups.find(
-        g => g.get("id") === filters.get("group"),
+        (g) => g.get("id") === filters.get("group"),
       )
       salesProducts = salesProducts.filter(
-        item =>
+        (item) =>
           item.get("salgskonto").get(compareGroup.get("compare")) ===
           compareGroup.get("compareValue"),
       )
@@ -117,7 +117,7 @@ export const filteredSalesProducts = [
       // match each word individually
       const words = filters.get("text").match(/\S+\s*/g)
       if (words) {
-        words.forEach(word => {
+        words.forEach((word) => {
           salesProducts = salesProducts.filter(deepSearchPredicate(word.trim()))
         })
       }

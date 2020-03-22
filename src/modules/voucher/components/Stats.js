@@ -11,7 +11,7 @@ import VoucherService from "../services/VoucherService"
 @connect(() => ({
   stats: getters.stats,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   userDetails: getUserDetails(state),
 }))
 export default class Stats extends React.Component {
@@ -48,7 +48,7 @@ export default class Stats extends React.Component {
 
     VoucherService.getWallets({
       user: username,
-    }).then(res => {
+    }).then((res) => {
       this.setState({
         myWallets: res,
       })
@@ -57,7 +57,7 @@ export default class Stats extends React.Component {
 
   renderWalletBalance(wallet) {
     const myWallet = this.state.myWallets.find(
-      myWallet => myWallet.semester.id === wallet.semester.id,
+      (myWallet) => myWallet.semester.id === wallet.semester.id,
     )
     if (myWallet) {
       const balance = myWallet.cached_balance
@@ -111,7 +111,7 @@ export default class Stats extends React.Component {
               .get("data")
               .toList()
               .toJS()
-              .map(wallet => (
+              .map((wallet) => (
                 <tr key={wallet.semester.id}>
                   <td>
                     <Link to={`/voucher/semester/${wallet.semester.id}`}>

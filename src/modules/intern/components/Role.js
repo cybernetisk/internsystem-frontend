@@ -9,7 +9,7 @@ import * as getters from "../getters"
   role: getters.roles,
   interns: getters.internList,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   isLoggedIn: getIsLoggedIn(state),
 }))
 export default class Role extends React.Component {

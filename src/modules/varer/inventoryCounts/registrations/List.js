@@ -60,7 +60,7 @@ export default class List extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.counts.map(count => (
+          {this.props.counts.map((count) => (
             <tr key={count.get("id")}>
               <td>
                 <ProductName product={count.get("raavare")} />

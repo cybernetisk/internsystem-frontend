@@ -21,7 +21,7 @@ export default class ListTable extends React.Component {
 
     return (
       <ul>
-        {item.get("raavarer").map(meta => {
+        {item.get("raavarer").map((meta) => {
           let quantity
           if (meta.get("mengde") != meta.get("raavare").get("mengde")) {
             quantity = (

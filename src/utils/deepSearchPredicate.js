@@ -2,7 +2,7 @@ import Immutable from "immutable"
 
 function deepCompare(actual, expected, comparator) {
   if (Immutable.List.isList(actual) || Immutable.Map.isMap(actual)) {
-    return actual.some(item => deepCompare(item, expected, comparator))
+    return actual.some((item) => deepCompare(item, expected, comparator))
   } else {
     return comparator(actual, expected)
   }
@@ -21,5 +21,5 @@ export default function deepSearchPredicate(expression, comparator) {
     }
   }
 
-  return actual => deepCompare(actual, expression, comparator)
+  return (actual) => deepCompare(actual, expression, comparator)
 }

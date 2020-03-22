@@ -13,10 +13,7 @@ export default Store({
 
   initialize() {
     this.on(actionTypes.RECEIVE_INVENTORYCOUNT_START, (state, { id }) => {
-      return state
-        .set("id", id)
-        .set("error", null)
-        .set("isLoading", true)
+      return state.set("id", id).set("error", null).set("isLoading", true)
     })
 
     this.on(
@@ -40,7 +37,7 @@ export default Store({
       }
 
       vare = toImmutable(vare).set("raavare", vare.raavare.id)
-      return state.updateIn(["data", "varer"], varer => varer.push(vare))
+      return state.updateIn(["data", "varer"], (varer) => varer.push(vare))
     })
   },
 })

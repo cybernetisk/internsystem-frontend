@@ -16,12 +16,12 @@ export default class AccountFilter extends React.Component {
         value={this.props.value}
       >
         <option value="0">-- not selected --</option>
-        {this.props.accounts.map(list => (
+        {this.props.accounts.map((list) => (
           <optgroup
             label={list.first().get("gruppe")}
             key={list.first().get("gruppe")}
           >
-            {list.map(account => (
+            {list.map((account) => (
               <option
                 value={account.get("compareValue")}
                 key={account.get("id")}

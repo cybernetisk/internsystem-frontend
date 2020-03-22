@@ -29,7 +29,7 @@ export const counts = [
   cacheGetter((counts, time) => {
     time = time ? new Date(time) : null
 
-    return counts.map(count => {
+    return counts.map((count) => {
       let countTime = count.get("time_price")
       countTime = countTime ? new Date(countTime) : time
 

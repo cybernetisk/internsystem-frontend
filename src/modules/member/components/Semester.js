@@ -13,7 +13,7 @@ import List from "./List"
   stats: getters.stats,
   members: getters.members,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   userDetails: getUserDetails(state),
   isLoggedIn: getIsLoggedIn(state),
 }))
@@ -26,7 +26,7 @@ export default class Semester extends React.Component {
   componentDidMount() {
     const semId = this.props.match.params.semId
     MemberService.getSemesterStats(semId).then(
-      result => {
+      (result) => {
         this.setState({
           id: result.id,
           semester: result.semester,
@@ -36,7 +36,7 @@ export default class Semester extends React.Component {
           loaded: true,
         })
       },
-      error => {
+      (error) => {
         alert(error.responseText)
       },
     )

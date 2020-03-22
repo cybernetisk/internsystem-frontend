@@ -9,7 +9,7 @@ import List from "./List"
 @connect(() => ({
   members: getters.members,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   userDetails: getUserDetails(state),
   isLoggedIn: getIsLoggedIn(state),
 }))

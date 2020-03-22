@@ -45,7 +45,7 @@ export default class Semester extends React.Component {
           {this.props.wallets
             .get("data")
             .toJS()
-            .map(wallet => (
+            .map((wallet) => (
               <tr key={wallet.id}>
                 <td>
                   {wallet.user.username} ({wallet.user.realname})

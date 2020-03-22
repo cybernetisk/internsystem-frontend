@@ -9,7 +9,7 @@ import * as getters from "../getters"
 @connect(() => ({
   levels: getters.accesslevels,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   isLoggedIn: getIsLoggedIn(state),
 }))
 export default class Levels extends React.Component {
@@ -39,7 +39,7 @@ export default class Levels extends React.Component {
               .get("data")
               .toList()
               .toJS()
-              .map(level => (
+              .map((level) => (
                 <tr key={level.id}>
                   <td>{level.name}</td>
                   <td>{level.uio_name}</td>

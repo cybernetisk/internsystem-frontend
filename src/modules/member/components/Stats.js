@@ -10,7 +10,7 @@ import * as getters from "../getters"
 @connect(() => ({
   stats: getters.stats,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   isLoggedIn: getIsLoggedIn(state),
 }))
 export default class Stats extends React.Component {
@@ -26,10 +26,7 @@ export default class Stats extends React.Component {
     let lifetime = 0
     let honorary = 0
 
-    const mylist = this.props.stats
-      .get("data")
-      .toList()
-      .toJS()
+    const mylist = this.props.stats.get("data").toList().toJS()
     let i
     for (i = 0; i < mylist.length; i++) {
       normal += mylist[i].normal
@@ -48,7 +45,7 @@ export default class Stats extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {mylist.map(stats => (
+          {mylist.map((stats) => (
             <tr key={stats.id}>
               <td>
                 <Link to={`/member/semester/${stats.id}`}>

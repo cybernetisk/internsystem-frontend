@@ -11,7 +11,7 @@ import * as getters from "../getters"
   userDetails,
   isLoggedIn,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   isLoggedIn: getIsLoggedIn(state),
   userDetails: getUserDetails(state),
 }))
@@ -37,7 +37,7 @@ export default class Groups extends React.Component {
             .get("data")
             .get("results")
             .toJS()
-            .map(group => {
+            .map((group) => {
               return (
                 <tr key={group.id}>
                   <td>{group.id}</td>

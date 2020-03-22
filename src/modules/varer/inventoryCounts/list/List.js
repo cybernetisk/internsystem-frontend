@@ -48,7 +48,7 @@ export default class List extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.list.map(item => {
+            {this.props.list.map((item) => {
               const time = moment(item.get("tid")).format("YYYY-MM-DD HH:mm")
 
               return (

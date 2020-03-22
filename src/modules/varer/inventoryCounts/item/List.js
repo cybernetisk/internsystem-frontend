@@ -83,7 +83,7 @@ export default class List extends React.Component {
     return (
       <div className="tellinger">
         <ul>
-          {raavare.get("tellinger").map(telling => (
+          {raavare.get("tellinger").map((telling) => (
             <li key={"telling-" + telling.get("id")}>
               <a
                 href={admin("varer/varetellingvare/") + telling.get("id") + "/"}
@@ -101,7 +101,7 @@ export default class List extends React.Component {
           ))}
           {this.props.newitems
             .get(raavare.get("id"), [])
-            .map(function(item, index) {
+            .map(function (item, index) {
               return (
                 <li key={index}>
                   <VaretellingerItemNewVare {...item} />

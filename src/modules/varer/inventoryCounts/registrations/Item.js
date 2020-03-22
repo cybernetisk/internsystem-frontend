@@ -16,7 +16,7 @@ import NewCount from "./NewCount"
   isLoading,
   error,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   isLoggedIn: getIsLoggedIn(state),
 }))
 export default class Item extends React.Component {

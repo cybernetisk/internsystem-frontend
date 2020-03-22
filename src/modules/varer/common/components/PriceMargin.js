@@ -23,10 +23,7 @@ export default class PriceMargin extends React.Component {
     else if (margin < 0) theClass = "varer-priceMargin-subzero"
     else theClass = "varer-priceMargin-verylow"
 
-    margin = margin
-      .toFixed(1)
-      .toString()
-      .replace(".", ",")
+    margin = margin.toFixed(1).toString().replace(".", ",")
 
     return (
       <span className={"varer-priceMargin " + theClass}>

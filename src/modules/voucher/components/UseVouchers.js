@@ -25,7 +25,7 @@ export default class UseVouchers extends React.Component {
   }
 
   handleChange(field) {
-    return event => {
+    return (event) => {
       const val = event.target ? event.target.value : event
       this.setState({ [field]: val })
       if (field == "username") {
@@ -46,7 +46,7 @@ export default class UseVouchers extends React.Component {
       vouchersAvailable: "loading",
     })
     VoucherService.getWallets({ user: username, valid: true }).then(
-      result => {
+      (result) => {
         this.setState({
           vouchersAvailable: result.reduce(
             (prev, wallet) => prev + parseFloat(wallet.cached_balance),
@@ -83,7 +83,7 @@ export default class UseVouchers extends React.Component {
           vouchersAvailable: "unknown",
         })
       },
-      error => {
+      (error) => {
         alert(error.responseText)
         this.setState({ isSending: false })
       },
