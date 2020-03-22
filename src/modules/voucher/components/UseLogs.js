@@ -15,7 +15,7 @@ import UseVouchers from "./UseVouchers"
 @connect(() => ({
   uselogs: getters.uselogs,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   userDetails: getUserDetails(state),
 }))
 export default class UseLogs extends React.Component {
@@ -53,7 +53,7 @@ export default class UseLogs extends React.Component {
               .get("data")
               .get("results")
               .toJS()
-              .map(uselog => {
+              .map((uselog) => {
                 let who = uselog.wallet.user.username
                 if (uselog.wallet.user.realname) {
                   who += ` (${uselog.wallet.user.realname})`

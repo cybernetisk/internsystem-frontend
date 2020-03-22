@@ -23,7 +23,7 @@ export default class UserInput extends React.Component {
   }
 
   onSuggestionsFetchRequested = ({ value }) => {
-    VoucherService.getUsers(value).then(result => {
+    VoucherService.getUsers(value).then((result) => {
       this.setState({
         suggestions: result.results,
       })
@@ -48,7 +48,7 @@ export default class UserInput extends React.Component {
         suggestions={this.state.suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={sug => sug.username}
+        getSuggestionValue={(sug) => sug.username}
         renderSuggestion={renderSuggestion}
         inputProps={inputProps}
         theme={theme}

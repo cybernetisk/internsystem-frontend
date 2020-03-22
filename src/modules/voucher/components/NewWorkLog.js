@@ -23,7 +23,7 @@ export default class NewWorkLog extends React.Component {
   }
 
   handleChange(field) {
-    return event => {
+    return (event) => {
       this.setState({ [field]: event.target ? event.target.value : event })
     }
   }
@@ -53,7 +53,7 @@ export default class NewWorkLog extends React.Component {
           username: "",
         })
       },
-      error => {
+      (error) => {
         alert(error.responseText)
         this.setState({ isSending: false })
       },

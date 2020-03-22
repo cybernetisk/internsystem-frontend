@@ -124,7 +124,7 @@ export default class Item extends React.Component {
       removeHandle: () => {
         let newitems = this.state.newitems.updateIn(
           [raavare.get("id")],
-          items => items.filter(item => item != newItem),
+          (items) => items.filter((item) => item != newItem),
         )
         if (newitems.get(raavare.get("id")).size == 0) {
           newitems = newitems.delete(raavare.get("id"))
@@ -136,7 +136,7 @@ export default class Item extends React.Component {
 
         this.frisokRef.current.input.select()
       },
-      storeHandle: data => {
+      storeHandle: (data) => {
         console.log("storeHandle", data)
         data.raavare = raavare.get("id")
         data.varetelling = this.props.data.get("data").get("id")
@@ -146,17 +146,17 @@ export default class Item extends React.Component {
         })
 
         addVare(data).then(
-          res => {
+          (res) => {
             actions.vareAdded(this.props.data.get("data").get("id"), res)
             this.frisokRef.current.input.select()
             newItem.removeHandle()
           },
-          err => {
+          (err) => {
             alert(err.responseText)
           },
         )
       },
-      changeHandleBind: field => event => {
+      changeHandleBind: (field) => (event) => {
         // we actually modify the state directly here and not through setState
         newItem[field] = event.target.value
         this.forceUpdate()

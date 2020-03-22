@@ -12,7 +12,7 @@ export const currentSemester = [
     }
 
     return stats
-      .find(semester => {
+      .find((semester) => {
         return semester.get("semester").get("id") == wallets.get("semester")
       })
       .get("semester")

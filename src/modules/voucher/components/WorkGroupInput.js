@@ -22,7 +22,7 @@ function getSuggestions(value, list) {
 
   const regex = new RegExp("^" + escapedValue, "i")
 
-  return list.filter(group => regex.test(group.work_group))
+  return list.filter((group) => regex.test(group.work_group))
 }
 
 export default class UserInput extends React.Component {
@@ -34,7 +34,7 @@ export default class UserInput extends React.Component {
       suggestionsAll: [],
     }
 
-    VoucherService.getWorkGroups().then(result => {
+    VoucherService.getWorkGroups().then((result) => {
       this.setState({
         suggestionsAll: result,
         suggestions: getSuggestions(this.props.value, result),
@@ -64,7 +64,7 @@ export default class UserInput extends React.Component {
         suggestions={this.state.suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={sug => sug.work_group}
+        getSuggestionValue={(sug) => sug.work_group}
         renderSuggestion={renderSuggestion}
         shouldRenderSuggestions={() => true}
         inputProps={inputProps}

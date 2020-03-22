@@ -13,7 +13,7 @@ import UseVouchers from "./UseVouchers"
 @connect(() => ({
   uselogs: getters.uselogs,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   userDetails: getUserDetails(state),
 }))
 export default class SimpleUse extends React.Component {
@@ -39,7 +39,7 @@ export default class SimpleUse extends React.Component {
             .get("data")
             .get("results")
             .toJS()
-            .map(uselog => {
+            .map((uselog) => {
               let who
               if (uselog.wallet.user.realname) {
                 who = uselog.wallet.user.realname

@@ -35,7 +35,7 @@ export default class AddIntern extends React.Component {
           username: "",
         })
       },
-      error => {
+      (error) => {
         alert(error.responseText)
         this.setState({ isSending: false })
       },
@@ -60,7 +60,7 @@ export default class AddIntern extends React.Component {
         {this.props.roles
           .get("data")
           .toJS()
-          .map(role => {
+          .map((role) => {
             return (
               <option key={role.id} value={role.id}>
                 {role.name}
@@ -72,7 +72,7 @@ export default class AddIntern extends React.Component {
   }
 
   handleChange(field) {
-    return event => {
+    return (event) => {
       this.setState({ [field]: event.target ? event.target.value : event })
     }
   }

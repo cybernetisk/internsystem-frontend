@@ -38,7 +38,7 @@ export default class GroupsList extends React.Component {
               </tr>,
             )
 
-            group.get("accounts").forEach(account => {
+            group.get("accounts").forEach((account) => {
               const data = account.get("data")
               const summer = account.get("summer")
               prev.push(

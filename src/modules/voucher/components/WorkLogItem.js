@@ -46,7 +46,7 @@ export default class WorkLogItem extends React.Component {
         () => {
           actions.workLogDeleted(this.props.worklog.id)
         },
-        error => {
+        (error) => {
           alert(error.responseText)
         },
       )
@@ -62,13 +62,13 @@ export default class WorkLogItem extends React.Component {
       hours: this.state.hours,
       comment: this.state.comment,
     }).then(
-      result => {
+      (result) => {
         actions.workLogUpdated(result)
         this.setState({
           isEditing: false,
         })
       },
-      error => {
+      (error) => {
         alert(error.responseText)
       },
     )
@@ -86,7 +86,7 @@ export default class WorkLogItem extends React.Component {
   }
 
   handleChange(field) {
-    return event => {
+    return (event) => {
       this.setState({ [field]: event.target ? event.target.value : event })
     }
   }

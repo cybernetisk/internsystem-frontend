@@ -14,7 +14,7 @@ import "./WorkLogs.scss"
 @connect(() => ({
   worklogs: getters.worklogs,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   isLoggedIn: getIsLoggedIn(state),
 }))
 export default class List extends React.Component {
@@ -33,7 +33,7 @@ export default class List extends React.Component {
 
     const shouldShowLastCol = this.props.worklogs
       .getIn(["data", "results"])
-      .find(worklog => worklog.get("can_edit") || worklog.get("can_delete"))
+      .find((worklog) => worklog.get("can_edit") || worklog.get("can_delete"))
     const lastCol = shouldShowLastCol ? <th>&nbsp;</th> : ""
 
     return (
@@ -55,7 +55,7 @@ export default class List extends React.Component {
               .get("data")
               .get("results")
               .toJS()
-              .map(worklog => (
+              .map((worklog) => (
                 <WorkLogItem
                   key={worklog.id}
                   worklog={worklog}

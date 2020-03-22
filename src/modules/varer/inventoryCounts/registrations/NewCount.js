@@ -42,7 +42,7 @@ export default class NewCount extends React.Component {
   }
 
   handleChange(field) {
-    return event => {
+    return (event) => {
       const newValue = event.target ? event.target.value : event
       const newState = { [field]: newValue }
 
@@ -88,7 +88,7 @@ export default class NewCount extends React.Component {
     }
 
     addVare(data).then(
-      res => {
+      (res) => {
         actions.vareAdded(this.props.inventoryCountId, res)
         this.setState({
           ...getInitialState(),
@@ -97,7 +97,7 @@ export default class NewCount extends React.Component {
         this.inventoryItemSearchRef.current.clear()
         this.inventoryItemSearchRef.current.autosuggest.input.focus()
       },
-      err => {
+      (err) => {
         alert(err.responseText)
         this.setState({ isSending: false })
       },

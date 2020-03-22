@@ -1,7 +1,7 @@
 import reactor from "../reactor"
 
 export default function deferredGetter(getter) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const res = reactor.evaluate(getter)
     if (res !== null) {
       resolve(res)

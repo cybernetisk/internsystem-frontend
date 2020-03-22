@@ -11,7 +11,7 @@ export function getInventoryItems() {
 function getLastPossible(list, date = null) {
   if (date !== null) {
     return (
-      list.findLast(item => date >= new Date(item.get("dato"))) || list.last()
+      list.findLast((item) => date >= new Date(item.get("dato"))) || list.last()
     )
   } else {
     return list.last()
@@ -21,8 +21,8 @@ function getLastPossible(list, date = null) {
 export function fillBuyPrice(inventoryItem, priceDate = null) {
   const prices = inventoryItem
     .get("priser")
-    .filter(price => price.get("aktiv"))
-    .sortBy(price => new Date(price.get("dato")))
+    .filter((price) => price.get("aktiv"))
+    .sortBy((price) => new Date(price.get("dato")))
 
   return inventoryItem.set(
     "innpris",
@@ -46,8 +46,8 @@ export function fillSellPrice(inventoryItem, priceDate = null) {
   const prices = inventoryItem
     .get("lenket_salgsvare")
     .get("priser")
-    .filter(price => price.get("status") !== statusSuggestion)
-    .sortBy(price => getDateMidnight(price.get("dato")))
+    .filter((price) => price.get("status") !== statusSuggestion)
+    .sortBy((price) => getDateMidnight(price.get("dato")))
 
   return inventoryItem.set(
     "salgspris",

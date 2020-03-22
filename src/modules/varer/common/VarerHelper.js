@@ -5,12 +5,12 @@ import Immutable from "immutable"
  */
 export function extractGroupsImmutable(items, groupKey) {
   const groups = items
-    .map(item => item.get(groupKey))
-    .groupBy(group => group.get("id"))
-    .map(groupGroup => groupGroup.first())
+    .map((item) => item.get(groupKey))
+    .groupBy((group) => group.get("id"))
+    .map((groupGroup) => groupGroup.first())
 
   const groupCount = groups
-    .groupBy(group => group.get("gruppe"))
+    .groupBy((group) => group.get("gruppe"))
     .mapEntries(([groupKey, groupGroup]) => [groupKey, groupGroup.size])
 
   return groups
@@ -51,7 +51,7 @@ export function extractGroupsImmutable(items, groupKey) {
  * Sortering av råvarer/salgsvarer
  */
 export function getSorterImmutable(kontoname, subGroup) {
-  return function(left, right) {
+  return function (left, right) {
     if (left.get(kontoname).get("gruppe") != right.get(kontoname).get("gruppe"))
       return left
         .get(kontoname)
