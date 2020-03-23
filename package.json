@@ -13,7 +13,7 @@
     "@babel/preset-react": "7.9.1",
     "@babel/preset-typescript": "7.9.0",
     "@types/domready": "1.0.0",
-    "@types/moment-timezone": "0.5.12",
+    "@types/moment-timezone": "0.5.13",
     "@types/nuclear-js": "1.4.1",
     "@types/react-bootstrap": "0.32.20",
     "@types/react-dom": "16.9.5",
