@@ -97,7 +97,7 @@ export const Nav = () => (
           <NavItem target="_self" href="https://jira.cyb.no/">
             JIRA (task management)
           </NavItem>
-          <NavItem target="_self" href="https://confluence.cyb.no/">
+          <NavItem target="_self" href="https://wiki.cyb.no/">
             Wiki (Confluence)
           </NavItem>
           <NavItem target="_self" href="https://github.com/cybernetisk/">
