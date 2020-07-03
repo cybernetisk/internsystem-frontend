@@ -60,7 +60,7 @@
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
     "reqwest": "2.0.5",
-    "sass-loader": "9.0.0",
+    "sass-loader": "9.0.1",
     "style-loader": "1.2.1",
     "typesafe-actions": "5.1.0",
     "typescript": "3.9.6",
