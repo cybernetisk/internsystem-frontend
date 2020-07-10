@@ -14,7 +14,7 @@
     "@babel/preset-typescript": "7.10.4",
     "@types/domready": "1.0.0",
     "@types/moment-timezone": "0.5.13",
-    "@types/nuclear-js": "1.4.1",
+    "@types/nuclear-js": "1.4.2",
     "@types/react-bootstrap": "0.32.22",
     "@types/react-dom": "16.9.8",
     "@types/react-redux": "7.1.9",
