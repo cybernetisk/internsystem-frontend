@@ -65,7 +65,7 @@
     "typesafe-actions": "5.1.0",
     "typescript": "3.9.7",
     "url-loader": "4.1.0",
-    "webpack": "4.44.0",
+    "webpack": "4.44.1",
     "webpack-cli": "3.3.12",
     "webpack-dev-server": "3.11.0"
   },
