@@ -37,7 +37,7 @@
     "fbjs": "2.0.0",
     "file-loader": "6.0.0",
     "git-rev-sync": "2.0.0",
-    "html-loader": "1.1.0",
+    "html-loader": "1.2.0",
     "html-webpack-plugin": "4.3.0",
     "immutable": "3.8.2",
     "json-loader": "0.5.7",
