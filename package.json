@@ -41,7 +41,7 @@
     "html-webpack-plugin": "4.3.0",
     "immutable": "3.8.2",
     "json-loader": "0.5.7",
-    "mathjs": "7.1.0",
+    "mathjs": "7.2.0",
     "mini-css-extract-plugin": "0.10.0",
     "moment": "2.27.0",
     "moment-timezone": "0.5.31",
