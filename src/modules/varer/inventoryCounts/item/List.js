@@ -155,6 +155,10 @@ export default class List extends React.Component {
                 ? " btn-sm"
                 : " btn-xs"
 
+            if (raavare.get("innpris")) {
+              return prev
+            }
+
             prev.push(
               <tr key={`raavare-${raavare.get("id")}`}>
                 <td>
