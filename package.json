@@ -43,7 +43,7 @@
     "json-loader": "0.5.7",
     "mathjs": "7.3.0",
     "mini-css-extract-plugin": "0.11.3",
-    "moment": "2.29.0",
+    "moment": "2.29.1",
     "moment-timezone": "0.5.31",
     "node-sass": "4.14.1",
     "nuclear-js": "1.4.0",
