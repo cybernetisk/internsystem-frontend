@@ -29,7 +29,7 @@
     "copy-webpack-plugin": "6.3.0",
     "css-loader": "5.0.1",
     "domready": "1.0.8",
-    "eslint": "7.14.0",
+    "eslint": "7.15.0",
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-prettier": "3.2.0",
     "eslint-plugin-react": "7.21.5",
