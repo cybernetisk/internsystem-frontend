@@ -31,7 +31,7 @@
     "domready": "1.0.8",
     "eslint": "7.15.0",
     "eslint-config-prettier": "6.15.0",
-    "eslint-plugin-prettier": "3.2.0",
+    "eslint-plugin-prettier": "3.3.0",
     "eslint-plugin-react": "7.21.5",
     "favicons-webpack-plugin": "4.2.0",
     "fbjs": "2.0.0",
