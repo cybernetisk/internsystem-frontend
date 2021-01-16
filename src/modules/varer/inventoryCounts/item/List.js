@@ -19,6 +19,7 @@ export default class List extends React.Component {
   static propTypes = {
     newItem: PropTypes.func.isRequired,
     newitems: PropTypes.object.isRequired,
+    countDate: PropTypes.string,
   }
 
   constructor(props) {
@@ -164,7 +165,10 @@ export default class List extends React.Component {
                   <Quantity product={raavare} />
                 </td>
                 <td>
-                  <BuyPrice product={raavare} />
+                  <BuyPrice
+                    product={raavare}
+                    priceDateRelativeTo={this.props.countDate}
+                  />
                 </td>
                 <td>{this.renderCounts(raavare)}</td>
                 <td>

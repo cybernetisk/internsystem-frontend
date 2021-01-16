@@ -181,6 +181,7 @@ export default class Item extends React.Component {
         <ItemListView
           newItem={this.addNewItem}
           newitems={this.state.newitems}
+          countDate={this.props.data.get("data").get("tid")}
         />
       )
     }
