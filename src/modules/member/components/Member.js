@@ -39,11 +39,9 @@ export default class Member extends React.Component {
           id: result.id,
           name: result.name,
           email: result.email,
-          // eslint-disable-next-line @typescript-eslint/camelcase
           date_joined: result.date_joined,
           lifetime: result.lifetime,
           honorary: result.honorary,
-          // eslint-disable-next-line @typescript-eslint/camelcase
           last_edited_by: result.last_edited_by.realname,
           semester: result.semester.semester,
           year: result.semester.year,

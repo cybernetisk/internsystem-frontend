@@ -106,7 +106,6 @@ class InternService {
       url: api("intern/internroles"),
       type: "json",
       data: {
-        // eslint-disable-next-line @typescript-eslint/camelcase
         role__groups: groupId,
       },
     })
@@ -148,7 +147,6 @@ class InternService {
       method: "post",
       data: {
         user: userId,
-        // eslint-disable-next-line @typescript-eslint/camelcase
         card_number: cardNumber,
       },
     })
@@ -158,7 +156,6 @@ class InternService {
       url: api("core/cards"),
       type: "json",
       data: {
-        // eslint-disable-next-line @typescript-eslint/camelcase
         user__id: userId,
       },
     })

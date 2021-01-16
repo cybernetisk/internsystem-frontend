@@ -55,9 +55,7 @@ export default class WorkLogItem extends React.Component {
 
   save() {
     VoucherService.updateWorkLog(this.props.worklog.id, {
-      // eslint-disable-next-line @typescript-eslint/camelcase
       date_worked: this.state.dateWorked,
-      // eslint-disable-next-line @typescript-eslint/camelcase
       work_group: this.state.workGroup,
       hours: this.state.hours,
       comment: this.state.comment,

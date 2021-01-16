@@ -63,9 +63,7 @@ class VoucherService {
       method: "post",
       data: {
         user: username,
-        // eslint-disable-next-line @typescript-eslint/camelcase
         date_worked: dateWorked,
-        // eslint-disable-next-line @typescript-eslint/camelcase
         work_group: workGroup,
         hours,
         comment,

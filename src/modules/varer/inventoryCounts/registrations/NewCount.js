@@ -83,7 +83,6 @@ export default class NewCount extends React.Component {
       antallpant: this.getNumber(this.state.antallpant),
       kommentar: this.state.comment,
       sted: this.state.place,
-      // eslint-disable-next-line @typescript-eslint/camelcase
       time_price: this.state.timePrice,
     }
 
