@@ -1,6 +1,5 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
-const FaviconsWebpackPlugin = require("favicons-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const path = require("path")
@@ -91,21 +90,25 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin([
-      "src/robots.txt",
-      // Allow to override environment during development.
-      // If the file exists it will get prioritied over the template.
-      {
-        from: "env.*.js",
-        to: "env.js",
-        test: /env\.template\.js$/,
-      },
-      {
-        from: "env.*.js",
-        to: "env.js",
-        test: /env\.override\.js$/,
-      },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "src/robots.txt",
+        },
+        // Allow to override environment during development.
+        // If the file exists it will get prioritied over the template.
+        {
+          from: "env.template.js",
+          to: "env.js",
+        },
+        {
+          from: "env.override.js",
+          to: "env.js",
+          noErrorOnMissing: true,
+          force: true,
+        },
+      ]
+    }),
     new HtmlWebpackPlugin({
       template: "src/index.html",
       hash: false,
@@ -114,17 +117,6 @@ const config = {
       minify: {
         collapseWhitespace: true,
       },
-    }),
-    new FaviconsWebpackPlugin({
-      logo: path.resolve(__dirname, "src/favicon.png"),
-      icons: {
-        android: false,
-        appleIcon: false,
-        appleStartup: false,
-        favicons: true,
-        firefox: false,
-      },
-      prefix: "icons/[hash]/",
     }),
   ],
   optimization: {
@@ -165,8 +157,6 @@ config.plugins.push(
 )
 
 if (production) {
-  config.optimization.noEmitOnErrors = true
-
   // Split CSS to separate files
   config.plugins.push(
     new MiniCssExtractPlugin({

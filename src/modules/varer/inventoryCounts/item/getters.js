@@ -17,15 +17,15 @@ const allRaavarerWithData = [
   cacheGetter((inventoryItems, inventoryCountTime) => {
     const date = inventoryCountTime ? new Date(inventoryCountTime) : null
     return inventoryItems
-      .map(item => fillBuyPrice(item, date))
-      .map(item => fillSellPrice(item, date))
+      .map((item) => fillBuyPrice(item, date))
+      .map((item) => fillSellPrice(item, date))
       .sort(VarerHelper.getSorterImmutable("innkjopskonto", true))
   }),
 ]
 
 const raavarerCounted = [
   ["varerInventoryCount", "data", "varer"],
-  cacheGetter(varer => {
+  cacheGetter((varer) => {
     return Immutable.List(varer).reduce((list, item) => {
       const raavareId = item.get("raavare")
       return list.set(
@@ -40,12 +40,12 @@ const allRaavarerWithCounts = [
   raavarerCounted,
   allRaavarerWithData,
   cacheGetter((raavarerCounted, allRaavarerWithData) => {
-    return allRaavarerWithData.map(raavare => {
+    return allRaavarerWithData.map((raavare) => {
       raavare = raavare.set(
         "tellinger",
         raavarerCounted
           .get(raavare.get("id"), Immutable.List())
-          .map(telling => fillCountSummer(telling, raavare)),
+          .map((telling) => fillCountSummer(telling, raavare)),
       )
 
       raavare = raavare.set(
@@ -70,7 +70,7 @@ const allRaavarerWithCounts = [
 
 const accountsWithGroupHeaders = [
   allRaavarerWithCounts,
-  cacheGetter(allRaavarerWithCounts => {
+  cacheGetter((allRaavarerWithCounts) => {
     return VarerHelper.extractGroupsImmutable(
       allRaavarerWithCounts,
       "innkjopskonto",
@@ -89,10 +89,10 @@ export const filteredList = [
 
     if (filters.get("group") !== null) {
       const compareGroup = accounts.find(
-        g => g.get("id") === filters.get("group"),
+        (g) => g.get("id") === filters.get("group"),
       )
       allRaavarerWithCounts = allRaavarerWithCounts.filter(
-        item =>
+        (item) =>
           item.get("innkjopskonto").get(compareGroup.get("compare")) ===
           compareGroup.get("compareValue"),
       )
@@ -102,7 +102,7 @@ export const filteredList = [
       // match each word individually
       const words = filters.get("text").match(/\S+\s*/g)
       if (words) {
-        words.forEach(word => {
+        words.forEach((word) => {
           allRaavarerWithCounts = allRaavarerWithCounts.filter(
             deepSearchPredicate(word.trim()),
           )
@@ -114,11 +114,11 @@ export const filteredList = [
   }),
 ]
 
-const makeAccounts = raavarer => {
+const makeAccounts = (raavarer) => {
   return raavarer
-    .map(item => item.get("innkjopskonto"))
-    .groupBy(account => account.get("id"))
-    .map(group => group.first())
+    .map((item) => item.get("innkjopskonto"))
+    .groupBy((account) => account.get("id"))
+    .map((group) => group.first())
     .sort((left, right) => {
       return left.get("gruppe") == right.get("gruppe")
         ? left.get("navn").localeCompare(right.get("navn"))
@@ -130,10 +130,10 @@ const accountsFiltered = [filteredList, cacheGetter(makeAccounts)]
 
 export const accountsForSelectElement = [
   accountsWithGroupHeaders,
-  accounts => accounts.groupBy(account => account.get("gruppe")),
+  (accounts) => accounts.groupBy((account) => account.get("gruppe")),
 ]
 
-const makeAccountsSummer = raavarer => {
+const makeAccountsSummer = (raavarer) => {
   return toImmutable(
     raavarer.reduce((prev, raavare) => {
       const accountId = raavare.getIn(["innkjopskonto", "id"])
@@ -148,7 +148,7 @@ const makeAccountsSummer = raavarer => {
 
       return prev
     }, {}),
-  ).mapKeys(key => parseInt(key))
+  ).mapKeys((key) => parseInt(key))
 }
 
 export const accountsSummer = [
@@ -194,10 +194,10 @@ export const groupsViewData = [
   accountGroupsSummerFiltered,
   cacheGetter((accounts, accountsSummer, accountGroupsSummer) => {
     return accounts
-      .groupBy(account => account.get("gruppe"))
+      .groupBy((account) => account.get("gruppe"))
       .map((groupAccounts, groupName) => {
         return Immutable.Map({
-          accounts: groupAccounts.map(groupAccount => {
+          accounts: groupAccounts.map((groupAccount) => {
             return Immutable.Map({
               data: groupAccount,
               summer: accountsSummer.get(groupAccount.get("id")),
@@ -211,7 +211,7 @@ export const groupsViewData = [
 
 export const totalSummer = [
   accountsSummer,
-  cacheGetter(accountsSummer => {
+  cacheGetter((accountsSummer) => {
     return Immutable.Map(
       accountsSummer.reduce(
         (prev, accountSummer) => {
@@ -228,7 +228,7 @@ export const totalSummer = [
 
 export const totalSummerFiltered = [
   accountsSummerFiltered,
-  cacheGetter(accountsSummer => {
+  cacheGetter((accountsSummer) => {
     return Immutable.Map(
       accountsSummer.reduce(
         (prev, accountSummer) => {

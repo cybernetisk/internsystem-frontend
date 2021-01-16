@@ -11,7 +11,7 @@ import MemberService from "../services/MemberService"
 @connect(() => ({
   member: getters.member,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   userDetails: getUserDetails(state),
   isLoggedIn: getIsLoggedIn(state),
 }))
@@ -33,17 +33,15 @@ export default class Member extends React.Component {
   componentDidMount() {
     const memberId = this.props.match.params.memberId
     MemberService.getMember(memberId).then(
-      result => {
+      (result) => {
         actions.getMember(memberId)
         this.setState({
           id: result.id,
           name: result.name,
           email: result.email,
-          // eslint-disable-next-line @typescript-eslint/camelcase
           date_joined: result.date_joined,
           lifetime: result.lifetime,
           honorary: result.honorary,
-          // eslint-disable-next-line @typescript-eslint/camelcase
           last_edited_by: result.last_edited_by.realname,
           semester: result.semester.semester,
           year: result.semester.year,
@@ -51,7 +49,7 @@ export default class Member extends React.Component {
           comments: result.comments,
         })
       },
-      error => {
+      (error) => {
         alert(error.responseText)
       },
     )
@@ -189,7 +187,7 @@ export default class Member extends React.Component {
       this.state.honorary,
       this.state.comments,
     ).then(
-      result => {
+      (result) => {
         actions.updateMember(this.state.id)
         this.setState({
           id: result.id,
@@ -200,7 +198,7 @@ export default class Member extends React.Component {
           comments: result.comments,
         })
       },
-      error => {
+      (error) => {
         alert(error.responseText)
       },
     )
@@ -268,7 +266,7 @@ export default class Member extends React.Component {
             isDeleted: true,
           })
         },
-        error => {
+        (error) => {
           alert(error.responseText)
         },
       )

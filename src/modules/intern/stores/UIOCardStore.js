@@ -2,10 +2,7 @@ import { Store, toImmutable } from "nuclear-js"
 import actionTypes from "../actionTypes"
 
 function receiveUIOCardsStart(state) {
-  return state
-    .set("data", null)
-    .set("error", null)
-    .set("isLoading", true)
+  return state.set("data", null).set("error", null).set("isLoading", true)
 }
 function receiveUIOCardsSuccess(state, { response }) {
   console.log("received uio cards" + state + response)

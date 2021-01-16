@@ -34,7 +34,7 @@ const LastCol = ({
 }) => {
   const deleteIt = () => {
     if (confirm("Are you sure you want to permanently remove this entry?")) {
-      voucherService.deleteWorkLog(worklog.id).catch(err => {
+      voucherService.deleteWorkLog(worklog.id).catch((err) => {
         alert("Error occurred: " + err.message)
       })
     }
@@ -86,16 +86,14 @@ const Edit = ({
   const save = () => {
     voucherService
       .updateWorkLog(worklog.id, {
-        // eslint-disable-next-line @typescript-eslint/camelcase
         date_worked: dateWorked,
-        // eslint-disable-next-line @typescript-eslint/camelcase
         work_group: workGroup,
         hours: hours,
         comment: comment,
       })
       .then(
         () => setIsEditing(false),
-        error => alert("An error occurred: " + error.message),
+        (error) => alert("An error occurred: " + error.message),
       )
   }
 
@@ -118,7 +116,7 @@ const Edit = ({
           className="form-control"
           placeholder="date of work"
           value={dateWorked}
-          onChange={e => setDateWorked(e.target.value)}
+          onChange={(e) => setDateWorked(e.target.value)}
           ref={dateWorkedRef}
           onKeyDown={detectKeyEvents}
         />
@@ -129,7 +127,7 @@ const Edit = ({
       <td>
         <WorkGroupInput
           value={workGroup}
-          onChange={v => setWorkGroup(v)}
+          onChange={(v) => setWorkGroup(v)}
           onKeyDown={detectKeyEvents}
         />
       </td>
@@ -139,7 +137,7 @@ const Edit = ({
           className="form-control"
           placeholder="Hours, eg. 1.5"
           value={hours}
-          onChange={e => setHours(e.target.value)}
+          onChange={(e) => setHours(e.target.value)}
           step="0.01"
           min="0"
           onKeyDown={detectKeyEvents}
@@ -152,7 +150,7 @@ const Edit = ({
           className="form-control"
           placeholder="Optional comment"
           value={comment}
-          onChange={e => setComment(e.target.value)}
+          onChange={(e) => setComment(e.target.value)}
           onKeyDown={detectKeyEvents}
         />
         <div className="small text-muted">

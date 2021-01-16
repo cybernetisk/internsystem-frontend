@@ -2,10 +2,7 @@ import { Store, toImmutable } from "nuclear-js"
 import actionsType from "../actionTypes"
 
 function receiveInternStart(state) {
-  return state
-    .set("data", null)
-    .set("error", null)
-    .set("isLoading", true)
+  return state.set("data", null).set("error", null).set("isLoading", true)
 }
 function receiveInternSuccess(state, { response }) {
   console.log("received intern" + state + response)

@@ -32,7 +32,9 @@ const RenderWorkLogs = ({
   worklogs: Paginated<WorkLog>
   setPage(value: number): void
 }) => {
-  const showLastCol = worklogs.results.some(it => it.can_edit || it.can_delete)
+  const showLastCol = worklogs.results.some(
+    (it) => it.can_edit || it.can_delete,
+  )
 
   return (
     <div>
@@ -49,7 +51,7 @@ const RenderWorkLogs = ({
           </tr>
         </thead>
         <tbody>
-          {worklogs.results.map(worklog => (
+          {worklogs.results.map((worklog) => (
             <WorkLogItem
               key={worklog.id}
               worklog={worklog}

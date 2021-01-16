@@ -19,6 +19,7 @@ export default class List extends React.Component {
   static propTypes = {
     newItem: PropTypes.func.isRequired,
     newitems: PropTypes.object.isRequired,
+    countDate: PropTypes.string,
   }
 
   constructor(props) {
@@ -83,7 +84,7 @@ export default class List extends React.Component {
     return (
       <div className="tellinger">
         <ul>
-          {raavare.get("tellinger").map(telling => (
+          {raavare.get("tellinger").map((telling) => (
             <li key={"telling-" + telling.get("id")}>
               <a
                 href={admin("varer/varetellingvare/") + telling.get("id") + "/"}
@@ -101,7 +102,7 @@ export default class List extends React.Component {
           ))}
           {this.props.newitems
             .get(raavare.get("id"), [])
-            .map(function(item, index) {
+            .map(function (item, index) {
               return (
                 <li key={index}>
                   <VaretellingerItemNewVare {...item} />
@@ -164,7 +165,10 @@ export default class List extends React.Component {
                   <Quantity product={raavare} />
                 </td>
                 <td>
-                  <BuyPrice product={raavare} />
+                  <BuyPrice
+                    product={raavare}
+                    priceDateRelativeTo={this.props.countDate}
+                  />
                 </td>
                 <td>{this.renderCounts(raavare)}</td>
                 <td>

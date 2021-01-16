@@ -16,7 +16,7 @@ const Wallets = ({ wallets }: { wallets: Wallet[] }) => (
       </tr>
     </thead>
     <tbody>
-      {wallets.map(wallet => (
+      {wallets.map((wallet) => (
         <tr key={wallet.id}>
           <td>
             {wallet.user.username} ({wallet.user.realname})
@@ -45,7 +45,7 @@ export const SemesterPage = ({
   const stats = useApiFetcher(voucherService.getWalletStats)
   const semester = useMemo(
     () =>
-      stats?.find(it => String(it.semester.id) === semesterId)?.semester ??
+      stats?.find((it) => String(it.semester.id) === semesterId)?.semester ??
       null,
     [semesterId, stats],
   )

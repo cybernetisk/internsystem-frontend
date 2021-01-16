@@ -24,14 +24,16 @@ export default class Pagination extends Component<PaginationProps> {
       <div className="text-center">
         <ul className="pagination">
           <li>
-            <a href="#" onClick={event => this.handleChange(event, 1)}>
+            <a href="#" onClick={(event) => this.handleChange(event, 1)}>
               &laquo;
             </a>
           </li>
           <li>
             <a
               href="#"
-              onClick={event => this.handleChange(event, this.props.active - 1)}
+              onClick={(event) =>
+                this.handleChange(event, this.props.active - 1)
+              }
             >
               &lsaquo;
             </a>
@@ -44,7 +46,9 @@ export default class Pagination extends Component<PaginationProps> {
           <li>
             <a
               href="#"
-              onClick={event => this.handleChange(event, this.props.active + 1)}
+              onClick={(event) =>
+                this.handleChange(event, this.props.active + 1)
+              }
             >
               &rsaquo;
             </a>
@@ -52,7 +56,7 @@ export default class Pagination extends Component<PaginationProps> {
           <li>
             <a
               href="#"
-              onClick={event => this.handleChange(event, this.props.pages)}
+              onClick={(event) => this.handleChange(event, this.props.pages)}
             >
               &raquo;
             </a>

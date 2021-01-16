@@ -17,7 +17,7 @@ export default class List extends React.Component {
     return (
       <div>
         <ul>
-          {estimates.map(estimate => (
+          {estimates.map((estimate) => (
             <li key={estimate.id}>
               <a
                 href={admin(`varer/salgskalkyle/${estimate.id}/`)}

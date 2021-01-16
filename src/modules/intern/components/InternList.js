@@ -11,7 +11,7 @@ import * as getters from "../getters"
 @connect(() => ({
   interns: getters.internList,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   isLoggedIn: getIsLoggedIn(state),
   userDetails: getUserDetails(state),
 }))
@@ -40,7 +40,7 @@ export default class InternList extends React.Component {
             .get("data")
             .get("results")
             .toJS()
-            .map(intern => (
+            .map((intern) => (
               <tr key={intern.id}>
                 <td>
                   <Link to={`/intern/interns/${intern.user.id}`}>
@@ -49,7 +49,7 @@ export default class InternList extends React.Component {
                 </td>
                 <td>
                   <ul>
-                    {intern.roles.map(role => {
+                    {intern.roles.map((role) => {
                       return <li key={role.role.id}>{role.role.name}</li>
                     })}
                   </ul>

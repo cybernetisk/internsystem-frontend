@@ -12,7 +12,7 @@ import * as getters from "../getters"
 @connect(() => ({
   members: getters.members,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   userDetails: getUserDetails(state),
   isLoggedIn: getIsLoggedIn(state),
 }))
@@ -67,7 +67,7 @@ export default class List extends React.Component {
             .get("data")
             .get("results")
             .toJS()
-            .map(member => {
+            .map((member) => {
               return (
                 <tr key={member.id}>
                   <td>{member.id}</td>

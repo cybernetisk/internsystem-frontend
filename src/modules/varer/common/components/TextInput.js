@@ -21,7 +21,7 @@ export default class TextInput extends React.Component {
         type="text"
         value={this.props.value}
         onChange={this.props.onChange}
-        ref={elm => {
+        ref={(elm) => {
           this.input = elm
         }}
       />

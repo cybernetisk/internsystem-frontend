@@ -32,7 +32,7 @@ export const WorkLogNew = () => {
       })
       .then(
         () => setUsername(""),
-        error => alert("An error occurred: " + error.message),
+        (error) => alert("An error occurred: " + error.message),
       )
       .finally(() => {
         setIsSending(false)
@@ -51,17 +51,17 @@ export const WorkLogNew = () => {
                 className="form-control"
                 placeholder="date of work"
                 value={date}
-                onChange={e => setDate(e.target.value)}
+                onChange={(e) => setDate(e.target.value)}
               />
             </div>
             <div className="col-sm-2">
               <WorkGroupInput
                 value={workGroup}
-                onChange={v => setWorkGroup(v)}
+                onChange={(v) => setWorkGroup(v)}
               />
             </div>
             <div className="col-sm-2">
-              <UserInput value={username} onChange={v => setUsername(v)} />
+              <UserInput value={username} onChange={(v) => setUsername(v)} />
             </div>
             <div className="col-sm-2">
               <input
@@ -69,7 +69,7 @@ export const WorkLogNew = () => {
                 className="form-control"
                 placeholder="Hours, eg. 1.5"
                 value={hours}
-                onChange={e => setHours(e.target.value)}
+                onChange={(e) => setHours(e.target.value)}
                 step="0.01"
                 min="0"
               />
@@ -80,7 +80,7 @@ export const WorkLogNew = () => {
                 className="form-control"
                 placeholder="Optional comment"
                 value={comment}
-                onChange={e => setComment(e.target.value)}
+                onChange={(e) => setComment(e.target.value)}
               />
             </div>
             <div className="col-sm-2">

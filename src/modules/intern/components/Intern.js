@@ -14,7 +14,7 @@ import InternService from "../services/InternService"
   internroles: getters.internroles,
   uioCards: getters.uioCards,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   isLoggedIn: getIsLoggedIn(state),
   userDetails: getUserDetails(state),
 }))
@@ -71,7 +71,7 @@ export default class Intern extends React.Component {
           isSending: false,
         })
       },
-      error => {
+      (error) => {
         alert(error.responseText)
         this.setState({ isSending: false })
       },
@@ -93,7 +93,7 @@ export default class Intern extends React.Component {
           roleId: -1,
         })
       },
-      error => {
+      (error) => {
         alert(error.responseText)
         this.setState({ isSending: false })
       },
@@ -133,7 +133,7 @@ export default class Intern extends React.Component {
         {this.props.roles
           .get("data")
           .toJS()
-          .map(role => {
+          .map((role) => {
             return (
               <option key={role.id} value={role.id}>
                 {role.name}
@@ -180,7 +180,7 @@ export default class Intern extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {roles.map(role => (
+          {roles.map((role) => (
             <tr key={role.role.id}>
               <td>
                 <Link to={`/intern/roles/${role.role.id}`}>
@@ -190,7 +190,7 @@ export default class Intern extends React.Component {
               <td>{role.role.description}</td>
               <td>
                 <ul>
-                  {role.role.groups.map(group => {
+                  {role.role.groups.map((group) => {
                     return <li key={group.id}>{group.name}</li>
                   })}
                 </ul>
@@ -217,7 +217,7 @@ export default class Intern extends React.Component {
       InternService.removeRoleFromIntern(e.target.value).then(() => {
         actions.getIntern(this.props.match.params.internId)
       }),
-        error => {
+        (error) => {
           alert(error.responseText)
         }
     }
@@ -234,7 +234,7 @@ export default class Intern extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {logs.map(log => (
+          {logs.map((log) => (
             <tr key={log.id}>
               <td>{log.time}</td>
               <td>{log.changed_by.username}</td>
@@ -267,7 +267,7 @@ export default class Intern extends React.Component {
             {this.props.uioCards
               .get("data")
               .toJS()
-              .map(card => (
+              .map((card) => (
                 <tr key={card.id}>
                   <td>{card.card_number}</td>
                   <td>{card.disabled}</td>
@@ -292,7 +292,7 @@ export default class Intern extends React.Component {
           isEditing: false,
         })
       },
-      error => {
+      (error) => {
         alert(error.responseText)
       },
     )

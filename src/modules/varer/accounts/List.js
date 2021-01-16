@@ -29,7 +29,7 @@ export default class List extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {accounts.map(account => (
+          {accounts.map((account) => (
             <tr key={account.id}>
               <td>{account.id}</td>
               <td>

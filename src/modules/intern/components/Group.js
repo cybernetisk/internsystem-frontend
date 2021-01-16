@@ -12,7 +12,7 @@ import AddIntern from "./AddIntern"
   roles: getters.roles,
   interns: getters.internroles,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   isLoggedIn: getIsLoggedIn(state),
   userDetails: getUserDetails(state),
 }))
@@ -45,13 +45,13 @@ export default class Group extends React.Component {
             {this.props.interns
               .get("data")
               .toJS()
-              .map(intern => {
+              .map((intern) => {
                 return (
                   <tr key={intern.id}>
                     <td>{intern.intern.user.username}</td>
                     <td>
                       <ul>
-                        {intern.semesters.map(semester => {
+                        {intern.semesters.map((semester) => {
                           return (
                             <li key={semester.id}>
                               {this.renderSemester(semester)}
@@ -101,7 +101,7 @@ export default class Group extends React.Component {
               {this.props.roles
                 .get("data")
                 .toJS()
-                .map(role => {
+                .map((role) => {
                   return (
                     <li key={role.id}>
                       <Link to={`/intern/roles/${role.id}`}>{role.name}</Link>

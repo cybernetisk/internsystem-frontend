@@ -15,7 +15,7 @@ const WalletBalance = ({
   myWallets?: Wallet[] | null
 }) => {
   const myWallet = myWallets?.find(
-    it => it.semester.id === walletStats.semester.id,
+    (it) => it.semester.id === walletStats.semester.id,
   )
 
   if (myWallet) {
@@ -70,7 +70,7 @@ const StatsDetails = ({
           </tr>
         </thead>
         <tbody>
-          {stats.map(walletStats => (
+          {stats.map((walletStats) => (
             <tr key={walletStats.semester.id}>
               <td>
                 <Link to={`/voucher/semester/${walletStats.semester.id}`}>

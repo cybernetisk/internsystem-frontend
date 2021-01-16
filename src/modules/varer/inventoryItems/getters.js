@@ -27,21 +27,21 @@ export const inventoryItemsLoader = [
 
 export const inventoryItemsTransformed = [
   items,
-  items =>
+  (items) =>
     items
-      .map(item => fillBuyPrice(item))
-      .map(item => fillSellPrice(item))
+      .map((item) => fillBuyPrice(item))
+      .map((item) => fillSellPrice(item))
       .sort(getSorterImmutable("innkjopskonto")),
 ]
 
 export const groups = [
   inventoryItemsTransformed,
-  inventoryItems => extractGroupsImmutable(inventoryItems, "innkjopskonto"),
+  (inventoryItems) => extractGroupsImmutable(inventoryItems, "innkjopskonto"),
 ]
 
 export const selectGroups = [
   groups,
-  groups => groups.groupBy(group => group.get("gruppe")),
+  (groups) => groups.groupBy((group) => group.get("gruppe")),
 ]
 
 export const filteredInventoryItems = [
@@ -55,10 +55,10 @@ export const filteredInventoryItems = [
 
     if (filters.get("group") !== null) {
       const compareGroup = groups.find(
-        g => g.get("id") === filters.get("group"),
+        (g) => g.get("id") === filters.get("group"),
       )
       inventoryItems = inventoryItems.filter(
-        item =>
+        (item) =>
           item.get("innkjopskonto").get(compareGroup.get("compare")) ===
           compareGroup.get("compareValue"),
       )
@@ -68,7 +68,7 @@ export const filteredInventoryItems = [
       // match each word individually
       const words = filters.get("text").match(/\S+\s*/g)
       if (words) {
-        words.forEach(word => {
+        words.forEach((word) => {
           inventoryItems = inventoryItems.filter(
             deepSearchPredicate(word.trim()),
           )

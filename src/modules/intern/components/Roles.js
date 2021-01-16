@@ -9,7 +9,7 @@ import * as getters from "../getters"
 @connect(() => ({
   roles: getters.roles,
 }))
-@reduxConnect(state => ({
+@reduxConnect((state) => ({
   isLoggedIn: getIsLoggedIn(state),
   userDetails: getUserDetails(state),
 }))
@@ -32,14 +32,14 @@ export default class Roles extends React.Component {
           {this.props.roles
             .get("data")
             .toJS()
-            .map(role => (
+            .map((role) => (
               <tr key={role.id}>
                 <th>
                   <Link to={`/intern/role/${role.id}`}>{role.name}</Link>
                 </th>
                 <th>
                   <ul>
-                    {role.groups.map(group => (
+                    {role.groups.map((group) => (
                       <li key={group.id}>
                         <Link to={`/intern/group/${group.id}`}>
                           {group.name}

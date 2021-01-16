@@ -2,10 +2,7 @@ import { Store, toImmutable } from "nuclear-js"
 import actionsType from "../actionTypes"
 
 function receiveRolesStart(state) {
-  return state
-    .set("data", null)
-    .set("error", null)
-    .set("isLoading", true)
+  return state.set("data", null).set("error", null).set("isLoading", true)
 }
 function receiveRolesSuccess(state, { response }) {
   console.log("received roles" + state + response)

@@ -20,8 +20,8 @@ export function useCrudEventsPaginated<
   useEffect(() => {
     const subs = [
       added.subscribe({
-        next: value =>
-          dispatch(state =>
+        next: (value) =>
+          dispatch((state) =>
             state != null && pageRef.current === 1
               ? {
                   ...state,
@@ -31,12 +31,12 @@ export function useCrudEventsPaginated<
           ),
       }),
       modified.subscribe({
-        next: value =>
-          dispatch(state =>
-            state?.results.some(it => it.id === value.id)
+        next: (value) =>
+          dispatch((state) =>
+            state?.results.some((it) => it.id === value.id)
               ? {
                   ...state,
-                  results: state.results.map(it =>
+                  results: state.results.map((it) =>
                     it.id == value.id ? value : it,
                   ),
                 }
@@ -45,17 +45,17 @@ export function useCrudEventsPaginated<
       }),
       deleted.subscribe({
         next: ({ id }) =>
-          dispatch(state =>
-            state?.results.some(it => it.id === id)
+          dispatch((state) =>
+            state?.results.some((it) => it.id === id)
               ? {
                   ...state,
-                  results: state.results.filter(it => it.id !== id),
+                  results: state.results.filter((it) => it.id !== id),
                 }
               : state,
           ),
       }),
     ]
 
-    return () => subs.forEach(it => it.unsubscribe)
+    return () => subs.forEach((it) => it.unsubscribe)
   }, [])
 }

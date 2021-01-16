@@ -5,6 +5,7 @@ import moment from "utils/moment"
 import Loader from "../../../../components/Loader"
 import Pagination from "../../../../components/Pagination"
 import withQueryProps from "../../../../utils/withQueryProps"
+import { MultilineText } from "../../common/components/MultilineText"
 import { createQueryUpdater } from "../../common/functions"
 import { fetchInventoryCounts } from "../actions"
 import { activePage, list, listLoader, numPages } from "./getters"
@@ -48,7 +49,7 @@ export default class List extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.list.map(item => {
+            {this.props.list.map((item) => {
               const time = moment(item.get("tid")).format("YYYY-MM-DD HH:mm")
 
               return (
@@ -59,7 +60,11 @@ export default class List extends React.Component {
                     </Link>
                   </td>
                   <td>{time}</td>
-                  <td>{item.get("kommentar")}</td>
+                  <td>
+                    {item.get("kommentar") && (
+                      <MultilineText text={item.get("kommentar")} />
+                    )}
+                  </td>
                   <td>{item.get("ansvarlig")}</td>
                 </tr>
               )

@@ -31,7 +31,7 @@ const initialState: AuthState = {
 }
 
 export const authReducer = createReducer(initialState)
-  .handleAction(fetchAuthAsync.request, state => ({
+  .handleAction(fetchAuthAsync.request, (state) => ({
     ...state,
     data: null,
     error: null,

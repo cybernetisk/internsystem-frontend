@@ -35,7 +35,7 @@ const RenderUseLogs = ({
         </tr>
       </thead>
       <tbody>
-        {useLogs.results.map(useLog => {
+        {useLogs.results.map((useLog) => {
           let who = useLog.wallet.user.username
           if (useLog.wallet.user.realname) {
             who += ` (${useLog.wallet.user.realname})`

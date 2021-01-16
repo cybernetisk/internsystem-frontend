@@ -27,12 +27,12 @@ export const UserInput = ({
     <Autosuggest
       suggestions={suggestions}
       onSuggestionsFetchRequested={({ value }) => {
-        voucherService.getUsers(value).then(result => {
+        voucherService.getUsers(value).then((result) => {
           setSuggestions(result.results)
         })
       }}
       onSuggestionsClearRequested={() => setSuggestions([])}
-      getSuggestionValue={sug => sug.username}
+      getSuggestionValue={(sug) => sug.username}
       renderSuggestion={renderSuggestion}
       inputProps={{
         placeholder: "UiO-username",

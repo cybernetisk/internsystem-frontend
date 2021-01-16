@@ -2,10 +2,7 @@ import { Store, toImmutable } from "nuclear-js"
 import actionTypes from "../actionTypes"
 
 function receiveStatsStart(state) {
-  return state
-    .set("data", null)
-    .set("error", null)
-    .set("isLoading", null)
+  return state.set("data", null).set("error", null).set("isLoading", null)
 }
 
 function receiveStatsSuccess(state, { response }) {

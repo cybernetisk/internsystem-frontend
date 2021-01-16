@@ -50,9 +50,9 @@ export default class InventoryItemSearch extends React.Component {
         limit: 10,
       },
       type: "json",
-    }).then(result => {
+    }).then((result) => {
       this.setState({
-        suggestions: result.results.map(product =>
+        suggestions: result.results.map((product) =>
           fillBuyPrice(toImmutable(product)),
         ),
       })
@@ -70,7 +70,7 @@ export default class InventoryItemSearch extends React.Component {
     event.preventDefault()
   }
 
-  getSuggestionValue = product => {
+  getSuggestionValue = (product) => {
     this.props.onSelect(product)
     return product.get("navn")
   }

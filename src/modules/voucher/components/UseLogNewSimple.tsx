@@ -20,7 +20,7 @@ const UseLogs = ({ useLogs }: { useLogs: UseLog[] }) => (
     <hr />
     <h3>Previous registrations</h3>
     <ul className="voucher-useLogNewSimple">
-      {useLogs.map(useLog => {
+      {useLogs.map((useLog) => {
         let who
         if (useLog.wallet.user.realname) {
           who = useLog.wallet.user.realname

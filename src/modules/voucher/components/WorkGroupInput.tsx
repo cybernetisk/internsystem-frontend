@@ -20,7 +20,7 @@ function getSuggestions(value: string, list: Workgroup[]) {
 
   const regex = new RegExp("^" + escapedValue, "i")
 
-  return list.filter(group => regex.test(group.work_group))
+  return list.filter((group) => regex.test(group.work_group))
 }
 
 export const WorkGroupInput = (props: {
@@ -50,8 +50,8 @@ export const WorkGroupInput = (props: {
       onSuggestionsClearRequested={() => {
         setSuggestions([])
       }}
-      getSuggestionValue={sug => sug.work_group}
-      renderSuggestion={suggestion => <span>{suggestion.work_group}</span>}
+      getSuggestionValue={(sug) => sug.work_group}
+      renderSuggestion={(suggestion) => <span>{suggestion.work_group}</span>}
       shouldRenderSuggestions={() => true}
       inputProps={{
         ...props,

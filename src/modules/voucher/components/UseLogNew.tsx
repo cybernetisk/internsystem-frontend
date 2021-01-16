@@ -26,7 +26,7 @@ export const UseLogNew = ({
 
     setVouchersAvailable("loading")
     voucherService.getWallets({ user: username, valid: true }).then(
-      result => {
+      (result) => {
         if (lastUsername.current === username) {
           setVouchersAvailable(
             String(
@@ -66,7 +66,7 @@ export const UseLogNew = ({
           setVouchers("")
           setVouchersAvailable("unknown")
         },
-        error => alert("An error occurred: " + error.message),
+        (error) => alert("An error occurred: " + error.message),
       )
       .finally(() => {
         setIsSending(false)
@@ -79,7 +79,7 @@ export const UseLogNew = ({
         <div className="col-sm-2 col-xs-4 form-group">
           <UserInput
             value={username}
-            onChange={v => {
+            onChange={(v) => {
               setUsername(v)
               updateAvailable(v)
             }}
@@ -96,7 +96,7 @@ export const UseLogNew = ({
             className="form-control"
             placeholder="# to spend"
             value={vouchers}
-            onChange={e => setVouchers(e.target.value)}
+            onChange={(e) => setVouchers(e.target.value)}
           />
         </div>
         <div className="col-sm-3 col-xs-6 form-group">
@@ -105,7 +105,7 @@ export const UseLogNew = ({
             className="form-control"
             placeholder="Optional comment"
             value={comment}
-            onChange={e => setComment(e.target.value)}
+            onChange={(e) => setComment(e.target.value)}
           />
         </div>
         <div className="col-sm-2 col-xs-6 form-group">

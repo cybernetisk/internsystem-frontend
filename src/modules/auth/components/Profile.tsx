@@ -16,7 +16,7 @@ const Details = ({ data }: { data: AuthDataLoggedIn }) => {
 
       <p>Stored data in CYBs system:</p>
       <dl className="dl-horizontal">
-        {Object.keys(details).map(key => (
+        {Object.keys(details).map((key) => (
           <React.Fragment key={key}>
             <dt>{key}</dt>
             <dd>{details[key]}</dd>
@@ -27,12 +27,12 @@ const Details = ({ data }: { data: AuthDataLoggedIn }) => {
         <div>
           <p>Data from remote authentication system:</p>
           <dl className="dl-horizontal">
-            {Object.keys(metadata).map(key => (
+            {Object.keys(metadata).map((key) => (
               <React.Fragment key={key}>
                 <dt>{key}</dt>
                 <dd>
                   <ul>
-                    {metadata[key].map(subval => (
+                    {metadata[key].map((subval) => (
                       <li key={subval}>{subval}</li>
                     ))}
                   </ul>

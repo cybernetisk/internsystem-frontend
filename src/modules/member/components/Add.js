@@ -5,7 +5,7 @@ import * as actions from "../actions"
 import MemberService from "../services/MemberService"
 import List from "./List"
 
-@connect(state => ({
+@connect((state) => ({
   isLoggedIn: getIsLoggedIn(state),
 }))
 export default class Add extends React.Component {
@@ -55,7 +55,7 @@ export default class Add extends React.Component {
           lifetime: false,
         })
       },
-      error => {
+      (error) => {
         alert(error.responseText)
       },
     )

@@ -8,6 +8,7 @@ import Loader from "../../../../components/Loader"
 import { price } from "../../../../services/FormatService"
 import withQueryProps from "../../../../utils/withQueryProps"
 import AccountFilter from "../../common/components/AccountFilter"
+import { MultilineText } from "../../common/components/MultilineText"
 import ListInputQ from "../../common/components/TextInput"
 import { createQueryUpdater } from "../../common/functions"
 import * as consts from "../../consts"
@@ -124,7 +125,7 @@ export default class Item extends React.Component {
       removeHandle: () => {
         let newitems = this.state.newitems.updateIn(
           [raavare.get("id")],
-          items => items.filter(item => item != newItem),
+          (items) => items.filter((item) => item != newItem),
         )
         if (newitems.get(raavare.get("id")).size == 0) {
           newitems = newitems.delete(raavare.get("id"))
@@ -136,7 +137,7 @@ export default class Item extends React.Component {
 
         this.frisokRef.current.input.select()
       },
-      storeHandle: data => {
+      storeHandle: (data) => {
         console.log("storeHandle", data)
         data.raavare = raavare.get("id")
         data.varetelling = this.props.data.get("data").get("id")
@@ -146,17 +147,17 @@ export default class Item extends React.Component {
         })
 
         addVare(data).then(
-          res => {
+          (res) => {
             actions.vareAdded(this.props.data.get("data").get("id"), res)
             this.frisokRef.current.input.select()
             newItem.removeHandle()
           },
-          err => {
+          (err) => {
             alert(err.responseText)
           },
         )
       },
-      changeHandleBind: field => event => {
+      changeHandleBind: (field) => (event) => {
         // we actually modify the state directly here and not through setState
         newItem[field] = event.target.value
         this.forceUpdate()
@@ -181,6 +182,7 @@ export default class Item extends React.Component {
         <ItemListView
           newItem={this.addNewItem}
           newitems={this.state.newitems}
+          countDate={this.props.data.get("data").get("tid")}
         />
       )
     }
@@ -232,7 +234,9 @@ export default class Item extends React.Component {
           {item.kommentar
             ? [
                 <dt key="kommentar-dt">Comment</dt>,
-                <dd key="kommentar-dd">{item.kommentar}</dd>,
+                <dd key="kommentar-dd">
+                  <MultilineText text={item.kommentar} />
+                </dd>,
               ]
             : ""}
           <dt>Responsible</dt>

@@ -4,7 +4,7 @@ import { getIsLoggedIn, getUserDetails } from "../../auth/selectors"
 import * as actions from "../actions"
 import List from "./List"
 
-@connect(state => ({
+@connect((state) => ({
   userDetails: getUserDetails(state),
   isLoggedIn: getIsLoggedIn(state),
 }))
