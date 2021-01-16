@@ -5,6 +5,7 @@ import Loader from "../../../../components/Loader"
 import Pagination from "../../../../components/Pagination"
 import moment from "../../../../moment"
 import withQueryProps from "../../../../utils/withQueryProps"
+import { MultilineText } from "../../common/components/MultilineText"
 import { createQueryUpdater } from "../../common/functions"
 import { fetchInventoryCounts } from "../actions"
 import { activePage, list, listLoader, numPages } from "./getters"
@@ -59,7 +60,11 @@ export default class List extends React.Component {
                     </Link>
                   </td>
                   <td>{time}</td>
-                  <td>{item.get("kommentar")}</td>
+                  <td>
+                    {item.get("kommentar") && (
+                      <MultilineText text={item.get("kommentar")} />
+                    )}
+                  </td>
                   <td>{item.get("ansvarlig")}</td>
                 </tr>
               )

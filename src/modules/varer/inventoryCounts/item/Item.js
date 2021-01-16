@@ -8,6 +8,7 @@ import moment from "../../../../moment"
 import { price } from "../../../../services/FormatService"
 import withQueryProps from "../../../../utils/withQueryProps"
 import AccountFilter from "../../common/components/AccountFilter"
+import { MultilineText } from "../../common/components/MultilineText"
 import ListInputQ from "../../common/components/TextInput"
 import { createQueryUpdater } from "../../common/functions"
 import * as consts from "../../consts"
@@ -233,7 +234,9 @@ export default class Item extends React.Component {
           {item.kommentar
             ? [
                 <dt key="kommentar-dt">Comment</dt>,
-                <dd key="kommentar-dd">{item.kommentar}</dd>,
+                <dd key="kommentar-dd">
+                  <MultilineText text={item.kommentar} />
+                </dd>,
               ]
             : ""}
           <dt>Responsible</dt>

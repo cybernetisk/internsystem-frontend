@@ -1,10 +1,11 @@
-import { connect as reduxConnect } from "react-redux"
 import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
+import { connect as reduxConnect } from "react-redux"
 import { Link } from "react-router-dom"
 import { admin } from "../../../../api"
 import Loader from "../../../../components/Loader"
 import { getIsLoggedIn } from "../../../auth/selectors"
+import { MultilineText } from "../../common/components/MultilineText"
 import * as actions from "../actions"
 import { data, error, isLoading } from "./getters"
 import "./Item.scss"
@@ -33,7 +34,7 @@ export default class Item extends React.Component {
     if (data.get("kommentar")) {
       return (
         <div className="varer-inventoryCountReg-item-comment">
-          {data.get("kommentar")}
+          <MultilineText text={data.get("kommentar")} />
         </div>
       )
     }
