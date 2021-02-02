@@ -1,4 +1,4 @@
-import { RootState } from "../../types"
+import { RootState } from "types"
 
 export const getAuthState = (state: RootState) => state.auth
 export const getIsLoggedIn = (state: RootState) => state.auth.data?.loggedIn

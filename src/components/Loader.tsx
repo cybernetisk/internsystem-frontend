@@ -1,20 +1,13 @@
-import PropTypes from "prop-types"
-import React from "react"
+import React, { ReactNode } from "react"
 
 interface LoaderProps {
+  children?: ReactNode
   isLoading?: boolean
   isEmpty?: boolean
   error?: string
 }
 
 export default class Loader extends React.Component<LoaderProps> {
-  PropTypes = {
-    children: PropTypes.node,
-    isEmpty: PropTypes.bool,
-    isLoading: PropTypes.bool.isRequired,
-    error: PropTypes.string,
-  }
-
   renderError(error: string) {
     let message
     if (error.length > 0) {
@@ -47,6 +40,6 @@ export default class Loader extends React.Component<LoaderProps> {
       return this.renderEmpty()
     }
 
-    return false
+    return null
   }
 }

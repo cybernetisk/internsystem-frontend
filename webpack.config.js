@@ -16,7 +16,8 @@ const config = {
   name: "client",
   target: "web",
   resolve: {
-    extensions: ['.js', '.ts', '.tsx'],
+    modules: ["src", "node_modules"],
+    extensions: [".js", ".ts", ".tsx"],
   },
   entry: {
     app: path.resolve(__dirname, "src/app.tsx"),
@@ -30,6 +31,7 @@ const config = {
   devServer: {
     compress: true,
     historyApiFallback: true,
+    allowedHosts: ["dev.internt.cyb.no", "localhost"],
     host: "0.0.0.0",
     hot: true,
     port: 3000,
@@ -50,7 +52,21 @@ const config = {
       },
       {
         test: /\.scss$/,
+        exclude: /\.module\.scss$/,
         use: [STYLE_LOADER, "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.module\.scss$/,
+        use: [
+          STYLE_LOADER,
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+          "sass-loader",
+        ],
       },
       {
         test: /\.json$/,

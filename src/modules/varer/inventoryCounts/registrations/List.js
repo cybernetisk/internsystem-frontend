@@ -1,7 +1,7 @@
 import { connect } from "nuclear-js-react-addons-chefsplate"
 import React from "react"
+import moment from "utils/moment"
 import { admin } from "../../../../api"
-import moment from "../../../../moment"
 import { antall } from "../../../../services/FormatService"
 import Price from "../../common/components/Price"
 import ProductName from "../../common/components/ProductName"
