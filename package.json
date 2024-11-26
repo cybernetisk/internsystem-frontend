@@ -44,7 +44,7 @@
     "mini-css-extract-plugin": "1.6.2",
     "moment": "2.29.1",
     "moment-timezone": "0.5.33",
-    "node-sass": "5.0.0",
+    "node-sass": "6.0.1",
     "nuclear-js": "1.4.0",
     "nuclear-js-react-addons-chefsplate": "1.0.1",
     "prettier": "2.2.1",
